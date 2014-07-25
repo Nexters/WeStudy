@@ -53,7 +53,7 @@ public class MainActivity extends FragmentActivity
         Toast toast;
         position = position+1;
 
-        mTitle = getString(R.string.title_timeline);
+        mTitle = getString(R.string.title_home);
 
         /** Test용 Toast **/
         toast = Toast.makeText(getApplicationContext(),
@@ -102,7 +102,7 @@ public class MainActivity extends FragmentActivity
     public void onSectionAttached(int number){
         switch(number){
             case 1:
-                mTitle = getString(R.string.title_timeline);
+                mTitle = getString(R.string.title_home);
                 tabFragment = TabFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()

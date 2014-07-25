@@ -3,4 +3,4 @@
     android:src="@drawable/calendar_prev_arrow"
     android:tileMode="disabled" android:gravity="center" >
 </bitmap>
-<!-- From: file:/Users/godong/WeStudy/westudy/caldroid/src/main/res/drawable/left_arrow.xml -->
+<!-- From: file:/Users/baggajin/Git/WeStudy/westudy/caldroid/src/main/res/drawable/left_arrow.xml -->

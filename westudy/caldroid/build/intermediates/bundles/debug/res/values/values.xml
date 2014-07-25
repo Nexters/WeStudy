@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/Users/godong/WeStudy/westudy/caldroid/src/main/res/values/color.xml -->
+    <!-- From: file:/Users/baggajin/Git/WeStudy/westudy/caldroid/src/main/res/values/color.xml -->
     <eat-comment />
 
     <color name="caldroid_black">#000000</color>
@@ -13,11 +13,11 @@
     <color name="caldroid_sky_blue">#FFA3E8F7</color>
     <color name="caldroid_transparent">#00000000</color>
     <color name="caldroid_white">#FFFFFF</color>
-    <!-- From: file:/Users/godong/WeStudy/westudy/caldroid/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/baggajin/Git/WeStudy/westudy/caldroid/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="app_name">CalendarFragment</string>
-    <!-- From: file:/Users/godong/WeStudy/westudy/caldroid/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/baggajin/Git/WeStudy/westudy/caldroid/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="AppBaseTheme" parent="android:Theme.Light">
