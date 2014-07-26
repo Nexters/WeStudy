@@ -14,7 +14,8 @@
     <string name="no_friends_selected">No friends selected</string>
     <string name="no_place_selected">No place selected</string>
     <string name="pick_seattle_place">Pick a Seattle Place</string>
-    <string name="app_id">718815298173054</string>
+    <string name="app_id">355198514515820</string>
+    <string name="app_id_2">718815298173054</string>
     <string name="exception">Exception: %1$s</string>
 
     <string name="com_facebook_dialogloginactivity_ok_button">OK</string>

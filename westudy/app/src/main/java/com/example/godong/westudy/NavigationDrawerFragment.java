@@ -114,6 +114,10 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_home),
                         getString(R.string.title_profile),
                         getString(R.string.title_study),
+                        "스터디 찾기",
+                        "스터디 만들기",
+                        "Monday Arivo",
+                        "설정",
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;

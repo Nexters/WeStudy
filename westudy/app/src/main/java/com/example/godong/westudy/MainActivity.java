@@ -27,6 +27,7 @@ public class MainActivity extends FragmentActivity
     /** fragment들 선언 (DrawerBar에서 선택할 Fragment) **/
     private TabFragment tabFragment;
     private ProfileFragment profileFragment;
+    private InfoFragment infoFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +126,16 @@ public class MainActivity extends FragmentActivity
                         .replace(R.id.fl_container, tabFragment)
                         .commit();
                 break;
+
+            case 6:
+                mTitle = getString(R.string.title_info);
+                infoFragment = InfoFragment.newInstance();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fl_container, infoFragment)
+                        .commit();
+                break;
+
         }
     }
 
