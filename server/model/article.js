@@ -35,11 +35,47 @@
 		}
  	},
 
- 	article_load: function (date, callback) {
+ 	article_all: function (options, callback) {
+ 		ArticleModel.find({}, function (err, data) {
+ 			if (!err) {
+ 				if (data) {
+ 					callback({
+ 						'success': true,
+ 						'article_list': data
+ 					});
+ 				} else {
+ 					callback({
+ 						'success': false
+ 					});
+ 				}
+ 			} else {
+ 				callback({
+ 					'success': false
+ 				})
+ 			}
+ 		});
+ 	},
+
+ 	article_load: function (options, callback) {
+ 		// when scroll downside
+ 		var study_id = options.study_id;
+ 		var date = options.date;
+ 		ArticleModel.find({
+ 			'study_id': study_id,
+ 			'create_time': {
+ 				'$gte': new Date(2014, 7, 21),
+ 				'$lt': new Date(2012, 7, 15)
+ 			}
+ 		}, function (err, data) {
+
+ 		}).limit(15);
 
  	},
 
- 	article_refresh: function (date, callback) {
+ 	article_refresh: function (options, callback) {
+
+
+
 
  	}
  };

@@ -15,7 +15,7 @@ var user_schema = new Schema({
 	profile_url: String,
 	gender: String,		// male, female
 	interest: Array,
-	study: Array
+	study: Array,
 	create_time: Date
 });
 
@@ -33,7 +33,7 @@ module.exports = {
 				'study': [],	// array
 				'create_time': Date.now()
 			});
-			
+
 			try {
 				user_model.save(callback);
 			} catch (err) {

@@ -48,7 +48,7 @@ mongoose.connect(database_uri, options);
 /*
  * Data model & method setup
  */
- 
+
 var user_module = require('./model/user');
 var article_module = require('./model/article');
 var study_module = require('./model/study');
@@ -127,6 +127,14 @@ app.post('/study/save', function (req, res) {
 });
 app.get('/study/load', function (req, res) {
 
+});
+
+app.get('/article/all', function (req, res) {
+	article_module.article_all(null, function (result) {
+		if (result.success) {
+			res.json(result.article_list);
+		}
+	});
 });
 
 app.post('/article/save', function (req, res) {
