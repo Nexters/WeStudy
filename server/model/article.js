@@ -26,12 +26,22 @@
 			});
 
 			try {
-				article_model.save(callback);
+				article_model.save(function () {
+					callback({
+						'success': true
+					});
+				});
 			} catch (err) {
 				console.log("Article data save fail.");
+				callback({
+					'success': false
+				});
 			}
 		} else {
 			console.log("Article Parameter doesn't exist");
+			callback({
+				'success': false
+			});
 		}
  	},
 
