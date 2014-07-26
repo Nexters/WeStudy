@@ -4,61 +4,40 @@
  *
  */
 
-var mongoose = require('mongoose');
-var database = mongoose.connect('mongodb://localhost/weStudy');
-var fs = require('fs');
+var mongoose = require('mongoose'),
+	Schema = mongoose.Schema;
+// var database = mongoose.connect('mongodb://localhost/weStudy');
+// var Schema = mongoose.Schema;
+// var fs = require('fs');
 
-var user_schema = new mongoose.Schema({
-	fb_id: String,
-	fb_name: String,
-	fb_profileUrl: String,
+var user_schema = new Schema({
+	email: String,
+	name: String,
+	profile_url: String,
+	gender: String,		// male, female
+	interest: Array,
+	study: Array
+	create_time: Date
 });
 
-var UserModel = mongoose.model('user', user_schema);
+var article_schema = new Schema({
+	author: String,
+	study_id: String,
+	contents: Object,
+	create_time: Date
+});
 
-module.exports = {
-	user_save: function (user, callback) {
-		var user_model = new UserModel();
-		user_model.fb_id = user.fb_id;
-		user_model.fb_name = user.fb_name;
-		user_model.fb_profileUrl = user.fb_profile_url;
+var study_schema = new Schema({
+	name: String,
+	member: Array,
+	contents: Object,
+	create_time: Date
+});
 
-		// save user data
-		UserModel.findOne({
-			'fb_id': user_model.fb_id
-		},	function (err, data) {
-			if (err) {
-				callback();	
-			} else {
-				if (!data) {
-					try {
-						user_model.save(function () {
-							console.log("Save user data : " + user.fb_name);
-							callback(data);
-						});
-					} catch (_err) {
-						console.log("Fail save user data : " + _err);
-					}
-				} else {
-					callback(data);
-				}
-			}
-		});
-	},
+// var UserModel = mongoose.model('user', user_schema);
+// var ArticleModel = mongoose.model('article', article_schema);
+// var StudyModel = mongoose.model('study', study_schema);
 
-	user_load: function (user, callback) {
-		var fb_id = user.fb_id;
-		var fb_name = user.fb_name;
-
-		// load user data
-		UserModel.findOne({
-			'fb_id': fb_id
-		}, function (err, data) {
-			if (err) {
-				callback();
-			} else {
-				callback(data);
-			}
-		});
-	}
-};
+exports.UserModel = mongoose.model('user', user_schema);
+exports.ArticleModel = mongoose.model('article', article_schema);
+exports.StudyModel = mongoose.model('study', study_schema);
