@@ -18,9 +18,13 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
-import com.loopj.android.http.*;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
+import com.common.CommonUtil;
+import com.network.HttpUtil;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * Created by baggajin on 14. 7. 13..
@@ -94,9 +98,8 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
 //        });
 //        thread.start();
 //        // TODO Auto-generated method stub
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://godong9.com:3000/test/get/user", new AsyncHttpResponseHandler() {
 
+        HttpUtil.get("http://godong9.com:3000/test/get/user", null, null, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
                 // called before request is started
@@ -106,13 +109,10 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
-                try{
-                    JSONArray a = new JSONArray(new String(response));
-                    System.out.println(a);
-                    System.out.println(a.getJSONObject(0));
-                }catch(Exception e){
 
-                }
+
+                JSONArray a = CommonUtil.stringToJSONArray(new String(response));
+                System.out.println(a);
 
 
             }
