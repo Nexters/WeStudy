@@ -15,6 +15,7 @@ var UserSchema = new Schema({
   create_time: Date //생성 시간
 }, {collection: 'users'});
 
+
 /**
  * Validations
  */
@@ -24,6 +25,11 @@ UserSchema.methods = {
     return (this.password === plainText);
   }
 };
+
+
+/**
+ * Model Methods
+ */
 
 UserSchema.statics.saveUser = function (user, callback) {
   var self = this;
