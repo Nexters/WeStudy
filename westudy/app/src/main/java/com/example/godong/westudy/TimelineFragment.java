@@ -13,9 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.dataSet.Article;
-import com.google.gson.Gson;
 
 import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import com.loopj.android.http.*;
@@ -95,7 +95,7 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
 //        thread.start();
 //        // TODO Auto-generated method stub
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://godong9.com:3000/test/add/user", new AsyncHttpResponseHandler() {
+        client.get("http://godong9.com:3000/test/get/user", new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart() {
@@ -106,8 +106,15 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
-                System.out.println("ABC");
-                System.out.println(new String(response));
+                try{
+                    JSONArray a = new JSONArray(new String(response));
+                    System.out.println(a);
+                    System.out.println(a.getJSONObject(0));
+                }catch(Exception e){
+
+                }
+
+
             }
 
             @Override

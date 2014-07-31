@@ -32,7 +32,6 @@ dependencies {
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     compile 'com.google.android.gms:play-services:4.2.42'
     compile 'com.android.support:appcompat-v7:19.+'
-    compile files('libs/gson-2.1.jar')
     compile files('libs/bolts.jar')
     compile files('libs/android-async-http-1.4.5.jar')
 }
