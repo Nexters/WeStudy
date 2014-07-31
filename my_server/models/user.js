@@ -5,14 +5,14 @@ var mongoose = require('mongoose'),
  * User Schema
  */
 var UserSchema = new Schema({
-  email: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },  //email. 로그인 ID
   password: { type: String, required: true},
-  name: { type: String, required: true },
-  profile_url: String,
+  name: { type: String, required: true }, //닉네임
+  profile_url: { type: String, default: '' }, //프로필 이미지 주소
   gender: String,		// male, female
-  interest: Array,
-  study: Array,
-  create_time: Date
+  interest: { type: Array, default: [] }, //관심사
+  study: { type: Array, default: [] },  //참가중인 스터디
+  create_time: Date //생성 시간
 }, {collection: 'users'});
 
 /**
