@@ -1,7 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 var passport = require('passport');
 var mongoose = require('mongoose'),
-    User = mongoose.model('User');
+User = mongoose.model('User');
 
 var UserCtrl = {};
 
@@ -16,24 +16,14 @@ UserCtrl.login = function(req, res){
   })(req, res);
 };
 
-UserCtrl.addUser = function(req, res) {
-  console.log("SESSION");
-  console.log(req.user);
-  var adminUser = new User({ username:'godong9', email: 'godong9@gmail.com', password: '123456a'});
-  adminUser.save(function (err) {
-    if (err) return res.send(err);
-    return res.send("Success");
-  });
-};
-
 
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
   },
-  function(username, password, done) {
-    console.log("NAME:",username,"PW:",password);
-    User.findOne({ email: username }, function(err, user) {
+  function(email, password, done) {
+    console.log("NAME:",email,"PW:",password);
+    User.findOne({ email: email }, function(err, user) {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
