@@ -138,27 +138,31 @@ app.get('/article/all', function (req, res) {
 });
 
 app.get('/article/save', function (req, res) {
-	article_module.article_save({
-		'author': 'kysTest1',
-		'study_id': '12412515214',
-		'contents': {
-			'text': 'sdfsafasf Test article',
-			'photos_url': 'path/directory/filename'
-		}
-	}, function (result) {
-		if (result.success) {
-			res.json({
-				'success': true
-			});
-		} else {
-			res.json({
-				'success': false
-			});
-		}
-	});
+	// article_module.article_save({
+	// 	'author': 'kysTest1',
+	// 	'study_id': '12412515214',
+	// 	'contents': {
+	// 		'text': 'sdfsafasf Test article',
+	// 		'photos_url': 'path/directory/filename'
+	// 	}
+	// }, function (result) {
+	// 	if (result.success) {
+	// 		res.json({
+	// 			'success': true
+	// 		});
+	// 	} else {
+	// 		res.json({
+	// 			'success': false
+	// 		});
+	// 	}
+	// });
 });
 app.get('/article/load', function (req, res) {
-	res.json()
+	article_module.article_load({
+
+	}, function (result) {
+
+	});
 });
 app.get('/article/refresh', function (req, res) {
 
