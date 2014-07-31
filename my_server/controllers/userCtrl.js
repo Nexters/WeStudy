@@ -16,6 +16,13 @@ UserCtrl.login = function(req, res){
   })(req, res);
 };
 
+UserCtrl.signUp = function(req, res){
+  var newUser = req.body;
+  User.saveUser(newUser,function(err, user) {
+    if(err) return res.send(400,err);
+    res.send(200,user);
+  });
+};
 
 passport.use(new LocalStrategy({
     usernameField: 'email',

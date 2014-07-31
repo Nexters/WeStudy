@@ -67,8 +67,8 @@ if ('development' == app.get('env')) {
  * route files
  */
 require('./routes/user.js')(app);
+require('./routes/article.js')(app);
 require('./routes/test.js')(app);
-
 
 
 http.createServer(app).listen(app.get('port'), function(){
