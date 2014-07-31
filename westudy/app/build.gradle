@@ -32,9 +32,6 @@ dependencies {
     // You must install or update the Google Repository through the SDK manager to use this dependency.
     compile 'com.google.android.gms:play-services:4.2.42'
     compile 'com.android.support:appcompat-v7:19.+'
-    compile files('libs/google-http-client-1.18.0-rc.jar')
-    compile files('libs/google-http-client-android-1.18.0-rc.jar')
     compile files('libs/gson-2.1.jar')
-    //    compile project(':caldroid')
     compile files('libs/bolts.jar')
 }
