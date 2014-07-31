@@ -19,41 +19,40 @@ var user_schema = new Schema({
 	create_time: Date
 });
 
-var UserModel = mongoose.model('user', user_schema);
+user_schema.statics.user_save = function (user, callback) {
+  var newUser = this;
+  if (user) {
+    var user_model = new newUser({
+      'email': user.email,	// string
+      'name': user.name,	// string
+      'gender': user.gender,	// string
+      'profile_url': user.profile_url,	// string
+      'interest': [], // array
+      'study': [],	// array
+      'create_time': Date.now()
+    });
 
-module.exports = {
-	user_save: function (user, callback) {
-		if (user) {
-			var user_model = new model.UserModel({
-				'email': user.email,	// string
-				'name': user.name,	// string
-				'gender': user.gender,	// string
-				'profile_url': user.profile_url,	// string
-				'interest': [], // array
-				'study': [],	// array
-				'create_time': Date.now()
-			});
-
-			try {
-				user_model.save(callback);
-			} catch (err) {
-				console.log("User data save fail.  " + err);
-			}
-		} else {
-			console.log("User Parameter doesn't exist.");
-		}
-	},
-
-	user_load: function (user, callback) {
-		// load user data
-		model.UserModel.findOne({
-			'email': user.email
-		}, function (err, data) {
-			if (err) {
-				callback();
-			} else {
-				callback(data);
-			}
-		});
-	}
+    try {
+      user_model.save(callback);
+    } catch (err) {
+      console.log("User data save fail.  " + err);
+    }
+  } else {
+    console.log("User Parameter doesn't exist.");
+  }
 };
+
+user_schema.statics.user_load = function (user, callback) {
+  // load user data
+  this.findOne({
+    'email': user.email
+  }, function (err, data) {
+    if (err) {
+      callback();
+    } else {
+      callback(data);
+    }
+  });
+};
+
+module.exports = mongoose.model('user', user_schema);
