@@ -35,6 +35,4 @@ TestCtrl.getUser = function(req, res) {
   });
 };
 
-
-
 module.exports = TestCtrl;
