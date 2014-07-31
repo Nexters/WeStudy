@@ -7,11 +7,11 @@ var UserCtrl = {};
 
 UserCtrl.login = function(req, res){
   passport.authenticate('local', function(err, user) {
-    if (err) { return res.send(err); }
-    if (!user) { return res.send("User is not exist!"); }
+    if (err) { return res.send(400,err); }
+    if (!user) { return res.send(200,"User is not exist!"); }
     req.logIn(user, function (err) {
-      if (err) { return res.send(err); }
-      return res.send("Success");
+      if (err) { return res.send(400,err); }
+      return res.send(200,"Success");
     });
   })(req, res);
 };

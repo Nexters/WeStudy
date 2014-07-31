@@ -18,6 +18,9 @@ import com.google.gson.Gson;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import com.loopj.android.http.*;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 
 /**
  * Created by baggajin on 14. 7. 13..
@@ -76,21 +79,49 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
 
     @Override
     public void onRefresh() {
-        Thread thread = new Thread(new Runnable(){
+//        Thread thread = new Thread(new Runnable(){
+//            @Override
+//            public void run() {
+//                try {
+//                    String response = HttpRequest.get("https://api.dailymotion.com/videos/").body();
+//                    Gson gson = new Gson();
+//                    JSONObject a = new JSONObject(response);
+//                    System.out.println(a.get("page"));
+//                } catch (Exception e) {
+//                    System.out.println(e);
+//                }
+//            }
+//        });
+//        thread.start();
+//        // TODO Auto-generated method stub
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get("http://godong9.com:3000/test/add/user", new AsyncHttpResponseHandler() {
+
             @Override
-            public void run() {
-                try {
-                    String response = HttpRequest.get("https://api.dailymotion.com/videos/").body();
-                    Gson gson = new Gson();
-                    JSONObject a = new JSONObject(response);
-                    System.out.println(a.get("page"));
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
+            public void onStart() {
+                // called before request is started
+                System.out.println("START");
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                // called when response HTTP status is "200 OK"
+                System.out.println("ABC");
+                System.out.println(new String(response));
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                System.out.println("ERRROR");
+            }
+
+            @Override
+            public void onRetry(int retryNo) {
+                // called when request is retried
             }
         });
-        thread.start();
-        // TODO Auto-generated method stub
+
         new Handler().postDelayed(new Runnable() {
             @Override public void run() {
                 System.out.println("END");
