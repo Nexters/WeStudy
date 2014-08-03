@@ -38,4 +38,42 @@ ArticleSchema.statics.addArticle = function (article, callback) {
   }
 };
 
+ArticleSchema.statics.loadArticles = function (target, callback) {
+  this.find({
+    'author': target.author,
+    'create_time': {
+      '$lt': target.last_loadTime
+    }
+  }).sort({
+    'create_time': -1
+  }).limit(10)
+  .exec(function (err, data) {
+    if (!err) {
+      callback(err, data);
+    } else {
+      console.log("Load Article Error " + err);
+      callback(err, null);
+    }
+  });
+};
+
+ArticleSchema.statics.refreshArticles = function (target, callback) {
+  this.find({
+    'author': target.author,
+    'create_time': {
+      '$gt': target.last_refreshTime
+    }
+  }).sort({
+    'create_time': -1
+  }).exec(function (err, data) {
+    if (!err) {
+      callback(err, data);
+    } else {
+      console.log("Refresh Article Error " + err);
+      callback(err, null);
+    }
+  });
+};
+
+
 module.exports = mongoose.model('Article', ArticleSchema);
