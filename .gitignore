@@ -4,3 +4,6 @@ westudy/.idea/misc.xml
 westudy/.idea/libraries/appcompat_v7_19_1_0.xml
 
 westudy/.idea/libraries/support_v13_19_1_0.xml
+
+.idea/*
+.idea/workspace.xml

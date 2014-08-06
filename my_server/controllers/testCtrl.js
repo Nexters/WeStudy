@@ -38,6 +38,7 @@ TestCtrl.getUser = function (req, res) {
 };
 
 TestCtrl.addStudy = function(req, res) {
+  console.log("EGEG");
   var studies = [
     {
       creator: 'test',
