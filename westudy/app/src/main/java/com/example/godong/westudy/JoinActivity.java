@@ -137,7 +137,7 @@ public class JoinActivity extends Activity implements View.OnClickListener {
     }
 
     private boolean checkParams() {
-        String toastText = null;
+        String toastText = "";
         if(emailEdit.getText().toString().equals("")){
             toastText = "Email을 입력해주세요!";
         }
@@ -151,14 +151,14 @@ public class JoinActivity extends Activity implements View.OnClickListener {
             toastText = "이름을 입력해주세요!";
         }
 
-        if(toastText.equals(null)){
+        if(toastText.equals("")){
             return true;
         }
         else{
             Toast toast = Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
-            return true;
+            return false;
         }
     }
 

@@ -5,11 +5,11 @@ var mongoose = require('mongoose'),
  * User Schema
  */
 var UserSchema = new Schema({
-  email: { type: String, required: true, unique: true },  //email. 로그인 ID
+  email: { type: String, required: true },  //email. 로그인 ID
   password: { type: String, required: true},
   name: { type: String, required: true }, //닉네임
   profile_url: { type: String, default: '' }, //프로필 이미지 주소
-  gender: String,		// male, female
+  gender: String,		// 1:male, 2:female
   interest: { type: Array, default: [] }, //관심사
   study: { type: Array, default: [] },  //참가중인 스터디
   create_time: Date //생성 시간
@@ -32,29 +32,32 @@ UserSchema.methods = {
  */
 
 UserSchema.statics.saveUser = function (user, callback) {
+  makeInterestArray(user.interest)
   var self = this;
   if (user) {
-    self.findOne(user.email, function(err, user) {
+    self.findOne({email:user.email}, function(err, existUser) {
       if(err){
         return callback(err, null);
       }
-      if(user){
+      if(existUser){
         return callback("Email is already exist.", null);
       }
 
-      var newUser = new self({
+      var newUser = {
         email: user.email,
         password: user.password,
         name: user.name,
         profile_ur: user.profile_url ? user.profile_url : '',
-        interest: user.interest ? user.interest : [],
+        interest: makeInterestArray(user.interest),
         introduce: user.introduce ? user.introduce : '',
         study: [],
         create_time: new Date()
-      });
+      };
+      console.log(newUser);
       try {
-        newUser.save(callback);
+        self.create(newUser, callback);
       } catch (err) {
+        console.log("ERROR:",err);
         callback(err, null);
       }
     });
@@ -69,5 +72,11 @@ UserSchema.statics.getUserByEmail = function (email, callback) {
     callback(null, user);
   });
 };
+
+function makeInterestArray(interestStr) {
+  var interestArray = interestStr.split(',');
+  console.log(interestArray);
+  return interestArray;
+}
 
 module.exports = mongoose.model('User', UserSchema);
