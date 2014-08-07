@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="패스워드*"
+                android:text="비밀번호*"
                 android:id="@+id/pwTextView"
                 android:layout_centerVertical="true"
                 android:layout_alignEnd="@+id/pwTextView" />
@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="패스워드 확인*"
+                android:text="비밀번호 확인*"
                 android:id="@+id/pw2TextView"
                 android:layout_centerVertical="true"
                 android:layout_alignEnd="@+id/pw2TextView" />

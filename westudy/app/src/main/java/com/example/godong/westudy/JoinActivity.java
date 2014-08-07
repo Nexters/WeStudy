@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Gravity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -68,7 +71,6 @@ public class JoinActivity extends Activity implements View.OnClickListener {
 
     public void onClick(View v) {
         if (v.getId() == R.id.btn_join_interest1) {
-            System.out.println("SEL:"+interest1Btn.isSelected());
             interest1Btn.setSelected(!interest1Btn.isSelected());
             interestArray[0] = (interestArray[0] == 0) ? 1 : 0;
         }
@@ -90,6 +92,9 @@ public class JoinActivity extends Activity implements View.OnClickListener {
     }
 
     private void sendJoinData() {
+        if(!checkParams()) {
+            return;
+        }
         int selectedId = genderGroup.getCheckedRadioButtonId();
         genderBtn = (RadioButton) findViewById(selectedId);
         RequestParams params = new RequestParams();
@@ -97,7 +102,7 @@ public class JoinActivity extends Activity implements View.OnClickListener {
         params.put("password",pwEdit.getText());
         params.put("name",nameEdit.getText());
         params.put("gender",genderBtn.getTag());
-        params.put("interest",getInterestArray());
+        params.put("interest",interestArrayToString());
         params.put("introduce",introduceEdit.getText());
 
         HttpUtil.post("http://192.168.1.13:3000/signup", null, params, new AsyncHttpResponseHandler() {
@@ -131,7 +136,33 @@ public class JoinActivity extends Activity implements View.OnClickListener {
         });
     }
 
-    private String getInterestArray() {
+    private boolean checkParams() {
+        String toastText = null;
+        if(emailEdit.getText().toString().equals("")){
+            toastText = "Email을 입력해주세요!";
+        }
+        else if(pwEdit.getText().toString().equals("") || pw2Edit.getText().toString().equals("")){
+            toastText = "비밀번호를 입력해주세요!";
+        }
+        else if(!pwEdit.getText().toString().equals(pw2Edit.getText().toString())){
+            toastText = "비밀번호를 잘못 입력하였습니다.";
+        }
+        else if(nameEdit.getText().toString().equals("")){
+            toastText = "이름을 입력해주세요!";
+        }
+
+        if(toastText.equals(null)){
+            return true;
+        }
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+            return true;
+        }
+    }
+
+    private String interestArrayToString() {
         String interestString = interestArray[0] + "," + interestArray[1] + "," + interestArray[2] + "," + interestArray[3];
         return interestString;
     }
