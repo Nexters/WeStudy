@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/editEmail"
+                android:id="@+id/edit_join_email"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/editPw"
+                android:id="@+id/edit_join_pw"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/editPw2"
+                android:id="@+id/edit_join_pw2"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -111,7 +111,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editName"
+                android:id="@+id/edit_join_name"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -132,15 +132,18 @@
 
             <RadioGroup
                 android:orientation="horizontal"
-                android:id="@+id/radioGender"
+                android:id="@+id/radio_join_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <RadioButton
                     android:text="남"
+                    android:id="@+id/radio_join_gender_male"
                     android:layout_width="80dp"
-                    android:layout_height="20dp" />
+                    android:layout_height="20dp"
+                    android:tag="1"/>
                 <RadioButton
                     android:text="여"
+                    android:id="@+id/radio_join_gender_female"
                     android:layout_width="80dp"
                     android:layout_height="20dp" />
                 </RadioGroup>
@@ -150,7 +153,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="80dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -161,36 +164,39 @@
                 android:layout_centerVertical="true"
                 android:layout_alignEnd="@+id/interestTextView" />
 
-            <RadioGroup
+            <LinearLayout
                 android:orientation="horizontal"
-                android:id="@+id/radioInterest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <RadioButton
-                    android:text="어학"
-                    android:layout_width="70dp"
-                    android:layout_height="20dp" />
-                <RadioButton
-                    android:text="취업"
-                    android:layout_width="70dp"
-                    android:layout_height="20dp" />
-                <RadioButton
-                    android:text="IT"
-                    android:layout_width="70dp"
-                    android:layout_height="20dp" />
-                <RadioButton
-                    android:text="자격증,시험"
-                    android:layout_width="120dp"
-                    android:layout_height="20dp" />
-            </RadioGroup>
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
 
+                <Button
+                    android:text="어학"
+                    android:id="@+id/btn_join_interest1"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp" />
+                <Button
+                    android:text="취업"
+                    android:id="@+id/btn_join_interest2"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp" />
+                <Button
+                    android:text="IT"
+                    android:id="@+id/btn_join_interest3"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp" />
+                <Button
+                    android:text="자격증,시험"
+                    android:id="@+id/btn_join_interest4"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp" />
+            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="80dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -204,16 +210,19 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:ems="10"
-                android:id="@+id/editIntroduce"
-                android:layout_gravity="center_horizontal" />
+                android:id="@+id/edit_join_introduce"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1" />
 
         </LinearLayout>
 
+        <Button
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:text="가입하기"
+            android:id="@+id/btn_join_join"
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
-
-
 
 </RelativeLayout>
