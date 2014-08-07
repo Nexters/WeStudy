@@ -1,8 +1,7 @@
+var userCtrl = require('../controllers/userCtrl');
 
-/*
- * GET users listing.
- */
-
-exports.list = function(req, res){
-  res.send("respond with a resource");
+module.exports = function(app) {
+  app.post('/login', userCtrl.login);
+  app.post('/signup', userCtrl.signUp);
 };
+
