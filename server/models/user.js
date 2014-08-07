@@ -34,21 +34,30 @@ UserSchema.methods = {
 UserSchema.statics.saveUser = function (user, callback) {
   var self = this;
   if (user) {
-    var newUser = new self({
-      email: user.email,
-      password: user.password,
-      name: user.name,
-      profile_ur: user.profile_url ? user.profile_url : '',
-      interest: user.interest ? user.interest : [],
-      introduce: user.introduce ? user.introduce : '',
-      study: [],
-      create_time: new Date()
+    self.findOne(user.email, function(err, user) {
+      if(err){
+        return callback(err, null);
+      }
+      if(user){
+        return callback("Email is already exist.", null);
+      }
+
+      var newUser = new self({
+        email: user.email,
+        password: user.password,
+        name: user.name,
+        profile_ur: user.profile_url ? user.profile_url : '',
+        interest: user.interest ? user.interest : [],
+        introduce: user.introduce ? user.introduce : '',
+        study: [],
+        create_time: new Date()
+      });
+      try {
+        newUser.save(callback);
+      } catch (err) {
+        callback(err, null);
+      }
     });
-    try {
-      newUser.save(callback);
-    } catch (err) {
-      callback(err, null);
-    }
   } else {
     callback("User Parameter doesn't exist.", null);
   }

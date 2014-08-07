@@ -18,7 +18,6 @@ UserCtrl.login = function(req, res){
 
 UserCtrl.signUp = function(req, res){
   var newUser = req.body;
-  console.log(newUser);
   User.saveUser(newUser,function(err, user) {
     if(err) return res.send(400,err);
     res.send(200,user);
@@ -30,7 +29,6 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
   },
   function(email, password, done) {
-    console.log("NAME:",email,"PW:",password);
     User.findOne({ email: email }, function(err, user) {
       if (err) { return done(err); }
       if (!user) {
