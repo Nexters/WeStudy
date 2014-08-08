@@ -73,7 +73,7 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
 
         View view = inflater.inflate(R.layout.fragment_timeline, container, false);
 
-        list = (ListView) view.findViewById(R.id.timeline_listView);
+        list = (ListView) view.findViewById(android.R.id.list);
         scroll = (ScrollView) view.findViewById(R.id.timeline_scrollView);
         list.setOnTouchListener(new View.OnTouchListener() {
             @Override

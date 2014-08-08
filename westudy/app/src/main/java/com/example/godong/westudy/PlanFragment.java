@@ -72,7 +72,7 @@ public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnR
 
         View view = inflater.inflate(R.layout.fragment_plan, container, false);
 
-        list = (ListView) view.findViewById(R.id.plan_list);
+        list = (ListView) view.findViewById(android.R.id.list);
         scroll = (ScrollView) view.findViewById(R.id.plan_scroll);
         list.setOnTouchListener(new View.OnTouchListener() {
             @Override
