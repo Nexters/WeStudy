@@ -175,7 +175,7 @@ public class LoginActivity extends FragmentActivity implements LoaderCallbacks<C
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                         // called when response HTTP status is "200 OK"
-                        Toast toast = Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT);
                         toast.setGravity(Gravity.CENTER, 0, 100);
                         toast.show();
 
