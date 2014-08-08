@@ -19,7 +19,7 @@ import com.dataSet.StudyGroup;
 /**
  * Created by baggajin on 14. 8. 4..
  */
-public class MakeStudyFragment extends Fragment implements OnClickListener, OnCheckedChangeListener{
+public class StudyMakeFragment extends Fragment implements OnClickListener, OnCheckedChangeListener{
 
     private String subject;
     private String title;
@@ -36,9 +36,9 @@ public class MakeStudyFragment extends Fragment implements OnClickListener, OnCh
 
     private CheckBox mon, tue, wed, thu, fri, sat, sun;
 
-    public static MakeStudyFragment newInstance(){
+    public static StudyMakeFragment newInstance(){
 
-        MakeStudyFragment fragment = new MakeStudyFragment();
+        StudyMakeFragment fragment = new StudyMakeFragment();
 
         return fragment;
     }
@@ -53,29 +53,29 @@ public class MakeStudyFragment extends Fragment implements OnClickListener, OnCh
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         /** Inflate the layout for this fragment **/
-        View view = inflater.inflate(R.layout.fragment_make_study, container, false);
+        View view = inflater.inflate(R.layout.fragment_study_make, container, false);
 
-        titleInput = (EditText) view.findViewById(R.id.study_name);
-        memberCountInput = (EditText) view.findViewById(R.id.member_count);
-        detailInput = (EditText) view.findViewById(R.id.detail);
+        titleInput = (EditText) view.findViewById(R.id.studyMake_edit_name);
+        memberCountInput = (EditText) view.findViewById(R.id.studyMake_edit_memberCount);
+        detailInput = (EditText) view.findViewById(R.id.studyMake_edit_detail);
 
-        subjectInput = (RadioGroup) view.findViewById(R.id.subject);
+        subjectInput = (RadioGroup) view.findViewById(R.id.studyMake_radioGroup_subject);
         subjectInput.setOnCheckedChangeListener(this);
 
-        locationInput = (RadioGroup) view.findViewById(R.id.location);
+        locationInput = (RadioGroup) view.findViewById(R.id.studyMake_radioGroup_location);
         locationInput.setOnCheckedChangeListener(this);
 
         /** 여기부터 Day Check Box init**/
-        mon = (CheckBox) view.findViewById(R.id.Meet_mon);
-        tue = (CheckBox) view.findViewById(R.id.Meet_tue);
-        wed = (CheckBox) view.findViewById(R.id.Meet_wed);
-        thu = (CheckBox) view.findViewById(R.id.Meet_thu);
-        fri = (CheckBox) view.findViewById(R.id.Meet_fri);
-        sat = (CheckBox) view.findViewById(R.id.Meet_sat);
-        sun = (CheckBox) view.findViewById(R.id.Meet_sun);
+        mon = (CheckBox) view.findViewById(R.id.studyMake_check_Mon);
+        tue = (CheckBox) view.findViewById(R.id.studyMake_check_tue);
+        wed = (CheckBox) view.findViewById(R.id.studyMake_check_wed);
+        thu = (CheckBox) view.findViewById(R.id.studyMake_check_thu);
+        fri = (CheckBox) view.findViewById(R.id.studyMake_check_fri);
+        sat = (CheckBox) view.findViewById(R.id.studyMake_check_sat);
+        sun = (CheckBox) view.findViewById(R.id.studyMake_check_sun);
         /** 여기까지 Day Check Box init**/
 
-        Button MakeStudyButton = (Button) view.findViewById(R.id.makeStudybutton);
+        Button MakeStudyButton = (Button) view.findViewById(R.id.studyMake_button_makeStudy);
         MakeStudyButton.setOnClickListener(this);
 
 
@@ -85,22 +85,22 @@ public class MakeStudyFragment extends Fragment implements OnClickListener, OnCh
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch(checkedId){
-            case R.id.language:
+            case R.id.studyMake_radio_language:
                 subject = "언어";
                 break;
-            case R.id.job:
+            case R.id.studyMake_radio_job:
                 subject = "취업";
                 break;
-            case R.id.it:
+            case R.id.studyMake_radio_it:
                 subject = "IT";
                 break;
-            case R.id.seoul:
+            case R.id.studyMake_radio_seoul:
                 location = "서울";
                 break;
-            case R.id.kyungki:
+            case R.id.studyMake_radio_kyungki:
                 location = "경기";
                 break;
-            case R.id.etc:
+            case R.id.studyMake_radio_etc:
                 location = "기타";
                 break;
         }

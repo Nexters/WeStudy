@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:id="@+id/planScroll">
+        android:id="@+id/plan_scroll">
 
 
         <LinearLayout
@@ -20,7 +20,7 @@
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="570dp"
-                android:id="@+id/planList"/>
+                android:id="@+id/plan_list"/>
 
             <TextView
                 android:id="@+id/android:empty"

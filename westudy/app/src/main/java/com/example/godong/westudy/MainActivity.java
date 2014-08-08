@@ -28,7 +28,7 @@ public class MainActivity extends FragmentActivity
     private TabFragment tabFragment;
     private ProfileFragment profileFragment;
     private InfoFragment infoFragment;
-    private MakeStudyFragment makeStudyFragment;
+    private StudyMakeFragment makeStudyFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

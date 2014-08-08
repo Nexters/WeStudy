@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.util.Log;
 
 import com.common.CommonUtil;
 import com.dataSet.Article;
@@ -66,14 +65,6 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
         setListAdapter(m_adapter);
 
         onRefresh();
-//        swipeLayout.setRefreshing(true);
-//        Article f1 = new Article("14-07-26", "테스트 중이예요", "박가진", "Monday Arivo");
-//        Article f2 = new Article("14-07-26", "22테스트 중이예요22", "박가진", "Monday Arivo");
-//        Article f3 = new Article("14-07-26", "장문의 텍스트는 어떻게 출력 될까 궁금해서 테스트 하는 문장임.", "박가진", "Monday Arivo");
-//
-//        m_data.add(f1);
-//        m_data.add(f2);
-//        m_data.add(f3);
 
     }
 
@@ -83,7 +74,7 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
         View view = inflater.inflate(R.layout.fragment_timeline, container, false);
 
         list = (ListView) view.findViewById(android.R.id.list);
-        scroll = (ScrollView) view.findViewById(R.id.scroll);
+        scroll = (ScrollView) view.findViewById(R.id.timeline_scrollView);
         list.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -92,7 +83,7 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
             }
         });
 
-        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
+        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.timeline_swipe_container);
         swipeLayout.setOnRefreshListener(this);
         swipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
@@ -219,10 +210,10 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
 
             Article article = items.get(position);
             if(article !=null) {
-                TextView create_time = (TextView) v.findViewById(R.id.create_time);
-                TextView contents = (TextView) v.findViewById(R.id.contents);
-                TextView author = (TextView) v.findViewById(R.id.author);
-                TextView study_id = (TextView) v.findViewById(R.id.study_id);
+                TextView create_time = (TextView) v.findViewById(R.id.feedCard_createTime);
+                TextView contents = (TextView) v.findViewById(R.id.feedCard_contents);
+                TextView author = (TextView) v.findViewById(R.id.feedCard_author);
+                TextView study_id = (TextView) v.findViewById(R.id.feedCard_studyId);
 
                 if (create_time != null) {
                     create_time.setText(article.getCreate_time());

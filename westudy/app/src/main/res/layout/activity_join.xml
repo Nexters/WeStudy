@@ -12,13 +12,13 @@
         android:text="회원가입"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView" />
+        android:id="@+id/join_textView" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/join_textView"
         android:layout_alignParentStart="true"
         android:weightSum="1">
 
@@ -32,16 +32,16 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Email*"
-                android:id="@+id/emailTextView"
+                android:id="@+id/join_TextView_email"
                 android:layout_centerVertical="true"
-                android:layout_alignEnd="@+id/emailTextView" />
+                android:layout_alignEnd="@+id/join_TextView_email" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/edit_join_email"
+                android:id="@+id/join_edit_email"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="비밀번호*"
-                android:id="@+id/pwTextView"
+                android:id="@+id/join_TextView_pw"
                 android:layout_centerVertical="true"
                 android:layout_alignEnd="@+id/pwTextView" />
 
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/edit_join_pw"
+                android:id="@+id/join_edit_pw"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -80,16 +80,16 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="비밀번호 확인*"
-                android:id="@+id/pw2TextView"
+                android:id="@+id/join_TextView_pwConfirm"
                 android:layout_centerVertical="true"
-                android:layout_alignEnd="@+id/pw2TextView" />
+                android:layout_alignEnd="@+id/join_TextView_pwConfirm" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/edit_join_pw2"
+                android:id="@+id/join_edit_pwConfirm"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -104,14 +104,14 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="이름*"
-                android:id="@+id/nameTextView"
+                android:id="@+id/join_TextView_name"
                 android:layout_centerVertical="true"
-                android:layout_alignEnd="@+id/nameTextView" />
+                android:layout_alignEnd="@+id/join_TextView_name" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/edit_join_name"
+                android:id="@+id/join_edit_name"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -128,7 +128,7 @@
                 android:text="성별"
                 android:id="@+id/genderTextView"
                 android:layout_centerVertical="true"
-                android:layout_alignEnd="@+id/genderTextView" />
+                android:layout_alignEnd="@+id/join_TextView_gender" />
 
             <RadioGroup
                 android:orientation="horizontal"
@@ -137,13 +137,13 @@
                 android:layout_height="wrap_content">
                 <RadioButton
                     android:text="남"
-                    android:id="@+id/radio_join_gender_male"
+                    android:id="@+id/join_radio_gender_male"
                     android:layout_width="80dp"
                     android:layout_height="20dp"
                     android:tag="1"/>
                 <RadioButton
                     android:text="여"
-                    android:id="@+id/radio_join_gender_female"
+                    android:id="@+id/join_radio_gender_female"
                     android:layout_width="80dp"
                     android:layout_height="20dp" />
                 </RadioGroup>
@@ -162,7 +162,7 @@
                 android:text="관심주제"
                 android:id="@+id/interestTextView"
                 android:layout_centerVertical="true"
-                android:layout_alignEnd="@+id/interestTextView" />
+                android:layout_alignEnd="@+id/join_TextView_intrest" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -171,22 +171,22 @@
 
                 <Button
                     android:text="어학"
-                    android:id="@+id/btn_join_interest1"
+                    android:id="@+id/join_btn_interest1"
                     android:layout_width="70dp"
                     android:layout_height="50dp" />
                 <Button
                     android:text="취업"
-                    android:id="@+id/btn_join_interest2"
+                    android:id="@+id/join_btn_interest2"
                     android:layout_width="70dp"
                     android:layout_height="50dp" />
                 <Button
                     android:text="IT"
-                    android:id="@+id/btn_join_interest3"
+                    android:id="@+id/join_btn_interest3"
                     android:layout_width="70dp"
                     android:layout_height="50dp" />
                 <Button
                     android:text="자격증,시험"
-                    android:id="@+id/btn_join_interest4"
+                    android:id="@+id/join_btn_interest4"
                     android:layout_width="120dp"
                     android:layout_height="50dp" />
             </LinearLayout>
@@ -205,12 +205,12 @@
                 android:text="자기 소개"
                 android:id="@+id/introduceTextView"
                 android:layout_centerVertical="true"
-                android:layout_alignEnd="@+id/introduceTextView" />
+                android:layout_alignEnd="@+id/join_TextView_introduce" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/edit_join_introduce"
+                android:id="@+id/join_edit_introduce"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1" />
 
@@ -220,7 +220,7 @@
             android:layout_width="300px"
             android:layout_height="100px"
             android:text="가입하기"
-            android:id="@+id/btn_join_join"
+            android:id="@+id/join_btn_join"
             android:layout_gravity="center_horizontal" />
 
     </LinearLayout>

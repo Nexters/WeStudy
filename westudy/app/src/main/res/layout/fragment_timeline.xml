@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipe_container"
+    android:id="@+id/timeline_swipe_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:id="@+id/scroll">
+        android:id="@+id/timeline_scrollView">
 
 
         <LinearLayout
@@ -20,7 +20,7 @@
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="570dp"
-                android:id="@+id/android:list"/>
+                android:id="@+id/timeline_listView"/>
 
             <TextView
                 android:id="@+id/android:empty"
