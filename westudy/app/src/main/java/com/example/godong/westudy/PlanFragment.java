@@ -36,12 +36,12 @@ public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnR
     SwipeRefreshLayout swipeLayout;
 
     /** Data List **/
-    private ArrayList<Article> m_data;
-    private FeedAdapter m_adapter;
-    private JSONArray jarray;
+    private ArrayList<Article> plan_data;
+    private FeedAdapter plan_adapter;
+    private JSONArray plan_jarray;
 
-    private ListView list;
-    private ScrollView scroll;
+    private ListView PlanList;
+    private ScrollView PlanScroll;
 
     public PlanFragment(){
 
@@ -60,9 +60,9 @@ public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnR
         StrictMode.enableDefaults();
         super.onCreate(savedInstanceState);
 
-        m_data = new ArrayList<Article>();
-        m_adapter = new FeedAdapter(getActivity(), R.layout._feed_card, m_data);
-        setListAdapter(m_adapter);
+        plan_data = new ArrayList<Article>();
+        plan_adapter = new FeedAdapter(getActivity(), R.layout._feed_card, plan_data);
+        setListAdapter(plan_adapter);
 
         onRefresh();
     }
@@ -72,12 +72,12 @@ public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnR
 
         View view = inflater.inflate(R.layout.fragment_plan, container, false);
 
-        list = (ListView) view.findViewById(android.R.id.list);
-        scroll = (ScrollView) view.findViewById(R.id.plan_scroll);
-        list.setOnTouchListener(new View.OnTouchListener() {
+        PlanList = (ListView) view.findViewById(android.R.id.list);
+        PlanScroll = (ScrollView) view.findViewById(R.id.plan_scroll);
+        PlanList.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                scroll.requestDisallowInterceptTouchEvent(true);
+                PlanScroll.requestDisallowInterceptTouchEvent(true);
                 return false;
             }
         });
@@ -106,7 +106,8 @@ public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnR
                 // called when response HTTP status is "200 OK"
 
 
-                jarray = CommonUtil.stringToJSONArray(new String(response));
+                plan_jarray = CommonUtil.stringToJSONArray(new String(response));
+
 //                System.out.println(a);
                 setFeedData();
 
@@ -142,13 +143,13 @@ public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnR
 
 // Article[] articles = new Article[jarray.length()];
 
-        m_data.clear();
-        m_adapter.notifyDataSetInvalidated();
+        plan_data.clear();
+        plan_adapter.notifyDataSetInvalidated();
 
         try{
-            for(int i=0;i<jarray.length();i++){
+            for(int i=0;i<plan_jarray.length();i++){
 
-                JSONObject feed = jarray.getJSONObject(i);
+                JSONObject feed = plan_jarray.getJSONObject(i);
 
                 author = feed.getString("author");
                 study_id = feed.getString("study_id");
@@ -165,12 +166,12 @@ public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnR
                 Log.d("output", author + "/" + study_id + "/" + text + "/" + photo_url);
                 Article article = new Article("14-08-08", text+"\n"+"photo:"+photo_url, author, study_id);
 
-                m_data.add(article);
-                Log.d("Arraylist output", m_data.get(i).toString());
+                plan_data.add(article);
+                Log.d("Arraylist output", plan_data.get(i).toString());
 
             }
 
-            m_adapter.notifyDataSetChanged();
+            plan_adapter.notifyDataSetChanged();
 
         }catch(JSONException je){
             je.printStackTrace();

@@ -5,7 +5,8 @@
     <string name="title_home">홈</string>
     <string name="title_profile">내 정보</string>
     <string name="title_study">스터디</string>
-    <string name="title_make_study">스터디 만들기</string>
+    <string name="title_study_make">스터디 만들기</string>
+    <string name="title_study_search">스터디 찾기</string>
     <string name="title_info">Monday Arivo.</string>
     <string name="tab_home">홈</string>
     <string name="tab_calendar">캘린더</string>

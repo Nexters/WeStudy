@@ -24,7 +24,7 @@
 
             <TextView
                 android:id="@+id/android:empty"
-                android:text="표시할 Feed가 없습니다."
+                android:text="표시할 Plan이 없습니다."
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp"

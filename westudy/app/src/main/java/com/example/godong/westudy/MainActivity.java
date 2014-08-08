@@ -28,7 +28,8 @@ public class MainActivity extends FragmentActivity
     private TabFragment tabFragment;
     private ProfileFragment profileFragment;
     private InfoFragment infoFragment;
-    private StudyMakeFragment makeStudyFragment;
+    private StudyMakeFragment studyMakeFragment;
+    private StudySearchFragment studySearchFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,12 +129,21 @@ public class MainActivity extends FragmentActivity
                         .commit();
                 break;
 
-            case 5:
-                mTitle = getString(R.string.title_make_study);
-                makeStudyFragment = makeStudyFragment.newInstance();
+            case 4:
+                mTitle = getString(R.string.title_study_search);
+                studySearchFragment = StudySearchFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fl_container, makeStudyFragment)
+                        .replace(R.id.fl_container, studySearchFragment)
+                        .commit();
+                break;
+
+            case 5:
+                mTitle = getString(R.string.title_study_make);
+                studyMakeFragment = StudyMakeFragment.newInstance();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fl_container, studyMakeFragment)
                         .commit();
                 break;
 
