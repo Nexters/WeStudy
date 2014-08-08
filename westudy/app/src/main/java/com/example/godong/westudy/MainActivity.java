@@ -28,6 +28,7 @@ public class MainActivity extends FragmentActivity
     private TabFragment tabFragment;
     private ProfileFragment profileFragment;
     private InfoFragment infoFragment;
+    private MakeStudyFragment makeStudyFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +125,15 @@ public class MainActivity extends FragmentActivity
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fl_container, tabFragment)
+                        .commit();
+                break;
+
+            case 5:
+                mTitle = getString(R.string.title_make_study);
+                makeStudyFragment = makeStudyFragment.newInstance();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fl_container, makeStudyFragment)
                         .commit();
                 break;
 

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="7"
+    android:rowCount="15">
+
+    <Space
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_row="0"
+        android:layout_column="0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="| 스터디 만들기"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:textAlignment="center"
+        android:textSize="30dp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_row="1"
+        android:layout_column="1">
+
+
+        <Space
+            android:layout_height="60dp"
+            android:layout_row="0"
+            android:layout_column="0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="스 터 디 이 름 : "
+            android:layout_row="1"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:id="@+id/study_name"
+            android:layout_row="1"
+            android:layout_column="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="주 제 : "
+            android:layout_row="2"
+            android:layout_column="0" />
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/subject"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:focusable="false">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/language"
+                android:text="언어"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/job"
+                android:text="취업" />
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/it"
+                android:text="IT"/>
+
+        </RadioGroup>
+
+        <!-- android:id="@+id/SubjectRadioButton" !-->
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="인 원 : "
+            android:layout_row="3"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:id="@+id/member_count"
+            android:layout_row="3"
+            android:layout_column="1"/>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="소 개 말 : "
+            android:layout_row="4"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:id="@+id/detail"
+            android:layout_row="4"
+            android:layout_column="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="모 임 일 : "
+            android:layout_row="5"
+            android:layout_column="0" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_row="5"
+            android:layout_column="1">
+
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="월"
+                android:id="@+id/Meet_mon"
+                android:layout_row="0"
+                android:layout_column="0"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="화"
+                android:id="@+id/Meet_tue"
+                android:layout_row="0"
+                android:layout_column="1"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수"
+                android:id="@+id/Meet_wed"
+                android:layout_row="0"
+                android:layout_column="2"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="목"
+                android:id="@+id/Meet_thu"
+                android:layout_row="0"
+                android:layout_column="3"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="금"
+                android:id="@+id/Meet_fri"
+                android:layout_row="1"
+                android:layout_column="0"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="토"
+                android:id="@+id/Meet_sat"
+                android:layout_row="1"
+                android:layout_column="1"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일"
+                android:id="@+id/Meet_sun"
+                android:layout_row="1"
+                android:layout_column="2"/>
+
+        </GridLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="지 역 : "
+            android:layout_row="6"
+            android:layout_column="0" />
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/location"
+            android:layout_row="6"
+            android:layout_column="1"
+            android:focusable="false">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/seoul"
+                android:text="서울"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/kyungki"
+                android:text="경기" />
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etc"
+                android:text="기타"/>
+
+        </RadioGroup>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="스터디 그룹 만들기"
+            android:id="@+id/makeStudybutton"
+            android:layout_row="7"
+            android:layout_column="1"/>
+
+    </GridLayout>
+
+</GridLayout>

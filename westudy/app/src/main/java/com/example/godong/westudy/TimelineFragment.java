@@ -12,19 +12,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.common.CommonUtil;
 import com.dataSet.Article;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.network.HttpUtil;
 
-import org.json.JSONObject;
+import org.apache.http.Header;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import com.common.CommonUtil;
-import com.network.HttpUtil;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import java.util.Map;
-import java.util.HashMap;
 
 /**
  * Created by baggajin on 14. 7. 13..
@@ -175,4 +171,9 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
         }
     }
 
+
+
+    public void getFeed(){
+
+    }
 }

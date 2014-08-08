@@ -17,4 +17,5 @@
         android:id="@+id/ProfileTextView"
         android:layout_gravity="center" />
 
+
 </LinearLayout>
