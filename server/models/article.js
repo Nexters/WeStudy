@@ -38,6 +38,7 @@ ArticleSchema.statics.addArticle = function (article, callback) {
   }
 };
 
+// drag from lower to upper
 ArticleSchema.statics.loadArticles = function (target, callback) {
   this.find({
     'author': target.author,
@@ -57,6 +58,7 @@ ArticleSchema.statics.loadArticles = function (target, callback) {
   });
 };
 
+// drag from upper to lower
 ArticleSchema.statics.refreshArticles = function (target, callback) {
   this.find({
     'author': target.author,

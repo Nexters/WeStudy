@@ -9,7 +9,7 @@ StudyCtrl.getAllStudy = function(req, res) {
   var options = makeOptions(req);
 
   Study.find(query, fields, options, function(err, studies) {
-    if (err) return res.send(400,err);
+    if (err) return res.send(400, err);
     return res.send(200,studies);
   });
 };
@@ -17,8 +17,26 @@ StudyCtrl.getAllStudy = function(req, res) {
 StudyCtrl.addStudy = function(req, res) {
   var newStudy = req.body;
   Study.saveStudy(newStudy, function(err, user) {
-    if (err) return res.send(400,err);
+    if (err) return res.send(400, err);
     return res.send(200,"Success");
+  });
+};
+
+StudyCtrl.getStudyInfo = function (req, res) {
+  var _id = req.query._id;
+  Study.getStudyInfo(_id, function (err, study_info) {
+    if (err) return res.send(400, err);
+    return res.send(200, study_info);
+  });
+};
+
+StudyCtrl.loadStudyBySubject = function (req, res) {
+  var subject = req.query.subject;
+  var last_date = req.query.date;
+  // if last_date is null, refresh or load study in first time
+  Study.loadStudyBySubject(subject, last_date, function (err, study_list) {
+    if (err) return res.send(400, err);
+    return res.send(200, study_list);
   });
 };
 
