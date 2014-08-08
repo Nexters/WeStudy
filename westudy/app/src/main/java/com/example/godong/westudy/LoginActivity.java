@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -24,6 +25,13 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Button;
+
+
+import com.common.CommonUtil;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import org.apache.http.Header;
+import org.json.JSONObject;
 
 import com.facebook.AppEventsLogger;
 import com.facebook.FacebookAuthorizationException;
@@ -43,6 +51,7 @@ import com.facebook.widget.FriendPickerFragment;
 import com.facebook.widget.LoginButton;
 import com.facebook.widget.PickerFragment;
 import com.facebook.widget.PlacePickerFragment;
+import com.network.HttpUtil;
 
 
 import java.util.ArrayList;
@@ -62,8 +71,8 @@ public class LoginActivity extends FragmentActivity implements LoaderCallbacks<C
 //    private UserLoginTask mAuthTask = null;
 
     /** UI References **/
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
+    private EditText emailEdit;
+    private EditText pwEdit;
     private View mProgressView;
     private View mLoginFormView;
 
@@ -146,34 +155,52 @@ public class LoginActivity extends FragmentActivity implements LoaderCallbacks<C
 
         setContentView(R.layout.activity_login);
 
-        /** Set up the login form. **/
-        /** Email 작성란 **/
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
-
-        /** Password 작성란 **/
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-//                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
+        emailEdit = (EditText) findViewById(R.id.login_edit_email);
+        pwEdit = (EditText) findViewById(R.id.login_edit_pw);
 
         /** Local ID로 Login 하는 버튼 **/
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                /** Set up the login form. **/
+                /** Email 작성란 **/
+                /** Password 작성란 **/
 
-                /** 지금은 임시로 login버튼 누르면 바로 넘어가도록 **/
-                Intent intentMainActivity =
-                        new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intentMainActivity);
+                RequestParams params = new RequestParams();
+                params.put("email",emailEdit.getText());
+                params.put("password",pwEdit.getText());
+
+                HttpUtil.post("http://192.168.0.20:3000/login", null, params, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                        // called when response HTTP status is "200 OK"
+                        Toast toast = Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 0, 100);
+                        toast.show();
+
+                        Intent intentLoginActivity = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intentLoginActivity);
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                        // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                        JSONObject errObj = CommonUtil.stringToJSONObject(new String(errorResponse));
+
+                        try {
+                            String errMsg = errObj.getString("message");
+                            Toast toast = Toast.makeText(getApplicationContext(), errMsg, Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+                        } catch (Exception je) {
+                            Log.e("JSON Error", je.toString());
+                        }
+                    }
+                });
+
+
+
 
                 /** login **/
 //                attemptLogin();

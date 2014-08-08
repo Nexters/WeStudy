@@ -75,7 +75,6 @@ UserSchema.statics.getUserByEmail = function (email, callback) {
 
 function makeInterestArray(interestStr) {
   var interestArray = interestStr.split(',');
-  console.log(interestArray);
   return interestArray;
 }
 

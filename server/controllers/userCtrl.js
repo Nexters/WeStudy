@@ -7,11 +7,11 @@ var UserCtrl = {};
 
 UserCtrl.login = function(req, res){
   passport.authenticate('local', function(err, user) {
-    if (err) { return res.send(400,err); }
-    if (!user) { return res.send(200,"User is not exist!"); }
+    if (err) { return res.send(400,{message:err}); }
+    if (!user) { return res.send(400,{message:"Login Fail!"}); }
     req.logIn(user, function (err) {
-      if (err) { return res.send(400,err); }
-      return res.send(200,"Success");
+      if (err) { return res.send(400,{message:err}); }
+      return res.send(200,{message:"Success"});
     });
   })(req, res);
 };
@@ -19,8 +19,7 @@ UserCtrl.login = function(req, res){
 UserCtrl.signUp = function(req, res){
   var newUser = req.body;
   User.saveUser(newUser,function(err, user) {
-    console.log(err);
-    if(err) return res.send(400,err);
+    if(err) return res.send(400,{message:err});
     res.send(200,user);
   });
 };
