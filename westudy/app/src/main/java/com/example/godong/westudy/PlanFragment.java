@@ -72,8 +72,8 @@ public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnR
 
         View view = inflater.inflate(R.layout.fragment_plan, container, false);
 
-        list = (ListView) view.findViewById(R.id.planList);
-        scroll = (ScrollView) view.findViewById(R.id.planScroll);
+        list = (ListView) view.findViewById(R.id.plan_list);
+        scroll = (ScrollView) view.findViewById(R.id.plan_scroll);
         list.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -197,10 +197,10 @@ public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnR
 
             Article article = items.get(position);
             if(article !=null) {
-                TextView create_time = (TextView) v.findViewById(R.id.create_time);
-                TextView contents = (TextView) v.findViewById(R.id.contents);
-                TextView author = (TextView) v.findViewById(R.id.author);
-                TextView study_id = (TextView) v.findViewById(R.id.study_id);
+                TextView create_time = (TextView) v.findViewById(R.id.feedCard_createTime);
+                TextView contents = (TextView) v.findViewById(R.id.feedCard_contents);
+                TextView author = (TextView) v.findViewById(R.id.feedCard_author);
+                TextView study_id = (TextView) v.findViewById(R.id.feedCard_studyId);
 
                 if (create_time != null) {
                     create_time.setText(article.getCreate_time());
