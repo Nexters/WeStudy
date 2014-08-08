@@ -162,7 +162,7 @@ public class StudySearchFragment extends ListFragment implements SwipeRefreshLay
 //                int size=0;
 
                 /** member 읽어오기 **/
-                JSONArray member = new JSONArray(studyList.getJSONArray("members"));
+                JSONArray member = studyList.getJSONArray("members");
                 members = new String[member.length()];
 
                 for (int j=0; j < member.length(); j++) {
@@ -177,7 +177,7 @@ public class StudySearchFragment extends ListFragment implements SwipeRefreshLay
 //                }
 
                 /** location 읽어오기 **/
-                JSONArray locate = new JSONArray(studyList.getJSONArray("location"));
+                JSONArray locate = studyList.getJSONArray("location");
                 location = new String[locate.length()];
 
                 for(int j=0;j<locate.length();j++){
@@ -185,7 +185,7 @@ public class StudySearchFragment extends ListFragment implements SwipeRefreshLay
                 }
 
                 /** Week 읽어오기 **/
-                JSONArray day = new JSONArray(studyList.getJSONArray("week"));
+                JSONArray day = studyList.getJSONArray("day_of_week");
                 week = new String[day.length()];
 
                 for(int j=0;j<day.length();j++){
