@@ -40,7 +40,7 @@ UserSchema.statics.saveUser = function (user, callback) {
         return callback(err, null);
       }
       if(existUser){
-        return callback("Email is already exist.", null);
+        return callback({message:"Email is already exist."}, null);
       }
 
       var newUser = {
@@ -62,7 +62,7 @@ UserSchema.statics.saveUser = function (user, callback) {
       }
     });
   } else {
-    callback("User Parameter doesn't exist.", null);
+    callback({message:"User Parameter doesn't exist."}, null);
   }
 };
 

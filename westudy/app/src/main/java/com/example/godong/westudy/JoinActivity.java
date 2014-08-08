@@ -10,8 +10,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
-import java.util.ArrayList;
+import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -105,33 +104,31 @@ public class JoinActivity extends Activity implements View.OnClickListener {
         params.put("interest",interestArrayToString());
         params.put("introduce",introduceEdit.getText());
 
-        HttpUtil.post("http://192.168.1.13:3000/signup", null, params, new AsyncHttpResponseHandler() {
-            @Override
-            public void onStart() {
-                // called before request is started
-                System.out.println("START");
-            }
-
+        HttpUtil.post("http://192.168.0.20:3000/signup", null, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
+                Toast toast = Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다!", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 100);
+                toast.show();
 
-
-                System.out.println("SUCCESS");
                 Intent intentLoginActivity = new Intent(JoinActivity.this, LoginActivity.class);
                 startActivity(intentLoginActivity);
-
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                System.out.println("ERRROR");
-            }
+                JSONObject errObj = CommonUtil.stringToJSONObject(new String(errorResponse));
 
-            @Override
-            public void onRetry(int retryNo) {
-                // called when request is retried
+                try{
+                    String errMsg = errObj.getString("message");
+                    Toast toast = Toast.makeText(getApplicationContext(), errMsg, Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                }catch(Exception je){
+                    Log.e("JSON Error",je.toString());
+                }
             }
         });
     }
