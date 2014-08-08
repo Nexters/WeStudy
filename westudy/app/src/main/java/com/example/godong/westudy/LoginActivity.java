@@ -180,6 +180,15 @@ public class LoginActivity extends FragmentActivity implements LoaderCallbacks<C
             }
         });
 
+        Button signUpButton = (Button) findViewById(R.id.sign_up_button);
+        signUpButton.setOnClickListener(
+            new OnClickListener() {
+                public void onClick(View v) {
+                    Intent intentJoinActivity = new Intent(LoginActivity.this, JoinActivity.class);
+                    startActivity(intentJoinActivity);
+                }
+            });
+
         /** Facebook ID로 Login 하는 버튼 **/
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setUserInfoChangedCallback(new LoginButton.UserInfoChangedCallback() {

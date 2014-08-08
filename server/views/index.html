@@ -3,6 +3,36 @@
 		
 	</head>
 	<body>
-		<button><a href="/auth/facebook">Facebook Login</a></button>
+		<button id='load_articles'>Load</button>
+		<button id='refresh_articles'>Refresh</button>
 	</body>
+	<script type="text/javascript" src='/js/jquery.js'></script>
+	<script type="text/javascript">
+		$('#load_articles').click(function () {
+			var testDate = new Date(2014, 02, 04);
+			$.get('/article/load', {
+				'author': 'test01',
+				'date': testDate
+			}, function (err, data) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(data);
+				}
+			});
+		});
+		$('#refresh_articles').click(function () {
+			var testDate = new Date(2014, 02, 04);
+			$.get('/article/refresh', {
+				'author': 'test01',
+				'date': testDate
+			}, function (err, data) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(data);
+				}
+			});
+		});
+	</script>
 </html>
