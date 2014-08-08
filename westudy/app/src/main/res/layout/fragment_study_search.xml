@@ -1,60 +1,63 @@
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/studySearch_swipe_container"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.androidhuman.example.navigationdrawer.basicfragments.app.TextFragment"
+    android:orientation="vertical">
 
-
-    <LinearLayout
+    <TabHost
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:id="@+id/studySearch_tabHost">
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
-        <FrameLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"></TabWidget>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="검색"
-                android:id="@+id/studySearch_btn_study"
-                android:layout_gravity="right|center_vertical" />
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
 
-        </FrameLayout>
+                <LinearLayout
+                    android:id="@+id/study_search_all"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"></LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/study_search_language"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"></LinearLayout>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:id="@+id/studySearch_scrollView">
+                <LinearLayout
+                    android:id="@+id/study_search_job"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"></LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/study_search_it"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"></LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/study_search_test"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"></LinearLayout>
 
-                <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="570dp"
-                    android:id="@+id/android:list"/>
+                <LinearLayout
+                    android:id="@+id/study_search_etc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"></LinearLayout>
 
-                <TextView
-                    android:id="@+id/android:empty"
-                    android:text="표시할 Study 리스트가 없습니다."
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center"/>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
 
-            </LinearLayout>
-
-        </ScrollView>
-
-
-    </LinearLayout>
-</android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

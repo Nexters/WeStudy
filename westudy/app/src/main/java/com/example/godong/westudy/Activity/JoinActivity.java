@@ -1,4 +1,4 @@
-package com.example.godong.westudy;
+package com.example.godong.westudy.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.common.CommonUtil;
+import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.network.HttpUtil;

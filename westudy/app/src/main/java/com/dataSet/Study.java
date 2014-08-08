@@ -134,7 +134,11 @@ public class Study {
         String day = "";
 
         for(int i=0;i<week.length;i++){
-            day += week[i];
+            if(day.equals("")){
+                day = week[i];
+            }else{
+                day = day+", "+week[i];
+            }
         }
 
         return day;

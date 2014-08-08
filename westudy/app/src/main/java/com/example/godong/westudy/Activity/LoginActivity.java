@@ -1,4 +1,4 @@
-package com.example.godong.westudy;
+package com.example.godong.westudy.Activity;
 
 import android.app.AlertDialog;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -18,16 +18,13 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.KeyEvent;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Button;
 
 
 import com.common.CommonUtil;
+import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import org.apache.http.Header;

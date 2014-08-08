@@ -1,4 +1,4 @@
-package com.example.godong.westudy;
+package com.example.godong.westudy.Activity;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -13,6 +13,14 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.example.godong.westudy.InfoFragment;
+import com.example.godong.westudy.NavigationDrawerFragment;
+import com.example.godong.westudy.ProfileFragment;
+import com.example.godong.westudy.R;
+import com.example.godong.westudy.StudyMakeFragment;
+import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
+import com.example.godong.westudy.StudyFragment.TabFragment;
 
 
 public class MainActivity extends FragmentActivity
@@ -29,7 +37,7 @@ public class MainActivity extends FragmentActivity
     private ProfileFragment profileFragment;
     private InfoFragment infoFragment;
     private StudyMakeFragment studyMakeFragment;
-    private StudySearchFragment studySearchFragment;
+    private StudySearchTabFragment studySearchTabFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,10 +139,10 @@ public class MainActivity extends FragmentActivity
 
             case 4:
                 mTitle = getString(R.string.title_study_search);
-                studySearchFragment = StudySearchFragment.newInstance();
+                studySearchTabFragment = StudySearchTabFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fl_container, studySearchFragment)
+                        .replace(R.id.fl_container, studySearchTabFragment)
                         .commit();
                 break;
 

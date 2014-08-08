@@ -1,4 +1,4 @@
-package com.example.godong.westudy;
+package com.example.godong.westudy.StudyFragment;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.CalendarView.OnDateChangeListener;
 import android.widget.Toast;
+
+import com.example.godong.westudy.R;
 
 /**
  * Created by baggajin on 14. 7. 13..

@@ -1,4 +1,4 @@
-package com.example.godong.westudy;
+package com.example.godong.westudy.StudyFragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.common.CommonUtil;
 import com.dataSet.Article;
+import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.network.HttpUtil;
 
@@ -112,7 +113,7 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
             @Override
             public void onStart() {
                 // called before request is started
-                Log.i("HttpUtil.get.Start","START");
+                Log.i("HttpUtil.get.Start", "START");
             }
 
             @Override
@@ -129,7 +130,7 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                Log.e("HttpUtil.get.ERROR","ERROR");
+                Log.e("HttpUtil.get.ERROR", "ERROR");
             }
 
             @Override
