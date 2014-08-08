@@ -1,37 +1,60 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/studySearch_swipe_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.godong.westudy.StudySearchFragment"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/studySearch_btn_all"
-            android:layout_gravity="center_horizontal" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/studySearch_btn_search"
-            android:layout_gravity="center_horizontal" />
+        <FrameLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button2"
-            android:layout_gravity="center_horizontal" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="검색"
+                android:id="@+id/studySearch_btn_study"
+                android:layout_gravity="right|center_vertical" />
+
+        </FrameLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:id="@+id/studySearch_scrollView">
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="570dp"
+                    android:id="@+id/android:list"/>
+
+                <TextView
+                    android:id="@+id/android:empty"
+                    android:text="표시할 Study 리스트가 없습니다."
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
 
     </LinearLayout>
-
-</LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
