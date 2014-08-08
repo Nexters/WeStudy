@@ -162,27 +162,34 @@ public class StudySearchFragment extends ListFragment implements SwipeRefreshLay
 //                int size=0;
 
                 /** member 읽어오기 **/
-                JSONArray member = studyList.getJSONArray("members");
+                JSONArray member = new JSONArray(studyList.getJSONArray("members"));
                 members = new String[member.length()];
 
-                for(int j=0;j<members.length;j++){
-                    members[j] = member.getJSONObject(j).toString();
+                for (int j=0; j < member.length(); j++) {
+                    members[j] = member.getString(j);
                 }
 
+//                JSONArray member = studyList.getJSONArray("members");
+//                members = new String[member.length()];
+//
+//                for(int j=0;j<members.length;j++){
+//                    members[j] = member.getJSONObject(j).toString();
+//                }
+
                 /** location 읽어오기 **/
-                JSONArray locate = studyList.getJSONArray("location");
+                JSONArray locate = new JSONArray(studyList.getJSONArray("location"));
                 location = new String[locate.length()];
 
-                for(int j=0;j<location.length;j++){
-                    location[j] = locate.getJSONObject(j).toString();
+                for(int j=0;j<locate.length();j++){
+                    location[j] = locate.getString(j);
                 }
 
                 /** Week 읽어오기 **/
-                JSONArray day = studyList.getJSONArray("week");
+                JSONArray day = new JSONArray(studyList.getJSONArray("week"));
                 week = new String[day.length()];
 
-                for(int j=0;j<week.length;j++){
-                    week[j] = day.getJSONObject(j).toString();
+                for(int j=0;j<day.length();j++){
+                    week[j] = day.getString(j);
                 }
 
 
