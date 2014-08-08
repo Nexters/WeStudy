@@ -171,7 +171,7 @@ public class LoginActivity extends FragmentActivity implements LoaderCallbacks<C
                 params.put("email",emailEdit.getText());
                 params.put("password",pwEdit.getText());
 
-                HttpUtil.post("http://192.168.0.20:3000/login", null, params, new AsyncHttpResponseHandler() {
+                HttpUtil.post("http://godong9.com:3000/login", null, params, new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                         // called when response HTTP status is "200 OK"
