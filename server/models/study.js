@@ -17,6 +17,7 @@ var StudySchema = new Schema({
   members: { type: Array, default: [] },  //참가 중인 멤버
   applier: { type: Array, default: [] },  //지원 신청한 사람들
   start_time: Date, //스터디 시작 날짜
+  schedules: Array, // 스케줄 탭의 스케줄 목록
   create_time: Date //생성 시간
 }, {collection: 'studies'});
 
