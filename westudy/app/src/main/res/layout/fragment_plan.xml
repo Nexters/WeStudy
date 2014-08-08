@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/plan_swipe_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.androidhuman.example.navigationdrawer.basicfragments.app.TextFragment"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <Space
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:id="@+id/planScroll">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="이곳은 Planner가 나오는 Fragment입니다.."
-        android:id="@+id/PlannerTextView"
-        android:layout_gravity="center" />
 
-</LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="570dp"
+                android:id="@+id/planList"/>
+
+            <TextView
+                android:id="@+id/android:empty"
+                android:text="표시할 Feed가 없습니다."
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.v4.widget.SwipeRefreshLayout>

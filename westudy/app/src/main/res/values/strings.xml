@@ -5,6 +5,7 @@
     <string name="title_home">홈</string>
     <string name="title_profile">내 정보</string>
     <string name="title_study">스터디</string>
+    <string name="title_make_study">스터디 만들기</string>
     <string name="title_info">Monday Arivo.</string>
     <string name="tab_home">홈</string>
     <string name="tab_calendar">캘린더</string>
@@ -13,9 +14,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
     <string name="title_activity_tab">Tab</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
     <string name="hello_world">Hello world!</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">MainActivity</string>
