@@ -6,10 +6,12 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.common.CommonUtil;
@@ -19,6 +21,8 @@ import com.network.HttpUtil;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 
@@ -32,7 +36,9 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
     /** Data List **/
     private ArrayList<Article> m_data;
     private FeedAdapter m_adapter;
+    private JSONArray jarray;
 
+    private ListView list;
 
     public TimelineFragment(){
 
@@ -50,7 +56,6 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
     public void onCreate(Bundle savedInstanceState){
         StrictMode.enableDefaults();
         super.onCreate(savedInstanceState);
-
 
         m_data = new ArrayList<Article>();
 
@@ -95,7 +100,7 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
 //        thread.start();
 //        // TODO Auto-generated method stub
 
-        HttpUtil.get("http://godong9.com:3000/test/get/user", null, null, new AsyncHttpResponseHandler() {
+        HttpUtil.get("http://godong9.com:3000/article/all", null, null, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
                 // called before request is started
@@ -107,8 +112,9 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
                 // called when response HTTP status is "200 OK"
 
 
-                JSONArray a = CommonUtil.stringToJSONArray(new String(response));
-                System.out.println(a);
+                jarray = CommonUtil.stringToJSONArray(new String(response));
+//                System.out.println(a);
+                setFeedData();
 
 
             }
@@ -132,6 +138,52 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
             }
         }, 2000);
     }
+
+    private void setFeedData(){
+
+        String author = "";
+        String study_id = "";
+        String text = "";
+        String photo_url = "";
+
+// Article[] articles = new Article[jarray.length()];
+
+        m_data.clear();
+        m_adapter.notifyDataSetInvalidated();
+
+        try{
+            for(int i=0;i<jarray.length();i++){
+
+                JSONObject feed = jarray.getJSONObject(i);
+
+                author = feed.getString("author");
+                study_id = feed.getString("study_id");
+
+                /** contents 읽어오기 **/
+                JSONObject contents = feed.getJSONObject("contents");
+                int size = contents.length();
+
+                for(int j=0;j<size;j++){
+                    text = contents.getString("text");
+                    photo_url = contents.getString("photo_url");
+                }
+
+                Log.d("output",author+"/"+study_id+"/"+text+"/"+photo_url);
+                Article article = new Article("14-08-08", text+"\n"+"photo:"+photo_url, author, study_id);
+
+                m_data.add(article);
+                Log.d("Arraylist output", m_data.get(i).toString());
+
+            }
+
+            m_adapter.notifyDataSetChanged();
+
+        }catch(JSONException je){
+            je.printStackTrace();
+        }
+
+    }
+
 
     private class FeedAdapter extends ArrayAdapter<Article>{
         private ArrayList<Article> items;
@@ -172,8 +224,4 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
     }
 
 
-
-    public void getFeed(){
-
-    }
 }

@@ -61,4 +61,8 @@ public class Article {
     public void setStudy_id(String study_id) {
         this.study_id = study_id;
     }
+
+    public String toString(){
+        return "[ "+author+", "+contents+", "+study_id+", "+create_time+"\n";
+    }
 }
