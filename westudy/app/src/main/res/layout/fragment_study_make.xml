@@ -160,32 +160,32 @@
                 android:layout_height="40dp" />
             <Button
                 android:text="화"
-                android:id="@+id/studyMake_btn_mon"
+                android:id="@+id/studyMake_btn_tue"
                 android:layout_width="50dp"
                 android:layout_height="40dp" />
             <Button
                 android:text="수"
-                android:id="@+id/studyMake_btn_mon"
+                android:id="@+id/studyMake_btn_wen"
                 android:layout_width="50dp"
                 android:layout_height="40dp" />
             <Button
                 android:text="목"
-                android:id="@+id/studyMake_btn_mon"
+                android:id="@+id/studyMake_btn_thu"
                 android:layout_width="50dp"
                 android:layout_height="40dp" />
             <Button
                 android:text="금"
-                android:id="@+id/studyMake_btn_mon"
+                android:id="@+id/studyMake_btn_fri"
                 android:layout_width="50dp"
                 android:layout_height="40dp" />
             <Button
                 android:text="토"
-                android:id="@+id/studyMake_btn_mon"
+                android:id="@+id/studyMake_btn_sat"
                 android:layout_width="50dp"
                 android:layout_height="40dp" />
             <Button
                 android:text="일"
-                android:id="@+id/studyMake_btn_mon"
+                android:id="@+id/studyMake_btn_sun"
                 android:layout_width="50dp"
                 android:layout_height="40dp" />
 

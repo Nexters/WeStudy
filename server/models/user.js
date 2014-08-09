@@ -48,7 +48,7 @@ UserSchema.statics.saveUser = function (user, callback) {
         password: user.password,
         name: user.name,
         profile_ur: user.profile_url ? user.profile_url : '',
-        interest: makeInterestArray(user.interest),
+        interest: user.interest,
         introduce: user.introduce ? user.introduce : '',
         study: [],
         create_time: new Date()
@@ -73,9 +73,5 @@ UserSchema.statics.getUserByEmail = function (email, callback) {
   });
 };
 
-function makeInterestArray(interestStr) {
-  var interestArray = interestStr.split(',');
-  return interestArray;
-}
 
 module.exports = mongoose.model('User', UserSchema);

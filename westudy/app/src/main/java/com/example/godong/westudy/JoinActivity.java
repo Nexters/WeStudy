@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+import java.util.ArrayList;
 
 import com.common.CommonUtil;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -18,7 +19,9 @@ import com.loopj.android.http.RequestParams;
 import com.network.HttpUtil;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
 import org.json.JSONObject;
+
 
 public class JoinActivity extends Activity implements View.OnClickListener {
     private EditText emailEdit;
@@ -100,7 +103,7 @@ public class JoinActivity extends Activity implements View.OnClickListener {
         params.put("password",pwEdit.getText());
         params.put("name",nameEdit.getText());
         params.put("gender",genderBtn.getTag());
-        params.put("interest",interestArrayToString());
+        params.put("interest",interestArrayToJSONArray());
         params.put("introduce",introduceEdit.getText());
 
         HttpUtil.post("http://godong9.com:3000/signup", null, params, new AsyncHttpResponseHandler() {
@@ -158,8 +161,17 @@ public class JoinActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    private String interestArrayToString() {
-        String interestString = interestArray[0] + "," + interestArray[1] + "," + interestArray[2] + "," + interestArray[3];
-        return interestString;
+    private JSONArray interestArrayToJSONArray() {
+        ArrayList interestArrayList = new ArrayList();
+        for(int i=0; i<interestArray.length; i++){
+            if(interestArray[i] == 1){
+                interestArrayList.add(i+1);
+            }
+        }
+        System.out.println("IN1:"+interestArrayList);
+
+        JSONArray interestJSONArray = new JSONArray(interestArrayList);
+        System.out.println("IN2:"+interestJSONArray);
+        return interestJSONArray;
     }
 }
