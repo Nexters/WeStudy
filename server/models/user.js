@@ -32,7 +32,6 @@ UserSchema.methods = {
  */
 
 UserSchema.statics.saveUser = function (user, callback) {
-  makeInterestArray(user.interest)
   var self = this;
   if (user) {
     self.findOne({email:user.email}, function(err, existUser) {

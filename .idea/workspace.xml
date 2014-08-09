@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9996d2b-3bc2-42ff-a4bc-a2406b212996" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/routes/study.js" afterPath="$PROJECT_DIR$/server/routes/study.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/user.js" afterPath="$PROJECT_DIR$/server/models/user.js" />
     </list>
     <ignored path="WeStudy.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,10 +35,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="study.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="study.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/routes/study.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21293375" vertical-offset="0" max-vertical-offset="634">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
               <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
@@ -65,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="user.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/models/user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="1230">
-              <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.100946374" vertical-offset="476" max-vertical-offset="1215">
+              <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -105,9 +105,9 @@
         <option value="$PROJECT_DIR$/my_server/routes/test.js" />
         <option value="$PROJECT_DIR$/my_server/controllers/testCtrl.js" />
         <option value="$PROJECT_DIR$/server/controllers/userCtrl.js" />
-        <option value="$PROJECT_DIR$/server/models/user.js" />
         <option value="$PROJECT_DIR$/server/models/study.js" />
         <option value="$PROJECT_DIR$/server/routes/study.js" />
+        <option value="$PROJECT_DIR$/server/models/user.js" />
       </list>
     </option>
   </component>
@@ -1545,14 +1545,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="1230">
-          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/models/study.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="1620">
@@ -1563,8 +1555,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/study.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21293375" vertical-offset="0" max-vertical-offset="634">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.100946374" vertical-offset="476" max-vertical-offset="1215">
+          <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
           <folding />
         </state>
       </provider>
