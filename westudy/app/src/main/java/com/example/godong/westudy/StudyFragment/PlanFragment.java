@@ -1,4 +1,4 @@
-package com.example.godong.westudy;
+package com.example.godong.westudy.StudyFragment;
 
 import android.content.Context;
 import android.os.Handler;
@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.common.CommonUtil;
 import com.dataSet.Article;
+import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.network.HttpUtil;
 

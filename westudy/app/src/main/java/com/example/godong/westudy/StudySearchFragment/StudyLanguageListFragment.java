@@ -1,4 +1,4 @@
-package com.example.godong.westudy;
+package com.example.godong.westudy.StudySearchFragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.common.CommonUtil;
 import com.dataSet.Study;
+import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.network.HttpUtil;
 
@@ -29,29 +30,23 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by baggajin on 14. 8. 8..
+ * Created by baggajin on 14. 8. 9..
  */
-public class StudySearchFragment extends ListFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class StudyLanguageListFragment extends ListFragment implements SwipeRefreshLayout.OnRefreshListener {
+
 
     SwipeRefreshLayout swipeLayout;
 
     /** Data List **/
-    private ArrayList<Study> studySearch_data;
-    private StudyListAdapter studySearch_adapter;
-    private JSONArray studySearch_jarray;
+    private ArrayList<Study> studyLanguage_data;
+    private StudyListAdapter studyLanguage_adapter;
+    private JSONArray studyLanguage_jarray;
 
-    private ListView StudySearchList;
-    private ScrollView StudySearchScroll;
+    private ListView StudyLanguageList;
+    private ScrollView StudyLanguageScroll;
 
-    public StudySearchFragment(){
+    public StudyLanguageListFragment(){
 
-    }
-
-    public static StudySearchFragment newInstance(){
-
-        StudySearchFragment fragment = new StudySearchFragment();
-
-        return fragment;
     }
 
     @Override
@@ -59,9 +54,9 @@ public class StudySearchFragment extends ListFragment implements SwipeRefreshLay
         StrictMode.enableDefaults();
         super.onCreate(savedInstanceState);
 
-        studySearch_data = new ArrayList<Study>();
-        studySearch_adapter = new StudyListAdapter(getActivity(), R.layout._study_card, studySearch_data);
-        setListAdapter(studySearch_adapter);
+        studyLanguage_data = new ArrayList<Study>();
+        studyLanguage_adapter = new StudyListAdapter(getActivity(), R.layout._study_card, studyLanguage_data);
+        setListAdapter(studyLanguage_adapter);
 
         onRefresh();
 
@@ -70,19 +65,19 @@ public class StudySearchFragment extends ListFragment implements SwipeRefreshLay
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        View view = inflater.inflate(R.layout.fragment_study_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_study_list_language, container, false);
 
-        StudySearchList = (ListView) view.findViewById(android.R.id.list);
-        StudySearchScroll = (ScrollView) view.findViewById(R.id.studySearch_scrollView);
-        StudySearchList.setOnTouchListener(new View.OnTouchListener() {
+        StudyLanguageList = (ListView) view.findViewById(android.R.id.list);
+        StudyLanguageScroll = (ScrollView) view.findViewById(R.id.studyLanguage_scrollView);
+        StudyLanguageList.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                StudySearchScroll.requestDisallowInterceptTouchEvent(true);
+                StudyLanguageScroll.requestDisallowInterceptTouchEvent(true);
                 return false;
             }
         });
 
-        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.studySearch_swipe_container);
+        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.studyLanguage_swipe_container);
         swipeLayout.setOnRefreshListener(this);
         swipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
@@ -103,7 +98,7 @@ public class StudySearchFragment extends ListFragment implements SwipeRefreshLay
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
 
-                studySearch_jarray = CommonUtil.stringToJSONArray(new String(response));
+                studyLanguage_jarray = CommonUtil.stringToJSONArray(new String(response));
                 setFeedData();
 
 
@@ -144,13 +139,13 @@ public class StudySearchFragment extends ListFragment implements SwipeRefreshLay
 
 // Article[] articles = new Article[jarray.length()];
 
-        studySearch_data.clear();
-        studySearch_adapter.notifyDataSetInvalidated();
+        studyLanguage_data.clear();
+        studyLanguage_adapter.notifyDataSetInvalidated();
 
         try{
-            for(int i=0;i<studySearch_jarray.length();i++){
+            for(int i=0;i<studyLanguage_jarray.length();i++){
 
-                JSONObject studyList = studySearch_jarray.getJSONObject(i);
+                JSONObject studyList = studyLanguage_jarray.getJSONObject(i);
 
                 creator = studyList.getString("creator");
                 subject = studyList.getString("subject");
@@ -168,13 +163,6 @@ public class StudySearchFragment extends ListFragment implements SwipeRefreshLay
                 for (int j=0; j < member.length(); j++) {
                     members[j] = member.getString(j);
                 }
-
-//                JSONArray member = studyList.getJSONArray("members");
-//                members = new String[member.length()];
-//
-//                for(int j=0;j<members.length;j++){
-//                    members[j] = member.getJSONObject(j).toString();
-//                }
 
                 /** location 읽어오기 **/
                 JSONArray locate = studyList.getJSONArray("location");
@@ -194,16 +182,16 @@ public class StudySearchFragment extends ListFragment implements SwipeRefreshLay
 
 
 
-                Log.d("output:",creator+"/"+subject+"/"+title+"/"+number_type+"/"+detail+"\n"
-                               +members+"/"+location+"/"+week+"\n");
-                Study study = new Study(creator,subject,title,number_type,detail,members,location,week);
+                Log.d("output:", creator + "/" + subject + "/" + title + "/" + number_type + "/" + detail + "\n"
+                       + members + "/" + location + "/" + week + "\n");
+                Study study = new Study(creator, subject, title, number_type, detail, "2014-08-08", members, location, week);
 
-                studySearch_data.add(study);
-                Log.d("Arraylist output", studySearch_data.get(i).toString());
-
+                if(subject.equals("language")) {
+                    studyLanguage_data.add(study);
+                }
             }
 
-            studySearch_adapter.notifyDataSetChanged();
+            studyLanguage_adapter.notifyDataSetChanged();
 
         }catch(JSONException je){
             Log.e("JSONException:",je.toString());
@@ -216,21 +204,21 @@ public class StudySearchFragment extends ListFragment implements SwipeRefreshLay
     private class StudyListAdapter extends ArrayAdapter<Study> {
         private ArrayList<Study> items;
 
-        public StudyListAdapter(Context context, int textViewResourceId, ArrayList<Study> items){
+        public StudyListAdapter(Context context, int textViewResourceId, ArrayList<Study> items) {
             super(context, textViewResourceId, items);
             this.items = items;
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent){
+        public View getView(int position, View convertView, ViewGroup parent) {
             View v = convertView;
-            if(v == null){
-                LayoutInflater vi = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            if (v == null) {
+                LayoutInflater vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 v = vi.inflate(R.layout._study_card, null);
             }
 
             Study study = items.get(position);
-            if(study !=null) {
+            if (study != null) {
                 TextView create_time = (TextView) v.findViewById(R.id.studyCard_createTime);
                 TextView location = (TextView) v.findViewById(R.id.studyCard_location);
                 TextView creator = (TextView) v.findViewById(R.id.studyCard_creator);
@@ -243,36 +231,30 @@ public class StudySearchFragment extends ListFragment implements SwipeRefreshLay
                 if (create_time != null) {
                     create_time.setText(study.getCreate_time());
                 }
-                if (location != null){
+                if (location != null) {
                     location.setText(study.getLocation());
                 }
-                if (creator != null){
+                if (creator != null) {
                     creator.setText(study.getCreator());
                 }
-                if (title != null){
+                if (title != null) {
                     title.setText(study.getTitle());
                 }
                 if (detail != null) {
                     detail.setText(study.getDetail());
                 }
-//                if (memberCount != null){
-//
-//                }
-                if (maxMember != null){
-                    maxMember.setText(study.getMembers().toString()+"명");
+                if (maxMember != null) {
+                    maxMember.setText(study.getNumber_type() + "명");
                 }
-                if (memberCount != null){
+                if (memberCount != null) {
                     memberCount.setText(Integer.toString(study.getMemberCount()));
                 }
-                if (week != null){
+                if (week != null) {
                     week.setText(study.getWeek());
                 }
 
             }
-
             return v;
         }
     }
-
-
 }

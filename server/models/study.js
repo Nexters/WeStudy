@@ -17,6 +17,7 @@ var StudySchema = new Schema({
   members: { type: Array, default: [] },  //참가 중인 멤버
   applier: { type: Array, default: [] },  //지원 신청한 사람들
   start_time: Date, //스터디 시작 날짜
+  schedules: Array, // 스케줄 탭의 스케줄 목록
   create_time: Date //생성 시간
 }, {collection: 'studies'});
 
@@ -25,10 +26,10 @@ var StudySchema = new Schema({
  * Model Methods
  */
 
+// make study
 StudySchema.statics.saveStudy = function (me, study, callback) {
-  var self = this;
   if (study) {
-    var newStudy = new self({
+    var newStudy = new this({
       creator: me._id,
       subject: study.subject,
       title: study.title,
@@ -43,12 +44,60 @@ StudySchema.statics.saveStudy = function (me, study, callback) {
     });
     try {
       newStudy.save(callback);
-    } catch(err) {
+    } catch (err) {
       callback(err, null);
     }
   } else {
     callback("Study Parameter doesn't exist.", null);
   }
 };
+
+// load study information by study _id
+StudySchema.statics.getStudyInfo = function (id, callback) {
+  if (id) {
+    this.find({
+      '_id': ObjectId.fromString(id)
+    }, function (err, data) {
+      if (!err) {
+        callback(err, data);
+      } else {
+        callback(null, data);
+      }
+    });
+  } else {
+    callback("Load Study id doesn't exist.", null);
+  }
+};
+
+// load study list by subject(어학, 취업, 컴퓨터 ...)
+// last_date가 null이면 처음 load
+StudySchema.statics.loadStudyBySubject = function (subject, last_date, callback) {
+  if (!last_date) {
+    // when refresh in searching study, client send 'last_date' null
+    last_date = new Date();
+  }
+  if (subject) {
+    this.find({
+      'subject': subject
+      'create_time': {
+        '$lt': last_date
+      }
+    }).sort({
+      'create_time': -1
+    }).limit(10)
+    .exec(function (err, data) {
+      if (!err) {
+        callback(null, data);
+      } else {
+        console.log("Load Study by subject Error " + err);
+        callback(err, null);
+      }
+
+    });
+  } else {
+    callback("Load Study subject doesn't exist.", null);
+  }
+};
+
 
 module.exports = mongoose.model('Study', StudySchema);
