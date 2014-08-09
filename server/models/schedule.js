@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
  */
 
 var ScheduleSchema = new Schema({
+	study_id: String,
 	index: Number,		// 주차
 	start_time: Date,	// 시작
 	end_time: Date,		// 끝
