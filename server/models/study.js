@@ -78,7 +78,7 @@ StudySchema.statics.loadStudyBySubject = function (subject, last_date, callback)
   }
   if (subject) {
     this.find({
-      'subject': subject
+      'subject': subject,
       'create_time': {
         '$lt': last_date
       }
