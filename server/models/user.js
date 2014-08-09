@@ -47,12 +47,11 @@ UserSchema.statics.saveUser = function (user, callback) {
         password: user.password,
         name: user.name,
         profile_ur: user.profile_url ? user.profile_url : '',
-        interest: user.interest,
+        interest: makeInterestArray(user.interest),
         introduce: user.introduce ? user.introduce : '',
         study: [],
         create_time: new Date()
       };
-      console.log(newUser);
       try {
         self.create(newUser, callback);
       } catch (err) {
@@ -72,5 +71,10 @@ UserSchema.statics.getUserByEmail = function (email, callback) {
   });
 };
 
+
+function makeInterestArray(interest) {
+  var parseArray = JSON.parse(interest);
+  return parseArray;
+}
 
 module.exports = mongoose.model('User', UserSchema);
