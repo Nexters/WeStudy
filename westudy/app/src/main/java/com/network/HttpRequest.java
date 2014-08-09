@@ -19,7 +19,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-package com.example.godong.westudy;
+package com.network;
 
 import static java.net.HttpURLConnection.HTTP_BAD_REQUEST;
 import static java.net.HttpURLConnection.HTTP_CREATED;
@@ -353,7 +353,7 @@ public class HttpRequest {
     HttpURLConnection create(URL url, Proxy proxy) throws IOException;
 
     /**
-     * A {@link com.example.godong.westudy.HttpRequest.ConnectionFactory} which uses the built-in
+     * A {@link HttpRequest.ConnectionFactory} which uses the built-in
      * {@link java.net.URL#openConnection()}
      */
     ConnectionFactory DEFAULT = new ConnectionFactory() {
@@ -370,7 +370,7 @@ public class HttpRequest {
   private static ConnectionFactory CONNECTION_FACTORY = ConnectionFactory.DEFAULT;
 
   /**
-   * Specify the {@link com.example.godong.westudy.HttpRequest.ConnectionFactory} used to create new requests.
+   * Specify the {@link HttpRequest.ConnectionFactory} used to create new requests.
    */
   public static void setConnectionFactory(final ConnectionFactory connectionFactory) {
     if (connectionFactory == null)
@@ -665,7 +665,7 @@ public class HttpRequest {
      * Run operation
      *
      * @return result
-     * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+     * @throws HttpRequest.HttpRequestException
      * @throws java.io.IOException
      */
     protected abstract V run() throws HttpRequestException, IOException;
@@ -805,12 +805,12 @@ public class HttpRequest {
    * This method ensures the path and query segments of the URL are properly
    * encoded such as ' ' characters being encoded to '%20' or any UTF-8
    * characters that are non-ASCII. No encoding of URLs is done by default by
-   * the {@link com.example.godong.westudy.HttpRequest} constructors and so if URL encoding is needed this
-   * method should be called before calling the {@link com.example.godong.westudy.HttpRequest} constructor.
+   * the {@link HttpRequest} constructors and so if URL encoding is needed this
+   * method should be called before calling the {@link HttpRequest} constructor.
    *
    * @param url
    * @return encoded URL
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static String encode(final CharSequence url)
       throws HttpRequestException {
@@ -933,7 +933,7 @@ public class HttpRequest {
    *
    * @param url
    * @return request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static HttpRequest get(final CharSequence url)
       throws HttpRequestException {
@@ -945,7 +945,7 @@ public class HttpRequest {
    *
    * @param url
    * @return request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static HttpRequest get(final URL url) throws HttpRequestException {
     return new HttpRequest(url, METHOD_GET);
@@ -997,7 +997,7 @@ public class HttpRequest {
    *
    * @param url
    * @return request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static HttpRequest post(final CharSequence url)
       throws HttpRequestException {
@@ -1009,7 +1009,7 @@ public class HttpRequest {
    *
    * @param url
    * @return request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static HttpRequest post(final URL url) throws HttpRequestException {
     return new HttpRequest(url, METHOD_POST);
@@ -1061,7 +1061,7 @@ public class HttpRequest {
    *
    * @param url
    * @return request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static HttpRequest put(final CharSequence url)
       throws HttpRequestException {
@@ -1073,7 +1073,7 @@ public class HttpRequest {
    *
    * @param url
    * @return request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static HttpRequest put(final URL url) throws HttpRequestException {
     return new HttpRequest(url, METHOD_PUT);
@@ -1125,7 +1125,7 @@ public class HttpRequest {
    *
    * @param url
    * @return request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static HttpRequest delete(final CharSequence url)
       throws HttpRequestException {
@@ -1137,7 +1137,7 @@ public class HttpRequest {
    *
    * @param url
    * @return request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static HttpRequest delete(final URL url) throws HttpRequestException {
     return new HttpRequest(url, METHOD_DELETE);
@@ -1189,7 +1189,7 @@ public class HttpRequest {
    *
    * @param url
    * @return request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static HttpRequest head(final CharSequence url)
       throws HttpRequestException {
@@ -1201,7 +1201,7 @@ public class HttpRequest {
    *
    * @param url
    * @return request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static HttpRequest head(final URL url) throws HttpRequestException {
     return new HttpRequest(url, METHOD_HEAD);
@@ -1253,7 +1253,7 @@ public class HttpRequest {
    *
    * @param url
    * @return request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static HttpRequest options(final CharSequence url)
       throws HttpRequestException {
@@ -1265,7 +1265,7 @@ public class HttpRequest {
    *
    * @param url
    * @return request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static HttpRequest options(final URL url) throws HttpRequestException {
     return new HttpRequest(url, METHOD_OPTIONS);
@@ -1276,7 +1276,7 @@ public class HttpRequest {
    *
    * @param url
    * @return request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static HttpRequest trace(final CharSequence url)
       throws HttpRequestException {
@@ -1288,7 +1288,7 @@ public class HttpRequest {
    *
    * @param url
    * @return request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public static HttpRequest trace(final URL url) throws HttpRequestException {
     return new HttpRequest(url, METHOD_TRACE);
@@ -1425,7 +1425,7 @@ public class HttpRequest {
    *
    * @param url Remote resource URL.
    * @param method HTTP request method (e.g., "GET", "POST").
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest(final CharSequence url, final String method)
       throws HttpRequestException {
@@ -1442,7 +1442,7 @@ public class HttpRequest {
    *
    * @param url Remote resource URL.
    * @param method HTTP request method (e.g., "GET", "POST").
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest(final URL url, final String method)
       throws HttpRequestException {
@@ -1512,7 +1512,7 @@ public class HttpRequest {
    * Get the status code of the response
    *
    * @return the response code
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public int code() throws HttpRequestException {
     try {
@@ -1529,7 +1529,7 @@ public class HttpRequest {
    *
    * @param output
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest code(final AtomicInteger output)
       throws HttpRequestException {
@@ -1541,7 +1541,7 @@ public class HttpRequest {
    * Is the response code a 200 OK?
    *
    * @return true if 200, false otherwise
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public boolean ok() throws HttpRequestException {
     return HTTP_OK == code();
@@ -1551,7 +1551,7 @@ public class HttpRequest {
    * Is the response code a 201 Created?
    *
    * @return true if 201, false otherwise
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public boolean created() throws HttpRequestException {
     return HTTP_CREATED == code();
@@ -1561,7 +1561,7 @@ public class HttpRequest {
    * Is the response code a 204 No Content?
    *
    * @return true if 204, false otherwise
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public boolean noContent() throws HttpRequestException {
     return HTTP_NO_CONTENT == code();
@@ -1571,7 +1571,7 @@ public class HttpRequest {
    * Is the response code a 500 Internal Server Error?
    *
    * @return true if 500, false otherwise
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public boolean serverError() throws HttpRequestException {
     return HTTP_INTERNAL_ERROR == code();
@@ -1581,7 +1581,7 @@ public class HttpRequest {
    * Is the response code a 400 Bad Request?
    *
    * @return true if 400, false otherwise
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public boolean badRequest() throws HttpRequestException {
     return HTTP_BAD_REQUEST == code();
@@ -1591,7 +1591,7 @@ public class HttpRequest {
    * Is the response code a 404 Not Found?
    *
    * @return true if 404, false otherwise
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public boolean notFound() throws HttpRequestException {
     return HTTP_NOT_FOUND == code();
@@ -1601,7 +1601,7 @@ public class HttpRequest {
    * Is the response code a 304 Not Modified?
    *
    * @return true if 304, false otherwise
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public boolean notModified() throws HttpRequestException {
     return HTTP_NOT_MODIFIED == code();
@@ -1611,7 +1611,7 @@ public class HttpRequest {
    * Get status message of the response
    *
    * @return message
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public String message() throws HttpRequestException {
     try {
@@ -1716,7 +1716,7 @@ public class HttpRequest {
    *
    * @param charset
    * @return string
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public String body(final String charset) throws HttpRequestException {
     final ByteArrayOutputStream output = byteStream();
@@ -1733,7 +1733,7 @@ public class HttpRequest {
    * {@link #charset()}
    *
    * @return string
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public String body() throws HttpRequestException {
     return body(charset());
@@ -1745,7 +1745,7 @@ public class HttpRequest {
    *
    * @param output
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest body(final AtomicReference<String> output) throws HttpRequestException {
     output.set(body());
@@ -1759,7 +1759,7 @@ public class HttpRequest {
    * @param output
    * @param charset
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest body(final AtomicReference<String> output, final String charset) throws HttpRequestException {
     output.set(body(charset));
@@ -1771,7 +1771,7 @@ public class HttpRequest {
    * Is the response body empty?
    *
    * @return true if the Content-Length response header is 0, false otherwise
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public boolean isBodyEmpty() throws HttpRequestException {
     return contentLength() == 0;
@@ -1781,7 +1781,7 @@ public class HttpRequest {
    * Get response as byte array
    *
    * @return byte array
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public byte[] bytes() throws HttpRequestException {
     final ByteArrayOutputStream output = byteStream();
@@ -1798,7 +1798,7 @@ public class HttpRequest {
    *
    * @see #bufferSize(int)
    * @return stream
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public BufferedInputStream buffer() throws HttpRequestException {
     return new BufferedInputStream(stream(), bufferSize);
@@ -1808,7 +1808,7 @@ public class HttpRequest {
    * Get stream to response body
    *
    * @return stream
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public InputStream stream() throws HttpRequestException {
     InputStream stream;
@@ -1849,7 +1849,7 @@ public class HttpRequest {
    *
    * @param charset
    * @return reader
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public InputStreamReader reader(final String charset)
       throws HttpRequestException {
@@ -1865,7 +1865,7 @@ public class HttpRequest {
    * {@link #charset()}
    *
    * @return reader
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public InputStreamReader reader() throws HttpRequestException {
     return reader(charset());
@@ -1879,7 +1879,7 @@ public class HttpRequest {
    * @see #bufferSize(int)
    * @param charset
    * @return reader
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public BufferedReader bufferedReader(final String charset)
       throws HttpRequestException {
@@ -1892,7 +1892,7 @@ public class HttpRequest {
    *
    * @see #bufferSize(int)
    * @return reader
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public BufferedReader bufferedReader() throws HttpRequestException {
     return bufferedReader(charset());
@@ -1903,7 +1903,7 @@ public class HttpRequest {
    *
    * @param file
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest receive(final File file) throws HttpRequestException {
     final OutputStream output;
@@ -1926,7 +1926,7 @@ public class HttpRequest {
    *
    * @param output
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest receive(final OutputStream output)
       throws HttpRequestException {
@@ -1942,7 +1942,7 @@ public class HttpRequest {
    *
    * @param output
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest receive(final PrintStream output)
       throws HttpRequestException {
@@ -1954,7 +1954,7 @@ public class HttpRequest {
    *
    * @param appendable
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest receive(final Appendable appendable)
       throws HttpRequestException {
@@ -1980,7 +1980,7 @@ public class HttpRequest {
    *
    * @param writer
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest receive(final Writer writer) throws HttpRequestException {
     final BufferedReader reader = bufferedReader();
@@ -2067,7 +2067,7 @@ public class HttpRequest {
    *
    * @param name
    * @return response header
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public String header(final String name) throws HttpRequestException {
     closeOutputQuietly();
@@ -2078,7 +2078,7 @@ public class HttpRequest {
    * Get all the response headers
    *
    * @return map of response header names to their value(s)
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public Map<String, List<String>> headers() throws HttpRequestException {
     closeOutputQuietly();
@@ -2091,7 +2091,7 @@ public class HttpRequest {
    *
    * @param name
    * @return date, -1 on failures
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public long dateHeader(final String name) throws HttpRequestException {
     return dateHeader(name, -1L);
@@ -2104,7 +2104,7 @@ public class HttpRequest {
    * @param name
    * @param defaultValue
    * @return date, default value on failures
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public long dateHeader(final String name, final long defaultValue)
       throws HttpRequestException {
@@ -2118,7 +2118,7 @@ public class HttpRequest {
    *
    * @param name
    * @return header value as an integer, -1 when missing or parsing fails
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public int intHeader(final String name) throws HttpRequestException {
     return intHeader(name, -1);
@@ -2132,7 +2132,7 @@ public class HttpRequest {
    * @param defaultValue
    * @return header value as an integer, default value when missing or parsing
    *         fails
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public int intHeader(final String name, final int defaultValue)
       throws HttpRequestException {
@@ -2637,7 +2637,7 @@ public class HttpRequest {
    * Close output stream
    *
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    * @throws java.io.IOException
    */
   protected HttpRequest closeOutput() throws IOException {
@@ -2660,10 +2660,10 @@ public class HttpRequest {
 
   /**
    * Call {@link #closeOutput()} and re-throw a caught {@link java.io.IOException}s as
-   * an {@link com.example.godong.westudy.HttpRequest.HttpRequestException}
+   * an {@link HttpRequest.HttpRequestException}
    *
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   protected HttpRequest closeOutputQuietly() throws HttpRequestException {
     try {
@@ -2759,7 +2759,7 @@ public class HttpRequest {
    * @param filename
    * @param part
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest part(final String name, final String filename,
       final String part) throws HttpRequestException {
@@ -2775,7 +2775,7 @@ public class HttpRequest {
    *          value of the Content-Type part header
    * @param part
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest part(final String name, final String filename,
       final String contentType, final String part) throws HttpRequestException {
@@ -2795,7 +2795,7 @@ public class HttpRequest {
    * @param name
    * @param part
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest part(final String name, final Number part)
       throws HttpRequestException {
@@ -2809,7 +2809,7 @@ public class HttpRequest {
    * @param filename
    * @param part
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest part(final String name, final String filename,
       final Number part) throws HttpRequestException {
@@ -2822,7 +2822,7 @@ public class HttpRequest {
    * @param name
    * @param part
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest part(final String name, final File part)
       throws HttpRequestException {
@@ -2836,7 +2836,7 @@ public class HttpRequest {
    * @param filename
    * @param part
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest part(final String name, final String filename,
       final File part) throws HttpRequestException {
@@ -2852,7 +2852,7 @@ public class HttpRequest {
    *          value of the Content-Type part header
    * @param part
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest part(final String name, final String filename,
       final String contentType, final File part) throws HttpRequestException {
@@ -2872,7 +2872,7 @@ public class HttpRequest {
    * @param name
    * @param part
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest part(final String name, final InputStream part)
       throws HttpRequestException {
@@ -2888,7 +2888,7 @@ public class HttpRequest {
    *          value of the Content-Type part header
    * @param part
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest part(final String name, final String filename,
       final String contentType, final InputStream part)
@@ -2909,7 +2909,7 @@ public class HttpRequest {
    * @param name
    * @param value
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest partHeader(final String name, final String value)
       throws HttpRequestException {
@@ -2921,7 +2921,7 @@ public class HttpRequest {
    *
    * @param input
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest send(final File input) throws HttpRequestException {
     final InputStream stream;
@@ -2939,7 +2939,7 @@ public class HttpRequest {
    *
    * @param input
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest send(final byte[] input) throws HttpRequestException {
     if (input != null)
@@ -2954,7 +2954,7 @@ public class HttpRequest {
    *
    * @param input
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest send(final InputStream input) throws HttpRequestException {
     try {
@@ -2973,7 +2973,7 @@ public class HttpRequest {
    *
    * @param input
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest send(final Reader input) throws HttpRequestException {
     try {
@@ -3000,7 +3000,7 @@ public class HttpRequest {
    *
    * @param value
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest send(final CharSequence value) throws HttpRequestException {
     try {
@@ -3016,7 +3016,7 @@ public class HttpRequest {
    * Create writer to request output stream
    *
    * @return writer
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public OutputStreamWriter writer() throws HttpRequestException {
     try {
@@ -3035,7 +3035,7 @@ public class HttpRequest {
    *
    * @param values
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest form(final Map<?, ?> values) throws HttpRequestException {
     return form(values, CHARSET_UTF8);
@@ -3049,7 +3049,7 @@ public class HttpRequest {
    *
    * @param entry
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest form(final Entry<?, ?> entry) throws HttpRequestException {
     return form(entry, CHARSET_UTF8);
@@ -3064,7 +3064,7 @@ public class HttpRequest {
    * @param entry
    * @param charset
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest form(final Entry<?, ?> entry, final String charset)
       throws HttpRequestException {
@@ -3080,7 +3080,7 @@ public class HttpRequest {
    * @param name
    * @param value
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest form(final Object name, final Object value)
       throws HttpRequestException {
@@ -3097,7 +3097,7 @@ public class HttpRequest {
    * @param value
    * @param charset
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest form(final Object name, final Object value, String charset)
       throws HttpRequestException {
@@ -3127,7 +3127,7 @@ public class HttpRequest {
    * @param values
    * @param charset
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest form(final Map<?, ?> values, final String charset)
       throws HttpRequestException {
@@ -3143,7 +3143,7 @@ public class HttpRequest {
    * This method does nothing if the current request is not a HTTPS request
    *
    * @return this request
-   * @throws com.example.godong.westudy.HttpRequest.HttpRequestException
+   * @throws HttpRequest.HttpRequestException
    */
   public HttpRequest trustAllCerts() throws HttpRequestException {
     final HttpURLConnection connection = getConnection();

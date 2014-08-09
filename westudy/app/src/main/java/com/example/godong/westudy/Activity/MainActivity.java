@@ -14,11 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.godong.westudy.InfoFragment;
-import com.example.godong.westudy.NavigationDrawerFragment;
-import com.example.godong.westudy.ProfileFragment;
+import com.example.godong.westudy.SideMenu.InfoFragment;
+import com.common.NavigationDrawerFragment;
+import com.example.godong.westudy.SideMenu.ProfileFragment;
 import com.example.godong.westudy.R;
-import com.example.godong.westudy.StudyMakeFragment;
+import com.example.godong.westudy.SideMenu.StudyMakeFragment;
 import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
 import com.example.godong.westudy.StudyFragment.TabFragment;
 

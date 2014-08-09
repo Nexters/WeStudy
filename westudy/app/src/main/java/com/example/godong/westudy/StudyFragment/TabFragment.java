@@ -38,7 +38,7 @@ public class TabFragment extends Fragment {
         mTabHost.addTab(mTabHost.newTabSpec("calendar").setIndicator("캘 린 더"),
                 CalendarFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("plan").setIndicator("계 획 표"),
-                PlanFragment.class, null);
+                ScheduleFragment.class, null);
         return mTabHost;
     }
 

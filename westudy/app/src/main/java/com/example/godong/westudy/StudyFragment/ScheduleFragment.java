@@ -32,25 +32,25 @@ import java.util.ArrayList;
 /**
  * Created by baggajin on 14. 7. 13..
  */
-public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     SwipeRefreshLayout swipeLayout;
 
     /** Data List **/
-    private ArrayList<Article> plan_data;
-    private FeedAdapter plan_adapter;
-    private JSONArray plan_jarray;
+    private ArrayList<Article> schedule_data;
+    private FeedAdapter schedule_adapter;
+    private JSONArray schedule_jarray;
 
-    private ListView PlanList;
-    private ScrollView PlanScroll;
+    private ListView ScheduleList;
+    private ScrollView ScheduleScroll;
 
-    public PlanFragment(){
+    public ScheduleFragment(){
 
     }
 
-    public static PlanFragment newInstance(){
+    public static ScheduleFragment newInstance(){
 
-        PlanFragment fragment = new PlanFragment();
+        ScheduleFragment fragment = new ScheduleFragment();
 
         return fragment;
     }
@@ -61,9 +61,9 @@ public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnR
         StrictMode.enableDefaults();
         super.onCreate(savedInstanceState);
 
-        plan_data = new ArrayList<Article>();
-        plan_adapter = new FeedAdapter(getActivity(), R.layout._feed_card, plan_data);
-        setListAdapter(plan_adapter);
+        schedule_data = new ArrayList<Article>();
+        schedule_adapter = new FeedAdapter(getActivity(), R.layout._feed_card, schedule_data);
+        setListAdapter(schedule_adapter);
 
         onRefresh();
     }
@@ -71,19 +71,19 @@ public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnR
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        View view = inflater.inflate(R.layout.fragment_plan, container, false);
+        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
 
-        PlanList = (ListView) view.findViewById(android.R.id.list);
-        PlanScroll = (ScrollView) view.findViewById(R.id.plan_scroll);
-        PlanList.setOnTouchListener(new View.OnTouchListener() {
+        ScheduleList = (ListView) view.findViewById(android.R.id.list);
+        ScheduleScroll = (ScrollView) view.findViewById(R.id.schedule_scroll);
+        ScheduleList.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                PlanScroll.requestDisallowInterceptTouchEvent(true);
+                ScheduleScroll.requestDisallowInterceptTouchEvent(true);
                 return false;
             }
         });
 
-        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.plan_swipe_container);
+        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.schedule_swipe_container);
         swipeLayout.setOnRefreshListener(this);
         swipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
@@ -107,7 +107,7 @@ public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnR
                 // called when response HTTP status is "200 OK"
 
 
-                plan_jarray = CommonUtil.stringToJSONArray(new String(response));
+                schedule_jarray = CommonUtil.stringToJSONArray(new String(response));
 
 //                System.out.println(a);
                 setFeedData();
@@ -144,13 +144,13 @@ public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnR
 
 // Article[] articles = new Article[jarray.length()];
 
-        plan_data.clear();
-        plan_adapter.notifyDataSetInvalidated();
+        schedule_data.clear();
+        schedule_adapter.notifyDataSetInvalidated();
 
         try{
-            for(int i=0;i<plan_jarray.length();i++){
+            for(int i=0;i<schedule_jarray.length();i++){
 
-                JSONObject feed = plan_jarray.getJSONObject(i);
+                JSONObject feed = schedule_jarray.getJSONObject(i);
 
                 author = feed.getString("author");
                 study_id = feed.getString("study_id");
@@ -167,12 +167,12 @@ public class PlanFragment extends ListFragment implements SwipeRefreshLayout.OnR
                 Log.d("output", author + "/" + study_id + "/" + text + "/" + photo_url);
                 Article article = new Article("14-08-08", text+"\n"+"photo:"+photo_url, author, study_id);
 
-                plan_data.add(article);
-                Log.d("Arraylist output", plan_data.get(i).toString());
+                schedule_data.add(article);
+                Log.d("Arraylist output", schedule_data.get(i).toString());
 
             }
 
-            plan_adapter.notifyDataSetChanged();
+            schedule_adapter.notifyDataSetChanged();
 
         }catch(JSONException je){
             je.printStackTrace();

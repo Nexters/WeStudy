@@ -1,10 +1,12 @@
-package com.example.godong.westudy;
+package com.example.godong.westudy.SideMenu;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
+
+import com.example.godong.westudy.R;
 
 /**
  * Created by baggajin on 14. 7. 12..

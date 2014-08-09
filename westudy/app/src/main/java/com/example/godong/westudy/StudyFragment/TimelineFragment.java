@@ -119,8 +119,6 @@ public class TimelineFragment extends ListFragment implements SwipeRefreshLayout
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
-
-
                 timeline_jarray = CommonUtil.stringToJSONArray(new String(response));
                 setFeedData();
 

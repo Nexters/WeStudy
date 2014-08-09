@@ -1,4 +1,4 @@
-package com.example.godong.westudy;
+package com.example.godong.westudy.SideMenu;
 
 
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.dataSet.StudyGroup;
+import com.example.godong.westudy.R;
 
 /**
  * Created by baggajin on 14. 8. 4..
