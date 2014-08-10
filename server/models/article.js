@@ -13,7 +13,7 @@ var ArticleSchema = new Schema({
 
 
 ArticleSchema.statics.getAllArticles = function (callback) {
-  this.find({}, function(err, articles) {
+  this.find({}, function (err, articles) {
     if(err) return callback(err, null);
     callback(null, articles);
   });
@@ -23,10 +23,10 @@ ArticleSchema.statics.addArticle = function (article, callback) {
   var self = this;
   if (article) {
     var newArticle = new self({
-      author: article.author,
-      study_id: article.study_id,
-      contents: article.contents,
-      create_time: new Date()
+      'author': article.author,
+      'study_id': article.study_id,
+      'contents': article.contents,
+      'create_time': new Date()
     });
     try {
       newArticle.save(callback);
