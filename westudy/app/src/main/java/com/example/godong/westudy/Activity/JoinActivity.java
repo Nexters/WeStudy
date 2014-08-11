@@ -107,7 +107,7 @@ public class JoinActivity extends Activity implements View.OnClickListener {
         params.put("interest",interestArrayToJSONArray());
         params.put("introduce",introduceEdit.getText());
 
-        HttpUtil.post("http://192.168.1.7:3000/signup", null, params, new AsyncHttpResponseHandler() {
+        HttpUtil.post("http://godong9.com:3000/signup", null, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
