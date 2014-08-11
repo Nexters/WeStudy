@@ -69,6 +69,7 @@ if ('development' == app.get('env')) {
 require('./routes/user.js')(app);
 require('./routes/article.js')(app);
 require('./routes/study.js')(app);
+require('./routes/schedule.js')(app);
 require('./routes/test.js')(app);
 
 
