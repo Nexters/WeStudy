@@ -1,13 +1,16 @@
 package com.example.godong.westudy.SideMenu;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -20,30 +23,24 @@ import com.example.godong.westudy.R;
 /**
  * Created by baggajin on 14. 8. 4..
  */
-public class StudyMakeFragment extends Fragment {
-
-    private String subject;
-    private String title;
-    private int memberCount;
-    private String detail;
-    private String[] day;
-    private String location;
-
-    private EditText titleInput;
-    private EditText memberCountInput;
-    private EditText detailInput;
-    private RadioGroup subjectInput;
-    private RadioGroup locationInput;
-
-    private CheckBox mon, tue, wed, thu, fri, sat, sun;
+public class StudyMakeFragment extends Fragment implements View.OnClickListener {
+    private RadioGroup subjectRadioGroup;
+    private RadioButton defaultSubjectRadioBtn;
+    private RadioButton selectedSubjectRadioBtn;
+    private EditText studyNameEdit;
+    private RadioGroup personRadioGroup;
+    private RadioButton defaultPersonRadioBtn;
+    private RadioButton selectedPersonRadioBtn;
+    private EditText locationEdit;
+    private Button monBtn, tueBtn, wedBtn, thuBtn, friBtn, satBtn, sunBtn;
+    private int [] weekOfDayArray = {0, 0, 0, 0, 0, 0, 0};
+    private EditText detailEdit;
+    private Button makeStudyBtn;
 
     public static StudyMakeFragment newInstance(){
-
         StudyMakeFragment fragment = new StudyMakeFragment();
-
         return fragment;
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -56,33 +53,101 @@ public class StudyMakeFragment extends Fragment {
         /** Inflate the layout for this fragment **/
         View view = inflater.inflate(R.layout.fragment_study_make, container, false);
 
-//        titleInput = (EditText) view.findViewById(R.id.studyMake_edit_name);
-////        memberCountInput = (EditText) view.findViewById(R.id.studyMake_edit_memberCount);
-//        detailInput = (EditText) view.findViewById(R.id.studyMake_edit_detail);
-//
-////        subjectInput = (RadioGroup) view.findViewById(R.id.studyMake_radioGroup_subject);
-//        subjectInput.setOnCheckedChangeListener(this);
-//
-////        locationInput = (RadioGroup) view.findViewById(R.id.studyMake_radioGroup_location);
-//        locationInput.setOnCheckedChangeListener(this);
-//
-//        /** 여기부터 Day Check Box init**/
-//        mon = (CheckBox) view.findViewById(R.id.studyMake_check_Mon);
-//        tue = (CheckBox) view.findViewById(R.id.studyMake_check_tue);
-//        wed = (CheckBox) view.findViewById(R.id.studyMake_check_wed);
-//        thu = (CheckBox) view.findViewById(R.id.studyMake_check_thu);
-//        fri = (CheckBox) view.findViewById(R.id.studyMake_check_fri);
-//        sat = (CheckBox) view.findViewById(R.id.studyMake_check_sat);
-//        sun = (CheckBox) view.findViewById(R.id.studyMake_check_sun);
-//        /** 여기까지 Day Check Box init**/
-
-//        Button MakeStudyButton = (Button) view.findViewById(R.id.studyMake_button_makeStudy);
-//        MakeStudyButton.setOnClickListener(this);
-
+        init(view);
 
         return view;
     }
 
+    private void init(View view) {
+        //Resource 초기화
+        subjectRadioGroup = (RadioGroup) view.findViewById(R.id.studyMake_radio_subject);
+        studyNameEdit = (EditText) view.findViewById(R.id.studyMake_edit_name);
+        personRadioGroup = (RadioGroup) view.findViewById(R.id.studyMake_radio_person);
+        defaultPersonRadioBtn = (RadioButton) view.findViewById(R.id.studyMake_radio_person3);
+        defaultPersonRadioBtn.setChecked(true);
+        locationEdit = (EditText) view.findViewById(R.id.studyMake_edit_location);
+        monBtn = (Button) view.findViewById(R.id.studyMake_btn_mon);
+        tueBtn = (Button) view.findViewById(R.id.studyMake_btn_tue);
+        wedBtn = (Button) view.findViewById(R.id.studyMake_btn_wed);
+        thuBtn = (Button) view.findViewById(R.id.studyMake_btn_thu);
+        friBtn = (Button) view.findViewById(R.id.studyMake_btn_fri);
+        satBtn = (Button) view.findViewById(R.id.studyMake_btn_sat);
+        sunBtn = (Button) view.findViewById(R.id.studyMake_btn_sun);
+        detailEdit = (EditText) view.findViewById(R.id.studyMake_edit_detail);
+        makeStudyBtn = (Button) view.findViewById(R.id.studyMake_button_makeStudy);
+
+        //Event 초기화
+        monBtn.setOnClickListener(this);
+        tueBtn.setOnClickListener(this);
+        wedBtn.setOnClickListener(this);
+        thuBtn.setOnClickListener(this);
+        friBtn.setOnClickListener(this);
+        satBtn.setOnClickListener(this);
+        sunBtn.setOnClickListener(this);
+        makeStudyBtn.setOnClickListener(this);
+    }
+
+    public void onClick(View v) {
+        if (v.getId() == R.id.studyMake_btn_mon) {
+            monBtn.setSelected(!monBtn.isSelected());
+            weekOfDayArray[0] = (weekOfDayArray[0] == 0) ? 1 : 0;
+        }
+        else if (v.getId() == R.id.studyMake_btn_tue) {
+            tueBtn.setSelected(!tueBtn.isSelected());
+            weekOfDayArray[1] = (weekOfDayArray[1] == 0) ? 1 : 0;
+        }
+        else if (v.getId() == R.id.studyMake_btn_wed) {
+            wedBtn.setSelected(!wedBtn.isSelected());
+            weekOfDayArray[2] = (weekOfDayArray[2] == 0) ? 1 : 0;
+        }
+        else if (v.getId() == R.id.studyMake_btn_thu) {
+            thuBtn.setSelected(!thuBtn.isSelected());
+            weekOfDayArray[3] = (weekOfDayArray[3] == 0) ? 1 : 0;
+        }
+        else if (v.getId() == R.id.studyMake_btn_fri) {
+            friBtn.setSelected(!friBtn.isSelected());
+            weekOfDayArray[4] = (weekOfDayArray[4] == 0) ? 1 : 0;
+        }
+        else if (v.getId() == R.id.studyMake_btn_sat) {
+            satBtn.setSelected(!satBtn.isSelected());
+            weekOfDayArray[5] = (weekOfDayArray[5] == 0) ? 1 : 0;
+        }
+        else if (v.getId() == R.id.studyMake_btn_sun) {
+            sunBtn.setSelected(!sunBtn.isSelected());
+            weekOfDayArray[6] = (weekOfDayArray[6] == 0) ? 1 : 0;
+        }
+        else if (v.getId() == R.id.studyMake_button_makeStudy) {
+            sendMakeStudy();
+        }
+    }
+
+    private void sendMakeStudy() {
+        if(!checkParams()) {
+            return;
+        }
+
+    }
+
+    private boolean checkParams() {
+        String toastText = "";
+        if(subjectRadioGroup.getCheckedRadioButtonId() == -1) {
+            toastText = "스터디 주제를 선택해주세요!";
+        }
+        else if(studyNameEdit.getText().toString().equals("")){
+            toastText = "스터디 이름을 입력해주세요!";
+        }
+
+        if(toastText.equals("")){
+            return true;
+        }
+        else{
+            Toast toast = Toast.makeText(getActivity(), toastText, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+            return false;
+        }
+
+    }
 //    @Override
 //    public void onCheckedChanged(RadioGroup group, int checkedId) {
 //        switch(checkedId){

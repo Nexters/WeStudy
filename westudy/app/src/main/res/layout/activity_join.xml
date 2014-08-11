@@ -145,8 +145,9 @@
                     android:text="여"
                     android:id="@+id/join_radio_gender_female"
                     android:layout_width="80dp"
-                    android:layout_height="20dp" />
-                </RadioGroup>
+                    android:layout_height="20dp"
+                    android:tag="2"/>
+            </RadioGroup>
 
         </LinearLayout>
 
