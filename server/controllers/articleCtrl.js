@@ -23,9 +23,9 @@ ArticleCtrl.loadArticles = function (req, res) {
     'author': req.query.author,
     'last_loadTime': req.query.date
   };
-  Article.loadArticles(target, function (err, data) {
+  Article.loadArticles(target, function (err, articles) {
     if (err) return res.send(400, err);
-    return res.send(200, data);
+    return res.send(200, articles);
   });
 };
 
@@ -34,9 +34,9 @@ ArticleCtrl.refreshArticles = function (req, res) {
     'author': req.query.author,
     'last_refreshTime': req.query.date
   };
-  Article.refreshArticles(target, function (err, data) {
+  Article.refreshArticles(target, function (err, articles) {
     if (err) return res.send(400, err);
-    return res.send(200, data);
+    return res.send(200, articles);
   });
 };
 

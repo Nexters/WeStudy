@@ -58,9 +58,9 @@ StudySchema.statics.getStudyInfo = function (id, callback) {
       '_id': ObjectId.fromString(id)
     }, function (err, data) {
       if (!err) {
-        callback(err, data);
-      } else {
         callback(null, data);
+      } else {
+        callback(err, null);
       }
     });
   } else {
@@ -95,6 +95,24 @@ StudySchema.statics.loadStudyBySubject = function (subject, last_date, callback)
     });
   } else {
     callback("Load Study subject doesn't exist.", null);
+  }
+};
+
+StudySchema.statics.applyStudy = function (user_id, study_id, callback) {
+  var self = this;
+  if (user_id && study_id) {
+    this.findOne({
+      '_id': study_id
+    }, function (err, data) {
+      if (!err) {
+        
+      } else {
+        console.log("Apply Study study doesn't exist.", null);
+        callback(err, null);
+      }
+    });
+  } else {
+    callback("Apply Study parameter doesn't exist.");
   }
 };
 
