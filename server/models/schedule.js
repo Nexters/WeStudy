@@ -65,11 +65,11 @@ ScheduleSchema.statics.updateSchedule = function (schedule_id, schedule, callbac
 			'start_time': new Date(schedule.start_time),
 			'end_time': new Date(schedule.end_time),
 			'contents': schedule.contents,
-		}, function (err, data) {
+		}, function (err, __schedule) {
 			if (err) {
 				callback(err, null);
 			} else {
-				callback(null, data);
+				callback(null, __schedule);
 			}
 		});
 	}
@@ -78,11 +78,11 @@ ScheduleSchema.statics.updateSchedule = function (schedule_id, schedule, callbac
 ScheduleSchema.statics.loadSchdulesByStudy = function (study_id, callback) {
 	this.find({
 		'study_id': study_id
-	}, function (err, data) {
+	}, function (err, schedule) {
 		if (err) {
 			callback(err, null);
 		} else {
-			callback(err, data);
+			callback(null, schedule);
 		}
 	});
 };
