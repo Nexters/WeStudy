@@ -150,7 +150,7 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
         params.put("day_of_week",dayOfWeekArrayToJSONArray());
         params.put("detail",detailEdit.getText());
 
-        HttpUtil.post("http://192.168.1.7:3000/study", null, params, new AsyncHttpResponseHandler() {
+        HttpUtil.post("http://godong9.com:3000/study", null, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
