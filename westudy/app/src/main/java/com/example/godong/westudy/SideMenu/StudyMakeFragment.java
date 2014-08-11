@@ -1,8 +1,10 @@
 package com.example.godong.westudy.SideMenu;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -59,8 +61,6 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
     private void init(View view) {
         //Resource 초기화
         subjectRadioGroup = (RadioGroup) view.findViewById(R.id.studyMake_radio_subject);
-        defaultSubjectRadioBtn = (RadioButton) view.findViewById(R.id.studyMake_radio_subject1);
-        defaultSubjectRadioBtn.setChecked(true);
         studyNameEdit = (EditText) view.findViewById(R.id.studyMake_edit_name);
         personRadioGroup = (RadioGroup) view.findViewById(R.id.studyMake_radio_person);
         defaultPersonRadioBtn = (RadioButton) view.findViewById(R.id.studyMake_radio_person3);
@@ -122,6 +122,30 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
     }
 
     private void sendMakeStudy() {
+        if(!checkParams()) {
+            return;
+        }
+
+    }
+
+    private boolean checkParams() {
+        String toastText = "";
+        if(subjectRadioGroup.getCheckedRadioButtonId() == -1) {
+            toastText = "스터디 주제를 선택해주세요!";
+        }
+        else if(studyNameEdit.getText().toString().equals("")){
+            toastText = "스터디 이름을 입력해주세요!";
+        }
+
+        if(toastText.equals("")){
+            return true;
+        }
+        else{
+            Toast toast = Toast.makeText(getActivity(), toastText, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+            return false;
+        }
 
     }
 //    @Override
