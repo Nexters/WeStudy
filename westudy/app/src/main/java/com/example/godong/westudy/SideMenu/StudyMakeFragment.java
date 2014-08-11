@@ -45,7 +45,7 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
     private RadioButton selectedPersonRadioBtn;
     private EditText locationEdit;
     private Button monBtn, tueBtn, wedBtn, thuBtn, friBtn, satBtn, sunBtn;
-    private int [] weekOfDayArray = {0, 0, 0, 0, 0, 0, 0};
+    private int [] dayOfWeekArray = {0, 0, 0, 0, 0, 0, 0};
     private EditText detailEdit;
     private Button makeStudyBtn;
 
@@ -73,7 +73,7 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
     private void init(View view) {
         //Resource 초기화
         subjectRadioGroup = (RadioGroup) view.findViewById(R.id.studyMake_radio_subject);
-        studyNameEdit = (EditText) view.findViewById(R.id.studyMake_edit_name);
+        studyNameEdit = (EditText) view.findViewById(R.id.studyMake_edit_title);
         personRadioGroup = (RadioGroup) view.findViewById(R.id.studyMake_radio_person);
         defaultPersonRadioBtn = (RadioButton) view.findViewById(R.id.studyMake_radio_person4);
         defaultPersonRadioBtn.setChecked(true);
@@ -102,31 +102,31 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         if (v.getId() == R.id.studyMake_btn_mon) {
             monBtn.setSelected(!monBtn.isSelected());
-            weekOfDayArray[0] = (weekOfDayArray[0] == 0) ? 1 : 0;
+            dayOfWeekArray[0] = (dayOfWeekArray[0] == 0) ? 1 : 0;
         }
         else if (v.getId() == R.id.studyMake_btn_tue) {
             tueBtn.setSelected(!tueBtn.isSelected());
-            weekOfDayArray[1] = (weekOfDayArray[1] == 0) ? 1 : 0;
+            dayOfWeekArray[1] = (dayOfWeekArray[1] == 0) ? 1 : 0;
         }
         else if (v.getId() == R.id.studyMake_btn_wed) {
             wedBtn.setSelected(!wedBtn.isSelected());
-            weekOfDayArray[2] = (weekOfDayArray[2] == 0) ? 1 : 0;
+            dayOfWeekArray[2] = (dayOfWeekArray[2] == 0) ? 1 : 0;
         }
         else if (v.getId() == R.id.studyMake_btn_thu) {
             thuBtn.setSelected(!thuBtn.isSelected());
-            weekOfDayArray[3] = (weekOfDayArray[3] == 0) ? 1 : 0;
+            dayOfWeekArray[3] = (dayOfWeekArray[3] == 0) ? 1 : 0;
         }
         else if (v.getId() == R.id.studyMake_btn_fri) {
             friBtn.setSelected(!friBtn.isSelected());
-            weekOfDayArray[4] = (weekOfDayArray[4] == 0) ? 1 : 0;
+            dayOfWeekArray[4] = (dayOfWeekArray[4] == 0) ? 1 : 0;
         }
         else if (v.getId() == R.id.studyMake_btn_sat) {
             satBtn.setSelected(!satBtn.isSelected());
-            weekOfDayArray[5] = (weekOfDayArray[5] == 0) ? 1 : 0;
+            dayOfWeekArray[5] = (dayOfWeekArray[5] == 0) ? 1 : 0;
         }
         else if (v.getId() == R.id.studyMake_btn_sun) {
             sunBtn.setSelected(!sunBtn.isSelected());
-            weekOfDayArray[6] = (weekOfDayArray[6] == 0) ? 1 : 0;
+            dayOfWeekArray[6] = (dayOfWeekArray[6] == 0) ? 1 : 0;
         }
         else if (v.getId() == R.id.studyMake_button_makeStudy) {
             sendMakeStudy();
@@ -144,13 +144,13 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
 
         RequestParams params = new RequestParams();
         params.put("subject",selectedSubjectRadioBtn.getTag());
-        params.put("name",studyNameEdit.getText());
+        params.put("title",studyNameEdit.getText());
         params.put("person",selectedPersonRadioBtn.getTag());
         params.put("location",locationEdit.getText());
-        params.put("weekOfDay",weekOfDayArrayToJSONArray());
+        params.put("day_of_week",dayOfWeekArrayToJSONArray());
         params.put("detail",detailEdit.getText());
 
-        HttpUtil.post("http://192.168.0.162:3000/study", null, params, new AsyncHttpResponseHandler() {
+        HttpUtil.post("http://192.168.1.7:3000/study", null, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
@@ -200,14 +200,14 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
 
     }
 
-    private JSONArray weekOfDayArrayToJSONArray() {
-        ArrayList weekOfDayArrayList = new ArrayList();
-        for(int i=0; i<weekOfDayArray.length; i++){
-            if(weekOfDayArray[i] == 1){
-                weekOfDayArrayList.add(i+1);
+    private JSONArray dayOfWeekArrayToJSONArray() {
+        ArrayList dayOfWeekArrayList = new ArrayList();
+        for(int i=0; i<dayOfWeekArray.length; i++){
+            if(dayOfWeekArray[i] == 1){
+                dayOfWeekArrayList.add(i+1);
             }
         }
-        JSONArray weekOfDayJSONArray = new JSONArray(weekOfDayArrayList);
-        return weekOfDayJSONArray;
+        JSONArray dayOfWeekJSONArray = new JSONArray(dayOfWeekArrayList);
+        return dayOfWeekJSONArray;
     }
 }
