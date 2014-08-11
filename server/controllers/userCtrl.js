@@ -11,7 +11,7 @@ UserCtrl.login = function(req, res){
     if (!user) { return res.send(400,{message:"Login Fail!"}); }
     req.logIn(user, function (err) {
       if (err) { return res.send(400,{message:err}); }
-      return res.send(200,{message:"Success"});
+      return res.send(200,{'user': user});
     });
   })(req, res);
 };
