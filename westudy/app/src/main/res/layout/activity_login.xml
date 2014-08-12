@@ -1,106 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    Copyright 2010-present Facebook.
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
--->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#FFF"
+    android:background="@drawable/login_back_image"
     >
 
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="161dp"
+        android:layout_row="0"
+        android:layout_column="0" />
 
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone"/>
+        android:src="@drawable/login_logo_big"
+        android:layout_gravity="center_horizontal" />
 
-    <ScrollView
-        android:id="@+id/login_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="82dp"
+        android:layout_row="0"
+        android:layout_column="0" />
 
-        <LinearLayout android:orientation="vertical"
+
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/main_ui_container">
+
+        <EditText
+            android:id="@+id/login_edit_email"
+            android:layout_width="208dp"
+            android:layout_height="34dp"
+            android:hint="@string/prompt_email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/login_n_01"/>
+
+        <EditText
+            android:id="@+id/login_edit_pw"
+            android:layout_width="208dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="9dp"
+            android:hint="@string/prompt_password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/login_n_01"/>
+
+        <Button
+            android:id="@+id/email_sign_in_button"
+            android:layout_width="208dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="11dp"
+            android:text="@string/action_sign_in"
+            android:textSize="14dp"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/login_n_02" />
+
+        <Space
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="#FFF"
-            android:id="@+id/main_ui_container">
+            android:layout_height="10dp"
+            android:layout_row="0"
+            android:layout_column="0" />
 
-            <EditText
-                android:id="@+id/login_edit_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="150dp"
-                android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:singleLine="true"/>
+        <ImageView
+            android:layout_width="208dp"
+            android:layout_height="6dp"
+            android:src="@drawable/login_or"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_gravity="center_horizontal" />
 
-            <EditText
-                android:id="@+id/login_edit_pw"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:hint="@string/prompt_password"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true"/>
+        <LinearLayout
+            android:id="@+id/kakao_sign_up_button"
+            android:orientation="horizontal"
+            android:layout_width="208dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/login_n_03">
 
-            <Button
-                android:id="@+id/email_sign_in_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/action_sign_in"
-                android:textStyle="bold"/>
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="20dp"
+                android:src="@drawable/login_logo_kakao"
+                android:layout_marginRight="11dp"
+                android:gravity="center"/>
 
-            <Button
-                android:id="@+id/sign_up_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/action_register"
-                android:textStyle="bold"/>
-
-            <com.facebook.widget.LoginButton
-                android:id="@+id/login_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                facebook:confirm_logout="false"
-                facebook:fetch_user_info="true"
-                />
+                android:text="카카오톡으로 시작하기"
+                android:textSize="14dp"
+                android:textColor="#693307"
+                android:gravity="center"/>
 
         </LinearLayout>
-    </ScrollView>
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="208dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="28dp"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/find_pw_button"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:text="패스워드 찾기"
+                android:textSize="12dp"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:text="    |    "
+                android:textSize="12dp"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/sign_up_button"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:text="@string/action_register"
+                android:textSize="12dp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
 
 </LinearLayout>
 
