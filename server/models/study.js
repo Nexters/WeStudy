@@ -9,7 +9,7 @@ var StudySchema = new Schema({
   manager: { type: Array, default: [] },  //관리자 리스트
   subject: String,  //스터디 주제
   title: String,  //스터디 제목
-  number_type: Number,  //모집 인원 타입별로 (3~4명: 3, 5~6명: 5, ...)
+  person: Number,  //모집 인원
   location: { type: Array, default: [] }, //지역
   day_of_week: { type: Array, default: [] },  //요일
   detail: String, //추가 설명
@@ -32,9 +32,9 @@ StudySchema.statics.saveStudy = function (me, study, callback) {
       creator: me._id,
       subject: study.subject,
       title: study.title,
-      number_type: study.number_type,
+      person: study.person,
       location: study.location ? study.location : [],
-      day_of_week: study.day_of_week ? study.day_of_week : [],
+      day_of_week: makeDayOfWeekArray(study.day_of_week),
       detail: study.detail ? study.detail : '',
       cover_url: study.cover_url ? study.cover_url : '',
       members : [ me._id ],
@@ -58,9 +58,9 @@ StudySchema.statics.getStudyInfo = function (id, callback) {
       '_id': ObjectId.fromString(id)
     }, function (err, data) {
       if (!err) {
-        callback(err, data);
-      } else {
         callback(null, data);
+      } else {
+        callback(err, null);
       }
     });
   } else {
@@ -97,6 +97,29 @@ StudySchema.statics.loadStudyBySubject = function (subject, last_date, callback)
     callback("Load Study subject doesn't exist.", null);
   }
 };
+
+StudySchema.statics.applyStudy = function (user_id, study_id, callback) {
+  var self = this;
+  if (user_id && study_id) {
+    this.findOne({
+      '_id': study_id
+    }, function (err, data) {
+      if (!err) {
+        
+      } else {
+        console.log("Apply Study study doesn't exist.", null);
+        callback(err, null);
+      }
+    });
+  } else {
+    callback("Apply Study parameter doesn't exist.");
+  }
+};
+
+function makeDayOfWeekArray(dayOfWeek){
+  var parseArray = JSON.parse(dayOfWeek);
+  return parseArray;
+}
 
 
 module.exports = mongoose.model('Study', StudySchema);

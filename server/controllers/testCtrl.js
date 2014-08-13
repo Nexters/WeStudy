@@ -1,7 +1,8 @@
 var mongoose = require('mongoose'),
   User = mongoose.model('User'),
   Study = mongoose.model('Study'),
-  Article = mongoose.model('Article');
+  Article = mongoose.model('Article'),
+  Schedule = mongoose.model('Schedule');
 
 var TestCtrl = {};
 
@@ -44,7 +45,7 @@ TestCtrl.addStudy = function(req, res) {
       creator: 'test',
       subject: 'language',
       title: '신촌 영어회화 스터디',
-      number_type: 5,
+      number_type: 6,
       location: ['gangbuk'],
       day_of_week: ['mon'],
       detail: '함께 해요',
@@ -55,7 +56,7 @@ TestCtrl.addStudy = function(req, res) {
       creator: 'test2',
       subject: 'language',
       title: '잠실 토익 스터디',
-      number_type: 3,
+      number_type: 4,
       location: ['gangdong'],
       day_of_week: ['mon', 'tue'],
       detail: '함께 토익해요',
@@ -66,7 +67,7 @@ TestCtrl.addStudy = function(req, res) {
       creator: 'test3',
       subject: 'it',
       title: '신촌 프로그램 스터디',
-      number_type: 7,
+      number_type: 8,
       location: ['sinchon'],
       day_of_week: ['sat'],
       detail: '함께 프로그램해요',
@@ -77,7 +78,7 @@ TestCtrl.addStudy = function(req, res) {
       creator: 'test4',
       subject: 'language',
       title: '신촌 영어 회화같이해요',
-      number_type: 5,
+      number_type: 9,
       location: ['sinchon'],
       day_of_week: ['mon', 'wed'],
       detail: '함께 해요',
@@ -203,12 +204,118 @@ TestCtrl.addArticle = function (req, res) {
     }
   ];
 
-  Article.collection.remove({}, function(err) {
-    Article.collection.insert(testArticle,function(err, result) {
-      if(err) return res.send(400,err);
-      res.send(200,result);
+  Article.collection.remove({}, function (err) {
+    Article.collection.insert(testArticle, function (err, result) {
+      if(err) return res.send(400, err);
+      res.send(200, result);
     });
   });
 };
+
+TestCtrl.addSchedule = function (req, res) {
+  var test_schedules = [
+    {
+      'study_id': '53df03b3a0efbf934d7333c3',
+      'order': 1,
+      'start_time': new Date(2014, 07, 21),
+      'end_time': new Date(2014, 07, 28),
+      'contents': [
+        {
+          'type': 'text',
+          'text': 'To 부정사, 동명사 파트',
+        },
+        {
+          'type': 'check',
+          'text': '단어 100개 외우기',
+        },
+        {
+          'type': 'check',
+          'text': '영어 독해 10문제 풀기',
+        }
+      ],
+      'create_time': new Date()
+    },
+    {
+      'study_id': '53df03b3a0efbf934d7333c3',
+      'order': 2,
+      'start_time': new Date(2014, 08, 14),
+      'end_time': new Date(2014, 08, 21),
+      'contents': [
+        {
+          'type': 'text',
+          'text': '관계대명사 파트'
+        },
+        {
+          'type': 'text',
+          'text': '관계대명사2 파트'
+        },
+        {
+          'type': 'check',
+          'text': '단어 100개 외우기',
+          'checked': true
+        },
+        {
+          'type': 'check',
+          'text': '영어 듣기 10문제 풀기',
+          'checked': false
+        }
+      ],
+      'create_time': new Date()
+    },
+    {
+      'study_id': '53df03b3a0efbf934d7333c3',
+      'order': 3,
+      'start_time': new Date(2014, 08, 21),
+      'end_time': new Date(2014, 08, 28),
+      'contents': [
+        {
+          'type': 'text',
+          'text': 'To 부정사, 동명사 파트'
+        },
+        {
+          'type': 'check',
+          'text': '단어 100개 외우기'
+        },
+        {
+          'type': 'check',
+          'text': '영어 독해 10문제 풀기'
+        }
+      ],
+      'create_time': new Date()
+    },
+    {
+      'study_id': '53df03b3a0efbf934d7333c4',
+      'order': 1,
+      'start_time': new Date(2014, 07, 21),
+      'end_time': new Date(2014, 07, 28),
+      'contents': [
+        {
+          'type': 'text',
+          'text': '영어 문장 형식 파트'
+        },
+        {
+          'type': 'check',
+          'text': '단어 100개 외우기'
+        },
+        {
+          'type': 'check',
+          'text': '영어 독해 10문제 풀기'
+        }
+      ],
+      'create_time': new Date()
+    }
+  ];
+
+  Schedule.collection.remove({}, function (err) {
+    Schedule.collection.insert(test_schedules, function (err, result) {
+      if (err) return res.send(400, err);
+      return res.send(200, result);
+    });
+  });
+
+
+};
+
+
 
 module.exports = TestCtrl;
