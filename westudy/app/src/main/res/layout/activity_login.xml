@@ -85,15 +85,6 @@
                 android:text="@string/action_register"
                 android:textStyle="bold"/>
 
-            <com.facebook.widget.LoginButton
-                android:id="@+id/login_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                facebook:confirm_logout="false"
-                facebook:fetch_user_info="true"
-                />
-
         </LinearLayout>
     </ScrollView>
 

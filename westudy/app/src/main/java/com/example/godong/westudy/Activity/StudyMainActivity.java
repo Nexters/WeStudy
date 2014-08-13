@@ -7,23 +7,22 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.godong.westudy.SideMenu.InfoFragment;
 import com.common.NavigationDrawerFragment;
-import com.example.godong.westudy.SideMenu.ProfileFragment;
 import com.example.godong.westudy.R;
+import com.example.godong.westudy.SideMenu.InfoFragment;
+import com.example.godong.westudy.SideMenu.ProfileFragment;
 import com.example.godong.westudy.SideMenu.StudyMakeFragment;
-import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
 import com.example.godong.westudy.StudyFragment.TabFragment;
+import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
+import com.dataSet.User;
 
-
-public class MainActivity extends FragmentActivity
+public class StudyMainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /** Fragment managing the behaviors, interactions and presentation of the navigation drawer. **/
@@ -39,6 +38,9 @@ public class MainActivity extends FragmentActivity
     private StudyMakeFragment studyMakeFragment;
     private StudySearchTabFragment studySearchTabFragment;
 
+    /** UserInfo Data **/
+    Bundle userData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,12 @@ public class MainActivity extends FragmentActivity
         /** drawer Setup **/
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout)findViewById(R.id.drawer_layout));
 
+        /** userInfo LoginActivity에서 받아와서 Profile로 보내기 **/
+        Bundle bundle = getIntent().getExtras();
+        User userInfo = bundle.getParcelable("LoginData");
+
+        userData = new Bundle();
+        userData.putParcelable("userData",userInfo);
 
     }
 
@@ -65,12 +73,6 @@ public class MainActivity extends FragmentActivity
         position = position+1;
 
         mTitle = getString(R.string.title_home);
-
-        /** Test용 Toast **/
-        toast = Toast.makeText(getApplicationContext(),
-                position + " 번째 메뉴 선택", Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
 
         /** Fragment 전환 **/
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -123,6 +125,7 @@ public class MainActivity extends FragmentActivity
             case 2:
                 mTitle = getString(R.string.title_profile);
                 profileFragment = profileFragment.newInstance();
+                profileFragment.setArguments(userData);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fl_container, profileFragment)
@@ -190,14 +193,14 @@ public class MainActivity extends FragmentActivity
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_study, container, false);
             return rootView;
         }
 
         @Override
         public void onAttach(Activity activity){
             super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+            ((StudyMainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
 

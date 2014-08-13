@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-import java.util.ArrayList;
 
 import com.common.CommonUtil;
 import com.example.godong.westudy.R;
@@ -22,6 +21,8 @@ import com.network.HttpUtil;
 import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 public class JoinActivity extends Activity implements View.OnClickListener {
@@ -107,7 +108,7 @@ public class JoinActivity extends Activity implements View.OnClickListener {
         params.put("interest",interestArrayToJSONArray());
         params.put("introduce",introduceEdit.getText());
 
-        HttpUtil.post("http://192.168.1.7:3000/signup", null, params, new AsyncHttpResponseHandler() {
+        HttpUtil.post("http://godong9.com:3000/signup", null, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"

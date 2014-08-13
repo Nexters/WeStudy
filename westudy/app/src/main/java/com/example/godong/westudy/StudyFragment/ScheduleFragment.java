@@ -137,6 +137,7 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
 
     private void setFeedData(){
 
+        String create_time = "";
         String author = "";
         String study_id = "";
         String text = "";
@@ -155,6 +156,11 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
                 author = feed.getString("author");
                 study_id = feed.getString("study_id");
 
+                create_time = feed.getString("create_time");
+                String[] timeTemp;
+                timeTemp = create_time.split("T");
+                create_time = timeTemp[0];
+
                 /** contents 읽어오기 **/
                 JSONObject contents = feed.getJSONObject("contents");
                 int size = contents.length();
@@ -164,8 +170,8 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
                     photo_url = contents.getString("photo_url");
                 }
 
-                Log.d("output", author + "/" + study_id + "/" + text + "/" + photo_url);
-                Article article = new Article("14-08-08", text+"\n"+"photo:"+photo_url, author, study_id);
+//                Log.d("output", author + "/" + study_id + "/" + text + "/" + photo_url);
+                Article article = new Article(create_time, text, photo_url, author, study_id);
 
                 schedule_data.add(article);
                 Log.d("Arraylist output", schedule_data.get(i).toString());
