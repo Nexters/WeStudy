@@ -19,8 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.StudyMainActivity"
-            android:label="@string/app_name" >
+            android:name=".Activity.StudyMainActivity">
         </activity>
         <activity
             android:name=".Activity.JoinActivity"

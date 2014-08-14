@@ -11,17 +11,16 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Toast;
 
 import com.common.NavigationDrawerFragment;
+import com.dataSet.User;
 import com.example.godong.westudy.R;
 import com.example.godong.westudy.SideMenu.InfoFragment;
 import com.example.godong.westudy.SideMenu.ProfileFragment;
 import com.example.godong.westudy.SideMenu.StudyMakeFragment;
 import com.example.godong.westudy.StudyFragment.TabFragment;
 import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
-import com.dataSet.User;
 
 public class StudyMainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks{
@@ -52,6 +51,16 @@ public class StudyMainActivity extends FragmentActivity
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.custom_title);
 
+//        ActionBar actionBar = getActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        actionBar.setHomeButtonEnabled(true);
+
+//        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
+
+//        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
+//        actionBar.setBackgroundDrawable(colorDrawable);
+
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 
         /** drawer Setup **/
@@ -77,7 +86,7 @@ public class StudyMainActivity extends FragmentActivity
         Toast toast;
         position = position+1;
 
-        mTitle = getString(R.string.title_home);
+//        mTitle = getString(R.string.title_home);
 
         /** Fragment 전환 **/
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -97,7 +106,7 @@ public class StudyMainActivity extends FragmentActivity
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
+//        actionBar.setTitle(mTitle);
     }
 
     @Override
@@ -120,7 +129,7 @@ public class StudyMainActivity extends FragmentActivity
     public void onSectionAttached(int number){
         switch(number){
             case 1:
-                mTitle = getString(R.string.title_home);
+//                mTitle = getString(R.string.title_home);
                 tabFragment = TabFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -128,7 +137,7 @@ public class StudyMainActivity extends FragmentActivity
                         .commit();
                 break;
             case 2:
-                mTitle = getString(R.string.title_profile);
+//                mTitle = getString(R.string.title_profile);
                 profileFragment = profileFragment.newInstance();
                 profileFragment.setArguments(userData);
                 getSupportFragmentManager()
@@ -137,7 +146,7 @@ public class StudyMainActivity extends FragmentActivity
                         .commit();
                 break;
             case 3:
-                mTitle = getString(R.string.title_study);
+//                mTitle = getString(R.string.title_study);
                 tabFragment = TabFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -146,7 +155,7 @@ public class StudyMainActivity extends FragmentActivity
                 break;
 
             case 4:
-                mTitle = getString(R.string.title_study_search);
+//                mTitle = getString(R.string.title_study_search);
                 studySearchTabFragment = StudySearchTabFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -155,7 +164,7 @@ public class StudyMainActivity extends FragmentActivity
                 break;
 
             case 5:
-                mTitle = getString(R.string.title_study_make);
+//                mTitle = getString(R.string.title_study_make);
                 studyMakeFragment = StudyMakeFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -164,7 +173,7 @@ public class StudyMainActivity extends FragmentActivity
                 break;
 
             case 6:
-                mTitle = getString(R.string.title_info);
+//                mTitle = getString(R.string.title_info);
                 infoFragment = InfoFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()
