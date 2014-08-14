@@ -30,7 +30,6 @@ import java.util.ArrayList;
 public class JoinActivity extends Activity implements View.OnClickListener {
     private EditText emailEdit;
     private EditText pwEdit;
-    private EditText pw2Edit;
     private EditText nameEdit;
     private RadioGroup genderGroup;
     private RadioButton genderBtn;
@@ -51,18 +50,6 @@ public class JoinActivity extends Activity implements View.OnClickListener {
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.custom_title);
 
-//        ActionBar actionBar = getActionBar();
-//        actionBar.setDisplayShowTitleEnabled(true);
-//        actionBar.setIcon(R.drawable.common_logo);
-//
-//        actionBar.setCustomView(getLayoutInflater().inflate(R.layout.activity_join, null),
-//                new ActionBar.LayoutParams(
-//                        ActionBar.LayoutParams.WRAP_CONTENT,
-//                        ActionBar.LayoutParams.MATCH_PARENT,
-//                        Gravity.CENTER
-//                )
-//        );
-
         init();
     }
 
@@ -70,7 +57,6 @@ public class JoinActivity extends Activity implements View.OnClickListener {
         //Resource 초기화
         emailEdit = (EditText) findViewById(R.id.join_edit_email);
         pwEdit = (EditText) findViewById(R.id.join_edit_pw);
-        pw2Edit = (EditText) findViewById(R.id.join_edit_pwConfirm);
         nameEdit = (EditText) findViewById(R.id.join_edit_name);
         genderGroup = (RadioGroup) findViewById(R.id.radio_join_gender);
         interest1Btn = (Button) findViewById(R.id.join_btn_interest1);
@@ -160,11 +146,8 @@ public class JoinActivity extends Activity implements View.OnClickListener {
         if(emailEdit.getText().toString().equals("")){
             toastText = "Email을 입력해주세요!";
         }
-        else if(pwEdit.getText().toString().equals("") || pw2Edit.getText().toString().equals("")){
+        else if(pwEdit.getText().toString().equals("")){
             toastText = "비밀번호를 입력해주세요!";
-        }
-        else if(!pwEdit.getText().toString().equals(pw2Edit.getText().toString())){
-            toastText = "비밀번호를 잘못 입력하였습니다.";
         }
         else if(nameEdit.getText().toString().equals("")){
             toastText = "이름을 입력해주세요!";
