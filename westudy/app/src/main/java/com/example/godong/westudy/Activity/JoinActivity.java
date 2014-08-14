@@ -1,5 +1,6 @@
 package com.example.godong.westudy.Activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,6 +46,22 @@ public class JoinActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.custom_title);
+
+//        ActionBar actionBar = getActionBar();
+//        actionBar.setDisplayShowTitleEnabled(true);
+//        actionBar.setIcon(R.drawable.common_logo);
+//
+//        actionBar.setCustomView(getLayoutInflater().inflate(R.layout.activity_join, null),
+//                new ActionBar.LayoutParams(
+//                        ActionBar.LayoutParams.WRAP_CONTENT,
+//                        ActionBar.LayoutParams.MATCH_PARENT,
+//                        Gravity.CENTER
+//                )
+//        );
 
         init();
     }

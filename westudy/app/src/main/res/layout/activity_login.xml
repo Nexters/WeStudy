@@ -13,8 +13,8 @@
         android:layout_column="0" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="207dp"
+        android:layout_height="76dp"
         android:src="@drawable/login_logo_big"
         android:layout_gravity="center_horizontal" />
 
