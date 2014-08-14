@@ -23,7 +23,7 @@ import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
 import com.dataSet.User;
 
 public class StudyMainActivity extends FragmentActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks{
 
     /** Fragment managing the behaviors, interactions and presentation of the navigation drawer. **/
     private NavigationDrawerFragment mNavigationDrawerFragment;
