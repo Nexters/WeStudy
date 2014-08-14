@@ -7,26 +7,30 @@ public class Article {
 
     private String create_time;
     private String author;
-    private String contents;
+    private String text;
+    private String photo_url;
     private String study_id;
 
     public Article() {
         this.create_time = "";
         this.author = "";
-        this.contents = "";
+        this.text = "";
+        this.photo_url = "";
         this.study_id = "";
     }
 
-    public Article(String create_time, String contents, String author) {
+    public Article(String create_time, String text, String photo_url, String author) {
         this.create_time = create_time;
         this.author = author;
-        this.contents = contents;
+        this.text = text;
+        this.photo_url = photo_url;
     }
 
-    public Article(String create_time, String contents, String author, String study_id) {
+    public Article(String create_time, String text, String photo_url, String author, String study_id) {
         this.create_time = create_time;
         this.author = author;
-        this.contents = contents;
+        this.text = text;
+        this.photo_url = photo_url;
         this.study_id = study_id;
     }
 
@@ -47,11 +51,24 @@ public class Article {
     }
 
     public String getContents() {
+
+        String contents = "";
+
+        if(photo_url.equals("")){
+            contents = text;
+        }else {
+            contents = text + "\n" + "("+photo_url+")";
+        }
+
         return contents;
     }
 
-    public void setContents(String contents) {
-        this.contents = contents;
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setPhoto(String photo_url) {
+        this.photo_url = photo_url;
     }
 
     public String getStudy_id() {
@@ -63,6 +80,6 @@ public class Article {
     }
 
     public String toString(){
-        return "[ "+author+", "+contents+", "+study_id+", "+create_time+"\n";
+        return "[ "+author+", "+text+"/"+photo_url+", "+study_id+", "+create_time+"\n";
     }
 }

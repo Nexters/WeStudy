@@ -8,14 +8,309 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="105dp" />
 
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="220dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="홍길동"
+            android:id="@+id/profile_textView_name"
+            android:textSize="40dp"
+            android:textColor="#ff6bd169" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="님"
+            android:textSize="30dp"
+            android:textColor="#ff9b9b9b" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+
+
+
+    <!-- 이하 user Data _id !-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID :  "
+            android:textSize="20dp"
+            android:textColor="#ff7dceff"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내용"
+            android:id="@+id/profile_textView_id"
+            android:textSize="20dp"
+            android:textColor="#ff74a5c7" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="이곳은 Profile이 나오는 Fragment입니다.."
-        android:id="@+id/profile_textView"
-        android:layout_gravity="center" />
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            android:textColor="#ffc0bcc7" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="10dp" />
+
+    </LinearLayout>
+
+
+
+    <!-- 이하 user Data email !-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email :  "
+            android:textSize="20dp"
+            android:textColor="#ff7dceff"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="email 내용"
+            android:id="@+id/profile_textView_email"
+            android:textSize="20dp"
+            android:textColor="#ff74a5c7" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            android:textColor="#ffc0bcc7" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="10dp" />
+
+    </LinearLayout>
+
+
+
+    <!-- 이하 user Data gender !-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="성 별 :  "
+            android:textSize="20dp"
+            android:textColor="#ff7dceff"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내용"
+            android:id="@+id/profile_textView_gender"
+            android:textSize="20dp"
+            android:textColor="#ff74a5c7" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            android:textColor="#ffc0bcc7" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="10dp" />
+
+    </LinearLayout>
+
+
+
+    <!-- 이하 user Data create_time !-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가 입 일 :  "
+            android:textSize="20dp"
+            android:textColor="#ff7dceff"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내용"
+            android:id="@+id/profile_textView_create_time"
+            android:textSize="20dp"
+            android:textColor="#ff74a5c7" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            android:textColor="#ffc0bcc7" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="10dp" />
+
+    </LinearLayout>
+
+
+    <!-- 이하 user Data study !-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가입한 스터디 :  "
+            android:textSize="20dp"
+            android:textColor="#ff7dceff"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내용"
+            android:id="@+id/profile_textView_study"
+            android:textSize="20dp"
+            android:textColor="#ff74a5c7" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            android:textColor="#ffc0bcc7" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="10dp" />
+
+    </LinearLayout>
+
+
+    <!-- 이하 user Data interest !-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="관 심 분 야 :  "
+            android:textSize="20dp"
+            android:textColor="#ff7dceff"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내용"
+            android:id="@+id/profile_textView_interest"
+            android:textSize="20dp"
+            android:textColor="#ff74a5c7" />
+
+    </LinearLayout>
+
 
 
 </LinearLayout>
