@@ -1,11 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Light">
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:windowNoTitle">false</item>
-        <item name="android:windowTitleSize">48dp</item>
-        <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
+
     </style>
 
     <style name="tooltip_bubble_text">
@@ -17,7 +15,4 @@
         <item name="android:shadowColor">#40000000</item>
     </style>
 
-    <style name="CustomWindowTitleBackground">
-        <item name="android:background">#00000000</item>
-    </style>
 </resources>
