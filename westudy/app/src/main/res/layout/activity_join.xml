@@ -43,15 +43,14 @@
                 android:src="@drawable/signup_icon_01"
                 />
             <TextView
-                android:layout_width="70dp"
+                android:layout_width="78dp"
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="E-mail*"
-                android:textSize="18dp"
+                android:text="이메일*"
+                android:textSize="16dp"
                 android:textColor="#335585"
                 android:gravity="center_vertical"
-                android:id="@+id/join_TextView_email"
-                android:layout_alignEnd="@+id/join_TextView_email" />
+                android:id="@+id/join_TextView_email" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -67,157 +66,250 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
-
+            android:layout_height="37dp"
+            android:layout_marginTop="8dp">
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:src="@drawable/signup_icon_02"
+                />
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="78dp"
+                android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="비밀번호*"
-                android:id="@+id/join_TextView_pw"
-                android:layout_centerVertical="true"
-                android:layout_alignEnd="@+id/pwTextView" />
+                android:textSize="16dp"
+                android:textColor="#335585"
+                android:gravity="center_vertical"
+                android:id="@+id/join_TextView_pw" />
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:inputType="textPassword"
                 android:ems="10"
                 android:id="@+id/join_edit_pw"
+                android:background="@drawable/common_n_07"
                 android:layout_weight="1" />
 
         </LinearLayout>
 
 
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
-
+            android:layout_height="37dp"
+            android:layout_marginTop="8dp">
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:src="@drawable/signup_icon_03"
+                />
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="78dp"
+                android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="이름*"
-                android:id="@+id/join_TextView_name"
-                android:layout_centerVertical="true"
-                android:layout_alignEnd="@+id/join_TextView_name" />
+                android:textSize="16dp"
+                android:textColor="#335585"
+                android:gravity="center_vertical"
+                android:id="@+id/join_TextView_name" />
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
                 android:id="@+id/join_edit_name"
+                android:background="@drawable/common_n_07"
                 android:layout_weight="1" />
 
         </LinearLayout>
 
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
-
+            android:layout_height="37dp"
+            android:layout_marginTop="8dp">
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:src="@drawable/signup_icon_04"
+                />
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="78dp"
+                android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="성별"
-                android:id="@+id/genderTextView"
-                android:layout_centerVertical="true"
-                android:layout_alignEnd="@+id/join_TextView_gender" />
+                android:textSize="16dp"
+                android:textColor="#335585"
+                android:gravity="center_vertical"
+                android:id="@+id/join_TextView_gender" />
 
             <RadioGroup
                 android:orientation="horizontal"
                 android:id="@+id/radio_join_gender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" >
                 <RadioButton
-                    android:text="남"
                     android:id="@+id/join_radio_gender_male"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:tag="1"/>
+                    android:text="남"
+                    android:textColor="#7d7d7d"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:background="@drawable/common_n_07"
+                    android:button="@null"
+                    android:tag="0"/>
                 <RadioButton
-                    android:text="여"
                     android:id="@+id/join_radio_gender_female"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:tag="2"/>
+                    android:text="여"
+                    android:textColor="#7d7d7d"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:background="@drawable/common_n_08_non"
+                    android:button="@null"
+                    android:tag="1"/>
             </RadioGroup>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="80dp">
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_marginTop="8dp">
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:src="@drawable/signup_icon_05"
+                />
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="78dp"
+                android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="관심주제"
-                android:id="@+id/interestTextView"
-                android:layout_centerVertical="true"
-                android:layout_alignEnd="@+id/join_TextView_intrest" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="80dp">
-
-                <Button
-                    android:text="어학"
-                    android:id="@+id/join_btn_interest1"
-                    android:layout_width="70dp"
-                    android:layout_height="50dp" />
-                <Button
-                    android:text="취업"
-                    android:id="@+id/join_btn_interest2"
-                    android:layout_width="70dp"
-                    android:layout_height="50dp" />
-                <Button
-                    android:text="IT"
-                    android:id="@+id/join_btn_interest3"
-                    android:layout_width="70dp"
-                    android:layout_height="50dp" />
-                <Button
-                    android:text="자격증,시험"
-                    android:id="@+id/join_btn_interest4"
-                    android:layout_width="120dp"
-                    android:layout_height="50dp" />
-            </LinearLayout>
+                android:textSize="16dp"
+                android:textColor="#335585"
+                android:gravity="center_vertical"
+                android:id="@+id/join_TextView_intrest" />
 
         </LinearLayout>
+
+
+
 
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="80dp">
+            android:layout_height="37dp"
+            android:layout_marginTop="6dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="자기 소개"
-                android:id="@+id/introduceTextView"
-                android:layout_centerVertical="true"
-                android:layout_alignEnd="@+id/join_TextView_introduce" />
+            <Button
+                android:id="@+id/join_btn_interest0"
+                android:text="어학"
+                android:textSize="15dp"
+                android:layout_width="46dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="7dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:background="@drawable/common_n_08_non"/>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/join_edit_introduce"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1" />
+            <Button
+                android:id="@+id/join_btn_interest1"
+                android:text="취업"
+                android:textSize="15dp"
+                android:layout_width="46dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="7dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:background="@drawable/common_n_08_non"/>
+            <Button
+                android:id="@+id/join_btn_interest2"
+                android:text="자격증,시험"
+                android:textSize="15dp"
+                android:layout_width="86dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="7dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:background="@drawable/common_n_08_non"/>
+            <Button
+                android:id="@+id/join_btn_interest3"
+                android:text="IT"
+                android:textSize="15dp"
+                android:layout_width="46dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:background="@drawable/common_n_08_non"/>
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_marginTop="8dp">
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:src="@drawable/signup_icon_06"
+                />
+            <TextView
+                android:layout_width="78dp"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="자기소개"
+                android:textSize="16dp"
+                android:textColor="#335585"
+                android:gravity="center_vertical"
+                android:id="@+id/join_TextView_introduce" />
+
+        </LinearLayout>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="6dp"
+            android:ems="10"
+            android:id="@+id/join_edit_introduce"
+            android:background="@drawable/common_n_07" />
+
+
         <Button
-            android:layout_width="300px"
-            android:layout_height="100px"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
             android:text="가입하기"
             android:id="@+id/join_btn_join"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/common_n_09_non"/>
 
     </LinearLayout>
 
