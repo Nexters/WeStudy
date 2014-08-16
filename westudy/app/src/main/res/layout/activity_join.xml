@@ -173,7 +173,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/common_n_07"
                     android:button="@null"
-                    android:tag="0"/>
+                    android:tag="1"/>
                 <RadioButton
                     android:id="@+id/join_radio_gender_female"
                     android:text="여"
@@ -183,7 +183,7 @@
                     android:gravity="center"
                     android:background="@drawable/common_n_08_non"
                     android:button="@null"
-                    android:tag="1"/>
+                    android:tag="2"/>
             </RadioGroup>
 
         </LinearLayout>
