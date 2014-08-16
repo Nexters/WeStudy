@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.godong.westudy.StudyFragment.ArticleFragment;
 import com.example.godong.westudy.StudyFragment.CalendarFragment;
 import com.example.godong.westudy.StudyFragment.ScheduleFragment;
-import com.example.godong.westudy.StudyFragment.TimelineFragment;
 
 /**
  * Created by baggajin on 14. 8. 14..
@@ -27,7 +27,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
         switch (index) {
             case 0:
-                return new TimelineFragment();
+                return new ArticleFragment();
             case 1:
                 return new CalendarFragment();
             case 2:

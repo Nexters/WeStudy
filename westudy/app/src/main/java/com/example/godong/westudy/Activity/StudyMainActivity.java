@@ -19,6 +19,7 @@ import com.example.godong.westudy.R;
 import com.example.godong.westudy.SideMenu.InfoFragment;
 import com.example.godong.westudy.SideMenu.ProfileFragment;
 import com.example.godong.westudy.SideMenu.StudyMakeFragment;
+import com.example.godong.westudy.StudyFragment.NewArticleFragment;
 import com.example.godong.westudy.StudyFragment.TabFragment;
 import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
 
@@ -37,6 +38,7 @@ public class StudyMainActivity extends FragmentActivity
     private InfoFragment infoFragment;
     private StudyMakeFragment studyMakeFragment;
     private StudySearchTabFragment studySearchTabFragment;
+    private NewArticleFragment newArticleFragment;
 
     /** UserInfo Data **/
     Bundle userData;
@@ -164,6 +166,15 @@ public class StudyMainActivity extends FragmentActivity
                 break;
 
             case 5:
+//                mTitle = getString(R.string.title_study_search);
+                newArticleFragment = NewArticleFragment.newInstance();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fl_container, newArticleFragment)
+                        .commit();
+                break;
+
+            case 6:
 //                mTitle = getString(R.string.title_study_make);
                 studyMakeFragment = StudyMakeFragment.newInstance();
                 getSupportFragmentManager()
@@ -172,7 +183,7 @@ public class StudyMainActivity extends FragmentActivity
                         .commit();
                 break;
 
-            case 6:
+            case 7:
 //                mTitle = getString(R.string.title_info);
                 infoFragment = InfoFragment.newInstance();
                 getSupportFragmentManager()

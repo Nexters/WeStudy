@@ -119,6 +119,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_profile),
                         getString(R.string.title_study),
                         "스터디 찾기",
+                        "아티클 작성",
                         "스터디 만들기",
                         "Monday Arivo",
                         "설정",
