@@ -20,7 +20,7 @@ StudyCtrl.addStudy = function(req, res) {
   console.log(newStudy);
   Study.saveStudy(me, newStudy, function(err, study) {
     if (err) return res.send(400, err);
-    return res.send(200, "Success");
+    return res.send(200, null);
   });
 };
 
