@@ -170,6 +170,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                 Intent intentLoginActivity = new Intent(LoginActivity.this, StudyMainActivity.class);
                 intentLoginActivity.putExtra("LoginData",userInfo);
                 startActivity(intentLoginActivity);
+                finish();
             }
 
             @Override

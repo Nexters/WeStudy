@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.common.BackPressCloseHandler;
 import com.common.NavigationDrawerFragment;
 import com.dataSet.User;
 import com.example.godong.westudy.R;
@@ -28,6 +29,9 @@ public class StudyMainActivity extends FragmentActivity
 
     /** Fragment managing the behaviors, interactions and presentation of the navigation drawer. **/
     private NavigationDrawerFragment mNavigationDrawerFragment;
+
+    /** BackButton 종료를 위한 핸들러 **/
+    private BackPressCloseHandler backPressCloseHandler;
 
     /** Used to store the last screen title. For use in restoreActionBar(). **/
     private CharSequence mTitle;
@@ -53,6 +57,7 @@ public class StudyMainActivity extends FragmentActivity
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.custom_title);
 
+        backPressCloseHandler = new BackPressCloseHandler(this);
 //        ActionBar actionBar = getActionBar();
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 //        actionBar.setHomeButtonEnabled(true);
@@ -77,6 +82,10 @@ public class StudyMainActivity extends FragmentActivity
 
     }
 
+    @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
+    }
 
     /**
      * Navigation Drawer item 선택 되었을 때 작업
