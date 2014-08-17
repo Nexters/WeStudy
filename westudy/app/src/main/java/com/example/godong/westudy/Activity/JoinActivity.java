@@ -40,6 +40,7 @@ public class JoinActivity extends Activity implements View.OnClickListener {
     private int [] interestArray = {0, 0, 0, 0};
     private EditText introduceEdit;
     private Button joinBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

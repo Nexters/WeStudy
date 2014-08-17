@@ -8,13 +8,13 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.EditText;
 import android.widget.Button;
 
+import com.common.ActivityReference;
 import com.common.CommonUtil;
 import com.dataSet.User;
 import com.example.godong.westudy.R;
@@ -101,9 +101,11 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         }
         else if (v.getId() == R.id.kakao_sign_up_button) {
             //TODO: 카카오 로그인 붙여야 함
+
         }
         else if (v.getId() == R.id.find_pw_button) {
             //TODO: 비밀번호 찾기 붙여야 함
+
         }
         else if (v.getId() == R.id.sign_up_button) {
             Intent intentJoinActivity = new Intent(LoginActivity.this, JoinActivity.class);
@@ -168,9 +170,9 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                 }
 
                 Intent intentLoginActivity = new Intent(LoginActivity.this, StudyMainActivity.class);
-                intentLoginActivity.putExtra("LoginData",userInfo);
+                intentLoginActivity.putExtra("LoginData", userInfo);
                 startActivity(intentLoginActivity);
-                finish();
+                ActivityReference.sActivityReference = LoginActivity.this;
             }
 
             @Override
