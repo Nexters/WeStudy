@@ -118,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="34dp"
                 android:text="패스워드 찾기"
-                android:textSize="12dp"
+                android:textSize="15dp"
                 android:textColor="#FFFFFF"
                 android:layout_gravity="center_horizontal" />
 
@@ -126,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="34dp"
                 android:text="    |    "
-                android:textSize="12dp"
+                android:textSize="15dp"
                 android:textColor="#FFFFFF"
                 android:layout_gravity="center_horizontal" />
 
@@ -135,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="34dp"
                 android:text="@string/action_register"
-                android:textSize="12dp"
+                android:textSize="15dp"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal" />
