@@ -68,12 +68,6 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         }
     }
 
-    @Override
-    public void onPause() {
-        login_dialog.dismiss();
-        super.onPause();
-    }
-
     private void init() {
         //앱 저장공간 초기화
         prefs = getSharedPreferences("login", MODE_PRIVATE);

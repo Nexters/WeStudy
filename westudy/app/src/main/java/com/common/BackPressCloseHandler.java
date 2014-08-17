@@ -25,8 +25,9 @@ public class BackPressCloseHandler {
             if(preActivity != null) {
                 preActivity.finish();
             }
-            activity.finish();
             toast.cancel();
+            activity.finish();
+            android.os.Process.killProcess(android.os.Process.myPid());
         }
     }
 
