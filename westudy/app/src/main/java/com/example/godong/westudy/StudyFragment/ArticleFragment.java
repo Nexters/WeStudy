@@ -8,15 +8,15 @@ import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.common.CommonUtil;
+import com.common.CustomScrollView;
+import com.common.CustomScrollView.OnEdgeTouchListener;
 import com.dataSet.Article;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -29,12 +29,15 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+
+
 /**
  * Created by baggajin on 14. 7. 13..
  */
 public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.OnRefreshListener{
 
     SwipeRefreshLayout swipeLayout;
+    protected OnEdgeTouchListener onEdgeTouchListener;
 
     /** item List **/
     private ArrayList<Article> article_data;
@@ -42,7 +45,9 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
     private JSONArray article_jarray;
 
     private ListView ArticleList;
-    private ScrollView ArticleScroll;
+    private CustomScrollView ArticleScroll;
+
+    private boolean scrollFlag = false;
 
     public ArticleFragment(){
 
@@ -75,12 +80,26 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         View view = inflater.inflate(R.layout.fragment_article, container, false);
 
         ArticleList = (ListView) view.findViewById(android.R.id.list);
-        ArticleScroll = (ScrollView) view.findViewById(R.id.article_scrollView);
-        ArticleList.setOnTouchListener(new View.OnTouchListener() {
+        ArticleScroll = (CustomScrollView) view.findViewById(R.id.article_scrollView);
+        ArticleScroll.setOnEdgeTouchListener(new OnEdgeTouchListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                ArticleScroll.requestDisallowInterceptTouchEvent(true);
-                return false;
+            public void onEdgeTouch(CustomScrollView.DIRECTION direction) {
+                if(direction == CustomScrollView.DIRECTION.TOP){
+                    /** Scroll Top 일 때 action **/
+                    if(scrollFlag == true) {
+                        onRefresh();
+                    }
+
+                }else if(direction == CustomScrollView.DIRECTION.BOTTOM){
+                    /** Scroll Bottom 일 때 action **/
+
+
+                }else if(direction == CustomScrollView.DIRECTION.NONE){
+                    /** Top도 Bottom 도 아닐 때 action **/
+
+                }else{
+                    throw new IllegalArgumentException("Invalid direction..");
+                }
             }
         });
 
@@ -89,8 +108,19 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         swipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
 
+//        ArticleList.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                ArticleScroll.requestDisallowInterceptTouchEvent(true);
+//                return false;
+//            }
+//        });
+
+
+
         return view;
     }
+
 
     @Override
     public void onRefresh() {
@@ -181,7 +211,6 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         }
 
     }
-
 
     private class FeedAdapter extends ArrayAdapter<Article>{
         private ArrayList<Article> items;

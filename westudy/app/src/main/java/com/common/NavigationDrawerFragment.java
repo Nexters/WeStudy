@@ -152,7 +152,8 @@ public class NavigationDrawerFragment extends Fragment {
         actionBar.setHomeButtonEnabled(true);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
         actionBar.setBackgroundDrawable(colorDrawable);
-        actionBar.setTitle("");
+        actionBar.setIcon(R.drawable.btn_trans);
+        actionBar.setTitle("title");
         /** setup 여기까지! **/
 
         // ActionBarDrawerToggle ties together the the proper interactions
@@ -288,7 +289,10 @@ public class NavigationDrawerFragment extends Fragment {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
         actionBar.setBackgroundDrawable(colorDrawable);
-        actionBar.setTitle("");
+        /** 이 부분에 actionBar title setting **/
+
+        actionBar.setIcon(R.drawable.btn_trans);
+        actionBar.setTitle("title_open");
 //        actionBar.setTitle(R.string.app_name);
     }
 
