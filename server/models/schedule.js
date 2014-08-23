@@ -65,11 +65,11 @@ ScheduleSchema.statics.updateSchedule = function (schedule_id, schedule, callbac
 			'start_time': new Date(schedule.start_time),
 			'end_time': new Date(schedule.end_time),
 			'contents': schedule.contents,
-		}, function (err) {
+		}, function (err, __schedule) {
 			if (err) {
-				callback(err);
+				callback(err, null);
 			} else {
-				callback(null);
+				callback(null, __schedule);
 			}
 		});
 	}

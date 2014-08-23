@@ -204,7 +204,7 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
         ArrayList dayOfWeekArrayList = new ArrayList();
         for(int i=0; i<dayOfWeekArray.length; i++){
             if(dayOfWeekArray[i] == 1){
-                dayOfWeekArrayList.add(i);
+                dayOfWeekArrayList.add(i+1);
             }
         }
         JSONArray dayOfWeekJSONArray = new JSONArray(dayOfWeekArrayList);

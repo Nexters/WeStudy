@@ -43,11 +43,11 @@ StudyCtrl.loadStudyBySubject = function (req, res) {
 };
 
 StudyCtrl.applyStudy = function (req, res) {
-  var me = req.body.user_id;
+  var me = req.body._id;
   var target_study = req.body.study_id;
-  Study.applyStudy(me, target_study, function (err) {
+  Study.applyStudy(me, target_study, function (err, data) {
     if (err) return res.send(400, err);
-    return res.send(200, null);
+    return res.send(200, data);
   });
 };
 

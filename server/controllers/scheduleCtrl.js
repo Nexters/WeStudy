@@ -22,9 +22,9 @@ ScheduleCtrl.removeSchedule = function (req, res) {
 ScheduleCtrl.updateSchedule = function (req, res) {
 	var schedule_id = req.params.id;
 	var schedule = req.body.schedule;
-	Schedule.updateSchedule(schedule_id, schedule, function (err) {
+	Schedule.updateSchedule(schedule_id, schedule, function (err, __schedule) {
 		if (err) return res.send(400, err);
-		return res.send(200, null);
+		return res.send(200, __schedule);
 	});
 };
 

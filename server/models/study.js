@@ -101,17 +101,14 @@ StudySchema.statics.loadStudyBySubject = function (subject, last_date, callback)
 StudySchema.statics.applyStudy = function (user_id, study_id, callback) {
   var self = this;
   if (user_id && study_id) {
-    this.update({
+    this.findOne({
       '_id': study_id
-    }, {
-      '$push': {
-        'applier': user_id
-      }
-    }, function (err) {
+    }, function (err, data) {
       if (!err) {
-        callback(null);
+        
       } else {
-        callback(err);
+        console.log("Apply Study study doesn't exist.", null);
+        callback(err, null);
       }
     });
   } else {
