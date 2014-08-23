@@ -49,31 +49,31 @@
                 android:id="@+id/studyMake_radio_subject1"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
-                android:tag="1"/>
+                android:tag="0"/>
             <RadioButton
                 android:text="취업"
                 android:id="@+id/studyMake_radio_subject2"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
-                android:tag="2"/>
+                android:tag="1"/>
             <RadioButton
                 android:text="자격증,시험"
                 android:id="@+id/studyMake_radio_subject3"
                 android:layout_width="110dp"
                 android:layout_height="40dp"
-                android:tag="3"/>
+                android:tag="2"/>
             <RadioButton
                 android:text="IT"
                 android:id="@+id/studyMake_radio_subject4"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
-                android:tag="4"/>
+                android:tag="3"/>
             <RadioButton
                 android:text="기타"
                 android:id="@+id/studyMake_radio_subject5"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
-                android:tag="5"/>
+                android:tag="4"/>
         </RadioGroup>
 
         <TextView

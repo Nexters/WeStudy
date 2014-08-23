@@ -1,13 +1,19 @@
 package com.example.godong.westudy.SideMenu;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.godong.westudy.Activity.JoinActivity;
+import com.example.godong.westudy.Activity.LoginActivity;
+import com.example.godong.westudy.Activity.StudyMainActivity;
 import com.example.godong.westudy.R;
 import com.dataSet.User;
 /**
@@ -23,6 +29,9 @@ public class ProfileFragment extends Fragment {
     private TextView create_time;
     private TextView gender;
     private TextView study;
+    private Button logoutBtn;
+
+    private SharedPreferences prefs;
 
     private User user;
 
@@ -46,6 +55,16 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        prefs = getActivity().getSharedPreferences("login", getActivity().MODE_PRIVATE);
+
+        logoutBtn = (Button) view.findViewById(R.id.profile_logout_button);
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
 
         user = getArguments().getParcelable("userData");
         Log.d("userINFO :: ",user.toString());
@@ -84,4 +103,13 @@ public class ProfileFragment extends Fragment {
 
     }
 
+    private void logout() {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.remove("email");
+        editor.remove("pw");
+        editor.commit();
+
+        Intent intentJoinActivity = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intentJoinActivity);
+    }
 }

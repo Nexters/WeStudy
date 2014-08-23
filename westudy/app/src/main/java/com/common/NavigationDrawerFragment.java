@@ -3,6 +3,8 @@ package com.common;
 
 import android.app.Activity;
 import android.app.ActionBar;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -117,6 +119,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_profile),
                         getString(R.string.title_study),
                         "스터디 찾기",
+                        "아티클 작성",
                         "스터디 만들기",
                         "Monday Arivo",
                         "설정",
@@ -143,9 +146,15 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
 
+        /** Action Bar Setup **/
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
+        actionBar.setBackgroundDrawable(colorDrawable);
+        actionBar.setIcon(R.drawable.btn_trans);
+        actionBar.setTitle("title");
+        /** setup 여기까지! **/
 
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the navigation drawer and the action bar app icon.
@@ -278,7 +287,13 @@ public class NavigationDrawerFragment extends Fragment {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setTitle(R.string.app_name);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
+        actionBar.setBackgroundDrawable(colorDrawable);
+        /** 이 부분에 actionBar title setting **/
+
+        actionBar.setIcon(R.drawable.btn_trans);
+        actionBar.setTitle("title_open");
+//        actionBar.setTitle(R.string.app_name);
     }
 
     private ActionBar getActionBar() {
