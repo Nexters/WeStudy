@@ -16,9 +16,11 @@ StudyCtrl.getAllStudy = function(req, res) {
 
 StudyCtrl.addStudy = function(req, res) {
   var newStudy = req.body;
-  Study.saveStudy(newStudy, function(err, user) {
+  var me = req.user;
+  console.log(newStudy);
+  Study.saveStudy(me, newStudy, function(err, study) {
     if (err) return res.send(400, err);
-    return res.send(200,"Success");
+    return res.send(200, "Success");
   });
 };
 
@@ -37,6 +39,15 @@ StudyCtrl.loadStudyBySubject = function (req, res) {
   Study.loadStudyBySubject(subject, last_date, function (err, study_list) {
     if (err) return res.send(400, err);
     return res.send(200, study_list);
+  });
+};
+
+StudyCtrl.applyStudy = function (req, res) {
+  var me = req.body.user_id;
+  var target_study = req.body.study_id;
+  Study.applyStudy(me, target_study, function (err) {
+    if (err) return res.send(400, err);
+    return res.send(200, null);
   });
 };
 

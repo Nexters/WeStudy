@@ -7,7 +7,7 @@
     <string name="action_sign_in">로그인</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="action_facebook_login">페이스북으로 로그인</string>
-    <string name="action_register">회원가입</string>
+    <string name="action_register">가입하기</string>
     <string name="action_register_ok">가입</string>
 
     <string name="error_invalid_email">This email address is invalid</string>

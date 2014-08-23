@@ -13,20 +13,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.common.BackPressCloseHandler;
 import com.common.NavigationDrawerFragment;
+import com.dataSet.User;
 import com.example.godong.westudy.R;
 import com.example.godong.westudy.SideMenu.InfoFragment;
 import com.example.godong.westudy.SideMenu.ProfileFragment;
 import com.example.godong.westudy.SideMenu.StudyMakeFragment;
+import com.example.godong.westudy.StudyFragment.NewArticleFragment;
 import com.example.godong.westudy.StudyFragment.TabFragment;
 import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
-import com.dataSet.User;
 
 public class StudyMainActivity extends FragmentActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks{
 
     /** Fragment managing the behaviors, interactions and presentation of the navigation drawer. **/
     private NavigationDrawerFragment mNavigationDrawerFragment;
+
+    /** BackButton 종료를 위한 핸들러 **/
+    private BackPressCloseHandler backPressCloseHandler;
 
     /** Used to store the last screen title. For use in restoreActionBar(). **/
     private CharSequence mTitle;
@@ -37,6 +42,7 @@ public class StudyMainActivity extends FragmentActivity
     private InfoFragment infoFragment;
     private StudyMakeFragment studyMakeFragment;
     private StudySearchTabFragment studySearchTabFragment;
+    private NewArticleFragment newArticleFragment;
 
     /** UserInfo Data **/
     Bundle userData;
@@ -44,10 +50,25 @@ public class StudyMainActivity extends FragmentActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.custom_title);
+
+        backPressCloseHandler = new BackPressCloseHandler(this);
+//        ActionBar actionBar = getActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        actionBar.setHomeButtonEnabled(true);
+
+//        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
+
+//        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
+//        actionBar.setBackgroundDrawable(colorDrawable);
+
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
 
         /** drawer Setup **/
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout)findViewById(R.id.drawer_layout));
@@ -61,6 +82,10 @@ public class StudyMainActivity extends FragmentActivity
 
     }
 
+    @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
+    }
 
     /**
      * Navigation Drawer item 선택 되었을 때 작업
@@ -72,7 +97,7 @@ public class StudyMainActivity extends FragmentActivity
         Toast toast;
         position = position+1;
 
-        mTitle = getString(R.string.title_home);
+//        mTitle = getString(R.string.title_home);
 
         /** Fragment 전환 **/
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -92,7 +117,7 @@ public class StudyMainActivity extends FragmentActivity
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
+//        actionBar.setTitle(mTitle);
     }
 
     @Override
@@ -115,7 +140,7 @@ public class StudyMainActivity extends FragmentActivity
     public void onSectionAttached(int number){
         switch(number){
             case 1:
-                mTitle = getString(R.string.title_home);
+//                mTitle = getString(R.string.title_home);
                 tabFragment = TabFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -123,7 +148,7 @@ public class StudyMainActivity extends FragmentActivity
                         .commit();
                 break;
             case 2:
-                mTitle = getString(R.string.title_profile);
+//                mTitle = getString(R.string.title_profile);
                 profileFragment = profileFragment.newInstance();
                 profileFragment.setArguments(userData);
                 getSupportFragmentManager()
@@ -132,7 +157,7 @@ public class StudyMainActivity extends FragmentActivity
                         .commit();
                 break;
             case 3:
-                mTitle = getString(R.string.title_study);
+//                mTitle = getString(R.string.title_study);
                 tabFragment = TabFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -141,7 +166,7 @@ public class StudyMainActivity extends FragmentActivity
                 break;
 
             case 4:
-                mTitle = getString(R.string.title_study_search);
+//                mTitle = getString(R.string.title_study_search);
                 studySearchTabFragment = StudySearchTabFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -150,7 +175,16 @@ public class StudyMainActivity extends FragmentActivity
                 break;
 
             case 5:
-                mTitle = getString(R.string.title_study_make);
+//                mTitle = getString(R.string.title_study_search);
+                newArticleFragment = NewArticleFragment.newInstance();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fl_container, newArticleFragment)
+                        .commit();
+                break;
+
+            case 6:
+//                mTitle = getString(R.string.title_study_make);
                 studyMakeFragment = StudyMakeFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -158,8 +192,8 @@ public class StudyMainActivity extends FragmentActivity
                         .commit();
                 break;
 
-            case 6:
-                mTitle = getString(R.string.title_info);
+            case 7:
+//                mTitle = getString(R.string.title_info);
                 infoFragment = InfoFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()

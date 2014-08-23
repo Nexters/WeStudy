@@ -13,7 +13,7 @@ var ArticleSchema = new Schema({
 
 
 ArticleSchema.statics.getAllArticles = function (callback) {
-  this.find({}, function(err, articles) {
+  this.find({}, function (err, articles) {
     if(err) return callback(err, null);
     callback(null, articles);
   });
@@ -23,10 +23,10 @@ ArticleSchema.statics.addArticle = function (article, callback) {
   var self = this;
   if (article) {
     var newArticle = new self({
-      author: article.author,
-      study_id: article.study_id,
-      contents: article.contents,
-      create_time: new Date()
+      'author': article.author,
+      'study_id': article.study_id,
+      'contents': article.contents,
+      'create_time': new Date()
     });
     try {
       newArticle.save(callback);
@@ -48,9 +48,9 @@ ArticleSchema.statics.loadArticles = function (target, callback) {
   }).sort({
     'create_time': -1
   }).limit(10)
-  .exec(function (err, data) {
+  .exec(function (err, articles) {
     if (!err) {
-      callback(err, data);
+      callback(err, articles);
     } else {
       console.log("Load Article Error " + err);
       callback(err, null);
@@ -67,9 +67,9 @@ ArticleSchema.statics.refreshArticles = function (target, callback) {
     }
   }).sort({
     'create_time': -1
-  }).exec(function (err, data) {
+  }).exec(function (err, articles) {
     if (!err) {
-      callback(err, data);
+      callback(err, articles);
     } else {
       console.log("Refresh Article Error " + err);
       callback(err, null);

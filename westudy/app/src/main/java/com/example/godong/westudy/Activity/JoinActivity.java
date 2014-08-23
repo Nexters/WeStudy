@@ -1,5 +1,6 @@
 package com.example.godong.westudy.Activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,22 +29,27 @@ import java.util.ArrayList;
 public class JoinActivity extends Activity implements View.OnClickListener {
     private EditText emailEdit;
     private EditText pwEdit;
-    private EditText pw2Edit;
     private EditText nameEdit;
     private RadioGroup genderGroup;
     private RadioButton genderBtn;
     private RadioButton defaultGenderBtn;
+    private Button interest0Btn;
     private Button interest1Btn;
     private Button interest2Btn;
     private Button interest3Btn;
-    private Button interest4Btn;
     private int [] interestArray = {0, 0, 0, 0};
     private EditText introduceEdit;
     private Button joinBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
+
+        //ActionBar Title 초기화
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.custom_title);
 
         init();
     }
@@ -52,41 +58,40 @@ public class JoinActivity extends Activity implements View.OnClickListener {
         //Resource 초기화
         emailEdit = (EditText) findViewById(R.id.join_edit_email);
         pwEdit = (EditText) findViewById(R.id.join_edit_pw);
-        pw2Edit = (EditText) findViewById(R.id.join_edit_pwConfirm);
         nameEdit = (EditText) findViewById(R.id.join_edit_name);
         genderGroup = (RadioGroup) findViewById(R.id.radio_join_gender);
+        interest0Btn = (Button) findViewById(R.id.join_btn_interest0);
         interest1Btn = (Button) findViewById(R.id.join_btn_interest1);
         interest2Btn = (Button) findViewById(R.id.join_btn_interest2);
         interest3Btn = (Button) findViewById(R.id.join_btn_interest3);
-        interest4Btn = (Button) findViewById(R.id.join_btn_interest4);
         introduceEdit = (EditText) findViewById(R.id.join_edit_introduce);
         joinBtn = (Button) findViewById(R.id.join_btn_join);
 
         //Event 초기화
+        interest0Btn.setOnClickListener(this);
         interest1Btn.setOnClickListener(this);
         interest2Btn.setOnClickListener(this);
         interest3Btn.setOnClickListener(this);
-        interest4Btn.setOnClickListener(this);
         joinBtn.setOnClickListener(this);
         defaultGenderBtn = (RadioButton) findViewById(R.id.join_radio_gender_male);
         defaultGenderBtn.setChecked(true);
     }
 
     public void onClick(View v) {
-        if (v.getId() == R.id.join_btn_interest1) {
-            interest1Btn.setSelected(!interest1Btn.isSelected());
+        if (v.getId() == R.id.join_btn_interest0) {
+            interest0Btn.setSelected(!interest0Btn.isSelected());
             interestArray[0] = (interestArray[0] == 0) ? 1 : 0;
         }
-        else if (v.getId() == R.id.join_btn_interest2) {
-            interest2Btn.setSelected(interest2Btn.isSelected());
+        else if (v.getId() == R.id.join_btn_interest1) {
+            interest1Btn.setSelected(!interest1Btn.isSelected());
             interestArray[1] = (interestArray[1] == 0) ? 1 : 0;
         }
-        else if (v.getId() == R.id.join_btn_interest3) {
-            interest3Btn.setSelected(interest3Btn.isSelected());
+        else if (v.getId() == R.id.join_btn_interest2) {
+            interest2Btn.setSelected(!interest2Btn.isSelected());
             interestArray[2] = (interestArray[2] == 0) ? 1 : 0;
         }
-        else if (v.getId() == R.id.join_btn_interest4) {
-            interest4Btn.setSelected(interest4Btn.isSelected());
+        else if (v.getId() == R.id.join_btn_interest3) {
+            interest3Btn.setSelected(!interest3Btn.isSelected());
             interestArray[3] = (interestArray[3] == 0) ? 1 : 0;
         }
         else if (v.getId() == R.id.join_btn_join) {
@@ -142,11 +147,8 @@ public class JoinActivity extends Activity implements View.OnClickListener {
         if(emailEdit.getText().toString().equals("")){
             toastText = "Email을 입력해주세요!";
         }
-        else if(pwEdit.getText().toString().equals("") || pw2Edit.getText().toString().equals("")){
+        else if(pwEdit.getText().toString().equals("")){
             toastText = "비밀번호를 입력해주세요!";
-        }
-        else if(!pwEdit.getText().toString().equals(pw2Edit.getText().toString())){
-            toastText = "비밀번호를 잘못 입력하였습니다.";
         }
         else if(nameEdit.getText().toString().equals("")){
             toastText = "이름을 입력해주세요!";
@@ -167,7 +169,7 @@ public class JoinActivity extends Activity implements View.OnClickListener {
         ArrayList interestArrayList = new ArrayList();
         for(int i=0; i<interestArray.length; i++){
             if(interestArray[i] == 1){
-                interestArrayList.add(i+1);
+                interestArrayList.add(i);
             }
         }
         JSONArray interestJSONArray = new JSONArray(interestArrayList);
