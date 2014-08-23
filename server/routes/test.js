@@ -9,5 +9,5 @@ module.exports = function(app) {
   app.get('/test/get/user', testCtrl.getUser);
   app.get('/test/add/article', testCtrl.addArticle);
   app.get('/test/add/study', testCtrl.addStudy);
-  app.get('/test/add/schedule', testCtrl.addSchedule);
+//  app.get('/test/add/article', testCtrl.addArticle);
 };

@@ -12,7 +12,6 @@ var UserSchema = new Schema({
   gender: String,		// 1:male, 2:female
   interest: { type: Array, default: [] }, //관심사
   study: { type: Array, default: [] },  //참가중인 스터디
-  applying: { type: Array, default: []}, // 신청중인 스터디
   create_time: Date //생성 시간
 }, {collection: 'users'});
 

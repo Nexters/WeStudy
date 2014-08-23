@@ -1,58 +1,49 @@
 package com.example.godong.westudy.SideMenu;
 
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
-import com.common.CommonUtil;
 import com.dataSet.StudyGroup;
 import com.example.godong.westudy.R;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-import com.network.HttpUtil;
-
-import org.apache.http.Header;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 /**
  * Created by baggajin on 14. 8. 4..
  */
-public class StudyMakeFragment extends Fragment implements View.OnClickListener {
-    private View activityView;
-    private RadioGroup subjectRadioGroup;
-    private RadioButton selectedSubjectRadioBtn;
-    private EditText studyNameEdit;
-    private RadioGroup personRadioGroup;
-    private RadioButton defaultPersonRadioBtn;
-    private RadioButton selectedPersonRadioBtn;
-    private EditText locationEdit;
-    private Button monBtn, tueBtn, wedBtn, thuBtn, friBtn, satBtn, sunBtn;
-    private int [] dayOfWeekArray = {0, 0, 0, 0, 0, 0, 0};
-    private EditText detailEdit;
-    private Button makeStudyBtn;
+public class StudyMakeFragment extends Fragment {
+
+    private String subject;
+    private String title;
+    private int memberCount;
+    private String detail;
+    private String[] day;
+    private String location;
+
+    private EditText titleInput;
+    private EditText memberCountInput;
+    private EditText detailInput;
+    private RadioGroup subjectInput;
+    private RadioGroup locationInput;
+
+    private CheckBox mon, tue, wed, thu, fri, sat, sun;
 
     public static StudyMakeFragment newInstance(){
+
         StudyMakeFragment fragment = new StudyMakeFragment();
+
         return fragment;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -64,150 +55,132 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
 
         /** Inflate the layout for this fragment **/
         View view = inflater.inflate(R.layout.fragment_study_make, container, false);
-        init(view);
-        activityView = view;
+
+//        titleInput = (EditText) view.findViewById(R.id.studyMake_edit_name);
+////        memberCountInput = (EditText) view.findViewById(R.id.studyMake_edit_memberCount);
+//        detailInput = (EditText) view.findViewById(R.id.studyMake_edit_detail);
+//
+////        subjectInput = (RadioGroup) view.findViewById(R.id.studyMake_radioGroup_subject);
+//        subjectInput.setOnCheckedChangeListener(this);
+//
+////        locationInput = (RadioGroup) view.findViewById(R.id.studyMake_radioGroup_location);
+//        locationInput.setOnCheckedChangeListener(this);
+//
+//        /** 여기부터 Day Check Box init**/
+//        mon = (CheckBox) view.findViewById(R.id.studyMake_check_Mon);
+//        tue = (CheckBox) view.findViewById(R.id.studyMake_check_tue);
+//        wed = (CheckBox) view.findViewById(R.id.studyMake_check_wed);
+//        thu = (CheckBox) view.findViewById(R.id.studyMake_check_thu);
+//        fri = (CheckBox) view.findViewById(R.id.studyMake_check_fri);
+//        sat = (CheckBox) view.findViewById(R.id.studyMake_check_sat);
+//        sun = (CheckBox) view.findViewById(R.id.studyMake_check_sun);
+//        /** 여기까지 Day Check Box init**/
+
+//        Button MakeStudyButton = (Button) view.findViewById(R.id.studyMake_button_makeStudy);
+//        MakeStudyButton.setOnClickListener(this);
+
 
         return view;
     }
 
-    private void init(View view) {
-        //Resource 초기화
-        subjectRadioGroup = (RadioGroup) view.findViewById(R.id.studyMake_radio_subject);
-        studyNameEdit = (EditText) view.findViewById(R.id.studyMake_edit_title);
-        personRadioGroup = (RadioGroup) view.findViewById(R.id.studyMake_radio_person);
-        defaultPersonRadioBtn = (RadioButton) view.findViewById(R.id.studyMake_radio_person4);
-        defaultPersonRadioBtn.setChecked(true);
-        locationEdit = (EditText) view.findViewById(R.id.studyMake_edit_location);
-        monBtn = (Button) view.findViewById(R.id.studyMake_btn_mon);
-        tueBtn = (Button) view.findViewById(R.id.studyMake_btn_tue);
-        wedBtn = (Button) view.findViewById(R.id.studyMake_btn_wed);
-        thuBtn = (Button) view.findViewById(R.id.studyMake_btn_thu);
-        friBtn = (Button) view.findViewById(R.id.studyMake_btn_fri);
-        satBtn = (Button) view.findViewById(R.id.studyMake_btn_sat);
-        sunBtn = (Button) view.findViewById(R.id.studyMake_btn_sun);
-        detailEdit = (EditText) view.findViewById(R.id.studyMake_edit_detail);
-        makeStudyBtn = (Button) view.findViewById(R.id.studyMake_button_makeStudy);
+//    @Override
+//    public void onCheckedChanged(RadioGroup group, int checkedId) {
+//        switch(checkedId){
+//            case R.id.studyMake_radio_language:
+//                subject = "언어";
+//                break;
+//            case R.id.studyMake_radio_job:
+//                subject = "취업";
+//                break;
+//            case R.id.studyMake_radio_it:
+//                subject = "IT";
+//                break;
+//            case R.id.studyMake_radio_seoul:
+//                location = "서울";
+//                break;
+//            case R.id.studyMake_radio_kyungki:
+//                location = "경기";
+//                break;
+//            case R.id.studyMake_radio_etc:
+//                location = "기타";
+//                break;
+//        }
+//    }
 
-        //Event 초기화
-        monBtn.setOnClickListener(this);
-        tueBtn.setOnClickListener(this);
-        wedBtn.setOnClickListener(this);
-        thuBtn.setOnClickListener(this);
-        friBtn.setOnClickListener(this);
-        satBtn.setOnClickListener(this);
-        sunBtn.setOnClickListener(this);
-        makeStudyBtn.setOnClickListener(this);
+//    private void checkDay(View v) {
+//
+//        day = new String[7];
+//
+//        if(mon.isChecked()){
+//            day[0]="mon";
+//        }else {
+//            day[0] = "";
+//        }
+//
+//        if(tue.isChecked()){
+//            day[1]="tue";
+//        }else {
+//            day[1]="";
+//        }
+//
+//        if(wed.isChecked()){
+//            day[2]="wed";
+//        }else{
+//            day[2]="";
+//        }
+//
+//        if(thu.isChecked()){
+//            day[3]="thu";
+//        }else{
+//            day[3]="";
+//        }
+//
+//        if(fri.isChecked()){
+//            day[4]="fri";
+//        }else{
+//            day[4]="";
+//        }
+//
+//        if(sat.isChecked()){
+//            day[5]="sat";
+//        }else{
+//            day[5]="";
+//        }
+//
+//        if(sun.isChecked()){
+//            day[6]="sun";
+//        }else{
+//            day[6]="";
+//        }
+//    }
+
+//    @Override
+//    public void onClick(View v) {
+//
+//        title = titleInput.getText().toString();
+//        memberCount = Integer.parseInt("" + memberCountInput.getText());
+//        detail = detailInput.getText().toString();
+//
+//        StudyGroup newGroup = new StudyGroup(subject, title, memberCount, detail, day, location);
+//        save(newGroup);
+//
+//        String date ="";
+////        for(int i=1;i<=7;i++) {
+////            if (day[i].equals("")) {
+////
+////            } else {
+////                date = date + "'" + day[i] + "',";
+////            }
+////        }
+//
+//        /** 지금은 임시로 Toast 띄우고 데이터 들어오는지만 확인 **/
+////        Toast.makeText(getActivity(), subject+"/"+title+"/"+memberCount+"/"+detail+"/"+location+"/"+date, Toast.LENGTH_LONG).show();
+//
+//
+//    }
+
+    public void save(StudyGroup newGroup){
+        /** Data DB Save **/
     }
 
-    public void onClick(View v) {
-        if (v.getId() == R.id.studyMake_btn_mon) {
-            monBtn.setSelected(!monBtn.isSelected());
-            dayOfWeekArray[0] = (dayOfWeekArray[0] == 0) ? 1 : 0;
-        }
-        else if (v.getId() == R.id.studyMake_btn_tue) {
-            tueBtn.setSelected(!tueBtn.isSelected());
-            dayOfWeekArray[1] = (dayOfWeekArray[1] == 0) ? 1 : 0;
-        }
-        else if (v.getId() == R.id.studyMake_btn_wed) {
-            wedBtn.setSelected(!wedBtn.isSelected());
-            dayOfWeekArray[2] = (dayOfWeekArray[2] == 0) ? 1 : 0;
-        }
-        else if (v.getId() == R.id.studyMake_btn_thu) {
-            thuBtn.setSelected(!thuBtn.isSelected());
-            dayOfWeekArray[3] = (dayOfWeekArray[3] == 0) ? 1 : 0;
-        }
-        else if (v.getId() == R.id.studyMake_btn_fri) {
-            friBtn.setSelected(!friBtn.isSelected());
-            dayOfWeekArray[4] = (dayOfWeekArray[4] == 0) ? 1 : 0;
-        }
-        else if (v.getId() == R.id.studyMake_btn_sat) {
-            satBtn.setSelected(!satBtn.isSelected());
-            dayOfWeekArray[5] = (dayOfWeekArray[5] == 0) ? 1 : 0;
-        }
-        else if (v.getId() == R.id.studyMake_btn_sun) {
-            sunBtn.setSelected(!sunBtn.isSelected());
-            dayOfWeekArray[6] = (dayOfWeekArray[6] == 0) ? 1 : 0;
-        }
-        else if (v.getId() == R.id.studyMake_button_makeStudy) {
-            sendMakeStudy();
-        }
-    }
-
-    private void sendMakeStudy() {
-        if(!checkParams()) {
-            return;
-        }
-        int selectedSubject = subjectRadioGroup.getCheckedRadioButtonId();
-        selectedSubjectRadioBtn = (RadioButton) activityView.findViewById(selectedSubject);
-        int selectedPerson = personRadioGroup.getCheckedRadioButtonId();
-        selectedPersonRadioBtn = (RadioButton) activityView.findViewById(selectedPerson);
-
-        RequestParams params = new RequestParams();
-        params.put("subject",selectedSubjectRadioBtn.getTag());
-        params.put("title",studyNameEdit.getText());
-        params.put("person",selectedPersonRadioBtn.getTag());
-        params.put("location",locationEdit.getText());
-        params.put("day_of_week",dayOfWeekArrayToJSONArray());
-        params.put("detail",detailEdit.getText());
-
-        HttpUtil.post("http://godong9.com:3000/study", null, params, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                // called when response HTTP status is "200 OK"
-                Toast toast = Toast.makeText(getActivity(), "스터디를 만들었습니다!", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER, 0, 100);
-                toast.show();
-
-//                Intent intentLoginActivity = new Intent(JoinActivity.this, LoginActivity.class);
-//                startActivity(intentLoginActivity);
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                JSONObject errObj = CommonUtil.stringToJSONObject(new String(errorResponse));
-
-                try {
-                    String errMsg = errObj.getString("message");
-                    Toast toast = Toast.makeText(getActivity(), errMsg, Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                } catch (Exception je) {
-                    Log.e("JSON Error", je.toString());
-                }
-            }
-        });
-    }
-
-    private boolean checkParams() {
-        String toastText = "";
-        if(subjectRadioGroup.getCheckedRadioButtonId() == -1) {
-            toastText = "스터디 주제를 선택해주세요!";
-        }
-        else if(studyNameEdit.getText().toString().equals("")){
-            toastText = "스터디 이름을 입력해주세요!";
-        }
-
-        if(toastText.equals("")){
-            return true;
-        }
-        else{
-            Toast toast = Toast.makeText(getActivity(), toastText, Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER, 0, 0);
-            toast.show();
-            return false;
-        }
-
-    }
-
-    private JSONArray dayOfWeekArrayToJSONArray() {
-        ArrayList dayOfWeekArrayList = new ArrayList();
-        for(int i=0; i<dayOfWeekArray.length; i++){
-            if(dayOfWeekArray[i] == 1){
-                dayOfWeekArrayList.add(i);
-            }
-        }
-        JSONArray dayOfWeekJSONArray = new JSONArray(dayOfWeekArrayList);
-        return dayOfWeekJSONArray;
-    }
 }

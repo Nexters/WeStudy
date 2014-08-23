@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/schedule_swipe_container"
+    android:id="@+id/timeline_swipe_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:id="@+id/schedule_scroll">
+        android:id="@+id/timeline_scrollView">
 
 
         <LinearLayout
@@ -24,7 +24,7 @@
 
             <TextView
                 android:id="@+id/android:empty"
-                android:text="표시할 Plan이 없습니다."
+                android:text="표시할 Feed가 없습니다."
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp"

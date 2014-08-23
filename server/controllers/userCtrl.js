@@ -8,10 +8,10 @@ var UserCtrl = {};
 UserCtrl.login = function(req, res){
   passport.authenticate('local', function(err, user) {
     if (err) { return res.send(400,{message:err}); }
-    if (!user) { return res.send(400, {message: "Login Fail!"}); }
+    if (!user) { return res.send(400,{message:"Login Fail!"}); }
     req.logIn(user, function (err) {
-      if (err) { return res.send(400, {message: err}); }
-      return res.send(200, {'user': user});
+      if (err) { return res.send(400,{message:err}); }
+      return res.send(200,{message:"Success"});
     });
   })(req, res);
 };
