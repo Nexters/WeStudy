@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:gravity="center"
-        android:background="#FFFFFF" >
+        android:background="@drawable/common_n_06" >
 
         <TextView
             android:text="회원가입"

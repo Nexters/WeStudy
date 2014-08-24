@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -150,9 +151,12 @@ public class NavigationDrawerFragment extends Fragment {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setLogo(R.drawable.btn_trans2);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
         actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("");
+
         /** setup 여기까지! **/
 
         // ActionBarDrawerToggle ties together the the proper interactions
@@ -286,9 +290,13 @@ public class NavigationDrawerFragment extends Fragment {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setLogo(R.drawable.btn_trans2);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
         actionBar.setBackgroundDrawable(colorDrawable);
         actionBar.setTitle("");
+
 //        actionBar.setTitle(R.string.app_name);
     }
 
