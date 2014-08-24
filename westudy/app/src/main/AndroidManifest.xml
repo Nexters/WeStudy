@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.StudyMainActivity">
+            android:name=".Activity.StudyMainActivity"
+            android:icon="@drawable/btn_trans"
+            >
         </activity>
         <activity
             android:name=".Activity.JoinActivity"

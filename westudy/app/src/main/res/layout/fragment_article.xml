@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
+        <com.common.CustomScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
@@ -39,7 +39,7 @@
 
             </LinearLayout>
 
-        </ScrollView>
+        </com.common.CustomScrollView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
