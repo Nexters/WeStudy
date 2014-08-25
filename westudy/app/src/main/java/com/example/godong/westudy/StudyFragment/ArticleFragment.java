@@ -99,17 +99,17 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
             @Override
             public void onEdgeTouch(CustomScrollView.DIRECTION direction) {
                 if(direction == CustomScrollView.DIRECTION.TOP){
-                    /** Scroll Top 일 때 action **/
+                    //TODO : Scroll Top 일 때 action
                     if(scrollFlag == true) {
                         onRefresh();
                     }
 
                 }else if(direction == CustomScrollView.DIRECTION.BOTTOM){
-                    /** Scroll Bottom 일 때 action **/
+                    //TODO : Scroll Bottom 일 때 action
 
 
                 }else if(direction == CustomScrollView.DIRECTION.NONE){
-                    /** Top도 Bottom 도 아닐 때 action **/
+                    //TODO : Top도 Bottom 도 아닐 때 action
 
                 }else{
                     throw new IllegalArgumentException("Invalid direction..");
@@ -230,7 +230,6 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
                 TextView create_time = (TextView) v.findViewById(R.id.feedCard_createTime);
                 TextView contents = (TextView) v.findViewById(R.id.feedCard_contents);
                 TextView author = (TextView) v.findViewById(R.id.feedCard_author);
-                TextView study_id = (TextView) v.findViewById(R.id.feedCard_studyId);
 
                 if (create_time != null) {
                     create_time.setText(article.getCreate_time());
@@ -239,8 +238,6 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
                     contents.setText(article.getContents());
                 }if(author!=null){
                     author.setText(article.getAuthor());
-                }if(study_id!=null){
-                    study_id.setText(article.getStudy_id());
                 }
             }
 

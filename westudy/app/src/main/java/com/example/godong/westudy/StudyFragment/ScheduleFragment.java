@@ -208,7 +208,6 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
                 TextView create_time = (TextView) v.findViewById(R.id.feedCard_createTime);
                 TextView contents = (TextView) v.findViewById(R.id.feedCard_contents);
                 TextView author = (TextView) v.findViewById(R.id.feedCard_author);
-                TextView study_id = (TextView) v.findViewById(R.id.feedCard_studyId);
 
                 if (create_time != null) {
                     create_time.setText(article.getCreate_time());
@@ -217,8 +216,6 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
                     contents.setText(article.getContents());
                 }if(author!=null){
                     author.setText(article.getAuthor());
-                }if(study_id!=null){
-                    study_id.setText(article.getStudy_id());
                 }
             }
 
