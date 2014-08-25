@@ -11,10 +11,9 @@ import android.widget.Toast;
 
 import com.example.godong.westudy.R;
 
-/**
- * Created by baggajin on 14. 7. 13..
- */
-public class CalendarFragment extends Fragment{
+
+public class CalendarFragment extends Fragment {
+    private CalendarView cal;
 
     public CalendarFragment(){
 
@@ -28,18 +27,49 @@ public class CalendarFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
-        CalendarView cal = (CalendarView) view.findViewById(R.id.calendarView);
+        init(view);
+        setCalendarEvent();
+
+        return view;
+    }
+
+    private void init(View view) {
+        cal = (CalendarView) view.findViewById(R.id.calendarView);
         cal.setOnDateChangeListener(new OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
-                // TODO Auto-generated method stub
 
-                Toast.makeText(getActivity(),"Selected Date is\n\n"
-                                +dayOfMonth+" : "+month+" : "+year ,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(),"Selected Date is\n\n"
+//                                +dayOfMonth+" : "+month+" : "+year ,
+//                        Toast.LENGTH_SHORT).show();
+
             }
         });
-        return view;
+    }
+
+    private void setCalendarEvent() {
+//        Intent intent = new Intent(Intent.ACTION_INSERT);
+//        intent.setType("vnd.android.cursor.item/event");
+//        intent.putExtra(CalendarContract.Events.TITLE, "Learn Android");
+//        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, "Home suit home");
+//        intent.putExtra(CalendarContract.Events.DESCRIPTION, "Download Examples");
+//
+//// Setting dates
+//        GregorianCalendar calDate = new GregorianCalendar(2014, 8, 20);
+//        intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+//                calDate.getTimeInMillis());
+//        intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
+//                calDate.getTimeInMillis());
+//
+//// make it a full day event
+//        intent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
+//
+//// make it a recurring Event
+//        intent.putExtra(CalendarContract.Events.RRULE, "FREQ=WEEKLY;COUNT=11;WKST=SU;BYDAY=TU,TH");
+//
+//// Making it private and shown as busy
+//        intent.putExtra(CalendarContract.Events.ACCESS_LEVEL, CalendarContract.Events.ACCESS_PRIVATE);
+//        intent.putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
     }
 }

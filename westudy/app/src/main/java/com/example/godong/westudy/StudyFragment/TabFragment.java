@@ -35,8 +35,8 @@ public class TabFragment extends Fragment {
         mTabHost = new FragmentTabHost(getActivity());
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.tabhost);
 
-        mTabHost.addTab(mTabHost.newTabSpec("timeline").setIndicator("홈"),
-                TimelineFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("feed").setIndicator("홈"),
+                ArticleFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("calendar").setIndicator("캘 린 더"),
                 CalendarFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("plan").setIndicator("계 획 표"),

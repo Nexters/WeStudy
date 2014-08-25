@@ -8,15 +8,15 @@
 
     <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/schedule_swipe_container"
+        android:id="@+id/article_swipe_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
+        <com.common.CustomScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
-            android:id="@+id/schedule_scroll">
+            android:id="@+id/article_scrollView">
 
 
             <LinearLayout
@@ -31,7 +31,7 @@
 
                 <TextView
                     android:id="@+id/android:empty"
-                    android:text="표시할 Plan이 없습니다."
+                    android:text="표시할 Feed가 없습니다."
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="16dp"
@@ -39,12 +39,12 @@
 
             </LinearLayout>
 
-        </ScrollView>
+        </com.common.CustomScrollView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <Button
-        android:id="@+id/schedule_floating_button"
+        android:id="@+id/article_floating_button"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_gravity="bottom|right"
@@ -52,3 +52,5 @@
         android:layout_marginRight="16dp" />
 
 </FrameLayout>
+
+

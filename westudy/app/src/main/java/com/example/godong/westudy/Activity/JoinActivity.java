@@ -1,5 +1,6 @@
 package com.example.godong.westudy.Activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,14 +40,16 @@ public class JoinActivity extends Activity implements View.OnClickListener {
     private int [] interestArray = {0, 0, 0, 0};
     private EditText introduceEdit;
     private Button joinBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
-//        ActionBar actionBar = getActionBar();
-//        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-//        actionBar.setCustomView(R.layout.custom_title);
+        //ActionBar Title 초기화
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.custom_title);
 
         init();
     }
@@ -80,15 +83,15 @@ public class JoinActivity extends Activity implements View.OnClickListener {
             interestArray[0] = (interestArray[0] == 0) ? 1 : 0;
         }
         else if (v.getId() == R.id.join_btn_interest1) {
-            interest2Btn.setSelected(interest2Btn.isSelected());
+            interest1Btn.setSelected(!interest1Btn.isSelected());
             interestArray[1] = (interestArray[1] == 0) ? 1 : 0;
         }
         else if (v.getId() == R.id.join_btn_interest2) {
-            interest2Btn.setSelected(interest2Btn.isSelected());
+            interest2Btn.setSelected(!interest2Btn.isSelected());
             interestArray[2] = (interestArray[2] == 0) ? 1 : 0;
         }
         else if (v.getId() == R.id.join_btn_interest3) {
-            interest3Btn.setSelected(interest3Btn.isSelected());
+            interest3Btn.setSelected(!interest3Btn.isSelected());
             interestArray[3] = (interestArray[3] == 0) ? 1 : 0;
         }
         else if (v.getId() == R.id.join_btn_join) {

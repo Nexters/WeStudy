@@ -13,12 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.common.BackPressCloseHandler;
 import com.common.NavigationDrawerFragment;
 import com.dataSet.User;
 import com.example.godong.westudy.R;
 import com.example.godong.westudy.SideMenu.InfoFragment;
 import com.example.godong.westudy.SideMenu.ProfileFragment;
 import com.example.godong.westudy.SideMenu.StudyMakeFragment;
+import com.example.godong.westudy.StudyFragment.NewArticleFragment;
 import com.example.godong.westudy.StudyFragment.TabFragment;
 import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
 
@@ -27,6 +29,9 @@ public class StudyMainActivity extends FragmentActivity
 
     /** Fragment managing the behaviors, interactions and presentation of the navigation drawer. **/
     private NavigationDrawerFragment mNavigationDrawerFragment;
+
+    /** BackButton 종료를 위한 핸들러 **/
+    private BackPressCloseHandler backPressCloseHandler;
 
     /** Used to store the last screen title. For use in restoreActionBar(). **/
     private CharSequence mTitle;
@@ -37,6 +42,7 @@ public class StudyMainActivity extends FragmentActivity
     private InfoFragment infoFragment;
     private StudyMakeFragment studyMakeFragment;
     private StudySearchTabFragment studySearchTabFragment;
+    private NewArticleFragment newArticleFragment;
 
     /** UserInfo Data **/
     Bundle userData;
@@ -51,6 +57,7 @@ public class StudyMainActivity extends FragmentActivity
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.custom_title);
 
+        backPressCloseHandler = new BackPressCloseHandler(this);
 //        ActionBar actionBar = getActionBar();
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 //        actionBar.setHomeButtonEnabled(true);
@@ -75,6 +82,10 @@ public class StudyMainActivity extends FragmentActivity
 
     }
 
+    @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
+    }
 
     /**
      * Navigation Drawer item 선택 되었을 때 작업
@@ -164,6 +175,15 @@ public class StudyMainActivity extends FragmentActivity
                 break;
 
             case 5:
+//                mTitle = getString(R.string.title_study_search);
+                newArticleFragment = NewArticleFragment.newInstance();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fl_container, newArticleFragment)
+                        .commit();
+                break;
+
+            case 6:
 //                mTitle = getString(R.string.title_study_make);
                 studyMakeFragment = StudyMakeFragment.newInstance();
                 getSupportFragmentManager()
@@ -172,7 +192,7 @@ public class StudyMainActivity extends FragmentActivity
                         .commit();
                 break;
 
-            case 6:
+            case 7:
 //                mTitle = getString(R.string.title_info);
                 infoFragment = InfoFragment.newInstance();
                 getSupportFragmentManager()
