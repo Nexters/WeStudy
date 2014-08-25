@@ -187,7 +187,6 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
                 }
 
 
-
                 Log.d("output:",creator+"/"+subject+"/"+title+"/"+number_type+"/"+detail+"\n"
                                +members+"/"+location+"/"+week+"\n");
                 Study study = new Study(creator,subject,title,number_type,detail,"2014-08-08",members,location,week);

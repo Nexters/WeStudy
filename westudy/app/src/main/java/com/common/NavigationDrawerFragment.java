@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -152,8 +153,8 @@ public class NavigationDrawerFragment extends Fragment {
         actionBar.setHomeButtonEnabled(true);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
         actionBar.setBackgroundDrawable(colorDrawable);
-        actionBar.setIcon(R.drawable.btn_trans);
-        actionBar.setTitle("title");
+//        actionBar.setIcon(R.drawable.btn_trans);
+        actionBar.setTitle(Html.fromHtml("<font color = '#0ea7f7'> title </font>"));
         /** setup 여기까지! **/
 
         // ActionBarDrawerToggle ties together the the proper interactions
@@ -290,9 +291,8 @@ public class NavigationDrawerFragment extends Fragment {
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
         actionBar.setBackgroundDrawable(colorDrawable);
         /** 이 부분에 actionBar title setting **/
-
-        actionBar.setIcon(R.drawable.btn_trans);
-        actionBar.setTitle("title_open");
+        actionBar.setTitle(Html.fromHtml("<font color = '#0ea7f7'> title </font>"));
+//        actionBar.setIcon(R.drawable.btn_trans);
 //        actionBar.setTitle(R.string.app_name);
     }
 
