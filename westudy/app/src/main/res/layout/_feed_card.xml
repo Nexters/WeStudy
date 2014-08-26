@@ -26,6 +26,12 @@
                 android:layout_width="12.33dp"
                 android:layout_height="wrap_content"/>
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home_09_icon"
+                android:id="@+id/feedCard_left" />
+
         </LinearLayout>
 
         <!-- feed 전체 : right -->
