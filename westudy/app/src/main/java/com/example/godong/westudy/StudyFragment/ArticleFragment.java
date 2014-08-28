@@ -79,23 +79,37 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
 
         View view = inflater.inflate(R.layout.fragment_article, container, false);
 
-        ArticleList = (ListView) view.findViewById(android.R.id.list);
-        ArticleScroll = (CustomScrollView) view.findViewById(R.id.article_scrollView);
+        init(view);
+
+        return view;
+    }
+
+    public void init(View v){
+
+        /** 리소스 초기화 **/
+        ArticleList = (ListView) v.findViewById(android.R.id.list);
+        ArticleScroll = (CustomScrollView) v.findViewById(R.id.article_scrollView);
+        swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.article_swipe_container);
+        swipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
+
+
+        /** Event 초기화 **/
+        swipeLayout.setOnRefreshListener(this);
         ArticleScroll.setOnEdgeTouchListener(new OnEdgeTouchListener(){
             @Override
             public void onEdgeTouch(CustomScrollView.DIRECTION direction) {
                 if(direction == CustomScrollView.DIRECTION.TOP){
-                    /** Scroll Top 일 때 action **/
+                    //TODO : Scroll Top 일 때 action
                     if(scrollFlag == true) {
                         onRefresh();
                     }
 
                 }else if(direction == CustomScrollView.DIRECTION.BOTTOM){
-                    /** Scroll Bottom 일 때 action **/
+                    //TODO : Scroll Bottom 일 때 action
 
 
                 }else if(direction == CustomScrollView.DIRECTION.NONE){
-                    /** Top도 Bottom 도 아닐 때 action **/
+                    //TODO : Top도 Bottom 도 아닐 때 action
 
                 }else{
                     throw new IllegalArgumentException("Invalid direction..");
@@ -103,22 +117,6 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
             }
         });
 
-        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.article_swipe_container);
-        swipeLayout.setOnRefreshListener(this);
-        swipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
-
-
-//        ArticleList.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                ArticleScroll.requestDisallowInterceptTouchEvent(true);
-//                return false;
-//            }
-//        });
-
-
-
-        return view;
     }
 
 
@@ -169,7 +167,6 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         String text = "";
         String photo_url = "";
 
-// Article[] articles = new Article[jarray.length()];
 
         article_data.clear();
         article_adapter.notifyDataSetInvalidated();
@@ -233,7 +230,6 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
                 TextView create_time = (TextView) v.findViewById(R.id.feedCard_createTime);
                 TextView contents = (TextView) v.findViewById(R.id.feedCard_contents);
                 TextView author = (TextView) v.findViewById(R.id.feedCard_author);
-                TextView study_id = (TextView) v.findViewById(R.id.feedCard_studyId);
 
                 if (create_time != null) {
                     create_time.setText(article.getCreate_time());
@@ -242,8 +238,6 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
                     contents.setText(article.getContents());
                 }if(author!=null){
                     author.setText(article.getAuthor());
-                }if(study_id!=null){
-                    study_id.setText(article.getStudy_id());
                 }
             }
 

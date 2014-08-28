@@ -1,19 +1,19 @@
 package com.common;
 
 
-import android.app.Activity;
 import android.app.ActionBar;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -152,12 +152,11 @@ public class NavigationDrawerFragment extends Fragment {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayUseLogoEnabled(true);
-        actionBar.setLogo(R.drawable.btn_trans2);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
         actionBar.setBackgroundDrawable(colorDrawable);
+        actionBar.setTitle(Html.fromHtml("<font color = '#0ea7f7'> title </font>"));
+//        actionBar.setIcon(R.drawable.btn_trans);
 
-        actionBar.setIcon(R.drawable.btn_trans);
-        actionBar.setTitle("title");
         /** setup 여기까지! **/
 
         // ActionBarDrawerToggle ties together the the proper interactions
@@ -293,14 +292,13 @@ public class NavigationDrawerFragment extends Fragment {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setLogo(R.drawable.btn_trans2);
+
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
         actionBar.setBackgroundDrawable(colorDrawable);
 
         /** 이 부분에 actionBar title setting **/
-
-        actionBar.setIcon(R.drawable.btn_trans);
-        actionBar.setTitle("title_open");
+        actionBar.setTitle(Html.fromHtml("<font color = '#0ea7f7'> title </font>"));
+//        actionBar.setIcon(R.drawable.btn_trans);
 //        actionBar.setTitle(R.string.app_name);
     }
 
