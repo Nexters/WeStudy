@@ -190,7 +190,7 @@ StudySchema.statics.acceptApplyStudy = function (user_id, study_id, callback) {
   var self = this;
   if (user_id && study_id) {
     this.update({
-      '_id': study_id
+      '_id': study_id,
       'appliers': {
         '$in': [user_id]
       }

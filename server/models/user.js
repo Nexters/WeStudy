@@ -12,10 +12,10 @@ var UserSchema = new Schema({
   gender: String,		// 1:male, 2:female
   interest: { type: Array, default: [] }, //관심사
   study: { type: Array, default: [] },  //참가중인 스터디
-  applying: { type: Array, default: []}, // 신청중인 스터디
+  applying: { type: Array, default: []}, // 신청중인 스터디,
+  introduce: { type: String, default: '' },
   create_time: Date //생성 시간
 }, {collection: 'users'});
-
 
 /**
  * Validations
@@ -65,11 +65,29 @@ UserSchema.statics.saveUser = function (user, callback) {
 };
 
 UserSchema.statics.getUserByEmail = function (email, callback) {
-  this.findOne({email: email}, function (err, user) {
-    if(err) return callback(err, null);
+  this.findOne({ email: email }, function (err, user) {
+    if (err) return callback(err, null);
     callback(null, user);
   });
 };
+
+UserSchema.statics.updateUser = function (user_id, user_data, callback) {
+  var self = this;
+  this.findOneAndUpdate({
+    '_id': user_id
+  }, {
+    '$set': {
+      'name': user_data.name,
+      'email': user_data.email,
+      'password': user_data.password,
+      'profile_url': user_data.profile_url,
+      'interest': user_data.interest
+    }
+  }, function (err) {
+    if (err) return callback(err);
+    callback(null);
+  });
+}
 
 function makeInterestArray(interest) {
   var parseArray = JSON.parse(interest);
