@@ -1,21 +1,25 @@
 package com.example.godong.westudy.StudySearchFragment;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.common.CommonUtil;
 import com.dataSet.Study;
@@ -202,21 +206,19 @@ public class StudyITListFragment extends ListFragment implements SwipeRefreshLay
 
     }
 
-
-
     private class StudyListAdapter extends ArrayAdapter<Study> implements View.OnClickListener {
         private ArrayList<Study> items;
 
-        public StudyListAdapter(Context context, int textViewResourceId, ArrayList<Study> items) {
+        public StudyListAdapter(Context context, int textViewResourceId, ArrayList<Study> items){
             super(context, textViewResourceId, items);
             this.items = items;
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, ViewGroup parent){
             View v = convertView;
-            if (v == null) {
-                LayoutInflater vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            if(v == null){
+                LayoutInflater vi = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 v = vi.inflate(R.layout._study_card, null);
             }
 
@@ -229,10 +231,42 @@ public class StudyITListFragment extends ListFragment implements SwipeRefreshLay
                 TextView maxMember = (TextView) v.findViewById(R.id.studyCard_maxMember);
                 TextView day = (TextView) v.findViewById(R.id.studyCard_day);
 
-                ImageButton detail = (ImageButton) v.findViewById(R.id.studyCard_detail);
-                detail.setOnClickListener(this);
+                ImageView subject = (ImageView) v.findViewById(R.id.studyCard_subject);
+                LinearLayout contents = (LinearLayout) v.findViewById(R.id.studyCard_contents);
+                contents.setOnClickListener(this);
 
+                if(subject != null){
+                    //TODO : subject별로 icon image 변경. BitmapDrawable 불러온 뒤 set.
 
+                    BitmapDrawable icon;
+
+                    if (study.getSubject().equals("language")) {
+
+                        icon = (BitmapDrawable)getResources().getDrawable(R.drawable.study_search_ic_03);
+                        subject.setImageDrawable(icon);
+
+                    } else if (study.getSubject().equals("test")) {
+
+                        icon = (BitmapDrawable)getResources().getDrawable(R.drawable.study_search_ic_04);
+                        subject.setImageDrawable(icon);
+
+                    } else if (study.getSubject().equals("it")) {
+
+                        icon = (BitmapDrawable)getResources().getDrawable(R.drawable.study_search_ic_05);
+                        subject.setImageDrawable(icon);
+
+                    } else if (study.getSubject().equals("job")) {
+
+                        icon = (BitmapDrawable)getResources().getDrawable(R.drawable.study_search_ic_06);
+                        subject.setImageDrawable(icon);
+
+                    } else if (study.getSubject().equals("etc")) {
+
+                        icon = (BitmapDrawable)getResources().getDrawable(R.drawable.study_search_ic_07);
+                        subject.setImageDrawable(icon);
+
+                    }
+                }
                 if (create_time != null) {
                     create_time.setText(study.getCreate_time());
                 }
@@ -253,12 +287,19 @@ public class StudyITListFragment extends ListFragment implements SwipeRefreshLay
                 }
 
             }
+
             return v;
         }
 
+
         @Override
         public void onClick(View v) {
-            //TODO : detail action
+
+            if(v.getId() == R.id.studyCard_contents) {
+                Toast toast = Toast.makeText(getActivity().getApplicationContext(), "디테일 화면으로 넘어갑니다!", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 100);
+                toast.show();
+            }
         }
     }
 }

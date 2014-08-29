@@ -20,17 +20,23 @@
         <!-- feed 전체 : left -->
         <LinearLayout
             android:layout_width="43dp"
-            android:layout_height="wrap_content">
+            android:layout_height="fill_parent"
 
-            <Space
-                android:layout_width="12.33dp"
-                android:layout_height="wrap_content"/>
+            >
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/home_09_icon"
-                android:id="@+id/feedCard_left" />
+            <LinearLayout
+                android:layout_width="2dp"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/home_n_05">
+
+                <Space
+                    android:layout_width="12.33dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+
 
         </LinearLayout>
 

@@ -141,9 +141,11 @@ public class Study {
         for(int i=0;i<week.length;i++){
             if(result.equals("")){
 //                result = day[week[i]];
-                result = Integer.toString(week[i]);
+                result = day[week[i]];
+//                result = Integer.toString(week[i]);
             }else{
-                result = result + " " + Integer.toString(week[i]);
+                result = result + " " + day[week[i]];
+//                result = result + " " + Integer.toString(week[i]);
 
 //                result = result+" "+day[week[i]];
             }

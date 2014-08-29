@@ -25,8 +25,9 @@
             android:layout_width="340dp"
             android:layout_height="92dp"
             android:paddingTop="15dp"
-            android:paddingBottom="15dp"
+            android:paddingBottom="14dp"
             android:background="@drawable/common_n_07"
+            android:id="@+id/studyCard_contents"
             android:orientation="horizontal">
 
             <Space
@@ -49,6 +50,7 @@
             <LinearLayout
                 android:layout_width="223dp"
                 android:layout_height="wrap_content"
+                android:padding="0dp"
                 android:orientation="vertical">
 
                 <!-- 위치 / n일전 -->
@@ -66,6 +68,7 @@
                         android:layout_width="3dp"
                         android:layout_height="wrap_content"/>
 
+                    <!-- 위치 -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -78,6 +81,15 @@
                         android:layout_width="66dp"
                         android:layout_height="wrap_content"/>
 
+
+                    <!-- 오른쪽 정렬을 위해 삽입. 이후로는 모두 오른쪽 정렬(인듯?) -->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        />
+
+                    <!-- 날짜 표시 -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -183,16 +195,15 @@
             </LinearLayout>
 
             <Space
-                android:layout_width="6dp"
+                android:layout_width="13dp"
                 android:layout_height="wrap_content"/>
 
-            <ImageButton
-                android:layout_width="30dp"
+            <ImageView
+                android:layout_width="15dp"
                 android:layout_height="92dp"
                 android:layout_gravity="center"
                 android:background="#00000000"
-                android:src="@drawable/study_search_ic_11"
-                android:id="@+id/studyCard_detail" />
+                android:src="@drawable/study_search_ic_11"/>
 
 
         </LinearLayout>

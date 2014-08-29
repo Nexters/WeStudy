@@ -8,16 +8,19 @@ import android.os.StrictMode;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnTouchListener;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.common.CommonUtil;
 import com.dataSet.Study;
@@ -168,13 +171,6 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
                     members[j] = member.getString(j);
                 }
 
-//                JSONArray member = studyList.getJSONArray("members");
-//                members = new String[member.length()];
-//
-//                for(int j=0;j<members.length;j++){
-//                    members[j] = member.getJSONObject(j).toString();
-//                }
-
                 /** location 읽어오기 **/
                 JSONArray locate = studyList.getJSONArray("location");
                 location = new String[locate.length()];
@@ -237,11 +233,8 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
                 TextView day = (TextView) v.findViewById(R.id.studyCard_day);
 
                 ImageView subject = (ImageView) v.findViewById(R.id.studyCard_subject);
-
-                ImageButton detail = (ImageButton) v.findViewById(R.id.studyCard_detail);
-                detail.setOnClickListener(this);
-
-
+                LinearLayout contents = (LinearLayout) v.findViewById(R.id.studyCard_contents);
+                contents.setOnClickListener(this);
 
                 if(subject != null){
                     //TODO : subject별로 icon image 변경. BitmapDrawable 불러온 뒤 set.
@@ -302,7 +295,12 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
 
         @Override
         public void onClick(View v) {
-            //TODO : detail button 클릭 했을 경우 액션!
+
+            if(v.getId() == R.id.studyCard_contents) {
+                Toast toast = Toast.makeText(getActivity().getApplicationContext(), "디테일 화면으로 넘어갑니다!", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 100);
+                toast.show();
+            }
         }
     }
 
