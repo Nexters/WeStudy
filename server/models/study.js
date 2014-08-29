@@ -104,8 +104,9 @@ StudySchema.statics.getMembers = function (study_id, callback) {
   self.findOne({
     '_id': study_id
   }, function (err, study_data) {
+    console.log(study_data);
     if (!err) {
-      var members = study_data.members;
+      var members = study_data.members || [];
       var member_data_list = [];
 
       async.map(members, function (member, async_callback) {
@@ -136,8 +137,9 @@ StudySchema.statics.getAppliers = function (study_id, callback) {
   this.findOne({
     '_id': study_id
   }, function (err, study_data) {
+    console.log(study_data);
     if (!err) {
-      var appliers = study_data.applier;
+      var appliers = study_data.applier || [];
       var applier_data_list = [];
 
       async.map(appliers, function (applier, async_callback) {
