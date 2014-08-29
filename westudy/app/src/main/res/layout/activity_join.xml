@@ -27,7 +27,7 @@
         android:layout_height="fill_parent"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        android:background="#f4f6f6">
+        android:background="#f9f9f9">
 
         <LinearLayout
             android:orientation="horizontal"
