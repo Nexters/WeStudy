@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.graphics.Color;
 
 import com.example.godong.westudy.R;
 
@@ -41,7 +42,19 @@ public class TabFragment extends Fragment {
                 CalendarFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("plan").setIndicator("계 획 표"),
                 ScheduleFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("member").setIndicator("멤 버"),
+                MemberFragment.class, null);
+
+
+        //TODO: TabHost color change
+        for(int i=0;i<mTabHost.getTabWidget().getChildCount();i++){
+            mTabHost.getTabWidget().getChildAt(i)
+                    .setBackgroundColor(Color.parseColor("#ffffffff"));
+        }
+
+
         return mTabHost;
+
     }
 
     @Override

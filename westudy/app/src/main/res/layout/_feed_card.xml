@@ -5,34 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#fff4f6f6">
+    android:background="#fff9f9f9">
 
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="7dp"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
 
         <!-- feed 전체 : left -->
         <LinearLayout
             android:layout_width="43dp"
-            android:layout_height="fill_parent"
+            android:layout_height="fill_parent">
 
-            >
+            <Space
+                android:layout_width="22dp"
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
-                android:layout_width="2dp"
+                android:layout_width="1dp"
                 android:layout_height="fill_parent"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/home_n_05">
 
-                <Space
-                    android:layout_width="12.33dp"
-                    android:layout_height="wrap_content"/>
+
             </LinearLayout>
 
 
@@ -40,7 +37,19 @@
 
         </LinearLayout>
 
-        <!-- feed 전체 : right -->
+
+
+
+
+    <!-- feed 전체 : right -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp">
+
+
+        <!-- feed contents -->
         <LinearLayout
             android:layout_width="305dp"
             android:layout_height="wrap_content"
@@ -79,6 +88,7 @@
                         android:id="@+id/feedCard_author"
                         android:textColor="#ff9b98a1"/>
 
+                    <!-- 작성일 -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -105,14 +115,10 @@
                 android:textSize="15dp"
                 android:id="@+id/feedCard_contents"/>
 
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="7dp"/>
-
-
 </LinearLayout>
-
