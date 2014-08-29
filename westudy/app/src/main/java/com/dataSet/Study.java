@@ -12,9 +12,12 @@ public class Study {
     private int memberCount;
     private String detail;
     private String create_time;
+    private String _id;
     private String[] members;
     private String[] location;
-    private String[] week;
+    private int[] week;
+    private String[] day = {"월","화","수","목","금","토","일"};
+
 
     public Study(){
         this.creator = "";
@@ -24,11 +27,13 @@ public class Study {
         this.memberCount = 0;
         this.detail = "";
         this.create_time = "";
+        this._id = "";
     }
 
-    public Study(String creator, String subject, String title, int number_type, String detail, String create_time,
-                 String[] members, String[] location, String[] week){
+    public Study(String _id, String creator, String subject, String title, int number_type, String detail, String create_time,
+                 String[] members, String[] location, int[] week){
 
+        this._id = _id;
         this.creator = creator;
         this.subject = subject;
         this.title = title;
@@ -42,7 +47,7 @@ public class Study {
     }
 
     public Study(String creator, String subject, String title, int number_type, String detail,
-                 String[] members, String[] location, String[] week){
+                 String[] members, String[] location, int[] week){
 
         this.creator = creator;
         this.subject = subject;
@@ -131,20 +136,23 @@ public class Study {
     }
 
     public String getWeek() {
-        String day = "";
+        String result = "";
 
         for(int i=0;i<week.length;i++){
-            if(day.equals("")){
-                day = week[i];
+            if(result.equals("")){
+//                result = day[week[i]];
+                result = Integer.toString(week[i]);
             }else{
-                day = day+", "+week[i];
+                result = result + " " + Integer.toString(week[i]);
+
+//                result = result+" "+day[week[i]];
             }
         }
 
-        return day;
+        return result;
     }
 
-    public void setWeek(String[] week) {
+    public void setWeek(int[] week) {
         this.week = week;
     }
 
