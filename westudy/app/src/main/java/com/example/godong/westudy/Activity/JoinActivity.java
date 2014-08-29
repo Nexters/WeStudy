@@ -49,7 +49,7 @@ public class JoinActivity extends Activity implements View.OnClickListener {
         //ActionBar Title 초기화
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        actionBar.setCustomView(R.layout.custom_title);
+        actionBar.setCustomView(R.layout._custom_title);
 
         init();
     }

@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import com.common.BackPressCloseHandler;
 import com.common.NavigationDrawerFragment;
@@ -44,6 +46,11 @@ public class StudyMainActivity extends FragmentActivity
     private StudySearchTabFragment studySearchTabFragment;
     private NewArticleFragment newArticleFragment;
 
+    /** Navigation Drawer Side Slide용 **/
+    private TextView userName;
+    private TextView introduce;
+
+
     /** UserInfo Data **/
     Bundle userData;
 
@@ -55,7 +62,7 @@ public class StudyMainActivity extends FragmentActivity
 
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        actionBar.setCustomView(R.layout.custom_title);
+        actionBar.setCustomView(R.layout._custom_title);
 
         backPressCloseHandler = new BackPressCloseHandler(this);
 //        ActionBar actionBar = getActionBar();
@@ -80,7 +87,55 @@ public class StudyMainActivity extends FragmentActivity
         userData = new Bundle();
         userData.putParcelable("userData",userInfo);
 
+<<<<<<< HEAD
+        /** 사이드 슬라이드 setting **/
+        userName = (TextView) findViewById(R.id.nav_user_name);
+        introduce = (TextView) findViewById(R.id.nav_user_introduce);
+        setupSideSlide(userInfo);
+
     }
+
+    public void setupSideSlide(User userInfo){
+        userName.setText(userInfo.getName());
+        introduce.setText(userInfo.getIntroduce());
+=======
+
+        findViewById(R.id.nav_btn_find_study).setOnClickListener(mClickListener);
+        findViewById(R.id.nav_btn_make_study).setOnClickListener(mClickListener);
+        findViewById(R.id.nav_btn_setting).setOnClickListener(mClickListener);
+
+
+>>>>>>> FETCH_HEAD
+    }
+
+    Button.OnClickListener mClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.nav_btn_find_study:
+                    studySearchTabFragment = StudySearchTabFragment.newInstance();
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fl_container, studySearchTabFragment)
+                            .commit();
+                    break;
+                case R.id.nav_btn_make_study:
+                    studyMakeFragment = StudyMakeFragment.newInstance();
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fl_container, studyMakeFragment)
+                            .commit();
+                    break;
+                case R.id.nav_btn_setting:
+                    profileFragment = profileFragment.newInstance();
+                    profileFragment.setArguments(userData);
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fl_container, profileFragment)
+                            .commit();
+                    break;
+            }
+        }
+    };
 
     @Override
     public void onBackPressed() {
