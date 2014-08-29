@@ -40,7 +40,8 @@ ArticleSchema.statics.addArticle = function (article, callback) {
 
 // drag from lower to upper
 ArticleSchema.statics.loadArticles = function (target, callback) {
-  this.find({
+  var self = this;
+  self.find({
     'author': target.author,
     'create_time': {
       '$lt': target.last_loadTime
@@ -50,7 +51,17 @@ ArticleSchema.statics.loadArticles = function (target, callback) {
   }).limit(10)
   .exec(function (err, articles) {
     if (!err) {
-      callback(err, articles);
+      self.model('User').find({
+        '_id': target.author
+      }, function (__err, __user) {
+        console.log(__user);
+        articles.author = {
+          'author': target.author,
+          'name': __user.name,
+          'profile_url': __user.profile_url
+        };
+        callback(err, articles);
+      });
     } else {
       console.log("Load Article Error " + err);
       callback(err, null);
@@ -69,7 +80,17 @@ ArticleSchema.statics.refreshArticles = function (target, callback) {
     'create_time': -1
   }).exec(function (err, articles) {
     if (!err) {
-      callback(err, articles);
+      self.model('User').find({
+        '_id': target.author
+      }, function (__err, __user) {
+        console.log(__user);
+        articles.author = {
+          'author': target.author,
+          'name': __user.name,
+          'profile_url': __user.profile_url
+        };
+        callback(err, articles);
+      });
     } else {
       console.log("Refresh Article Error " + err);
       callback(err, null);

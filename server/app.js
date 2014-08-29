@@ -66,6 +66,9 @@ if ('development' == app.get('env')) {
 /**
  * route files
  */
+app.get('/', function (req, res) {
+  res.render('index.html');
+});
 require('./routes/user.js')(app);
 require('./routes/article.js')(app);
 require('./routes/study.js')(app);

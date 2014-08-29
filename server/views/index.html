@@ -5,13 +5,109 @@
 	<body>
 		<button id='load_articles'>Load</button>
 		<button id='refresh_articles'>Refresh</button>
+		<div id='add_article' style="padding:50px;">
+			<input class='user_id' placeholder='user id' />
+			<input class='study_id' placeholder='study id' />
+			<textarea style='width: 100px; height: 100px;' class='contents'></textarea>
+			<button class='submit_article'>Submit Article</button>
+		</div>
+		<div id='apply_study' style="padding:50px;">
+			<input class='user_id' placeholder='user id' />
+			<input class='study_id' placeholder='study id' />
+			<button class='submit_apply_study'>Aplly Study</button>
+		</div>
+		<div id='schedule_manage' style="padding:50px;">
+			<input class='schedule_id' placeholder='schdule_id' />
+			<input class='order' placeholder='order index' />
+			<textarea class='contents'></textarea>
+			<button class='submit_schedule'>Submit Schedule</button>
+		</div>
+		<div id='schedule_delete' style='padding:50px;'>
+			<input class='schedule_id' placeholder='schedule id' />
+			<button class='delete_schedule'>delete Schedule</button>
+		</div>
 	</body>
 	<script type="text/javascript" src='/js/jquery.js'></script>
 	<script type="text/javascript">
+		$('#schedule_delete .delete_schedule').click(function () {
+			var schedule_id = $('#schedule_delete .schedule_id').val();
+			$.ajax({
+			    url: '/schedule/id/' + schedule_id,
+			    type: 'DELETE',
+			    success: function(result) {
+			    	console.log(result);
+			    }
+			});
+
+			// $.del('/schedule/id/' + schedule_id, function (err) {
+			// 	console.log(err);
+			// });
+		});
+		$('#schedule_manage .submit_schedule').click(function () {
+			var schedule_id = $('#schedule_manage .schedule_id').val();
+			var order_idx = $('#schedule_manage .order').val();
+			var contents = $('#schedule_manage .contents').val().split('\n');
+			var data = {
+				'schedule': {
+					'study_id': '53eef280bc8e80f341ba554e',
+					'order': order_idx,
+					'start_time': "2014-07-28",
+					'end_time': "2014-08-12",
+					'contents': [
+					{
+						'type': 'text',
+						'text': contents[0]
+					},
+					{
+						'type': 'check',
+						'text': contents[1]
+					},
+					{
+						'type': 'check',
+						'text': contents[2]
+					}
+					]
+				}
+			};
+			$.ajax({
+			    url: '/schedule/id/' + schedule_id,
+			    type: 'PUT',
+			    data: data,
+			    success: function(result) {
+			    	console.log(result);
+			    }
+			});
+			// $.put('/schedule/id/' + schedule_id,
+			// 	{
+			// 		'schedule': {
+			// 			'study_id': '53df03b3a0efbf934d7333c4',
+			// 		     'order': order_idx,
+			// 		     'start_time': new Date(2014, 07, 21),
+			// 		     'end_time': new Date(2014, 07, 28),
+			// 		     'contents': [
+			// 		        {
+			// 		          'type': 'text',
+			// 		          'text': contents[0]
+			// 		        },
+			// 		        {
+			// 		          'type': 'check',
+			// 		          'text': contents[1]
+			// 		        },
+			// 		        {
+			// 		          'type': 'check',
+			// 		          'text': contents[2]
+			// 		        }
+			// 		    ]
+			// 		}
+			// 	}, function (success, err) {
+			// 		console.log(success);
+			// 		console.log(err);
+			// });
+		});
 		$('#load_articles').click(function () {
 			var testDate = new Date(2014, 02, 04);
 			$.get('/article/load', {
-				'author': 'test01',
+				'author': '53cb3cfe2309a66909a4d763',
 				'date': testDate
 			}, function (err, data) {
 				if (err) {
@@ -24,7 +120,7 @@
 		$('#refresh_articles').click(function () {
 			var testDate = new Date(2014, 02, 04);
 			$.get('/article/refresh', {
-				'author': 'test01',
+				'author': '53cb3cfe2309a66909a4d763',
 				'date': testDate
 			}, function (err, data) {
 				if (err) {
@@ -32,6 +128,31 @@
 				} else {
 					console.log(data);
 				}
+			});
+		});
+		$('#apply_study .submit_apply_study').click(function () {
+			var apply = {
+				'user_id': $('#apply_study .user_id').val(),
+				'study_id': $('#apply_study .study_id').val()
+			};
+			$.post('/study/apply', apply, function (success, data) {
+				console.log(success);
+				console.log(data);
+			});
+		});
+		$('#add_article .submit_article').click(function () {
+			var test_article = {
+				'user_id': $('#add_article .user_id').val(),
+				'study_id': $('#add_article .study_id').val(),
+				'contents': {
+					'text': $('#add_article .contents').val(),
+					'photo_url': ""
+				}
+			};
+
+			$.post('/article', test_article, function (success, article) {
+				console.log(success);
+				console.log(article);
 			});
 		});
 	</script>

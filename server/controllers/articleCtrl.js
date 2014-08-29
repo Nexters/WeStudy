@@ -3,16 +3,17 @@ var mongoose = require('mongoose'),
 
 var ArticleCtrl = {};
 
-ArticleCtrl.getAllArticles = function(req, res) {
-  Article.getAllArticles(function(err, articles) {
+ArticleCtrl.getAllArticles = function (req, res) {
+  Article.getAllArticles(function (err, articles) {
     if (err) return res.send(400, err);
     return res.send(200, articles);
   });
 };
 
-ArticleCtrl.addArticle = function(req, res) {
+ArticleCtrl.addArticle = function (req, res) {
   var newArticle = req.body;
-  Article.addArticle(newArticle, function(err, article) {
+  newArticle.author = req.user._id;
+  Article.addArticle(newArticle, function (err, article) {
     if (err) return res.send(400, err);
     return res.send(200, article);
   });

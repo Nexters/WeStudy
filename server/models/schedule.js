@@ -58,7 +58,7 @@ ScheduleSchema.statics.removeSchedule = function (schedule_id, callback) {
 
 ScheduleSchema.statics.updateSchedule = function (schedule_id, schedule, callback) {
 	if (schedule) {
-		this.findOneAndupdate({
+		this.findOneAndUpdate({
 			'_id': schedule_id
 		},{
 			'order': schedule.order,

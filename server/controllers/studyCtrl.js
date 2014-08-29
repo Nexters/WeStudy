@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var StudyCtrl = {};
 
-StudyCtrl.getAllStudy = function(req, res) {
+StudyCtrl.getAllStudy = function (req, res) {
   var query = {};
   var fields = null;
   var options = makeOptions(req);
@@ -14,13 +14,13 @@ StudyCtrl.getAllStudy = function(req, res) {
   });
 };
 
-StudyCtrl.addStudy = function(req, res) {
+StudyCtrl.addStudy = function (req, res) {
   var newStudy = req.body;
   var me = req.user;
   console.log(newStudy);
   Study.saveStudy(me, newStudy, function(err, study) {
     if (err) return res.send(400, err);
-    return res.send(200, "Success");
+    return res.send(200, null);
   });
 };
 
@@ -42,11 +42,36 @@ StudyCtrl.loadStudyBySubject = function (req, res) {
   });
 };
 
+StudyCtrl.getMembers = function (req, res) {
+  var study_id = req.query.study_id;
+  Study.getMembers(study_id, function (err, member_list) {
+    if (err) return res.send(400, err);
+    return res.send(200, member_list);
+  });
+};
+
+StudyCtrl.getAppliers = function (req, res) {
+  var study_id = req.query.study_id;
+  Study.getAppliers(study_id, function (err, applier_list) {
+    if (err) return res.send(400, err);
+    return res.send(200, applier_list);
+  });
+};
+
 StudyCtrl.applyStudy = function (req, res) {
   var me = req.body.user_id;
   var target_study = req.body.study_id;
   Study.applyStudy(me, target_study, function (err) {
     if (err) return res.send(400, err);
+    return res.send(200, null);
+  });
+};
+
+StudyCtrl.cancelApplyStudy = function (req, res) {
+  var target_user = req.body.user_id;
+  var study_id = req.body.study_id;
+  Study.calcelApplyStudy(target_user, study_id, function (err) {
+    if (err) res.send(400, err);
     return res.send(200, null);
   });
 };
