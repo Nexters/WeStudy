@@ -109,6 +109,7 @@
         <Button
             android:layout_width="54dp"
             android:layout_height="54dp"
+            android:id="@+id/nav_btn_find_study"
             android:background="@drawable/slide_04_icon"
             />
 
@@ -116,6 +117,7 @@
             android:layout_width="54dp"
             android:layout_height="54dp"
             android:layout_marginLeft="18dp"
+            android:id="@+id/nav_btn_make_study"
             android:background="@drawable/slide_05_icon"
             />
 
@@ -123,6 +125,7 @@
             android:layout_width="54dp"
             android:layout_height="54dp"
             android:layout_marginLeft="18dp"
+            android:id="@+id/nav_btn_setting"
             android:background="@drawable/slide_06_icon"
             />
 
