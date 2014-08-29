@@ -1,6 +1,7 @@
 package com.example.godong.westudy.StudySearchFragment;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
@@ -12,6 +13,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -126,12 +129,13 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
 
     private void setFeedData(){
 
+        String _id = "";
         String creator = "";
         String subject = "";
         String title = "";
         String detail = "";
         String create_time="";
-        String[] week;
+        int[] week;
         String[] location;
         String[] members;
         int number_type = 0;
@@ -146,6 +150,7 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
 
                 JSONObject studyList = studySearch_jarray.getJSONObject(i);
 
+                _id = studyList.getString("_id");
                 creator = studyList.getString("creator");
                 subject = studyList.getString("subject");
                 title = studyList.getString("title");
@@ -180,16 +185,16 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
 
                 /** Week 읽어오기 **/
                 JSONArray day = studyList.getJSONArray("day_of_week");
-                week = new String[day.length()];
+                week = new int[day.length()];
 
                 for(int j=0;j<day.length();j++){
-                    week[j] = day.getString(j);
+                    week[j] = day.getInt(j);
                 }
 
 
                 Log.d("output:",creator+"/"+subject+"/"+title+"/"+number_type+"/"+detail+"\n"
                                +members+"/"+location+"/"+week+"\n");
-                Study study = new Study(creator,subject,title,number_type,detail,"2014-08-08",members,location,week);
+                Study study = new Study(_id,creator,subject,title,number_type,detail,"2014-08-08",members,location,week);
 
                 studySearch_data.add(study);
                 Log.d("Arraylist output", studySearch_data.get(i).toString());
@@ -206,7 +211,7 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
 
 
 
-    private class StudyListAdapter extends ArrayAdapter<Study> {
+    private class StudyListAdapter extends ArrayAdapter<Study> implements View.OnClickListener {
         private ArrayList<Study> items;
 
         public StudyListAdapter(Context context, int textViewResourceId, ArrayList<Study> items){
@@ -226,44 +231,78 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
             if(study !=null) {
                 TextView create_time = (TextView) v.findViewById(R.id.studyCard_createTime);
                 TextView location = (TextView) v.findViewById(R.id.studyCard_location);
-                TextView creator = (TextView) v.findViewById(R.id.studyCard_creator);
                 TextView title = (TextView) v.findViewById(R.id.studyCard_title);
-                TextView detail = (TextView) v.findViewById(R.id.studyCard_detail);
                 TextView memberCount = (TextView) v.findViewById(R.id.studyCard_memberCount);
                 TextView maxMember = (TextView) v.findViewById(R.id.studyCard_maxMember);
-                TextView week = (TextView) v.findViewById(R.id.studyCard_week);
+                TextView day = (TextView) v.findViewById(R.id.studyCard_day);
 
+                ImageView subject = (ImageView) v.findViewById(R.id.studyCard_subject);
+
+                ImageButton detail = (ImageButton) v.findViewById(R.id.studyCard_detail);
+                detail.setOnClickListener(this);
+
+
+
+                if(subject != null){
+                    //TODO : subject별로 icon image 변경. BitmapDrawable 불러온 뒤 set.
+
+                    BitmapDrawable icon;
+
+                    if (study.getSubject().equals("language")) {
+
+                        icon = (BitmapDrawable)getResources().getDrawable(R.drawable.study_search_ic_03);
+                        subject.setImageDrawable(icon);
+
+                    } else if (study.getSubject().equals("test")) {
+
+                        icon = (BitmapDrawable)getResources().getDrawable(R.drawable.study_search_ic_04);
+                        subject.setImageDrawable(icon);
+
+                    } else if (study.getSubject().equals("it")) {
+
+                        icon = (BitmapDrawable)getResources().getDrawable(R.drawable.study_search_ic_05);
+                        subject.setImageDrawable(icon);
+
+                    } else if (study.getSubject().equals("job")) {
+
+                        icon = (BitmapDrawable)getResources().getDrawable(R.drawable.study_search_ic_06);
+                        subject.setImageDrawable(icon);
+
+                    } else if (study.getSubject().equals("etc")) {
+
+                        icon = (BitmapDrawable)getResources().getDrawable(R.drawable.study_search_ic_07);
+                        subject.setImageDrawable(icon);
+
+                    }
+                }
                 if (create_time != null) {
                     create_time.setText(study.getCreate_time());
                 }
                 if (location != null){
                     location.setText(study.getLocation());
                 }
-                if (creator != null){
-                    creator.setText(study.getCreator());
-                }
                 if (title != null){
                     title.setText(study.getTitle());
                 }
-                if (detail != null) {
-                    detail.setText(study.getDetail());
-                }
-//                if (memberCount != null){
-//
-//                }
                 if (maxMember != null){
                     maxMember.setText(study.getNumber_type()+"명");
                 }
                 if (memberCount != null){
-                    memberCount.setText(Integer.toString(study.getMemberCount()));
+                    memberCount.setText(Integer.toString(study.getMemberCount())+"명");
                 }
-                if (week != null){
-                    week.setText(study.getWeek());
+                if (day != null){
+                    day.setText(study.getWeek());
                 }
 
             }
 
             return v;
+        }
+
+
+        @Override
+        public void onClick(View v) {
+            //TODO : detail button 클릭 했을 경우 액션!
         }
     }
 

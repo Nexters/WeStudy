@@ -24,6 +24,7 @@ tools:context="com.example.godong.westudy.StudySearchFragment.StudyLanguageListF
         <ListView
             android:layout_width="match_parent"
             android:layout_height="570dp"
+            android:divider="#00000000"
             android:id="@+id/android:list"/>
 
         <TextView
