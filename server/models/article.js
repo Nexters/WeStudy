@@ -1,6 +1,5 @@
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema,
-  ObjectId = mongoose.Types.ObjectId;
+  Schema = mongoose.Schema;
 
 /**
  * Article Schema
