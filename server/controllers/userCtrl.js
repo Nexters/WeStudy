@@ -5,8 +5,8 @@ User = mongoose.model('User');
 
 var UserCtrl = {};
 
-UserCtrl.login = function(req, res){
-  passport.authenticate('local', function(err, user) {
+UserCtrl.login = function (req, res) {
+  passport.authenticate('local', function (err, user) {
     if (err) { return res.send(400,{message:err}); }
     if (!user) { return res.send(400, {message: "Login Fail!"}); }
     req.logIn(user, function (err) {
@@ -16,11 +16,27 @@ UserCtrl.login = function(req, res){
   })(req, res);
 };
 
-UserCtrl.signUp = function(req, res){
+UserCtrl.signUp = function (req, res) {
   var newUser = req.body;
-  User.saveUser(newUser,function(err, user) {
-    if(err) return res.send(400,{message:err});
-    res.send(200,user);
+  User.saveUser(newUser,function (err, user) {
+    if (err) return res.send(400,{message:err});
+    res.send(200, user);
+  });
+};
+
+UserCtrl.updateUser = function (req, res) {
+  var target_id = req.user._id;
+  var update_data = {
+    'name': req.body.name,
+    'email': req.body.email,
+    'password': req.body.password,
+    'profile_url': req.body.profile_url,
+    'interest': req.body.interest
+  };
+
+  User.updateUser(target_id, update_data, function (err) {
+    if (err) return res.send(400, err);
+    res.send(200, null);
   });
 };
 
@@ -29,7 +45,7 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
   },
   function(email, password, done) {
-    User.findOne({ email: email }, function(err, user) {
+    User.findOne({ email: email }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
@@ -42,11 +58,11 @@ passport.use(new LocalStrategy({
   }
 ));
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user._id);
 });
 
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser(function (id, done) {
   User.findById(id, function (err, user) {
     done(err, user);
   });

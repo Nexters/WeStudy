@@ -16,7 +16,6 @@ var UserSchema = new Schema({
   create_time: Date //생성 시간
 }, {collection: 'users'});
 
-
 /**
  * Validations
  */
@@ -65,11 +64,29 @@ UserSchema.statics.saveUser = function (user, callback) {
 };
 
 UserSchema.statics.getUserByEmail = function (email, callback) {
-  this.findOne({email: email}, function (err, user) {
-    if(err) return callback(err, null);
+  this.findOne({ email: email }, function (err, user) {
+    if (err) return callback(err, null);
     callback(null, user);
   });
 };
+
+UserSchema.statics.updateUser = function (user_id, user_data, callback) {
+  var self = this;
+  this.findOneAndUpdate({
+    '_id': user_id
+  }, {
+    '$set': {
+      'name': user_data.name,
+      'email': user_data.email,
+      'password': user_data.password,
+      'profile_url': user_data.profile_url,
+      'interest': user_data.interest
+    }
+  }, function (err) {
+    if (err) return callback(err);
+    callback(null);
+  });
+}
 
 function makeInterestArray(interest) {
   var parseArray = JSON.parse(interest);
