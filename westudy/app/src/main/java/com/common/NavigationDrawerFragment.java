@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -57,6 +58,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerListView;
+    private LinearLayout mDrawerLinearLayout;
     private View mFragmentContainerView;
 
     private int mCurrentSelectedPosition = 0;
@@ -102,6 +104,11 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+
+        mDrawerLinearLayout = (LinearLayout) inflater.inflate(
+                R.layout.fragment_navigation_drawer, container, false);
+
+        /*
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -110,7 +117,10 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
+        */
+
         /** Adapter setup 부분. 선택할 수 있는 section string 설정 **/
+        /*
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_activated_1,
@@ -127,6 +137,8 @@ public class NavigationDrawerFragment extends Fragment {
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
+        */
+        return mDrawerLinearLayout;
     }
 
     public boolean isDrawerOpen() {

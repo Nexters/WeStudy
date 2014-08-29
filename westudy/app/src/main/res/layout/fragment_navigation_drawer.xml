@@ -1,9 +1,145 @@
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:choiceMode="singleChoice"
-    android:divider="@android:color/transparent"
-    android:dividerHeight="0dp"
-    android:background="#cccc"
-    tools:context=".NavigationDrawerFragment" />
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#f4f6f6"
+    tools:context=".NavigationDrawerFragment"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="21dp"
+        android:orientation="horizontal">
+        
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginRight="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/gd"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="고동현"
+                android:layout_width="100dp"
+                android:layout_height="22dp"
+                android:textColor="#262a33"
+                android:textSize="17dp"
+                android:id="@+id/nav_user_name" />
+
+            <TextView
+                android:text="가나다"
+                android:layout_width="100dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="12dp"
+                android:textColor="#717070"
+                android:textSize="14dp"
+                android:id="@+id/nav_user_introduce" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="0.6dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="17dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/common_n_11"
+        />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="24dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="19dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/slide_01_icon"
+            />
+
+        <TextView
+            android:text="내 스터디"
+            android:layout_width="155dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="18dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="#6f6f6f"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="225dp"
+        android:layout_marginTop="12dp"
+        android:background="#ebebeb"
+        android:orientation="vertical">
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="@drawable/slide_04_icon"
+            />
+
+        <Button
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginLeft="18dp"
+            android:background="@drawable/slide_05_icon"
+            />
+
+        <Button
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginLeft="18dp"
+            android:background="@drawable/slide_06_icon"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="0.6dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/common_n_11"
+        />
+
+    <TextView
+        android:text="Monday Arivo"
+        android:layout_width="fill_parent"
+        android:layout_height="18dp"
+        android:gravity="center"
+        android:textColor="#7e7f7f"
+        android:textSize="14dp" />
+
+</LinearLayout>
+
+
