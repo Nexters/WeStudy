@@ -250,13 +250,22 @@
         <!-- 여기까지 -->
 
 
-    <Button
+    <LinearLayout
         android:id="@+id/article_floating_button"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="67dp"
+        android:layout_height="51dp"
         android:layout_gravity="bottom|right"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp" />
+        android:gravity="center"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/common_04_icon"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="23dp"
+            android:layout_height="22dp"
+            android:background="@drawable/common_03writing_icon_non"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+    </LinearLayout>
 
 
 </FrameLayout>

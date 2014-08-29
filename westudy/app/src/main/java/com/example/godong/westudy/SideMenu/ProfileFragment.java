@@ -70,6 +70,8 @@ public class ProfileFragment extends Fragment {
         Log.d("userINFO :: ",user.toString());
 
         name = (TextView) view.findViewById(R.id.profile_textView_name);
+
+        /*
         _id = (TextView) view.findViewById(R.id.profile_textView_id);
         email = (TextView) view.findViewById(R.id.profile_textView_email);
         interest = (TextView) view.findViewById(R.id.profile_textView_interest);
@@ -98,7 +100,7 @@ public class ProfileFragment extends Fragment {
         if(study != null) {
             study.setText(user.getStudy());
         }
-
+        */
         return view;
 
     }

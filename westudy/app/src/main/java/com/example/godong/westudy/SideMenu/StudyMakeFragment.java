@@ -73,7 +73,7 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
         personRadioGroup = (RadioGroup) view.findViewById(R.id.studyMake_radio_person);
         defaultPersonRadioBtn = (RadioButton) view.findViewById(R.id.studyMake_radio_person4);
         defaultPersonRadioBtn.setChecked(true);
-        locationEdit = (EditText) view.findViewById(R.id.studyMake_edit_location);
+//        locationEdit = (EditText) view.findViewById(R.id.studyMake_edit_location);
         monBtn = (Button) view.findViewById(R.id.studyMake_btn_mon);
         tueBtn = (Button) view.findViewById(R.id.studyMake_btn_tue);
         wedBtn = (Button) view.findViewById(R.id.studyMake_btn_wed);
@@ -142,7 +142,7 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
         params.put("subject",selectedSubjectRadioBtn.getTag());
         params.put("title",studyNameEdit.getText());
         params.put("person",selectedPersonRadioBtn.getTag());
-        params.put("location",locationEdit.getText());
+//        params.put("location",locationEdit.getText());
         params.put("day_of_week",dayOfWeekArrayToJSONArray());
         params.put("detail",detailEdit.getText());
 

@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.TextView;
 
@@ -64,7 +65,11 @@ public class StudyMainActivity extends FragmentActivity
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout._custom_title);
 
+
         backPressCloseHandler = new BackPressCloseHandler(this);
+
+
+        
 //        ActionBar actionBar = getActionBar();
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 //        actionBar.setHomeButtonEnabled(true);
@@ -87,9 +92,12 @@ public class StudyMainActivity extends FragmentActivity
         userData = new Bundle();
         userData.putParcelable("userData",userInfo);
 
+<<<<<<< HEAD
 //        study_id = new Bundle();
 //        study_id.putString("study_id",userInfo.getStudyLast());
 
+=======
+>>>>>>> FETCH_HEAD
         /** 사이드 슬라이드 setting **/
         setupSideSlide(userInfo);
 
@@ -134,6 +142,7 @@ public class StudyMainActivity extends FragmentActivity
                             .replace(R.id.fl_container, profileFragment)
                             .commit();
                     break;
+
             }
         }
     };
