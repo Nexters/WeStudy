@@ -21,7 +21,7 @@ ArticleCtrl.addArticle = function (req, res) {
 
 ArticleCtrl.loadArticles = function (req, res) {
   var target = {
-    'author': req.query.author,
+    'study_id': req.query.study_id,
     'last_loadTime': req.query.date
   };
   Article.loadArticles(target, function (err, articles) {
@@ -32,7 +32,7 @@ ArticleCtrl.loadArticles = function (req, res) {
 
 ArticleCtrl.refreshArticles = function (req, res) {
   var target = {
-    'author': req.query.author,
+    'study_id': req.query.study_id,
     'last_refreshTime': req.query.date
   };
   Article.refreshArticles(target, function (err, articles) {
