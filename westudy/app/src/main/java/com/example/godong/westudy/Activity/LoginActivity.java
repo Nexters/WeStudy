@@ -80,6 +80,10 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         findPwBtn = (TextView) findViewById(R.id.find_pw_button);
         joinBtn = (TextView) findViewById(R.id.sign_up_button);
 
+        //test
+        emailEdit.setText("aa");
+        pwEdit.setText("aa");
+
         //Event 초기화
         loginBtn.setOnClickListener(this);
         kakaoBtn.setOnClickListener(this);
