@@ -32,9 +32,9 @@ TestCtrl.addUser = function (req, res) {
 };
 
 TestCtrl.getUser = function (req, res) {
-  User.find({}, function(err, users) {
+  User.find({}, function (err, users) {
     if (err) return res.send(400,err);
-    return res.send(200,users);
+    return res.send(200, users);
   });
 };
 
