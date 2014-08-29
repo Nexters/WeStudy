@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import com.common.BackPressCloseHandler;
 import com.common.NavigationDrawerFragment;
@@ -44,6 +45,11 @@ public class StudyMainActivity extends FragmentActivity
     private StudySearchTabFragment studySearchTabFragment;
     private NewArticleFragment newArticleFragment;
 
+    /** Navigation Drawer Side Slide용 **/
+    private TextView userName;
+    private TextView introduce;
+
+
     /** UserInfo Data **/
     Bundle userData;
 
@@ -55,7 +61,7 @@ public class StudyMainActivity extends FragmentActivity
 
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        actionBar.setCustomView(R.layout.custom_title);
+        actionBar.setCustomView(R.layout._custom_title);
 
         backPressCloseHandler = new BackPressCloseHandler(this);
 //        ActionBar actionBar = getActionBar();
@@ -80,6 +86,16 @@ public class StudyMainActivity extends FragmentActivity
         userData = new Bundle();
         userData.putParcelable("userData",userInfo);
 
+        /** 사이드 슬라이드 setting **/
+        userName = (TextView) findViewById(R.id.nav_user_name);
+        introduce = (TextView) findViewById(R.id.nav_user_introduce);
+        setupSideSlide(userInfo);
+
+    }
+
+    public void setupSideSlide(User userInfo){
+        userName.setText(userInfo.getName());
+        introduce.setText(userInfo.getIntroduce());
     }
 
     @Override

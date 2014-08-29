@@ -89,9 +89,12 @@
         android:background="#f1f0f0"
         android:orientation="vertical">
 
+        <!-- 오른쪽 정렬을 위해 삽입. 이후로는 모두 오른쪽 정렬(인듯?) -->
+
         <ListView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent"
+            android:paddingLeft="61dp"
             android:id="@+id/nav_study_listview" >
 
         </ListView>

@@ -146,6 +146,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                     userInfo.setEmail(user.getString("email"));
                     userInfo.setGender(user.getString("gender"));
                     userInfo.setCreate_time(user.getString("create_time"));
+                    userInfo.setIntroduce(user.getString("introduce"));
 
                     /** interest 읽어오기 **/
                     JSONArray interest = user.getJSONArray("interest");
