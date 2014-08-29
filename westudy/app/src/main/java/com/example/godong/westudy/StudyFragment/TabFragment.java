@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.graphics.Color;
+import android.widget.TabHost;
 
 import com.example.godong.westudy.R;
 
@@ -15,7 +16,7 @@ import com.example.godong.westudy.R;
  */
 
 
-public class TabFragment extends Fragment {
+public class TabFragment extends Fragment implements TabHost.OnTabChangeListener {
 
     /** TabHost 선언 **/
     private FragmentTabHost mTabHost;
@@ -36,6 +37,9 @@ public class TabFragment extends Fragment {
         mTabHost = new FragmentTabHost(getActivity());
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.tabhost);
 
+
+        mTabHost.setOnTabChangedListener(this);
+
         mTabHost.addTab(mTabHost.newTabSpec("feed").setIndicator("홈"),
                 ArticleFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("calendar").setIndicator("캘 린 더"),
@@ -47,11 +51,12 @@ public class TabFragment extends Fragment {
 
 
         //TODO: TabHost color change
-        for(int i=0;i<mTabHost.getTabWidget().getChildCount();i++){
-            mTabHost.getTabWidget().getChildAt(i)
-                    .setBackgroundColor(Color.parseColor("#ffffffff"));
-        }
 
+        for(int i = 0; i < mTabHost.getTabWidget().getChildCount(); i++) {
+            mTabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#ffffff"));
+        }
+        mTabHost.getTabWidget().setCurrentTab(0);
+        mTabHost.getTabWidget().getChildAt(0).setBackgroundColor(Color.parseColor("#5bb7e7"));
 
         return mTabHost;
 
@@ -61,6 +66,16 @@ public class TabFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         mTabHost = null;
+    }
+
+
+    @Override
+    public void onTabChanged(String tabId) {
+        // Tab 색 변경
+        for(int i = 0; i < mTabHost.getTabWidget().getChildCount(); i++) {
+            mTabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#ffffff"));
+        }
+        mTabHost.getTabWidget().getChildAt(mTabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#5bb7e7"));
     }
 
 //    /** TabHost 선언 **/
