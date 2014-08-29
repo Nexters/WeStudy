@@ -67,10 +67,19 @@ StudyCtrl.applyStudy = function (req, res) {
   });
 };
 
+StudyCtrl.acceptApplyStudy = function (req, res) {
+  var target_user = req.body.user_id;
+  var study_id = req.body.study_id;
+  Study.acceptApplyStudy(target_user, study_id, function (err) {
+    if (err) res.send(400, err);
+    return res.send(200, null);
+  });
+}
+
 StudyCtrl.cancelApplyStudy = function (req, res) {
   var target_user = req.body.user_id;
   var study_id = req.body.study_id;
-  Study.calcelApplyStudy(target_user, study_id, function (err) {
+  Study.cancelApplyStudy(target_user, study_id, function (err) {
     if (err) res.send(400, err);
     return res.send(200, null);
   });
