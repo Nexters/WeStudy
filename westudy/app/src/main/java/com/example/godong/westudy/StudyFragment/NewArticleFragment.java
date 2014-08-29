@@ -102,13 +102,8 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
         jsonObj = new JSONObject();
 
         try {
-
             contents.put("text",text.getText());
             contents.put("photo_url",photo_url);
-
-            jsonObj.put("study_id",study_id);
-            jsonObj.put("contents",contents);
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

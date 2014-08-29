@@ -425,62 +425,62 @@
 
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:text="스터디 이름 : "
-            android:layout_row="3"
-            android:layout_column="0" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:text="스터디 이름 : "-->
+            <!--android:layout_row="3"-->
+            <!--android:layout_column="0" />-->
 
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="인 원 : "
-            android:layout_row="5"
-            android:layout_column="0" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:text="인 원 : "-->
+            <!--android:layout_row="5"-->
+            <!--android:layout_column="0" />-->
 
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="지 역 : "
-            android:layout_row="7"
-            android:layout_column="0" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:text="지 역 : "-->
+            <!--android:layout_row="7"-->
+            <!--android:layout_column="0" />-->
 
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="20dp"
-            android:inputType="textMultiLine"
-            android:id="@+id/studyMake_edit_location"
-            android:layout_row="8"
-            android:layout_column="0"/>
+        <!--<EditText-->
+            <!--android:layout_width="200dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:inputType="textMultiLine"-->
+            <!--android:id="@+id/studyMake_edit_location"-->
+            <!--android:layout_row="8"-->
+            <!--android:layout_column="0"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="모 임 일 : "
-            android:layout_row="9"
-            android:layout_column="0" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:text="모 임 일 : "-->
+            <!--android:layout_row="9"-->
+            <!--android:layout_column="0" />-->
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_row="10"
-            android:layout_column="0">
+        <!--<LinearLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:layout_row="10"-->
+            <!--android:layout_column="0">-->
 
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:text="소 개 말 : "
-            android:layout_row="11"
-            android:layout_column="0" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:text="소 개 말 : "-->
+            <!--android:layout_row="11"-->
+            <!--android:layout_column="0" />-->
 
 
 

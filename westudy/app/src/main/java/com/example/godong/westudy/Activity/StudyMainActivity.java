@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.common.BackPressCloseHandler;
@@ -58,7 +59,11 @@ public class StudyMainActivity extends FragmentActivity
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.custom_title);
 
+
         backPressCloseHandler = new BackPressCloseHandler(this);
+
+
+        
 //        ActionBar actionBar = getActionBar();
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 //        actionBar.setHomeButtonEnabled(true);
@@ -85,7 +90,6 @@ public class StudyMainActivity extends FragmentActivity
         findViewById(R.id.nav_btn_find_study).setOnClickListener(mClickListener);
         findViewById(R.id.nav_btn_make_study).setOnClickListener(mClickListener);
         findViewById(R.id.nav_btn_setting).setOnClickListener(mClickListener);
-
 
     }
 
@@ -114,6 +118,7 @@ public class StudyMainActivity extends FragmentActivity
                             .replace(R.id.fl_container, profileFragment)
                             .commit();
                     break;
+
             }
         }
     };

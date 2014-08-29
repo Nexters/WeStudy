@@ -11,12 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.common.CommonUtil;
 import com.common.CustomScrollView;
 import com.common.CustomScrollView.OnEdgeTouchListener;
+import com.example.godong.westudy.StudyFragment.NewArticleFragment;
 import com.dataSet.Article;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -43,9 +45,13 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
     private ArrayList<Article> article_data;
     private FeedAdapter article_adapter;
     private JSONArray article_jarray;
+    private Context context;
 
     private ListView ArticleList;
     private CustomScrollView ArticleScroll;
+    private LinearLayout WriteArticle;
+    private NewArticleFragment newArticleFragment;
+
 
     private boolean scrollFlag = false;
 
@@ -60,12 +66,11 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         return fragment;
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState){
         StrictMode.enableDefaults();
         super.onCreate(savedInstanceState);
-
+        context = getActivity();
         article_data = new ArrayList<Article>();
         article_adapter = new FeedAdapter(getActivity(), R.layout._feed_card, article_data);
         setListAdapter(article_adapter);
@@ -116,7 +121,17 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
                 }
             }
         });
-
+        WriteArticle = (LinearLayout)v.findViewById(R.id.article_floating_button);
+        WriteArticle.setOnClickListener(new LinearLayout.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newArticleFragment = NewArticleFragment.newInstance();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fl_container, newArticleFragment)
+                        .commit();
+            }
+        });
     }
 
 
