@@ -49,7 +49,7 @@ TestCtrl.addStudy = function(req, res) {
       location: ['gangbuk'],
       day_of_week: [1],
       detail: '함께 해요',
-      members: ['test'],
+      members: ['53e4b5f2623edd7c349aca6e', '53e4b614623edd7c349aca6f'],
       create_time: new Date()
     },
     {
