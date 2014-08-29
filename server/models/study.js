@@ -104,8 +104,8 @@ StudySchema.statics.getMembers = function (study_id, callback) {
   self.findOne({
     '_id': study_id
   }, function (err, study_data) {
-    console.log(study_data);
-    if (!err) {
+    // console.log(study_data);
+    if (!err && study_data) {
       var members = study_data.members || [];
       var member_data_list = [];
 
@@ -137,8 +137,8 @@ StudySchema.statics.getAppliers = function (study_id, callback) {
   this.findOne({
     '_id': study_id
   }, function (err, study_data) {
-    console.log(study_data);
-    if (!err) {
+    // console.log(study_data);
+    if (!err && study_data) {
       var appliers = study_data.applier || [];
       var applier_data_list = [];
 

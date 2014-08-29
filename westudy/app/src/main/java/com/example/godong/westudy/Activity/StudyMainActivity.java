@@ -87,7 +87,6 @@ public class StudyMainActivity extends FragmentActivity
         userData = new Bundle();
         userData.putParcelable("userData",userInfo);
 
-<<<<<<< HEAD
         /** 사이드 슬라이드 setting **/
         userName = (TextView) findViewById(R.id.nav_user_name);
         introduce = (TextView) findViewById(R.id.nav_user_introduce);
@@ -98,14 +97,11 @@ public class StudyMainActivity extends FragmentActivity
     public void setupSideSlide(User userInfo){
         userName.setText(userInfo.getName());
         introduce.setText(userInfo.getIntroduce());
-=======
 
         findViewById(R.id.nav_btn_find_study).setOnClickListener(mClickListener);
         findViewById(R.id.nav_btn_make_study).setOnClickListener(mClickListener);
         findViewById(R.id.nav_btn_setting).setOnClickListener(mClickListener);
 
-
->>>>>>> FETCH_HEAD
     }
 
     Button.OnClickListener mClickListener = new View.OnClickListener() {

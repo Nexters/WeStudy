@@ -163,6 +163,7 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
 
         String create_time="";
         String author = "";
+        String study_id = "";
         String text = "";
         String photo_url = "";
 
