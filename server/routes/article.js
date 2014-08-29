@@ -1,6 +1,6 @@
 var articleCtrl = require('../controllers/articleCtrl');
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.post('/article', articleCtrl.addArticle);
   app.get('/article/all', articleCtrl.getAllArticles);
   app.get('/article/load', articleCtrl.loadArticles);

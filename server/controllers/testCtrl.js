@@ -10,7 +10,7 @@ TestCtrl.getSessionUser = function (req, res) {
   console.log("--SESSION--");
   if(req.user){
     console.log(req.user);
-    res.send(200,req.user);
+    res.send(200, req.user);
   }else{
     console.log("Not login!")
     res.send(400, "Error");
@@ -47,7 +47,7 @@ TestCtrl.addStudy = function(req, res) {
       title: '신촌 영어회화 스터디',
       number_type: 6,
       location: ['gangbuk'],
-      day_of_week: ['mon'],
+      day_of_week: [1],
       detail: '함께 해요',
       members: ['test'],
       create_time: new Date()
@@ -58,7 +58,7 @@ TestCtrl.addStudy = function(req, res) {
       title: '잠실 토익 스터디',
       number_type: 4,
       location: ['gangdong'],
-      day_of_week: ['mon', 'tue'],
+      day_of_week: [1, 2],
       detail: '함께 토익해요',
       members: ['test2'],
       create_time: new Date()
@@ -69,7 +69,7 @@ TestCtrl.addStudy = function(req, res) {
       title: '신촌 프로그램 스터디',
       number_type: 8,
       location: ['sinchon'],
-      day_of_week: ['sat'],
+      day_of_week: [6],
       detail: '함께 프로그램해요',
       members: ['test3'],
       create_time: new Date()
@@ -80,7 +80,7 @@ TestCtrl.addStudy = function(req, res) {
       title: '신촌 영어 회화같이해요',
       number_type: 9,
       location: ['sinchon'],
-      day_of_week: ['mon', 'wed'],
+      day_of_week: [1, 3],
       detail: '함께 해요',
       members: ['test4'],
       create_time: new Date()

@@ -27,7 +27,6 @@ UserSchema.methods = {
   }
 };
 
-
 /**
  * Model Methods
  */
@@ -66,12 +65,11 @@ UserSchema.statics.saveUser = function (user, callback) {
 };
 
 UserSchema.statics.getUserByEmail = function (email, callback) {
-  this.findOne({email:email}, function(err, user) {
+  this.findOne({email: email}, function (err, user) {
     if(err) return callback(err, null);
     callback(null, user);
   });
 };
-
 
 function makeInterestArray(interest) {
   var parseArray = JSON.parse(interest);

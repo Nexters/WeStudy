@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+  Schema = mongoose.Schema,
+  async = require('async');
 
 /**
  * Study Schema
@@ -15,7 +16,7 @@ var StudySchema = new Schema({
   detail: String, //추가 설명
   cover_url: { type: String, default: '' }, //스터디 커버 이미지
   members: { type: Array, default: [] },  //참가 중인 멤버
-  applier: { type: Array, default: [] },  //지원 신청한 사람들
+  appliers: { type: Array, default: [] },  //지원 신청한 사람들
   start_time: Date, //스터디 시작 날짜
   create_time: Date //생성 시간
 }, {collection: 'studies'});
@@ -38,7 +39,7 @@ StudySchema.statics.saveStudy = function (me, study, callback) {
       detail: study.detail ? study.detail : '',
       cover_url: study.cover_url ? study.cover_url : '',
       members : [ me._id ],
-      applier : [],
+      appliers : [],
       create_time : new Date()
     });
     try {
@@ -55,7 +56,7 @@ StudySchema.statics.saveStudy = function (me, study, callback) {
 StudySchema.statics.getStudyInfo = function (id, callback) {
   if (id) {
     this.find({
-      '_id': ObjectId.fromString(id)
+      '_id': id
     }, function (err, data) {
       if (!err) {
         callback(null, data);
@@ -98,6 +99,70 @@ StudySchema.statics.loadStudyBySubject = function (subject, last_date, callback)
   }
 };
 
+StudySchema.statics.getMembers = function (study_id, callback) {
+  var self = this;
+  self.findOne({
+    '_id': study_id
+  }, function (err, study_data) {
+    if (!err) {
+      var members = study_data.members;
+      var member_data_list = [];
+
+      async.map(members, function (member, async_callback) {
+        self.model('User').findOne({
+          '_id': member
+        }, {
+          '_id': 1,
+          'name': 1,
+          'email': 1,
+          'profile_url': 1
+        }, function (__err, __member) {
+          if (!__err) {
+            member_data_list.push(__member);
+            async_callback();
+          }
+        });
+      }, function () {
+        callback(null, member_data_list);
+      });
+    } else {
+      callback(err, null);
+    }
+  });
+};
+
+StudySchema.statics.getAppliers = function (study_id, callback) {
+  var self = this;
+  this.findOne({
+    '_id': study_id
+  }, function (err, study_data) {
+    if (!err) {
+      var appliers = study_data.applier;
+      var applier_data_list = [];
+
+      async.map(appliers, function (applier, async_callback) {
+        self.model('User').findOne({
+          '_id': applier
+        }, {
+          '_id': 1,
+          'name': 1,
+          'email': 1,
+          'profile_url': 1
+        }, function (__err, __applier) {
+          if (!__err) {
+            applier_data_list.push(__applier);
+            async_callback();
+          }
+        });
+      }, function () {
+        callback(null, applier_data_list);
+      });
+    } else {
+      callback(err, null);
+    }
+  });
+};
+
 StudySchema.statics.applyStudy = function (user_id, study_id, callback) {
   var self = this;
   if (user_id && study_id) {
@@ -105,7 +170,7 @@ StudySchema.statics.applyStudy = function (user_id, study_id, callback) {
       '_id': study_id
     }, {
       '$push': {
-        'applier': user_id
+        'appliers': user_id
       }
     }, function (err) {
       if (!err) {
@@ -116,6 +181,25 @@ StudySchema.statics.applyStudy = function (user_id, study_id, callback) {
     });
   } else {
     callback("Apply Study parameter doesn't exist.");
+  }
+};
+
+StudySchema.statics.cancelApplyStudy = function (user_id, study_id, callback) {
+  var self = this;
+  if (user_id && study_id) {
+    this.update({
+      '_id': study_id
+    }, {
+      '$pull': {
+        'appliers': user_id
+      }
+    }, function (err) {
+      if (!err) {
+        callback(null);
+      } else {
+        callback(err);
+      }
+    });
   }
 };
 
