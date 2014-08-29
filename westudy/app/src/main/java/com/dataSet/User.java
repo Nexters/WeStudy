@@ -15,15 +15,6 @@ public class User implements Parcelable{
     private String gender;
     private String create_time;
     private String introduce;
-
-    public String getIntroduce() {
-        return introduce;
-    }
-
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce;
-    }
-
     private String[] interest = {"어학","취업","IT","자격증&시험"};
     private int[] interest_in;
     private String[] study;
@@ -154,6 +145,16 @@ public class User implements Parcelable{
         return result;
     }
 
+    public String getStudyLast(){
+        String result = "";
+        for(int i=0;i<this.study.length;i++){
+            if(i==this.study.length-1){
+                result = this.study[i];
+            }
+        }
+        return result;
+    }
+
     public void initStudy(int i){
         this.study = new String[i];
     }
@@ -169,6 +170,15 @@ public class User implements Parcelable{
     public String toString(){
         return _id+"/"+name+"/"+email+"/"+interest+"/"+create_time+"/"+study;
     }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
 
     @Override
     public int describeContents() {

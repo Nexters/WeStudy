@@ -20,6 +20,7 @@ import com.common.CustomScrollView.OnEdgeTouchListener;
 import com.dataSet.Article;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.network.HttpUtil;
 
 import org.apache.http.Header;
@@ -48,6 +49,7 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
     private CustomScrollView ArticleScroll;
 
     private boolean scrollFlag = false;
+    private String study_id = "";
 
     public ArticleFragment(){
 
@@ -92,6 +94,8 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.article_swipe_container);
         swipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
+//        study_id = getArguments().getString("study_id");
+
 
         /** Event 초기화 **/
         swipeLayout.setOnRefreshListener(this);
@@ -123,7 +127,12 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
     @Override
     public void onRefresh() {
 
-        HttpUtil.get("http://godong9.com:3000/article/all", null, null, new AsyncHttpResponseHandler() {
+        RequestParams params = new RequestParams();
+        params.put("study_id",study_id);
+        params.put("date","");
+
+
+        HttpUtil.get("http://godong9.com:3000/article/load", null, params, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
                 // called before request is started
@@ -192,7 +201,7 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
                 }
 
 //                Log.d("output",author+"/"+study_id+"/"+text+"/"+photo_url);
-                Article article = new Article(create_time, text, photo_url, author, study_id);
+                Article article = new Article(create_time, text, photo_url, author);
 
                 article_data.add(article);
                 Log.d("Arraylist output", article_data.get(i).toString());

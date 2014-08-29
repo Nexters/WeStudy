@@ -50,8 +50,8 @@ public class StudyMainActivity extends FragmentActivity
     private TextView userName;
     private TextView introduce;
 
-
     /** UserInfo Data **/
+    Bundle study_id;
     Bundle userData;
 
     @Override
@@ -87,25 +87,26 @@ public class StudyMainActivity extends FragmentActivity
         userData = new Bundle();
         userData.putParcelable("userData",userInfo);
 
-<<<<<<< HEAD
+//        study_id = new Bundle();
+//        study_id.putString("study_id",userInfo.getStudyLast());
+
         /** 사이드 슬라이드 setting **/
-        userName = (TextView) findViewById(R.id.nav_user_name);
-        introduce = (TextView) findViewById(R.id.nav_user_introduce);
         setupSideSlide(userInfo);
 
     }
 
     public void setupSideSlide(User userInfo){
+
+        userName = (TextView) findViewById(R.id.nav_user_name);
+        introduce = (TextView) findViewById(R.id.nav_user_introduce);
+
         userName.setText(userInfo.getName());
         introduce.setText(userInfo.getIntroduce());
-=======
 
         findViewById(R.id.nav_btn_find_study).setOnClickListener(mClickListener);
         findViewById(R.id.nav_btn_make_study).setOnClickListener(mClickListener);
         findViewById(R.id.nav_btn_setting).setOnClickListener(mClickListener);
 
-
->>>>>>> FETCH_HEAD
     }
 
     Button.OnClickListener mClickListener = new View.OnClickListener() {
@@ -197,6 +198,7 @@ public class StudyMainActivity extends FragmentActivity
             case 1:
 //                mTitle = getString(R.string.title_home);
                 tabFragment = TabFragment.newInstance();
+                tabFragment.setArguments(study_id);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fl_container, tabFragment)
