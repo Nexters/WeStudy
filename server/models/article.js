@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+  Schema = mongoose.Schema,
+  async = require('async');
 
 /**
  * Article Schema
@@ -42,7 +43,7 @@ ArticleSchema.statics.addArticle = function (article, callback) {
 ArticleSchema.statics.loadArticles = function (target, callback) {
   var self = this;
   self.find({
-    'author': target.author,
+    'study_id': target.study_id,
     'create_time': {
       '$lt': target.last_loadTime
     }
@@ -51,17 +52,38 @@ ArticleSchema.statics.loadArticles = function (target, callback) {
   }).limit(10)
   .exec(function (err, articles) {
     if (!err) {
-      self.model('User').find({
-        '_id': target.author
-      }, function (__err, __user) {
-        console.log(__user);
-        articles.author = {
-          'author': target.author,
-          'name': __user.name,
-          'profile_url': __user.profile_url
-        };
-        callback(err, articles);
+      var article_list = [];
+      async.map(articles, function (article, async_callback) {
+        self.model('User').find({
+          '_id': article.author
+        }, function (__err, __user) {
+          article_list.push({
+            'author': {
+              '_id': __user._id,
+              'name': __user.name,
+              'profile_url': __user.profile_url
+            },
+            'study_id': article.study_id,
+            'contents': article.contents,
+            'create_time': article.create_time
+          });
+
+          async_callback();
+        });
+      }, function () {
+        callback(null, article_list);
       });
+      // self.model('User').find({
+      //   '_id': target.author
+      // }, function (__err, __user) {
+      //   console.log(__user);
+      //   articles.author = {
+      //     'author': target.author,
+      //     'name': __user.name,
+      //     'profile_url': __user.profile_url
+      //   };
+      //   callback(err, articles);
+      // });
     } else {
       console.log("Load Article Error " + err);
       callback(err, null);
@@ -71,8 +93,9 @@ ArticleSchema.statics.loadArticles = function (target, callback) {
 
 // drag from upper to lower
 ArticleSchema.statics.refreshArticles = function (target, callback) {
-  this.find({
-    'author': target.author,
+  var self = this;
+  self.find({
+    'study_id': target.study_id,
     'create_time': {
       '$gt': target.last_refreshTime
     }
@@ -80,17 +103,38 @@ ArticleSchema.statics.refreshArticles = function (target, callback) {
     'create_time': -1
   }).exec(function (err, articles) {
     if (!err) {
-      self.model('User').find({
-        '_id': target.author
-      }, function (__err, __user) {
-        console.log(__user);
-        articles.author = {
-          'author': target.author,
-          'name': __user.name,
-          'profile_url': __user.profile_url
-        };
-        callback(err, articles);
+      var article_list = [];
+      async.map(articles, function (article, async_callback) {
+        self.model('User').find({
+          '_id': article.author
+        }, function (__err, __user) {
+          article_list.push({
+            'author': {
+              '_id': __user._id,
+              'name': __user.name,
+              'profile_url': __user.profile_url
+            },
+            'study_id': article.study_id,
+            'contents': article.contents,
+            'create_time': article.create_time
+          });
+
+          async_callback();
+        });
+      }, function () {
+        callback(null, article_list);
       });
+      // self.model('User').find({
+      //   '_id': target.author
+      // }, function (__err, __user) {
+      //   console.log(__user);
+      //   articles.author = {
+      //     'author': target.author,
+      //     'name': __user.name,
+      //     'profile_url': __user.profile_url
+      //   };
+      //   callback(err, articles);
+      // });
     } else {
       console.log("Refresh Article Error " + err);
       callback(err, null);

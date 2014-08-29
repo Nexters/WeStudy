@@ -14,6 +14,16 @@ public class User implements Parcelable{
     private String profile_url;
     private String gender;
     private String create_time;
+    private String introduce;
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
     private String[] interest = {"어학","취업","IT","자격증&시험"};
     private int[] interest_in;
     private String[] study;

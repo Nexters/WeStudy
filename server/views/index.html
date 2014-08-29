@@ -107,7 +107,7 @@
 		$('#load_articles').click(function () {
 			var testDate = new Date(2014, 02, 04);
 			$.get('/article/load', {
-				'author': '53cb3cfe2309a66909a4d763',
+				'study_id': '53df03b3a0efbf934d7333c4',
 				'date': testDate
 			}, function (err, data) {
 				if (err) {
@@ -120,7 +120,7 @@
 		$('#refresh_articles').click(function () {
 			var testDate = new Date(2014, 02, 04);
 			$.get('/article/refresh', {
-				'author': '53cb3cfe2309a66909a4d763',
+				'study_id': '53df03b3a0efbf934d7333c4',
 				'date': testDate
 			}, function (err, data) {
 				if (err) {

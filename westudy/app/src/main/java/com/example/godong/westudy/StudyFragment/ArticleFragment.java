@@ -192,7 +192,6 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
                 JSONObject feed = article_jarray.getJSONObject(i);
 
                 author = feed.getString("author");
-                study_id = feed.getString("study_id");
 
                 create_time = feed.getString("create_time");
                 String[] timeTemp;
