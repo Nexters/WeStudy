@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -46,8 +47,11 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
 
     private ListView ArticleList;
     private CustomScrollView ArticleScroll;
+    private LinearLayout WriteArticle;
+    private NewArticleFragment newArticleFragment;
 
     private boolean scrollFlag = false;
+    private String study_id = "";
 
     public ArticleFragment(){
 
@@ -92,6 +96,8 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.article_swipe_container);
         swipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
+//        study_id = getArguments().getString("study_id");
+
 
         /** Event 초기화 **/
         swipeLayout.setOnRefreshListener(this);
@@ -116,14 +122,31 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
                 }
             }
         });
-
+        WriteArticle = (LinearLayout)v.findViewById(R.id.article_floating_button);
+        WriteArticle.setOnClickListener(new LinearLayout.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newArticleFragment = NewArticleFragment.newInstance();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fl_container, newArticleFragment)
+                        .commit();
+            }
+        });
     }
 
+    
 
     @Override
     public void onRefresh() {
 
-        HttpUtil.get("http://godong9.com:3000/article/all", null, null, new AsyncHttpResponseHandler() {
+//        RequestParams params = new RequestParams();
+//        params.put("study_id",study_id);
+//        params.put("date","");
+
+
+//        HttpUtil.get("http://godong9.com:3000/article/load", null, params, new AsyncHttpResponseHandler() {
+          HttpUtil.get("http://godong9.com:3000/article/all", null, null, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
                 // called before request is started
@@ -163,7 +186,6 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
 
         String create_time="";
         String author = "";
-        String study_id = "";
         String text = "";
         String photo_url = "";
 
@@ -193,7 +215,7 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
                 }
 
 //                Log.d("output",author+"/"+study_id+"/"+text+"/"+photo_url);
-                Article article = new Article(create_time, text, photo_url, author, study_id);
+                Article article = new Article(create_time, text, photo_url, author);
 
                 article_data.add(article);
                 Log.d("Arraylist output", article_data.get(i).toString());

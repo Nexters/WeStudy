@@ -12,8 +12,8 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.common.BackPressCloseHandler;
 import com.common.NavigationDrawerFragment;
@@ -50,8 +50,8 @@ public class StudyMainActivity extends FragmentActivity
     private TextView userName;
     private TextView introduce;
 
-
     /** UserInfo Data **/
+    Bundle study_id;
     Bundle userData;
 
     @Override
@@ -64,7 +64,11 @@ public class StudyMainActivity extends FragmentActivity
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout._custom_title);
 
+
         backPressCloseHandler = new BackPressCloseHandler(this);
+
+
+        
 //        ActionBar actionBar = getActionBar();
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 //        actionBar.setHomeButtonEnabled(true);
@@ -88,13 +92,15 @@ public class StudyMainActivity extends FragmentActivity
         userData.putParcelable("userData",userInfo);
 
         /** 사이드 슬라이드 setting **/
-        userName = (TextView) findViewById(R.id.nav_user_name);
-        introduce = (TextView) findViewById(R.id.nav_user_introduce);
         setupSideSlide(userInfo);
 
     }
 
     public void setupSideSlide(User userInfo){
+
+        userName = (TextView) findViewById(R.id.nav_user_name);
+        introduce = (TextView) findViewById(R.id.nav_user_introduce);
+
         userName.setText(userInfo.getName());
         introduce.setText(userInfo.getIntroduce());
 
@@ -129,6 +135,7 @@ public class StudyMainActivity extends FragmentActivity
                             .replace(R.id.fl_container, profileFragment)
                             .commit();
                     break;
+
             }
         }
     };
@@ -193,6 +200,7 @@ public class StudyMainActivity extends FragmentActivity
             case 1:
 //                mTitle = getString(R.string.title_home);
                 tabFragment = TabFragment.newInstance();
+                tabFragment.setArguments(study_id);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fl_container, tabFragment)

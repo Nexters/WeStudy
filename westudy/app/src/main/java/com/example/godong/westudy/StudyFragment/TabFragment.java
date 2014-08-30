@@ -20,6 +20,7 @@ public class TabFragment extends Fragment implements TabHost.OnTabChangeListener
 
     /** TabHost 선언 **/
     private FragmentTabHost mTabHost;
+    private String study_id="";
 
 
     /** MainActivity 에서 호출할 수 있게 Instance 생성 **/
@@ -35,16 +36,19 @@ public class TabFragment extends Fragment implements TabHost.OnTabChangeListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mTabHost = new FragmentTabHost(getActivity());
+
+
+//        study_id = getArguments().getString("study_id");
+
+
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.tabhost);
-
-
         mTabHost.setOnTabChangedListener(this);
 
         mTabHost.addTab(mTabHost.newTabSpec("feed").setIndicator("홈"),
                 ArticleFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("calendar").setIndicator("캘 린 더"),
                 CalendarFragment.class, null);
-        mTabHost.addTab(mTabHost.newTabSpec("plan").setIndicator("계 획 표"),
+        mTabHost.addTab(mTabHost.newTabSpec("plan").setIndicator("스 케 줄"),
                 ScheduleFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("member").setIndicator("멤 버"),
                 MemberFragment.class, null);
@@ -77,6 +81,8 @@ public class TabFragment extends Fragment implements TabHost.OnTabChangeListener
         }
         mTabHost.getTabWidget().getChildAt(mTabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#5bb7e7"));
     }
+
+
 
 //    /** TabHost 선언 **/
 //    private FragmentTabHost mTabHost;
