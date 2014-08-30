@@ -69,6 +69,8 @@ if ('development' == app.get('env')) {
 app.get('/', function (req, res) {
   res.render('index.html');
 });
+
+require('./routes/file.js')(app);
 require('./routes/user.js')(app);
 require('./routes/article.js')(app);
 require('./routes/study.js')(app);

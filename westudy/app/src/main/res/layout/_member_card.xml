@@ -1,7 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff9f9f9">
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="2.5dp" />
+
+    <!-- memberCard contents -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- 좌 여백 -->
+        <Space
+            android:layout_width="11dp"
+            android:layout_height="wrap_content" />
+
+        <!-- 내용 -->
+        <LinearLayout
+            android:layout_width="338dp"
+            android:layout_height="63dp"
+            android:paddingLeft="13dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="15dp"
+            android:paddingRight="13dp"
+            android:orientation="horizontal"
+            android:background="@drawable/common_n_06">
+
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:src="@drawable/study_search_ic_10"
+                android:id="@+id/memberCard_imageView_photo"/>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center"
+                android:paddingLeft="11dp"
+                android:text="이름"
+                android:textSize="14dp"
+                android:id="@+id/memberCard_textView_name"/>
+
+            <Space
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_width="57dp"
+                android:layout_height="30dp"
+                android:padding="0dp"
+                android:text="수 락"
+                android:textSize="13dp"
+                android:textColor="#ffffff"
+                android:id="@+id/memberCard_btn_accept"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/common_n_08_select"/>
+
+            <Space
+                android:layout_width="6dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:layout_width="57dp"
+                android:layout_height="30dp"
+                android:padding="0dp"
+                android:text="거 절"
+                android:textSize="13dp"
+                android:textColor="#ff9b9b9b"
+                android:id="@+id/memberCard_btn_cancel"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/common_n_08_non"/>
+
+
+
+        </LinearLayout>
+
+        <!-- 우 여백 -->
+        <Space
+            android:layout_width="11dp"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="2.5dp" />
 
 </LinearLayout>
