@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -197,12 +198,28 @@ public class StudyMainActivity extends FragmentActivity
 //        mTitle = getString(R.string.title_home);
 
         /** Fragment 전환 **/
+
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction transaction = fragmentManager.beginTransaction();
+//        transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+//
+//        tabFragment = TabFragment.newInstance();
+//        tabFragment.setArguments(study_id);
+//
+//        transaction.replace(R.id.fl_container, tabFragment );
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+
+
+
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager
-                .beginTransaction()
-                .replace(R.id.fl_container, PlaceholderFragment.newInstance(position))
-                .addToBackStack(null)
-                .commit();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+
+        PlaceholderFragment newPlaceholderFragment = PlaceholderFragment.newInstance();
+        transaction.replace(R.id.fl_container, newPlaceholderFragment );
+        transaction.addToBackStack(null);
+        transaction.commit();
 
     }
 
@@ -308,13 +325,26 @@ public class StudyMainActivity extends FragmentActivity
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //TODO: side slide list menu 선택시 action
+//
+//        tabFragment = TabFragment.newInstance();
+//        tabFragment.setArguments(study_id);
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.fl_container, tabFragment)
+//                .commit();
+
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
 
         tabFragment = TabFragment.newInstance();
         tabFragment.setArguments(study_id);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fl_container, tabFragment)
-                .commit();
+
+        transaction.replace(R.id.fl_container, tabFragment );
+        transaction.addToBackStack(null);
+        transaction.commit();
+
 
     }
 
@@ -371,6 +401,15 @@ public class StudyMainActivity extends FragmentActivity
             fragement.setArguments(args);
             return fragement;
         }
+
+        public static PlaceholderFragment newInstance(){
+            PlaceholderFragment fragement = new PlaceholderFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, 0);
+            fragement.setArguments(args);
+            return fragement;
+        }
+
 
         public PlaceholderFragment() {}
 

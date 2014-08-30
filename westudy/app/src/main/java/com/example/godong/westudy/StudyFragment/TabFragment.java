@@ -49,7 +49,7 @@ public class TabFragment extends Fragment implements TabHost.OnTabChangeListener
         mTabHost.addTab(mTabHost.newTabSpec("calendar").setIndicator("캘 린 더"),
                 CalendarFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("plan").setIndicator("스 케 줄"),
-                ScheduleFragment.class, null);
+                ArticleFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("member").setIndicator("멤 버"),
                 MemberFragment.class, null);
 
