@@ -12,9 +12,8 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.common.BackPressCloseHandler;
 import com.common.NavigationDrawerFragment;
@@ -92,12 +91,6 @@ public class StudyMainActivity extends FragmentActivity
         userData = new Bundle();
         userData.putParcelable("userData",userInfo);
 
-<<<<<<< HEAD
-//        study_id = new Bundle();
-//        study_id.putString("study_id",userInfo.getStudyLast());
-
-=======
->>>>>>> FETCH_HEAD
         /** 사이드 슬라이드 setting **/
         setupSideSlide(userInfo);
 
