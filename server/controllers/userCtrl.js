@@ -40,6 +40,30 @@ UserCtrl.updateUser = function (req, res) {
   });
 };
 
+// UserCtrl.getUserByEmail = function (req, res) {
+//   var email = req.query.email;
+//   User.getUserByEmail(email, function (err, user_data) {
+//     if (err) return res.send(400, err);
+//     res.send(200, user_data);
+//   });
+// }
+
+UserCtrl.getUser = function (req, res) {
+  var user_id = req.user._id;
+  User.getUser(user_id, function (err, user_data) {
+    if (err) return res.send(400, err);
+    res.send(200, user_data);
+  });
+}
+
+UserCtrl.getStudyList = function (req, res) {
+  var user_id = req.user._id;
+  User.getStudyList(user_id, function (err, study_list) {
+    if (err) return res.send(400, err);
+    res.send(200, study_list);
+  });
+}
+
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'

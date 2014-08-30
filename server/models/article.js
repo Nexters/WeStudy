@@ -42,6 +42,10 @@ ArticleSchema.statics.addArticle = function (article, callback) {
 // drag from lower to upper
 ArticleSchema.statics.loadArticles = function (target, callback) {
   var self = this;
+  if (!target.last_loadTime) {
+    target.last_loadTime = new Date();
+  }
+
   self.find({
     'study_id': target.study_id,
     'create_time': {
@@ -94,6 +98,10 @@ ArticleSchema.statics.loadArticles = function (target, callback) {
 // drag from upper to lower
 ArticleSchema.statics.refreshArticles = function (target, callback) {
   var self = this;
+  if (!target.last_loadTime) {
+    target.last_loadTime = new Date();
+  }
+  
   self.find({
     'study_id': target.study_id,
     'create_time': {

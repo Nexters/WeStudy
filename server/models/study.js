@@ -21,7 +21,6 @@ var StudySchema = new Schema({
   create_time: Date //생성 시간
 }, {collection: 'studies'});
 
-
 /**
  * Model Methods
  */
@@ -118,10 +117,10 @@ StudySchema.statics.getMembers = function (study_id, callback) {
           'email': 1,
           'profile_url': 1
         }, function (__err, __member) {
-          if (!__err) {
+          if (!__err && __member) {
             member_data_list.push(__member);
-            async_callback();
           }
+          async_callback();
         });
       }, function () {
         callback(null, member_data_list);
@@ -151,15 +150,16 @@ StudySchema.statics.getAppliers = function (study_id, callback) {
           'email': 1,
           'profile_url': 1
         }, function (__err, __applier) {
-          if (!__err) {
+          if (!__err && __applier) {
             applier_data_list.push(__applier);
-            async_callback();
           }
+          async_callback();
         });
       }, function () {
         callback(null, applier_data_list);
       });
     } else {
+      console.log("Get Appliers Error: ", err);
       callback(err, null);
     }
   });
@@ -168,7 +168,7 @@ StudySchema.statics.getAppliers = function (study_id, callback) {
 StudySchema.statics.applyStudy = function (user_id, study_id, callback) {
   var self = this;
   if (user_id && study_id) {
-    this.update({
+    self.update({
       '_id': study_id
     }, {
       '$push': {
@@ -176,8 +176,22 @@ StudySchema.statics.applyStudy = function (user_id, study_id, callback) {
       }
     }, function (err) {
       if (!err) {
-        callback(null);
+        self.model('User').update({
+          '_id': user_id
+        }, {
+          '$push': {
+            'applying': study_id
+          }
+        }, function (__err) {
+          if (!__err) {
+            callback(null);
+          } else {
+            console.log("Apply Study Error: ", __err);
+            callback(__err);
+          }
+        });
       } else {
+        console.log("Apply Study Error: ", err);
         callback(err);
       }
     });
@@ -189,7 +203,7 @@ StudySchema.statics.applyStudy = function (user_id, study_id, callback) {
 StudySchema.statics.acceptApplyStudy = function (user_id, study_id, callback) {
   var self = this;
   if (user_id && study_id) {
-    this.update({
+    self.update({
       '_id': study_id,
       'appliers': {
         '$in': [user_id]
@@ -203,8 +217,22 @@ StudySchema.statics.acceptApplyStudy = function (user_id, study_id, callback) {
       }
     }, function (err) {
       if (!err) {
-        callback(null);
+        self.model('User').update({
+          '_id': user_id
+        }, {
+          '$pull': {
+            'applying': study_id
+          }
+        }, function (__err) {
+          if (!__err) {
+            callback(null);
+          } else {
+            console.log("Accept Apply Study Error: ", __err);
+            callback(__err);
+          }
+        });
       } else {
+        console.log("Accept Apply Study Error: ", err);
         callback(err);
       }
     });
@@ -222,8 +250,22 @@ StudySchema.statics.cancelApplyStudy = function (user_id, study_id, callback) {
       }
     }, function (err) {
       if (!err) {
-        callback(null);
+        self.model('User').update({
+          '_id': user_id
+        }, {
+          '$pull': {
+            'applying': study_id
+          }
+        }, function (__err) {
+          if (!__err) {
+            callback(null);
+          } else {
+            console.log("Cancel Apply Study Error: ", __err);
+            callback(__err);
+          }
+        });
       } else {
+        console.log("Cancel Apply Study Error: ", err);
         callback(err);
       }
     });
