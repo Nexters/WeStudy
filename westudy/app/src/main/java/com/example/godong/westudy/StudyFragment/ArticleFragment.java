@@ -2,7 +2,6 @@ package com.example.godong.westudy.StudyFragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -94,14 +93,15 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         /** 리소스 초기화 **/
         ArticleList = (ListView) v.findViewById(android.R.id.list);
         ArticleScroll = (CustomScrollView) v.findViewById(R.id.article_scrollView);
-        swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.article_swipe_container);
-        swipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
+
+//        swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.article_swipe_container);
+//        swipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
 //        study_id = getArguments().getString("study_id");
 
 
         /** Event 초기화 **/
-        swipeLayout.setOnRefreshListener(this);
+//        swipeLayout.setOnRefreshListener(this);
         ArticleScroll.setOnEdgeTouchListener(new OnEdgeTouchListener(){
             @Override
             public void onEdgeTouch(CustomScrollView.DIRECTION direction) {
@@ -176,12 +176,12 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
             }
         });
 
-        new Handler().postDelayed(new Runnable() {
-            @Override public void run() {
-                Log.i("Handler","END");
-                swipeLayout.setRefreshing(false);
-            }
-        }, 2000);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override public void run() {
+//                Log.i("Handler","END");
+//                swipeLayout.setRefreshing(false);
+//            }
+//        }, 2000);
     }
 
     private void setFeedData(){

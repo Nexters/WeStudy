@@ -205,11 +205,13 @@
 
         <!-- 여기에 하단 Article 넣어줘 -->
 
+       <!--
         <android.support.v4.widget.SwipeRefreshLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/article_swipe_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+        -->
 
         <com.common.CustomScrollView
             android:layout_width="match_parent"
@@ -243,8 +245,9 @@
 
         </com.common.CustomScrollView>
 
+        <!--
         </android.support.v4.widget.SwipeRefreshLayout>
-
+        -->
 
                 <!-- 여기까지 -->
 
