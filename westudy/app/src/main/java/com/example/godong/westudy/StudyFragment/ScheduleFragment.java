@@ -1,15 +1,18 @@
 package com.example.godong.westudy.StudyFragment;
 
 import android.content.Context;
-import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v4.app.ListFragment;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -35,8 +38,6 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
 
     SwipeRefreshLayout swipeLayout;
 
-    protected CustomScrollView.OnEdgeTouchListener onEdgeTouchListener;
-
     /** Data List **/
     private ArrayList<Article> schedule_data;
     private FeedAdapter schedule_adapter;
@@ -44,9 +45,6 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
 
     private ListView ScheduleList;
     private ScrollView ScheduleScroll;
-
-    private boolean scrollFlag;
-
 
     public ScheduleFragment(){
 
@@ -65,9 +63,9 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
         StrictMode.enableDefaults();
         super.onCreate(savedInstanceState);
 
-        schedule_data = new ArrayList<Article>();
-        schedule_adapter = new FeedAdapter(getActivity(), R.layout._feed_card, schedule_data);
-        setListAdapter(schedule_adapter);
+        article_data = new ArrayList<Article>();
+        article_adapter = new FeedAdapter(getActivity(), R.layout._feed_card, article_data);
+        setListAdapter(article_adapter);
 
 
         onRefresh();
@@ -87,8 +85,8 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
     public void init(View v){
 
         /** 리소스 초기화 **/
-        ScheduleList = (ListView) v.findViewById(android.R.id.list);
-        ScheduleScroll = (CustomScrollView) v.findViewById(R.id.schedule_scrollView);
+        ArticleList = (ListView) v.findViewById(android.R.id.list);
+        ArticleScroll = (CustomScrollView) v.findViewById(R.id.article_scrollView);
 
 //        swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.article_swipe_container);
 //        swipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
@@ -98,41 +96,40 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
 
         /** Event 초기화 **/
 //        swipeLayout.setOnRefreshListener(this);
+        ArticleScroll.setOnEdgeTouchListener(new CustomScrollView.OnEdgeTouchListener(){
+            @Override
+            public void onEdgeTouch(CustomScrollView.DIRECTION direction) {
+                if(direction == CustomScrollView.DIRECTION.TOP){
+                    //TODO : Scroll Top 일 때 action
+                    if(scrollFlag == true) {
+                        onRefresh();
+                    }
 
-//        ScheduleScroll.setOnEdgeTouchListener(new CustomScrollView.OnEdgeTouchListener(){
-//            @Override
-//            public void onEdgeTouch(CustomScrollView.DIRECTION direction) {
-//                if(direction == CustomScrollView.DIRECTION.TOP){
-//                    //TODO : Scroll Top 일 때 action
-//                    if(scrollFlag == true) {
-//                        onRefresh();
-//                    }
-//
-//                }else if(direction == CustomScrollView.DIRECTION.BOTTOM){
-//                    //TODO : Scroll Bottom 일 때 action
-//
-//
-//                }else if(direction == CustomScrollView.DIRECTION.NONE){
-//                    //TODO : Top도 Bottom 도 아닐 때 action
-//
-//                }else{
-//                    throw new IllegalArgumentException("Invalid direction..");
-//                }
-//            }
-//        });
+                }else if(direction == CustomScrollView.DIRECTION.BOTTOM){
+                    //TODO : Scroll Bottom 일 때 action
 
-//        WriteSchedule = (LinearLayout)v.findViewById(R.id.article_floating_button);
-//        WriteSchedule.setOnClickListener(new LinearLayout.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                newScheduleFragment = NewScheduleFragment.newInstance();
-//                getActivity().getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fl_container, newScheduleFragment)
-//                        .addToBackStack(null)
-//                        .commit();
-//            }
-//        });
+
+                }else if(direction == CustomScrollView.DIRECTION.NONE){
+                    //TODO : Top도 Bottom 도 아닐 때 action
+
+                }else{
+                    throw new IllegalArgumentException("Invalid direction..");
+                }
+            }
+        });
+
+        WriteArticle = (LinearLayout)v.findViewById(R.id.article_floating_button);
+        WriteArticle.setOnClickListener(new LinearLayout.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newArticleFragment = NewArticleFragment.newInstance();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fl_container, newArticleFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 
 
@@ -155,7 +152,7 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
-                schedule_jarray = CommonUtil.stringToJSONArray(new String(response));
+                article_jarray = CommonUtil.stringToJSONArray(new String(response));
                 setFeedData();
 
 
@@ -189,13 +186,13 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
         String photo_url = "";
 
 
-        schedule_data.clear();
-        schedule_adapter.notifyDataSetInvalidated();
+        article_data.clear();
+        article_adapter.notifyDataSetInvalidated();
 
         try{
-            for(int i=0;i<schedule_jarray.length();i++){
+            for(int i=0;i<article_jarray.length();i++){
 
-                JSONObject feed = schedule_jarray.getJSONObject(i);
+                JSONObject feed = article_jarray.getJSONObject(i);
 
                 author = feed.getString("author");
 
@@ -216,12 +213,12 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
 //                Log.d("output",author+"/"+study_id+"/"+text+"/"+photo_url);
                 Article article = new Article(create_time, text, photo_url, author);
 
-                schedule_data.add(article);
-                Log.d("Arraylist output", schedule_data.get(i).toString());
+                article_data.add(article);
+                Log.d("Arraylist output", article_data.get(i).toString());
 
             }
 
-            schedule_adapter.notifyDataSetChanged();
+            article_adapter.notifyDataSetChanged();
 
         }catch(JSONException je){
             Log.e("JSONException:",je.toString());
