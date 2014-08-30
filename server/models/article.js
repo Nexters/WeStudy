@@ -26,7 +26,7 @@ ArticleSchema.statics.addArticle = function (article, callback) {
     var newArticle = new self({
       'author': article.author,
       'study_id': article.study_id,
-      'contents': article.contents,
+      'contents': JSON.parse(article.contents),
       'create_time': new Date()
     });
     try {
