@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -46,6 +47,8 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
 
     private ListView ArticleList;
     private CustomScrollView ArticleScroll;
+    private LinearLayout WriteArticle;
+    private NewArticleFragment newArticleFragment;
 
     private boolean scrollFlag = false;
     private String study_id = "";
@@ -119,7 +122,17 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
                 }
             }
         });
-
+        WriteArticle = (LinearLayout)v.findViewById(R.id.article_floating_button);
+        WriteArticle.setOnClickListener(new LinearLayout.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newArticleFragment = NewArticleFragment.newInstance();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fl_container, newArticleFragment)
+                        .commit();
+            }
+        });
     }
 
     
