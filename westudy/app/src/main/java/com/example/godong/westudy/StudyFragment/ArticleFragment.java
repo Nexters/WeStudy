@@ -74,6 +74,7 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         article_adapter = new FeedAdapter(getActivity(), R.layout._feed_card, article_data);
         setListAdapter(article_adapter);
 
+
         onRefresh();
 
     }
@@ -137,7 +138,6 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         });
     }
 
-    
 
     @Override
     public void onRefresh() {
