@@ -118,6 +118,7 @@ public class StudyMainActivity extends FragmentActivity
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fl_container, studySearchTabFragment)
+                            .addToBackStack(null)
                             .commit();
                     break;
                 case R.id.nav_btn_make_study:
@@ -125,6 +126,7 @@ public class StudyMainActivity extends FragmentActivity
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fl_container, studyMakeFragment)
+                            .addToBackStack(null)
                             .commit();
                     break;
                 case R.id.nav_btn_setting:
@@ -133,6 +135,7 @@ public class StudyMainActivity extends FragmentActivity
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fl_container, profileFragment)
+                            .addToBackStack(null)
                             .commit();
                     break;
 
@@ -142,6 +145,11 @@ public class StudyMainActivity extends FragmentActivity
 
     @Override
     public void onBackPressed() {
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            super.onBackPressed();
+            return;
+        }
         backPressCloseHandler.onBackPressed();
     }
 
@@ -162,6 +170,7 @@ public class StudyMainActivity extends FragmentActivity
         fragmentManager
                 .beginTransaction()
                 .replace(R.id.fl_container, PlaceholderFragment.newInstance(position))
+                .addToBackStack(null)
                 .commit();
 
     }
