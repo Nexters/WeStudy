@@ -54,7 +54,7 @@ UserCtrl.getUser = function (req, res) {
     if (err) return res.send(400, err);
     res.send(200, user_data);
   });
-}
+};
 
 UserCtrl.getStudyList = function (req, res) {
   var user_id = req.user._id;
@@ -62,7 +62,7 @@ UserCtrl.getStudyList = function (req, res) {
     if (err) return res.send(400, err);
     res.send(200, study_list);
   });
-}
+};
 
 passport.use(new LocalStrategy({
     usernameField: 'email',

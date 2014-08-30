@@ -237,7 +237,7 @@ StudySchema.statics.acceptApplyStudy = function (user_id, study_id, callback) {
       }
     });
   }
-}
+};
 
 StudySchema.statics.cancelApplyStudy = function (user_id, study_id, callback) {
   var self = this;
