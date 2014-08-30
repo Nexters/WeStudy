@@ -54,7 +54,7 @@ public class Article {
 
         String contents = "";
 
-        if(photo_url.equals("")){
+        if(photo_url.equals("") || photo_url.equals("\"\"")){
             contents = text;
         }else {
             contents = text + "\n" + "("+photo_url+")";

@@ -2,16 +2,19 @@ package com.example.godong.westudy.Activity;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +29,10 @@ import com.example.godong.westudy.StudyFragment.NewArticleFragment;
 import com.example.godong.westudy.StudyFragment.TabFragment;
 import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
 
+import java.util.ArrayList;
+
 public class StudyMainActivity extends FragmentActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks{
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, AdapterView.OnItemClickListener {
 
     /** Fragment managing the behaviors, interactions and presentation of the navigation drawer. **/
     private NavigationDrawerFragment mNavigationDrawerFragment;
@@ -49,6 +54,9 @@ public class StudyMainActivity extends FragmentActivity
     /** Navigation Drawer Side Slide용 **/
     private TextView userName;
     private TextView introduce;
+    private ListView myStudy;
+    private ArrayList<String> studyList;
+    private StudyAdapter listAdapter;
 
     /** UserInfo Data **/
     Bundle study_id;
@@ -108,6 +116,26 @@ public class StudyMainActivity extends FragmentActivity
         findViewById(R.id.nav_btn_make_study).setOnClickListener(mClickListener);
         findViewById(R.id.nav_btn_setting).setOnClickListener(mClickListener);
 
+        setUpStudyList();
+
+    }
+
+    public void setUpStudyList(){
+
+        studyList = new ArrayList<String>();
+
+        //TODO: studyList json 에서 받아와서 list만들기..
+        studyList.add("토익 공부 합시당");
+        studyList.add("테스트 테스트");
+        studyList.add("으아");
+        studyList.add("테스트~스터디~");
+
+        listAdapter = new StudyAdapter(this, R.layout._my_study_card, studyList);
+        myStudy = (ListView) findViewById(R.id.nav_study_listview);
+        myStudy.setAdapter(listAdapter);
+        myStudy.setOnItemClickListener(this);
+
+
     }
 
     Button.OnClickListener mClickListener = new View.OnClickListener() {
@@ -120,6 +148,7 @@ public class StudyMainActivity extends FragmentActivity
                             .replace(R.id.fl_container, studySearchTabFragment)
                             .addToBackStack(null)
                             .commit();
+                    mNavigationDrawerFragment.closeDrawer();
                     break;
                 case R.id.nav_btn_make_study:
                     studyMakeFragment = StudyMakeFragment.newInstance();
@@ -128,6 +157,7 @@ public class StudyMainActivity extends FragmentActivity
                             .replace(R.id.fl_container, studyMakeFragment)
                             .addToBackStack(null)
                             .commit();
+                    mNavigationDrawerFragment.closeDrawer();
                     break;
                 case R.id.nav_btn_setting:
                     profileFragment = profileFragment.newInstance();
@@ -137,6 +167,7 @@ public class StudyMainActivity extends FragmentActivity
                             .replace(R.id.fl_container, profileFragment)
                             .addToBackStack(null)
                             .commit();
+                    mNavigationDrawerFragment.closeDrawer();
                     break;
 
             }
@@ -176,105 +207,155 @@ public class StudyMainActivity extends FragmentActivity
     }
 
 
-    /**
-     * ActionBar restore
-     * Fragment 전환 전 ActionBar Title 변경
-     */
-    public void restoreActionBar(){
-        ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayShowTitleEnabled(true);
-//        actionBar.setTitle(mTitle);
-    }
+//    /**
+//     * ActionBar restore
+//     * Fragment 전환 전 ActionBar Title 변경
+//     */
+//    public void restoreActionBar(){
+//        ActionBar actionBar = getActionBar();
+//        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+//        actionBar.setDisplayShowTitleEnabled(true);
+////        actionBar.setTitle(mTitle);
+//    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        if(!mNavigationDrawerFragment.isDrawerOpen()){
-            /** Only show items in the action bar relevant to this screen
-             if the drawer is not showing. Otherwise, let the drawer
-             decide what to show in the action bar. **/
-            getMenuInflater().inflate(R.menu.main, menu);
-            restoreActionBar();
-            return true;
-        }
-        return super.onCreateOptionsMenu(menu);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu){
+//        if(!mNavigationDrawerFragment.isDrawerOpen()){
+//            /** Only show items in the action bar relevant to this screen
+//             if the drawer is not showing. Otherwise, let the drawer
+//             decide what to show in the action bar. **/
+//            getMenuInflater().inflate(R.menu.main, menu);
+//            restoreActionBar();
+//            return true;
+//        }
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
     /**
      * Section Select 됐을 때 실제 Fragment 전환 작업
      * @param number
      */
     public void onSectionAttached(int number){
-        switch(number){
-            case 1:
-//                mTitle = getString(R.string.title_home);
-                tabFragment = TabFragment.newInstance();
-                tabFragment.setArguments(study_id);
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fl_container, tabFragment)
-                        .commit();
-                break;
-            case 2:
-//                mTitle = getString(R.string.title_profile);
-                profileFragment = profileFragment.newInstance();
-                profileFragment.setArguments(userData);
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fl_container, profileFragment)
-                        .commit();
-                break;
-            case 3:
-//                mTitle = getString(R.string.title_study);
-                tabFragment = TabFragment.newInstance();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fl_container, tabFragment)
-                        .commit();
-                break;
 
-            case 4:
-//                mTitle = getString(R.string.title_study_search);
-                studySearchTabFragment = StudySearchTabFragment.newInstance();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fl_container, studySearchTabFragment)
-                        .commit();
-                break;
+//
+//        switch(number){
+//            case 1:
+////                mTitle = getString(R.string.title_home);
+//                tabFragment = TabFragment.newInstance();
+//                tabFragment.setArguments(study_id);
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fl_container, tabFragment)
+//                        .commit();
+//                break;
+//            case 2:
+////                mTitle = getString(R.string.title_profile);
+//                profileFragment = profileFragment.newInstance();
+//                profileFragment.setArguments(userData);
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fl_container, profileFragment)
+//                        .commit();
+//                break;
+//            case 3:
+////                mTitle = getString(R.string.title_study);
+//                tabFragment = TabFragment.newInstance();
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fl_container, tabFragment)
+//                        .commit();
+//                break;
+//
+//            case 4:
+////                mTitle = getString(R.string.title_study_search);
+//                studySearchTabFragment = StudySearchTabFragment.newInstance();
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fl_container, studySearchTabFragment)
+//                        .commit();
+//                break;
+//
+//            case 5:
+////                mTitle = getString(R.string.title_study_search);
+//                newArticleFragment = NewArticleFragment.newInstance();
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fl_container, newArticleFragment)
+//                        .commit();
+//                break;
+//
+//            case 6:
+////                mTitle = getString(R.string.title_study_make);
+//                studyMakeFragment = StudyMakeFragment.newInstance();
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fl_container, studyMakeFragment)
+//                        .commit();
+//                break;
+//
+//            case 7:
+////                mTitle = getString(R.string.title_info);
+//                infoFragment = InfoFragment.newInstance();
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fl_container, infoFragment)
+//                        .commit();
+//                break;
+//
+//        }
+    }
 
-            case 5:
-//                mTitle = getString(R.string.title_study_search);
-                newArticleFragment = NewArticleFragment.newInstance();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fl_container, newArticleFragment)
-                        .commit();
-                break;
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        //TODO: side slide list menu 선택시 action
 
-            case 6:
-//                mTitle = getString(R.string.title_study_make);
-                studyMakeFragment = StudyMakeFragment.newInstance();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fl_container, studyMakeFragment)
-                        .commit();
-                break;
+        tabFragment = TabFragment.newInstance();
+        tabFragment.setArguments(study_id);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fl_container, tabFragment)
+                .commit();
 
-            case 7:
-//                mTitle = getString(R.string.title_info);
-                infoFragment = InfoFragment.newInstance();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fl_container, infoFragment)
-                        .commit();
-                break;
-
-        }
     }
 
 
     /**
-     *
+     * Study List Adapter
+     * **/
+    private class StudyAdapter extends ArrayAdapter<String>{
+        private ArrayList<String> items;
+
+        public StudyAdapter(Context context, int textViewResourceId, ArrayList<String> items){
+            super(context, textViewResourceId, items);
+            this.items = items;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent){
+            View v = convertView;
+            if(v == null){
+                LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                v = vi.inflate(R.layout._my_study_card, null);
+            }
+
+            String studyName = items.get(position);
+            if(studyName !=null) {
+                TextView name = (TextView) v.findViewById(R.id.myStudy_textView_name);
+
+                if (name != null) {
+                    name.setText(studyName);
+                }
+            }
+
+            return v;
+        }
+    }
+
+
+
+
+    /**
+     * fragment change 담당
      */
     public static class PlaceholderFragment extends Fragment {
 

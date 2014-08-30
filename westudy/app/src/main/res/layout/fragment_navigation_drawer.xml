@@ -94,8 +94,8 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:paddingLeft="61dp"
-            android:id="@+id/nav_study_listview" >
+            android:id="@+id/nav_study_listview"
+            android:divider="#00000000">
 
         </ListView>
 
