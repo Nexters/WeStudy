@@ -162,6 +162,7 @@ public class StudyMainActivity extends FragmentActivity
         fragmentManager
                 .beginTransaction()
                 .replace(R.id.fl_container, PlaceholderFragment.newInstance(position))
+                .addToBackStack(null)
                 .commit();
 
     }

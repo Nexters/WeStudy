@@ -122,6 +122,7 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
                 }
             }
         });
+
         WriteArticle = (LinearLayout)v.findViewById(R.id.article_floating_button);
         WriteArticle.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
@@ -130,6 +131,7 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fl_container, newArticleFragment)
+                        .addToBackStack(null)
                         .commit();
             }
         });
