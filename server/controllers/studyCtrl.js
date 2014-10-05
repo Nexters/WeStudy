@@ -24,6 +24,16 @@ StudyCtrl.addStudy = function (req, res) {
   });
 };
 
+StudyCtrl.updateStudy = function (req, res) {
+  var _id = req.body._id;
+  var study = req.body.study;
+  Study.updateStudy(_id, study, function (err) {
+    if (err) return res.send(400, err);
+    return res.send(200, null);
+  });
+
+};
+
 StudyCtrl.getStudyInfo = function (req, res) {
   var _id = req.query._id;
   Study.getStudyInfo(_id, function (err, study_info) {
