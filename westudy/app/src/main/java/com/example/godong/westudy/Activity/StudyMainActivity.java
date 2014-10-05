@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.common.BackPressCloseHandler;
+import com.common.CommonUtil;
 import com.common.NavigationDrawerFragment;
 import com.dataSet.User;
 import com.example.godong.westudy.R;
@@ -28,6 +30,13 @@ import com.example.godong.westudy.SideMenu.StudyMakeFragment;
 import com.example.godong.westudy.StudyFragment.NewArticleFragment;
 import com.example.godong.westudy.StudyFragment.TabFragment;
 import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.network.HttpUtil;
+
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -116,32 +125,37 @@ public class StudyMainActivity extends FragmentActivity
         findViewById(R.id.nav_btn_make_study).setOnClickListener(mClickListener);
         findViewById(R.id.nav_btn_setting).setOnClickListener(mClickListener);
 
-        setUpStudyList();
+        setUpStudyList(userInfo);
 
     }
 
-    public void setUpStudyList(){
-
+    public void setUpStudyList(User userInfo){
         studyList = new ArrayList<String>();
 
         //TODO: studyList json 에서 받아와서 list만들기..
-//        HttpUtil.get("http://godong9.com:3000/user/getStudyList", null, null, new AsyncHttpResponseHandler() {
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-//                // called when response HTTP status is "200 OK"
-//                article_jarray = CommonUtil.stringToJSONArray(new String(response));
-//                setFeedData();
-//
-//
-//            }
-//
-//            @Override
-//            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-//                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-//                Log.e("HttpUtil.get.ERROR", "ERROR");
-//            }
-//
-//        });
+        HttpUtil.get("http://godong9.com:3000/user/getStudyList", null, null, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                // called when response HTTP status is "200 OK"
+                JSONArray studyJSONarr = CommonUtil.stringToJSONArray(new String(response));
+                try {
+                    for (int i = 0; i < studyJSONarr.length(); i++) {
+                        JSONObject studyJSONobj = studyJSONarr.getJSONObject(i);
+                        studyList.add(studyJSONobj.getString("title"));
+                    }
+                } catch(JSONException je) {
+                    Log.e("JSONException: ", je.toString());
+                }
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                Log.e("HttpUtil.get.ERROR", "ERROR");
+            }
+
+        });
         studyList.add("토익 공부 합시당");
         studyList.add("테스트 테스트");
         studyList.add("으아");
