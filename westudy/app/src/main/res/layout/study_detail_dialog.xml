@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="148dp"
+        android:orientation="vertical"
+        android:background="@drawable/p_01">
+
+        <Space
+            android:layout_width="300dp"
+            android:layout_height="88dp" />
+
+        <!-- 타이틀 및 텍스트 영역 -->
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:background="@drawable/p_02">
+
+            <!-- left -->
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="13dp"
+                android:paddingLeft="8dp"
+                android:orientation="vertical">
+
+                <!-- 스터디 타이틀 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="스터디 타이틀"
+                    android:textSize="17dp"
+                    android:textColor="#ffffffff"
+                    android:id="@+id/article_textView_title"/>
+
+                <!-- 타이틀 하단 부분 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:orientation="horizontal">
+
+                    <!-- 날짜 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="8dp"
+                        android:text="날짜"
+                        android:textSize="10dp"
+                        android:textColor="#ffffffff"
+                        android:id="@+id/article_textView_day"/>
+
+                    <!-- 위치 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="위치 "
+                        android:textSize="10dp"
+                        android:textColor="#ffffffff"
+                        android:id="@+id/article_textView_location"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- right(깃발 달리는 곳 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="13dp">
+
+                <!-- 오른쪽 정렬을 위해 삽입. 이후로는 모두 오른쪽 정렬(인듯?) -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
+
+
+                <!-- 동현오빠~깃발 아이콘 달아주세용
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_02_icon"/>
+                -->
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- 하단 멤버란 -->
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="43dp"
+        android:background="@drawable/common_n_06">
+
+        <!-- 멤버 사진 뜨는 곳 -->
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="wrap_content">
+
+            <!-- 여기에 멤버 사진을 넣습니다. -->
+
+
+        </LinearLayout>
+
+        <!-- *** 외 n명 상태 뜨는 곳 -->
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:paddingRight="16dp"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="180dp"
+                android:layout_height="23dp" />
+            <!-- 글자 배치용 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- 오른쪽 정렬을 위해 삽입. 이후로는 모두 오른쪽 정렬(인듯?) -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
+
+                <!-- 동현오빠 사람 아이콘 달아주세요
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:src="@drawable/home_06_icon"/>
+                -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="고동현 외 n명"
+                    android:textSize="10dp"
+                    android:textColor="#ff878585"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="221dp"
+        android:background="#ffffffff"
+        android:orientation="vertical">
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -21,10 +21,12 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.app.FragmentActivity;
 
 import com.common.CommonUtil;
 import com.dataSet.Study;
 import com.example.godong.westudy.R;
+import com.example.godong.westudy.StudyFragment.StudyDetailDialog;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.network.HttpUtil;
 
@@ -49,6 +51,9 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
 
     private ListView StudySearchList;
     private ScrollView StudySearchScroll;
+
+    private StudyDetailDialog detailDialog;
+
 
     public StudyAllListFragment(){
 
@@ -157,7 +162,7 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
                 creator = studyList.getString("creator");
                 subject = studyList.getString("subject");
                 title = studyList.getString("title");
-                number_type = studyList.getInt("number_type");
+                number_type = studyList.getInt("person");
                 detail = studyList.getString("detail");
 //                create_time = studyList.getString("create_time");
 
@@ -200,24 +205,27 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
             studySearch_adapter.notifyDataSetChanged();
 
         }catch(JSONException je){
-            Log.e("JSONException:",je.toString());
+            Log.e("JSONException Occured:",je.toString());
         }
 
     }
 
 
 
-    private class StudyListAdapter extends ArrayAdapter<Study> implements View.OnClickListener {
+    private class StudyListAdapter extends ArrayAdapter<Study> {
         private ArrayList<Study> items;
-
+        private Context context;
         public StudyListAdapter(Context context, int textViewResourceId, ArrayList<Study> items){
             super(context, textViewResourceId, items);
             this.items = items;
+            this.context = context;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent){
+            final int pos = position;
             View v = convertView;
+
             if(v == null){
                 LayoutInflater vi = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 v = vi.inflate(R.layout._study_card, null);
@@ -225,6 +233,7 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
 
             Study study = items.get(position);
             if(study !=null) {
+                v.setTag(position);
                 TextView create_time = (TextView) v.findViewById(R.id.studyCard_createTime);
                 TextView location = (TextView) v.findViewById(R.id.studyCard_location);
                 TextView title = (TextView) v.findViewById(R.id.studyCard_title);
@@ -234,7 +243,6 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
 
                 ImageView subject = (ImageView) v.findViewById(R.id.studyCard_subject);
                 LinearLayout contents = (LinearLayout) v.findViewById(R.id.studyCard_contents);
-                contents.setOnClickListener(this);
 
                 if(subject != null){
                     //TODO : subject별로 icon image 변경. BitmapDrawable 불러온 뒤 set.
@@ -289,18 +297,21 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
 
             }
 
+
+            // 리스트 아이템을 터치 했을 때 이벤트 발생
+            v.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    // 터치 시 해당 아이템 이름 출력
+                    Study study = items.get(pos);
+                    Toast.makeText(context, "리스트 클릭 : "+study.getId(), Toast.LENGTH_SHORT).show();
+                    detailDialog = new StudyDetailDialog(study);
+                    detailDialog.show(((FragmentActivity)getContext()).getFragmentManager(), "User1 Popup");
+                }
+            });
+
             return v;
-        }
-
-
-        @Override
-        public void onClick(View v) {
-
-            if(v.getId() == R.id.studyCard_contents) {
-                Toast toast = Toast.makeText(getActivity().getApplicationContext(), "디테일 화면으로 넘어갑니다!", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 100);
-                toast.show();
-            }
         }
     }
 
