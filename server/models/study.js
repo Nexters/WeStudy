@@ -47,7 +47,7 @@ StudySchema.statics.saveStudy = function (me, study, callback) {
           '_id': me._id
         }, {
           '$push': {
-            'study': savedStudy._id
+            'study': savedStudy._id.toString()
           }
         }, function (__err) {
           callback(__err, savedStudy);
