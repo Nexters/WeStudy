@@ -24,10 +24,6 @@ var StudySchema = new Schema({
 /**
  * Model Methods
  */
- '$push': {
-        'appliers': user_id
-      }
-
 // Make study
 StudySchema.statics.saveStudy = function (me, study, callback) {
   var self = this;
