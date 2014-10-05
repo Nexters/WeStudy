@@ -24,9 +24,13 @@ var StudySchema = new Schema({
 /**
  * Model Methods
  */
+ '$push': {
+        'appliers': user_id
+      }
 
 // Make study
 StudySchema.statics.saveStudy = function (me, study, callback) {
+  var self = this;
   if (study) {
     var newStudy = new this({
       creator: me._id,
@@ -42,7 +46,18 @@ StudySchema.statics.saveStudy = function (me, study, callback) {
       create_time : new Date()
     });
     try {
-      newStudy.save(callback);
+      newStudy.save(function (savedStudy) {
+        self.model('User').update({
+          '_id': me._id
+        }, {
+          '$push': {
+            'study': savedStudy._id
+          }
+        }, function (__err) {
+          callback(__err, savedStudy);
+        });
+      });
+
     } catch (err) {
       callback(err, null);
     }

@@ -117,7 +117,6 @@ UserSchema.statics.getStudyList = function (user_id, callback) {
     if (!err && user_data) {
       var studies = user_data.study;
       var study_data_list = [];
-
       async.map(studies, function (study, async_callback) {
         self.model('Study').findOne({
           '_id': study
