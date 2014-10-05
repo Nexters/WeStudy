@@ -35,8 +35,8 @@ StudySchema.statics.saveStudy = function (me, study, callback) {
       person: study.person,
       location: study.location ? study.location : [],
       day_of_week: makeDayOfWeekArray(study.day_of_week),
-      detail: study.detail ? study.detail : '',
-      cover_url: study.cover_url ? study.cover_url : '',
+      detail: study.detail || "",
+      cover_url: study.cover_url || "",
       members : [ me._id ],
       appliers : [],
       create_time : new Date()
