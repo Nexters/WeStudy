@@ -60,6 +60,8 @@ public class Study {
 
     }
 
+    public String getId() { return this._id; }
+
     public String getCreator() {
         return creator;
     }
