@@ -125,10 +125,30 @@ public class StudyMainActivity extends FragmentActivity
         studyList = new ArrayList<String>();
 
         //TODO: studyList json 에서 받아와서 list만들기..
+//        HttpUtil.get("http://godong9.com:3000/user/getStudyList", null, null, new AsyncHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+//                // called when response HTTP status is "200 OK"
+//                article_jarray = CommonUtil.stringToJSONArray(new String(response));
+//                setFeedData();
+//
+//
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+//                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+//                Log.e("HttpUtil.get.ERROR", "ERROR");
+//            }
+//
+//        });
         studyList.add("토익 공부 합시당");
         studyList.add("테스트 테스트");
         studyList.add("으아");
         studyList.add("테스트~스터디~");
+
+
+
 
         listAdapter = new StudyAdapter(this, R.layout._my_study_card, studyList);
         myStudy = (ListView) findViewById(R.id.nav_study_listview);

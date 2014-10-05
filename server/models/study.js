@@ -25,7 +25,7 @@ var StudySchema = new Schema({
  * Model Methods
  */
 
-// make study
+// Make study
 StudySchema.statics.saveStudy = function (me, study, callback) {
   if (study) {
     var newStudy = new this({
@@ -35,8 +35,8 @@ StudySchema.statics.saveStudy = function (me, study, callback) {
       person: study.person,
       location: study.location ? study.location : [],
       day_of_week: makeDayOfWeekArray(study.day_of_week),
-      detail: study.detail ? study.detail : '',
-      cover_url: study.cover_url ? study.cover_url : '',
+      detail: study.detail || "",
+      cover_url: study.cover_url || "",
       members : [ me._id ],
       appliers : [],
       create_time : new Date()
@@ -48,6 +48,32 @@ StudySchema.statics.saveStudy = function (me, study, callback) {
     }
   } else {
     callback("Study Parameter doesn't exist.", null);
+  }
+};
+
+// Change Study data
+StudySchema.statics.updateStudy = function (study_id, study, callback) {
+  if (study) {
+    this.update({
+      '_id': study_id
+    },{
+      '$set': {
+        'subject': study.subject,
+        'title': study.title,
+        'location': study.location,
+        'day_of_week': makeDayOfWeekArray(study.day_of_week),
+        'detail': study.detail || '',
+        'cover_url': study.cover_url || ''
+      }
+    }, function (err, affected_elements) {
+      if (!err) {
+        callback(null);
+      } else {
+        callback(err);
+      }
+    });
+  } else {
+    callback("Modified Study Parameter doesn't exist.");
   }
 };
 

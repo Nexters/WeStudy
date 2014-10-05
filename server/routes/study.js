@@ -2,6 +2,7 @@ var studyCtrl = require('../controllers/studyCtrl');
 
 module.exports = function(app) {
   app.post('/study', studyCtrl.addStudy);
+  app.post('/study/updateStudy', studyCtrl.updateStudy);
   app.get('/study/all', studyCtrl.getAllStudy);
   app.get('/study/getStudyInfo', studyCtrl.getStudyInfo);
   app.get('/study/loadStudyBySubject', studyCtrl.loadStudyBySubject);
