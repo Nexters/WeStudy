@@ -305,7 +305,7 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
                 public void onClick(View v) {
                     // 터치 시 해당 아이템 이름 출력
                     Study study = items.get(pos);
-                    Toast.makeText(context, "리스트 클릭 : "+study.getId(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "리스트 클릭 : "+study.getId(), Toast.LENGTH_SHORT).show();
                     detailDialog = new StudyDetailDialog(study);
                     detailDialog.show(((FragmentActivity)getContext()).getFragmentManager(), "User1 Popup");
                 }
