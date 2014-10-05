@@ -58,7 +58,9 @@ UserCtrl.getUser = function (req, res) {
 
 UserCtrl.getStudyList = function (req, res) {
   var user_id = req.user._id;
+  console.log(user_id);
   User.getStudyList(user_id, function (err, study_list) {
+    console.log(study_list);
     if (err) return res.send(400, err);
     res.send(200, study_list);
   });
