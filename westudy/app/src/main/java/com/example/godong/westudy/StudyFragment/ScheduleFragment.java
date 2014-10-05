@@ -1,16 +1,20 @@
 package com.example.godong.westudy.StudyFragment;
 
 import android.content.Context;
-import android.os.Bundle;
+import android.os.Handler;
+import android.os.StrictMode;
 import android.support.v4.app.ListFragment;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.common.CommonUtil;
@@ -34,20 +38,13 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
 
     SwipeRefreshLayout swipeLayout;
 
-    /** item List **/
-    private ArrayList<Article> article_data;
-    private FeedAdapter article_adapter;
-    private JSONArray article_jarray;
+    /** Data List **/
+    private ArrayList<Article> schedule_data;
+    private FeedAdapter schedule_adapter;
+    private JSONArray schedule_jarray;
 
-    private ListView ArticleList;
-    private CustomScrollView ArticleScroll;
-    private LinearLayout WriteArticle;
-    private NewArticleFragment newArticleFragment;
-
-    private boolean scrollFlag = false;
-    private String study_id = "";
-
-
+    private ListView ScheduleList;
+    private ScrollView ScheduleScroll;
 
     public ScheduleFragment(){
 
@@ -60,6 +57,20 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
         return fragment;
     }
 
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        StrictMode.enableDefaults();
+        super.onCreate(savedInstanceState);
+
+        article_data = new ArrayList<Article>();
+        article_adapter = new FeedAdapter(getActivity(), R.layout._feed_card, article_data);
+        setListAdapter(article_adapter);
+
+
+        onRefresh();
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -250,8 +261,6 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
             return v;
         }
     }
-
-
 
 
 }
