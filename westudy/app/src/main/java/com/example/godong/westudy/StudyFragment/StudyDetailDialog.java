@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.dataSet.Study;
 import com.example.godong.westudy.R;
@@ -16,6 +18,10 @@ public class StudyDetailDialog extends DialogFragment {
 
     private Context context;
     private Study study;
+    private TextView title;
+    private TextView person;
+    private TextView detail;
+    private ImageButton dialog_exit_btn;
 
     public StudyDetailDialog(Study study) {
         this.study = study;
@@ -32,7 +38,29 @@ public class StudyDetailDialog extends DialogFragment {
         view = mLayoutInflater.inflate(R.layout.study_detail_dialog, null);
         mBuilder.setView(view);
 
+        title = (TextView)view.findViewById(R.id.studyDetail_text_title);
+        title.setText(this.study.getTitle());
+
+        person = (TextView)view.findViewById(R.id.studyDetail_text_person);
+        person.setText(this.study.getMemberCount()+" / "+this.study.getNumber_type()+"명");
+
+        detail = (TextView)view.findViewById(R.id.studyDetail_text_detail);
+        detail.setText(this.study.getDetail());
+
         context = getActivity();
+
+        dialog_exit_btn = (ImageButton)view.findViewById(R.id.studyDetail_btn_exit);
+
+        //공통 다이얼로그 종료 버튼 이벤트 리스너
+        dialog_exit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                dismiss();
+            }
+        });
+
+        //studyDetail_btn_exit
 
         return mBuilder.create();
     }

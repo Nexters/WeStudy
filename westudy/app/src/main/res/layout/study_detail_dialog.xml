@@ -11,9 +11,25 @@
         android:orientation="vertical"
         android:background="@drawable/p_01">
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/studyDetail_btn_exit"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/common_11"/>
+
+        </LinearLayout>
+
         <Space
             android:layout_width="300dp"
-            android:layout_height="88dp" />
+            android:layout_height="66dp" />
 
         <!-- 타이틀 및 텍스트 영역 -->
         <LinearLayout
@@ -37,7 +53,7 @@
                     android:text="스터디 타이틀"
                     android:textSize="17dp"
                     android:textColor="#ffffffff"
-                    android:id="@+id/article_textView_title"/>
+                    android:id="@+id/studyDetail_textView_title"/>
 
                 <!-- 타이틀 하단 부분 -->
                 <LinearLayout
@@ -54,7 +70,7 @@
                         android:text="날짜"
                         android:textSize="10dp"
                         android:textColor="#ffffffff"
-                        android:id="@+id/article_textView_day"/>
+                        android:id="@+id/studyDetail_textView_day"/>
 
                     <!-- 위치 -->
                     <TextView
@@ -63,7 +79,7 @@
                         android:text="위치 "
                         android:textSize="10dp"
                         android:textColor="#ffffffff"
-                        android:id="@+id/article_textView_location"/>
+                        android:id="@+id/studyDetail_textView_location"/>
 
                 </LinearLayout>
 
@@ -160,8 +176,95 @@
         android:layout_width="300dp"
         android:layout_height="221dp"
         android:background="#ffffffff"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="17px"
+        android:paddingTop="15px"
+        android:paddingRight="23px"
+        android:paddingBottom="16px">
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:src="@drawable/study_make_ic_01" />
+
+            <TextView
+                android:id="@+id/studyDetail_text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="스터디 제목" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:src="@drawable/study_make_ic_03" />
+
+            <TextView
+                android:id="@+id/studyDetail_text_person"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="인원" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="73dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="top">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="top"
+                android:src="@drawable/study_make_ic_06" />
+
+            <TextView
+                android:id="@+id/studyDetail_text_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:textSize="15dp"
+                android:layout_gravity="top"
+                android:text="소개말" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="15dp"
+            android:padding="0dp"
+            android:text="지원하기"
+            android:textSize="16dp"
+            android:textColor="#000000"
+            android:id="@+id/studyMake_button_makeStudy"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/common_n_09"/>
 
     </LinearLayout>
 
