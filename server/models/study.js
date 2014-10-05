@@ -42,7 +42,7 @@ StudySchema.statics.saveStudy = function (me, study, callback) {
       create_time : new Date()
     });
     try {
-      newStudy.save(function (savedStudy) {
+      newStudy.save(function (err, savedStudy) {
         self.model('User').update({
           '_id': me._id
         }, {
