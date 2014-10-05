@@ -146,7 +146,6 @@ public class StudyMainActivity extends FragmentActivity
                 } catch(JSONException je) {
                     Log.e("JSONException: ", je.toString());
                 }
-
             }
 
             @Override
@@ -158,10 +157,6 @@ public class StudyMainActivity extends FragmentActivity
         });
         studyList.add("토익 공부 합시당");
         studyList.add("테스트 테스트");
-        studyList.add("으아");
-        studyList.add("테스트~스터디~");
-
-
 
 
         listAdapter = new StudyAdapter(this, R.layout._my_study_card, studyList);
