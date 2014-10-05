@@ -132,7 +132,6 @@ public class StudyMainActivity extends FragmentActivity
     public void setUpStudyList(User userInfo){
         studyList = new ArrayList<String>();
 
-        //TODO: studyList json 에서 받아와서 list만들기..
         HttpUtil.get("http://godong9.com:3000/user/getStudyList", null, null, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {

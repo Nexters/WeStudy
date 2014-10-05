@@ -37,7 +37,7 @@ StudySchema.statics.saveStudy = function (me, study, callback) {
       day_of_week: makeDayOfWeekArray(study.day_of_week),
       detail: study.detail || "",
       cover_url: study.cover_url || "",
-      members : [ me._id ],
+      members : [ me._id.toString() ],
       appliers : [],
       create_time : new Date()
     });
@@ -209,7 +209,7 @@ StudySchema.statics.applyStudy = function (user_id, study_id, callback) {
       '_id': study_id
     }, {
       '$push': {
-        'appliers': user_id
+        'appliers': user_id.toString()
       }
     }, function (err) {
       if (!err) {
