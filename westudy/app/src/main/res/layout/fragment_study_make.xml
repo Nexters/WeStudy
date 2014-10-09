@@ -75,7 +75,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/common_n_08"
                     android:button="@null"
-                    android:tag="0"/>
+                    android:tag="language"/>
 
                 <RadioButton
                     android:id="@+id/studyMake_radio_subject2"
@@ -90,7 +90,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/common_n_08"
                     android:button="@null"
-                    android:tag="1"/>
+                    android:tag="job"/>
 
                 <RadioButton
                     android:id="@+id/studyMake_radio_subject3"
@@ -105,7 +105,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/common_n_08"
                     android:button="@null"
-                    android:tag="2"/>
+                    android:tag="test"/>
 
                 <RadioButton
                     android:id="@+id/studyMake_radio_subject4"
@@ -120,7 +120,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/common_n_08"
                     android:button="@null"
-                    android:tag="3"/>
+                    android:tag="it"/>
                 <RadioButton
                     android:id="@+id/studyMake_radio_subject5"
                     android:text="기타"
@@ -134,7 +134,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/common_n_08"
                     android:button="@null"
-                    android:tag="4"/>
+                    android:tag="etc"/>
             </RadioGroup>
         </LinearLayout>
 

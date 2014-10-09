@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.common.CommonUtil;
 import com.dataSet.Study;
 import com.dataSet.User;
-import com.example.godong.westudy.Activity.LoginActivity;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
