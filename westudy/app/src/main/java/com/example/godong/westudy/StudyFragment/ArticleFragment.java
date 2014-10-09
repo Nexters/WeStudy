@@ -143,12 +143,14 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
     @Override
     public void onRefresh() {
         RequestParams params = new RequestParams();
-//        params.put("study_id", study_id);
+        params.put("study_id", study_id);
 //        params.put("date","");
 
 
 //        HttpUtil.get("http://godong9.com:3000/article/load", null, params, new AsyncHttpResponseHandler() {
-          HttpUtil.get("http://godong9.com:3000/article/all", null, null, new AsyncHttpResponseHandler() {
+//        HttpUtil.get("http://godong9.com:3000/article/all", null, null, new AsyncHttpResponseHandler() {
+        HttpUtil.get("http://godong9.com:3000/article/get", null, params, new AsyncHttpResponseHandler() {
+
             @Override
             public void onStart() {
                 // called before request is started
