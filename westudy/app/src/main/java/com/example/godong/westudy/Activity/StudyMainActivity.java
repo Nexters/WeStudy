@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -127,14 +128,19 @@ public class StudyMainActivity extends FragmentActivity
         findViewById(R.id.nav_btn_make_study).setOnClickListener(mClickListener);
         findViewById(R.id.nav_btn_setting).setOnClickListener(mClickListener);
 
-        setUpStudyList(userInfo);
+        setUpStudyList();
 
     }
 
+<<<<<<< HEAD
+    public void setUpStudyList(){
+        studyList = new ArrayList<String>();
+=======
     public void setUpStudyList(User userInfo){
 
 //        this.studyList = new ArrayList<String>();
         this.myStudyList = new ArrayList<Study>();
+>>>>>>> FETCH_HEAD
 
         HttpUtil.get("http://godong9.com:3000/user/getStudyList", null, null, new AsyncHttpResponseHandler() {
             @Override
@@ -145,6 +151,12 @@ public class StudyMainActivity extends FragmentActivity
                 try {
                     for (int i = 0; i < studyJSONarr.length(); i++) {
                         JSONObject studyJSONobj = studyJSONarr.getJSONObject(i);
+<<<<<<< HEAD
+                        studyList.add(studyJSONobj.getString("title"));
+                        listAdapter.notifyDataSetChanged();
+                        Log.d("testtest",studyList.get(i));
+
+=======
                         // TODO: study class에 추가적으로 넣어야 할 코드 (주석부분)
 //                        JSONArray JSONmembers = CommonUtil.stringToJSONArray(studyJSONobj.getString("members"));
 //                        String[] members = new String[JSONmembers.length()];
@@ -170,6 +182,7 @@ public class StudyMainActivity extends FragmentActivity
                                     , studyJSONobj.getString("create_time")
                                     , null, null, null);
                         myStudyList.add(study);
+>>>>>>> FETCH_HEAD
                     }
                 } catch(JSONException je) {
                     Log.e("JSONException: ", je.toString());
@@ -184,10 +197,24 @@ public class StudyMainActivity extends FragmentActivity
 
         });
 
+<<<<<<< HEAD
+
+        for (int i = 0; i < studyList.size(); i++) {
+            Log.d("testtest",studyList.get(i));
+
+        }
+
+        listAdapter = new StudyAdapter(this, R.layout._my_study_card, studyList);
+        myStudy = (ListView) findViewById(R.id.nav_study_listview);
+        myStudy.setAdapter(listAdapter);
+        myStudy.setOnItemClickListener(this);
+
+=======
         this.myStudyListAdapter = new StudyListAdapter(this, R.layout._my_study_card, myStudyList);
         this.myStudies = (ListView)findViewById(R.id.nav_study_listview);
         this.myStudies.setAdapter(myStudyListAdapter);
         this.myStudies.setOnItemClickListener(this);
+>>>>>>> FETCH_HEAD
     }
 
     Button.OnClickListener mClickListener = new View.OnClickListener() {
