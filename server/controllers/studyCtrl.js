@@ -69,7 +69,7 @@ StudyCtrl.getAppliers = function (req, res) {
 };
 
 StudyCtrl.applyStudy = function (req, res) {
-  var me = req.body.user_id;
+  var me = req.user._id;
   var target_study = req.body.study_id;
   Study.applyStudy(me, target_study, function (err) {
     if (err) return res.send(400, err);
