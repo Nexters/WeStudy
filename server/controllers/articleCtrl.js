@@ -10,6 +10,13 @@ ArticleCtrl.getAllArticles = function (req, res) {
   });
 };
 
+ArticleCtrl.getArticlesByStudyId = function (req, res) {
+  Article.getArticlesByStudyId(req.query.study_id, function (err, articles) {
+    if (err) return res.send(400, err);
+    return res.send(200, articles);
+  });
+};
+
 ArticleCtrl.addArticle = function (req, res) {
   var newArticle = req.body;
   newArticle.author = req.user._id;

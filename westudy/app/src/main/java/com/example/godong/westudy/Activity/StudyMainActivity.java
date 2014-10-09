@@ -17,7 +17,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.common.BackPressCloseHandler;
 import com.common.CommonUtil;
@@ -28,6 +27,8 @@ import com.example.godong.westudy.SideMenu.InfoFragment;
 import com.example.godong.westudy.SideMenu.ProfileFragment;
 import com.example.godong.westudy.SideMenu.StudyMakeFragment;
 import com.example.godong.westudy.StudyFragment.NewArticleFragment;
+import com.dataSet.Study;
+import com.example.godong.westudy.StudyFragment.StudyMakeDialog;
 import com.example.godong.westudy.StudyFragment.TabFragment;
 import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -63,9 +64,9 @@ public class StudyMainActivity extends FragmentActivity
     /** Navigation Drawer Side Slide용 **/
     private TextView userName;
     private TextView introduce;
-    private ListView myStudy;
-    private ArrayList<String> studyList;
-    private StudyAdapter listAdapter;
+    private ListView myStudies;
+    private ArrayList<Study> myStudyList;
+    private StudyAdapter myStudyListAdapter;
 
     /** UserInfo Data **/
     Bundle study_id;
@@ -84,8 +85,6 @@ public class StudyMainActivity extends FragmentActivity
 
         backPressCloseHandler = new BackPressCloseHandler(this);
 
-
-        
 //        ActionBar actionBar = getActionBar();
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 //        actionBar.setHomeButtonEnabled(true);
@@ -130,7 +129,8 @@ public class StudyMainActivity extends FragmentActivity
     }
 
     public void setUpStudyList(User userInfo){
-        studyList = new ArrayList<String>();
+
+        this.myStudyList = new ArrayList<Study>();
 
         HttpUtil.get("http://godong9.com:3000/user/getStudyList", null, null, new AsyncHttpResponseHandler() {
             @Override
@@ -140,7 +140,33 @@ public class StudyMainActivity extends FragmentActivity
                 try {
                     for (int i = 0; i < studyJSONarr.length(); i++) {
                         JSONObject studyJSONobj = studyJSONarr.getJSONObject(i);
-                        studyList.add(studyJSONobj.getString("title"));
+
+                        // TODO: study class에 추가적으로 넣어야 할 코드 (주석부분)
+//                        JSONArray JSONmembers = CommonUtil.stringToJSONArray(studyJSONobj.getString("members"));
+//                        String[] members = new String[JSONmembers.length()];
+//                        for (int j = 0; j < JSONmembers.length(); j++) {
+//                            members[j] = new String(JSONmembers.get(j).toString());
+//                        }
+//                        JSONArray JSONlocations = CommonUtil.stringToJSONArray(studyJSONobj.getString("location"));
+//                        String[] locations = new String[JSONlocations.length()];
+//                        for (int j = 0; j < JSONlocations.length(); j++) {
+//                            locations[j] = new String(JSONlocations.get(j).toString());
+//                        }
+//                        JSONArray JSONweek = CommonUtil.stringToJSONArray(studyJSONobj.getString("day_of_week"));
+//                        int[] week = new int[JSONweek.length()];
+//                        for (int j = 0; j < JSONlocations.length(); j++) {
+//                            week[j] = new Integer(JSONweek.get(j).toString());
+//                        }
+                        Study study = new Study(studyJSONobj.getString("_id")
+                                    , studyJSONobj.getString("creator")
+                                    , studyJSONobj.getString("subject")
+                                    , studyJSONobj.getString("title")
+                                    , 0
+                                    , studyJSONobj.getString("detail")
+                                    , studyJSONobj.getString("create_time")
+                                    , null, null, null);
+                        myStudyList.add(study);
+                        myStudyListAdapter.notifyDataSetChanged();
                     }
                 } catch(JSONException je) {
                     Log.e("JSONException: ", je.toString());
@@ -154,15 +180,11 @@ public class StudyMainActivity extends FragmentActivity
             }
 
         });
-        studyList.add("토익 공부 합시당");
-        studyList.add("테스트 테스트");
 
-
-        listAdapter = new StudyAdapter(this, R.layout._my_study_card, studyList);
-        myStudy = (ListView) findViewById(R.id.nav_study_listview);
-        myStudy.setAdapter(listAdapter);
-        myStudy.setOnItemClickListener(this);
-
+        this.myStudyListAdapter = new StudyListAdapter(this, R.layout._my_study_card, myStudyList);
+        this.myStudies = (ListView)findViewById(R.id.nav_study_listview);
+        this.myStudies.setAdapter(myStudyListAdapter);
+        this.myStudies.setOnItemClickListener(this);
 
     }
 
@@ -219,10 +241,7 @@ public class StudyMainActivity extends FragmentActivity
     @Override
     public void onNavigationDrawerItemSelected(int position){
         /** fragement로 main content update **/
-        Toast toast;
         position = position+1;
-
-//        mTitle = getString(R.string.title_home);
 
         /** Fragment 전환 **/
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -336,6 +355,20 @@ public class StudyMainActivity extends FragmentActivity
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //TODO: side slide list menu 선택시 action
+
+//        Bundle bundle = getIntent().getExtras();
+//        User userInfo = bundle.getParcelable("LoginData");
+//
+//        userData = new Bundle();
+//        userData.putParcelable("userData",userInfo);
+
+        Bundle study_id = new Bundle();
+        if (this.myStudyList != null) {
+            Study study = this.myStudyList.get(position);
+            study_id.putString("study_id", study.getId());
+        } else {
+            study_id.putString("study_id", "");
+        }
 
         tabFragment = TabFragment.newInstance();
         tabFragment.setArguments(study_id);

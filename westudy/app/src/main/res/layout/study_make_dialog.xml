@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:orientation="vertical"
+        android:background="#ffffffff">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/studyMake_btn_exit"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/common_11"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="341dp"
+        android:background="#ffffffff"
+        android:orientation="vertical"
+        android:paddingLeft="17px"
+        android:paddingTop="15px"
+        android:paddingRight="23px"
+        android:paddingBottom="16px">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="새 스터디 그룹을 만들었어요!"
+            android:textSize="16dp"
+            android:textColor="#325585"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/studyDetail_textView_title"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:layout_marginBottom="22dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/study_make_p_01"/>
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="15dp"
+            android:padding="0dp"
+            android:text="스터디 홈으로"
+            android:textSize="16dp"
+            android:textColor="#000000"
+            android:id="@+id/studyMake_btn_home"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/common_n_09"/>
+
+    </LinearLayout>
+
+</LinearLayout>

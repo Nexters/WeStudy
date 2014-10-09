@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
 
 var ScheduleSchema = new Schema({
 	study_id: String,
+	title: String,
 	order: Number,		// 주차
 	start_time: Date,	// 시작
 	end_time: Date,		// 끝
@@ -27,6 +28,7 @@ ScheduleSchema.statics.addSchedule = function (schedule, callback) {
 
 		var newSchedule = new self({
 			'study_id': schedule.study_id,
+			'titls': schedule.title,
 			'order': schdule.order,
 			'start_time': new Date(start_time[0], start_time[1], start_time[2]),
 			'end_time': new Date(end_time[0], end_time[1], end_time[2]),
@@ -61,6 +63,7 @@ ScheduleSchema.statics.updateSchedule = function (schedule_id, schedule, callbac
 		this.findOneAndUpdate({
 			'_id': schedule_id
 		},{
+			'title': schedule.title,
 			'order': schedule.order,
 			'start_time': new Date(schedule.start_time),
 			'end_time': new Date(schedule.end_time),

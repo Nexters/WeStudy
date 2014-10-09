@@ -307,7 +307,7 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
                     Study study = items.get(pos);
 //                    Toast.makeText(context, "리스트 클릭 : "+study.getId(), Toast.LENGTH_SHORT).show();
                     detailDialog = new StudyDetailDialog(study);
-                    detailDialog.show(((FragmentActivity)getContext()).getFragmentManager(), "User1 Popup");
+                    detailDialog.show(((FragmentActivity)getContext()).getFragmentManager(), "Study Popup");
                 }
             });
 

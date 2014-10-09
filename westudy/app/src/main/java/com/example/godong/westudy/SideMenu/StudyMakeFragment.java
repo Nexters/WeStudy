@@ -1,8 +1,10 @@
 package com.example.godong.westudy.SideMenu;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import com.common.CommonUtil;
 import com.example.godong.westudy.R;
+import com.example.godong.westudy.StudyFragment.StudyMakeDialog;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.network.HttpUtil;
@@ -44,6 +47,8 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
     private int [] dayOfWeekArray = {0, 0, 0, 0, 0, 0, 0};
     private EditText detailEdit;
     private Button makeStudyBtn;
+    private StudyMakeDialog makeDialog;
+    private Context context;
 
     public static StudyMakeFragment newInstance(){
         StudyMakeFragment fragment = new StudyMakeFragment();
@@ -62,6 +67,7 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
         View view = inflater.inflate(R.layout.fragment_study_make, container, false);
         init(view);
         activityView = view;
+        context = getActivity();
 
         return view;
     }
@@ -150,9 +156,14 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
-                Toast toast = Toast.makeText(getActivity(), "스터디를 만들었습니다!", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER, 0, 100);
-                toast.show();
+                JSONObject jStudy = CommonUtil.stringToJSONObject(new String(response));
+                try {
+                    String study_id = jStudy.getString("_id");
+                    makeDialog = new StudyMakeDialog(study_id);
+                    makeDialog.show(((FragmentActivity)context).getFragmentManager(), "Make Popup");
+                }catch(Exception e){
+                    Log.e("JSONException Occured:",e.toString());
+                }
 
 //                Intent intentLoginActivity = new Intent(JoinActivity.this, LoginActivity.class);
 //                startActivity(intentLoginActivity);

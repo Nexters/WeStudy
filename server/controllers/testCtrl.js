@@ -98,7 +98,7 @@ TestCtrl.addArticle = function (req, res) {
   var testArticle = [
     {
       'author': "test01",
-      'study_id': "study01",
+      'study_id': "54363fc1a1cb9e333fb8458b",
       'contents': {
         'text': "넥스터즈 모임 끝나고 네오위즈에서 한컷~",
         'photo_url': "nexters_140721"
@@ -107,7 +107,7 @@ TestCtrl.addArticle = function (req, res) {
     },
     {
       'author': "test02",
-      'study_id': "study01",
+      'study_id': "54363fc1a1cb9e333fb8458b",
       'contents': {
         'text': "오늘 개발과정 안드로이드 메이븐, 그래들로 개발하기",
         'photo_url': ""
@@ -116,7 +116,7 @@ TestCtrl.addArticle = function (req, res) {
     },
     {
       'author': "test01",
-      'study_id': "study01",
+      'study_id': "543633200ebcb39c37a65c28",
       'contents': {
         'text': "엠티갔다왔어요~",
         'photo_url': "nexters_140605"
@@ -125,7 +125,7 @@ TestCtrl.addArticle = function (req, res) {
     },
     {
       'author': "test02",
-      'study_id': "study01",
+      'study_id': "543633200ebcb39c37a65c28",
       'contents': {
         'text': "오늘 5기 모집 마감합니다~ 많은 분들의 지원 감사합니다 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ캬캬캬캬카캬카캬카",
         'photo_url': ""
@@ -133,7 +133,7 @@ TestCtrl.addArticle = function (req, res) {
       'create_time': new Date(14, 04, 06)
     },{
       'author': "test01",
-      'study_id': "study01",
+      'study_id': "543633200ebcb39c37a65c28",
       'contents': {
         'text': "오늘 개발회의 진행사항 서버 node js 세팅하기 세팅하는데만 3시간...",
         'photo_url': "nexters_140503"
@@ -142,7 +142,7 @@ TestCtrl.addArticle = function (req, res) {
     },
     {
       'author': "test02",
-      'study_id': "study01",
+      'study_id': "543633200ebcb39c37a65c28",
       'contents': {
         'text': "오늘 과제들 다들 안해오셨네요 다음엔 더 꼼꼼히",
         'photo_url': ""
@@ -151,7 +151,7 @@ TestCtrl.addArticle = function (req, res) {
     },
     {
       'author': "test03",
-      'study_id': "study01",
+      'study_id': "54363fc1a1cb9e333fb8458b",
       'contents': {
         'text': "프로젝트 기획 : 스터디의 모든 것 완료!",
         'photo_url': "nexters_140301"
@@ -177,7 +177,7 @@ TestCtrl.addArticle = function (req, res) {
     },
     {
       'author': "test02",
-      'study_id': "study01",
+      'study_id': "54363fc1a1cb9e333fb8458b",
       'contents': {
         'text': "사진 첨부한 텍스트 테스트 !!! 텍스트 테테테테스스ㅡ트트테",
         'photo_url': "nexters_140125"
@@ -216,6 +216,7 @@ TestCtrl.addSchedule = function (req, res) {
   var test_schedules = [
     {
       'study_id': '53df03b3a0efbf934d7333c3',
+      'title': "asdklfnasfbasdfns",
       'order': 1,
       'start_time': new Date(2014, 07, 21),
       'end_time': new Date(2014, 07, 28),
@@ -237,6 +238,7 @@ TestCtrl.addSchedule = function (req, res) {
     },
     {
       'study_id': '53df03b3a0efbf934d7333c3',
+      'title': "asdklfnasfbasd22222fns",
       'order': 2,
       'start_time': new Date(2014, 08, 14),
       'end_time': new Date(2014, 08, 21),
@@ -264,6 +266,7 @@ TestCtrl.addSchedule = function (req, res) {
     },
     {
       'study_id': '53df03b3a0efbf934d7333c3',
+      'title': "asdklfnasfbasd323232fns",
       'order': 3,
       'start_time': new Date(2014, 08, 21),
       'end_time': new Date(2014, 08, 28),
@@ -285,6 +288,7 @@ TestCtrl.addSchedule = function (req, res) {
     },
     {
       'study_id': '53df03b3a0efbf934d7333c4',
+      'title': "2141421",
       'order': 1,
       'start_time': new Date(2014, 07, 21),
       'end_time': new Date(2014, 07, 28),

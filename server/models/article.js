@@ -20,6 +20,18 @@ ArticleSchema.statics.getAllArticles = function (callback) {
   });
 };
 
+ArticleSchema.statics.getArticlesByStudyId = function (study_id, callback) {
+  this.find({
+    'study_id': study_id
+  }, function (err, articles) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, articles);
+    }
+  });
+};
+
 ArticleSchema.statics.addArticle = function (article, callback) {
   var self = this;
   if (article) {

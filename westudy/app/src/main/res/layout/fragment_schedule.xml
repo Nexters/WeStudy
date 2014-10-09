@@ -4,20 +4,58 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fff9f9f9">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/schedule_swipe_container"
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- 상단 스터디 이름 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:text="스터디 이름"
+            android:textSize="17dp"
+            android:id="@+id/schedule_textView_studyName"
+            android:gravity="center_vertical"
+            android:paddingLeft="18dp"
+            android:textColor="#ffffffff"
+            android:background="@drawable/common_n_12"/>
+
+
+        <!-- 스터디 스케줄 리스트 -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
-            android:id="@+id/schedule_scroll">
+            android:id="@+id/schedule_scrollView">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+            <!-- 스터디 이름 밑 공백 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:orientation="horizontal"
+                android:gravity="bottom">
+
+                <Space
+                    android:layout_width="18dp"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/home_07_icon"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -40,16 +78,10 @@
 
             </LinearLayout>
 
+        </LinearLayout>
+
         </ScrollView>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
-
-    <Button
-        android:id="@+id/schedule_floating_button"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_gravity="bottom|right"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp" />
+    </LinearLayout>
 
 </FrameLayout>
