@@ -3,6 +3,7 @@ package com.example.godong.westudy.StudyFragment;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -17,7 +18,14 @@ import com.example.godong.westudy.R;
 
 public class StudyMakeDialog extends DialogFragment {
 
+    private Context context;
     private ImageButton dialog_exit_btn;
+    private Button dialog_home_btn;
+    private String study_id;
+
+    public StudyMakeDialog(String study_id) {
+        this.study_id = study_id;
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceStadte) {
@@ -30,8 +38,10 @@ public class StudyMakeDialog extends DialogFragment {
         view = mLayoutInflater.inflate(R.layout.study_make_dialog, null);
         mBuilder.setView(view);
 
-        dialog_exit_btn = (ImageButton)view.findViewById(R.id.studyMake_btn_exit);
+        context = getActivity();
 
+        dialog_exit_btn = (ImageButton)view.findViewById(R.id.studyMake_btn_exit);
+        dialog_home_btn = (Button)view.findViewById(R.id.studyMake_btn_home);
 
         //공통 다이얼로그 종료 버튼 이벤트 리스너
         dialog_exit_btn.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +49,17 @@ public class StudyMakeDialog extends DialogFragment {
             public void onClick(View v)
             {
                 dismiss();
+            }
+        });
+
+        dialog_home_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                //TODO: 스터디 홈 페이지로 이동 구현
+                Toast toast = Toast.makeText(context, study_id, Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
             }
         });
 

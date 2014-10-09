@@ -156,8 +156,14 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
-                makeDialog = new StudyMakeDialog();
-                makeDialog.show(((FragmentActivity)context).getFragmentManager(), "Make Popup");
+                JSONObject jStudy = CommonUtil.stringToJSONObject(new String(response));
+                try {
+                    String study_id = jStudy.getString("_id");
+                    makeDialog = new StudyMakeDialog(study_id);
+                    makeDialog.show(((FragmentActivity)context).getFragmentManager(), "Make Popup");
+                }catch(Exception e){
+                    Log.e("JSONException Occured:",e.toString());
+                }
 
 //                Intent intentLoginActivity = new Intent(JoinActivity.this, LoginActivity.class);
 //                startActivity(intentLoginActivity);

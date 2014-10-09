@@ -177,15 +177,18 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                JSONObject errObj = CommonUtil.stringToJSONObject(new String(errorResponse));
 
-                login_dialog.dismiss();
                 try {
+                    JSONObject errObj = CommonUtil.stringToJSONObject(new String(errorResponse));
                     String errMsg = errObj.getString("message");
                     Toast toast = Toast.makeText(getApplicationContext(), errMsg, Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.CENTER, 0, 0);
+                    login_dialog.dismiss();
                     toast.show();
                 } catch (Exception je) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "로그인 실패!", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    login_dialog.dismiss();
                     Log.e("JSON Error", je.toString());
                 }
             }
