@@ -167,6 +167,8 @@ public class StudyMainActivity extends FragmentActivity
                                     , studyJSONobj.getString("create_time")
                                     , null, null, null);
                         myStudyList.add(study);
+                        myStudyListAdapter.notifyDataSetChanged();
+
                     }
                 } catch(JSONException je) {
                     Log.e("JSONException: ", je.toString());
