@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.common.BackPressCloseHandler;
 import com.common.CommonUtil;
 import com.common.NavigationDrawerFragment;
+import com.dataSet.Study;
 import com.dataSet.User;
 import com.example.godong.westudy.R;
 import com.example.godong.westudy.SideMenu.InfoFragment;
@@ -64,9 +65,10 @@ public class StudyMainActivity extends FragmentActivity
     /** Navigation Drawer Side Slide용 **/
     private TextView userName;
     private TextView introduce;
-    private ListView myStudy;
-    private ArrayList<String> studyList;
-    private StudyAdapter listAdapter;
+
+    private ListView myStudies;
+    private ArrayList<Study> myStudyList;
+    private StudyListAdapter myStudyListAdapter;
 
     /** UserInfo Data **/
     Bundle study_id;
@@ -130,21 +132,57 @@ public class StudyMainActivity extends FragmentActivity
 
     }
 
+<<<<<<< HEAD
     public void setUpStudyList(){
         studyList = new ArrayList<String>();
+=======
+    public void setUpStudyList(User userInfo){
+
+//        this.studyList = new ArrayList<String>();
+        this.myStudyList = new ArrayList<Study>();
+>>>>>>> FETCH_HEAD
 
         HttpUtil.get("http://godong9.com:3000/user/getStudyList", null, null, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                // called when response HTTP status is "200 OK"
+                // called when res
+                // ponse HTTP status is "200 OK"
                 JSONArray studyJSONarr = CommonUtil.stringToJSONArray(new String(response));
                 try {
                     for (int i = 0; i < studyJSONarr.length(); i++) {
                         JSONObject studyJSONobj = studyJSONarr.getJSONObject(i);
+<<<<<<< HEAD
                         studyList.add(studyJSONobj.getString("title"));
                         listAdapter.notifyDataSetChanged();
                         Log.d("testtest",studyList.get(i));
 
+=======
+                        // TODO: study class에 추가적으로 넣어야 할 코드 (주석부분)
+//                        JSONArray JSONmembers = CommonUtil.stringToJSONArray(studyJSONobj.getString("members"));
+//                        String[] members = new String[JSONmembers.length()];
+//                        for (int j = 0; j < JSONmembers.length(); j++) {
+//                            members[j] = new String(JSONmembers.get(j).toString());
+//                        }
+//                        JSONArray JSONlocations = CommonUtil.stringToJSONArray(studyJSONobj.getString("location"));
+//                        String[] locations = new String[JSONlocations.length()];
+//                        for (int j = 0; j < JSONlocations.length(); j++) {
+//                            locations[j] = new String(JSONlocations.get(j).toString());
+//                        }
+//                        JSONArray JSONweek = CommonUtil.stringToJSONArray(studyJSONobj.getString("day_of_week"));
+//                        int[] week = new int[JSONweek.length()];
+//                        for (int j = 0; j < JSONlocations.length(); j++) {
+//                            week[j] = new Integer(JSONweek.get(j).toString());
+//                        }
+                        Study study = new Study(studyJSONobj.getString("_id")
+                                    , studyJSONobj.getString("creator")
+                                    , studyJSONobj.getString("subject")
+                                    , studyJSONobj.getString("title")
+                                    , 0
+                                    , studyJSONobj.getString("detail")
+                                    , studyJSONobj.getString("create_time")
+                                    , null, null, null);
+                        myStudyList.add(study);
+>>>>>>> FETCH_HEAD
                     }
                 } catch(JSONException je) {
                     Log.e("JSONException: ", je.toString());
@@ -159,6 +197,7 @@ public class StudyMainActivity extends FragmentActivity
 
         });
 
+<<<<<<< HEAD
 
         for (int i = 0; i < studyList.size(); i++) {
             Log.d("testtest",studyList.get(i));
@@ -170,6 +209,12 @@ public class StudyMainActivity extends FragmentActivity
         myStudy.setAdapter(listAdapter);
         myStudy.setOnItemClickListener(this);
 
+=======
+        this.myStudyListAdapter = new StudyListAdapter(this, R.layout._my_study_card, myStudyList);
+        this.myStudies = (ListView)findViewById(R.id.nav_study_listview);
+        this.myStudies.setAdapter(myStudyListAdapter);
+        this.myStudies.setOnItemClickListener(this);
+>>>>>>> FETCH_HEAD
     }
 
     Button.OnClickListener mClickListener = new View.OnClickListener() {
@@ -356,37 +401,32 @@ public class StudyMainActivity extends FragmentActivity
     /**
      * Study List Adapter
      * **/
-    private class StudyAdapter extends ArrayAdapter<String>{
-        private ArrayList<String> items;
-
-        public StudyAdapter(Context context, int textViewResourceId, ArrayList<String> items){
-            super(context, textViewResourceId, items);
-            this.items = items;
+    private class StudyListAdapter extends ArrayAdapter<Study> {
+        private ArrayList<Study> studies;
+        private Context context;
+        public StudyListAdapter(Context context, int ResourceId, ArrayList<Study> studies) {
+            super(context, ResourceId, studies);
+            this.context = context;
+            this.studies = studies;
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent){
+        public View getView(int position, View convertView, ViewGroup parent) {
+            final int pos = position;
             View v = convertView;
-            if(v == null){
-                LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                v = vi.inflate(R.layout._my_study_card, null);
+            if (v == null) {
+                LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                v = inflater.inflate(R.layout._my_study_card, null);
             }
 
-            String studyName = items.get(position);
-            if(studyName !=null) {
-                TextView name = (TextView) v.findViewById(R.id.myStudy_textView_name);
-
-                if (name != null) {
-                    name.setText(studyName);
-                }
+            Study study = this.studies.get(position);
+            if (study != null) {
+                TextView name = (TextView)v.findViewById(R.id.myStudy_textView_name);
+                name.setText(study.getTitle());
             }
-
             return v;
         }
     }
-
-
-
 
     /**
      * fragment change 담당

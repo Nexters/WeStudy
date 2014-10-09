@@ -47,6 +47,7 @@ UserSchema.statics.saveUser = function (user, callback) {
         email: user.email,
         password: user.password,
         name: user.name,
+        gender: user.gender,
         profile_ur: user.profile_url ? user.profile_url : '',
         interest: makeInterestArray(user.interest),
         introduce: user.introduce ? user.introduce : '',
