@@ -247,7 +247,6 @@ public class StudyMainActivity extends FragmentActivity
         position = position+1;
 
 //        mTitle = getString(R.string.title_home);
-
         /** Fragment 전환 **/
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager
