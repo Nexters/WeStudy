@@ -18,9 +18,9 @@ StudyCtrl.addStudy = function (req, res) {
   var newStudy = req.body;
   var me = req.user;
   console.log(newStudy);
-  Study.saveStudy(me, newStudy, function(err, study) {
+  Study.saveStudy(me, newStudy, function (err, study) {
     if (err) return res.send(400, err);
-    return res.send(200, null);
+    return res.send(200, study);
   });
 };
 
