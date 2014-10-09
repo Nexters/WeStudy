@@ -38,14 +38,17 @@ public class TabFragment extends Fragment implements TabHost.OnTabChangeListener
         mTabHost = new FragmentTabHost(getActivity());
 
 
-//        study_id = getArguments().getString("study_id");
+        study_id = getArguments().getString("study_id");
 
+        Bundle Bundle_studyId = new Bundle();
+        Bundle_studyId.putString("study_id", study_id);
 
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.tabhost);
         mTabHost.setOnTabChangedListener(this);
 
+        //TODO: pass parameter studyId bundle.
         mTabHost.addTab(mTabHost.newTabSpec("feed").setIndicator("홈"),
-                ArticleFragment.class, null);
+                ArticleFragment.class, Bundle_studyId);
         mTabHost.addTab(mTabHost.newTabSpec("calendar").setIndicator("캘 린 더"),
                 CalendarFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("plan").setIndicator("스 케 줄"),

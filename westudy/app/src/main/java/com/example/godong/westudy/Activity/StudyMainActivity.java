@@ -17,7 +17,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.common.BackPressCloseHandler;
 import com.common.CommonUtil;
@@ -241,10 +240,8 @@ public class StudyMainActivity extends FragmentActivity
     @Override
     public void onNavigationDrawerItemSelected(int position){
         /** fragement로 main content update **/
-        Toast toast;
         position = position+1;
 
-//        mTitle = getString(R.string.title_home);
         /** Fragment 전환 **/
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager
@@ -357,6 +354,20 @@ public class StudyMainActivity extends FragmentActivity
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //TODO: side slide list menu 선택시 action
+
+//        Bundle bundle = getIntent().getExtras();
+//        User userInfo = bundle.getParcelable("LoginData");
+//
+//        userData = new Bundle();
+//        userData.putParcelable("userData",userInfo);
+
+        Bundle study_id = new Bundle();
+        if (this.myStudyList != null) {
+            Study study = this.myStudyList.get(position);
+            study_id.putString("study_id", study.getId());
+        } else {
+            study_id.putString("study_id", "");
+        }
 
         tabFragment = TabFragment.newInstance();
         tabFragment.setArguments(study_id);
