@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -125,11 +126,11 @@ public class StudyMainActivity extends FragmentActivity
         findViewById(R.id.nav_btn_make_study).setOnClickListener(mClickListener);
         findViewById(R.id.nav_btn_setting).setOnClickListener(mClickListener);
 
-        setUpStudyList(userInfo);
+        setUpStudyList();
 
     }
 
-    public void setUpStudyList(User userInfo){
+    public void setUpStudyList(){
         studyList = new ArrayList<String>();
 
         HttpUtil.get("http://godong9.com:3000/user/getStudyList", null, null, new AsyncHttpResponseHandler() {
@@ -141,6 +142,9 @@ public class StudyMainActivity extends FragmentActivity
                     for (int i = 0; i < studyJSONarr.length(); i++) {
                         JSONObject studyJSONobj = studyJSONarr.getJSONObject(i);
                         studyList.add(studyJSONobj.getString("title"));
+                        listAdapter.notifyDataSetChanged();
+                        Log.d("testtest",studyList.get(i));
+
                     }
                 } catch(JSONException je) {
                     Log.e("JSONException: ", je.toString());
@@ -154,15 +158,17 @@ public class StudyMainActivity extends FragmentActivity
             }
 
         });
-        studyList.add("토익 공부 합시당");
-        studyList.add("테스트 테스트");
 
+
+        for (int i = 0; i < studyList.size(); i++) {
+            Log.d("testtest",studyList.get(i));
+
+        }
 
         listAdapter = new StudyAdapter(this, R.layout._my_study_card, studyList);
         myStudy = (ListView) findViewById(R.id.nav_study_listview);
         myStudy.setAdapter(listAdapter);
         myStudy.setOnItemClickListener(this);
-
 
     }
 
