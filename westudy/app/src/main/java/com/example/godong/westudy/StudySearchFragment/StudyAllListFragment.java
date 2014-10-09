@@ -5,23 +5,20 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnTouchListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.support.v4.app.FragmentActivity;
 
 import com.common.CommonUtil;
 import com.dataSet.Study;
@@ -232,7 +229,7 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
             }
 
             Study study = items.get(position);
-            if(study !=null) {
+            if(study != null) {
                 v.setTag(position);
                 TextView create_time = (TextView) v.findViewById(R.id.studyCard_createTime);
                 TextView location = (TextView) v.findViewById(R.id.studyCard_location);

@@ -14,6 +14,7 @@ public class Study {
     private String create_time;
     private String _id;
     private String[] members;
+    private String[] appliers;
     private String[] location;
     private int[] week;
     private String[] day = {"월","화","수","목","금","토","일"};
@@ -110,18 +111,20 @@ public class Study {
         this.create_time = create_time;
     }
 
-    public String getMembers() {
-        String member="";
-
-        for(int i=0;i<members.length;i++){
-            member += members[i];
-        }
-
-        return member;
+    public String[] getMembers() {
+        return this.members;
     }
 
     public void setMembers(String[] members) {
         this.members = members;
+    }
+
+    public String[] getAppliers() {
+        return this.appliers;
+    }
+
+    public void setAppliers(String[] appliers) {
+        this.appliers = appliers;
     }
 
     public String getLocation() {

@@ -11,6 +11,13 @@ ScheduleCtrl.addSchedule = function (req, res) {
 	});
 };
 
+ScheduleCtrl.getAllSchedule = function (req, res) {
+	Schedule.getAllSchedule(function (err, schedules) {
+		if (err) return res.send(400, err);
+		return res.send(200, schedules);
+	});
+};
+
 ScheduleCtrl.removeSchedule = function (req, res) {
 	var schedule_id = req.params.id;
 	Schedule.removeSchedule(schedule_id, function (err) {
