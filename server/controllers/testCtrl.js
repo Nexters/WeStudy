@@ -216,49 +216,49 @@ TestCtrl.addSchedule = function (req, res) {
   var test_schedules = [
     {
       'study_id': '53df03b3a0efbf934d7333c3',
-      'title': "asdklfnasfbasdfns",
+      'title': "1주차",
       'order': 1,
       'start_time': new Date(2014, 07, 21),
       'end_time': new Date(2014, 07, 28),
       'contents': [
         {
           'type': 'text',
-          'text': 'To 부정사, 동명사 파트',
+          'text': '영어의 5형식',
         },
         {
           'type': 'check',
-          'text': '단어 100개 외우기',
+          'text': '단어 1day 100개 외우기',
         },
         {
           'type': 'check',
-          'text': '영어 독해 10문제 풀기',
+          'text': 'Hackers 독해 10문제(p25~30p) 풀기',
         }
       ],
       'create_time': new Date()
     },
     {
       'study_id': '53df03b3a0efbf934d7333c3',
-      'title': "asdklfnasfbasd22222fns",
+      'title': "2주차",
       'order': 2,
       'start_time': new Date(2014, 08, 14),
       'end_time': new Date(2014, 08, 21),
       'contents': [
         {
           'type': 'text',
-          'text': '관계대명사 파트'
+          'text': '명사와 동사'
         },
         {
           'type': 'text',
-          'text': '관계대명사2 파트'
+          'text': '동명사'
         },
         {
           'type': 'check',
-          'text': '단어 100개 외우기',
+          'text': '단어 2day 100개 외우기',
           'checked': true
         },
         {
           'type': 'check',
-          'text': '영어 듣기 10문제 풀기',
+          'text': 'Hackers 독해 10문제(p68~72p) 풀기',
           'checked': false
         }
       ],
@@ -266,44 +266,44 @@ TestCtrl.addSchedule = function (req, res) {
     },
     {
       'study_id': '53df03b3a0efbf934d7333c3',
-      'title': "asdklfnasfbasd323232fns",
+      'title': "3주차",
       'order': 3,
       'start_time': new Date(2014, 08, 21),
       'end_time': new Date(2014, 08, 28),
       'contents': [
         {
           'type': 'text',
-          'text': 'To 부정사, 동명사 파트'
+          'text': 'To 부정사'
         },
         {
           'type': 'check',
-          'text': '단어 100개 외우기'
+          'text': '단어 3day 100개 외우기'
         },
         {
           'type': 'check',
-          'text': '영어 독해 10문제 풀기'
+          'text': 'Hackers 독해 10문제(p111~114p) 풀기'
         }
       ],
       'create_time': new Date()
     },
     {
       'study_id': '53df03b3a0efbf934d7333c4',
-      'title': "2141421",
+      'title': "4주차",
       'order': 1,
       'start_time': new Date(2014, 07, 21),
       'end_time': new Date(2014, 07, 28),
       'contents': [
         {
           'type': 'text',
-          'text': '영어 문장 형식 파트'
+          'text': '관계대명사와 관계부사'
         },
         {
           'type': 'check',
-          'text': '단어 100개 외우기'
+          'text': '단어 4day 100개 외우기'
         },
         {
           'type': 'check',
-          'text': '영어 독해 10문제 풀기'
+          'text': 'Hackers 독해 10문제(p153~157p) 풀기'
         }
       ],
       'create_time': new Date()
