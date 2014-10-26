@@ -172,6 +172,13 @@
 
             </LinearLayout>
 
+
+        <com.common.CustomScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:id="@+id/article_scrollView">
+
             <!-- 타임라인 왼쪽 라인 헤드 -->
             <LinearLayout
                 android:layout_width="360dp"
@@ -179,31 +186,35 @@
                 android:background="#fff9f9f9"
                 android:orientation="vertical">
 
-                <!-- 상단 공백 -->
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="9dp"/>
-
-                <LinearLayout
-                    android:layout_width="43dp"
-                    android:layout_height="wrap_content">
-
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                    <!-- 상단 공백 -->
                     <Space
-                        android:layout_width="18dp"
-                        android:layout_height="wrap_content"/>
-
-                    <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/home_07_icon"/>
+                        android:layout_height="9dp"/>
+
+                    <LinearLayout
+                        android:layout_width="43dp"
+                        android:layout_height="wrap_content">
+
+                        <Space
+                            android:layout_width="18dp"
+                            android:layout_height="wrap_content"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/home_07_icon"/>
 
                     </LinearLayout>
-
             </LinearLayout>
 
 
-        <!-- 여기에 하단 Article 넣어줘 -->
+
+                <!-- 여기에 하단 Article 넣어줘 -->
 
        <!--
         <android.support.v4.widget.SwipeRefreshLayout
@@ -213,35 +224,29 @@
             android:layout_height="match_parent">
         -->
 
-        <com.common.CustomScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:id="@+id/article_scrollView">
-
-
                 <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
-                <ListView
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:divider="#00000000"
-                    android:id="@+id/android:list"/>
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/android:empty"
-                    android:text="표시할 Feed가 없습니다."
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center"/>
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:divider="#00000000"
+                        android:id="@+id/android:list"/>
+
+                    <TextView
+                        android:id="@+id/android:empty"
+                        android:text="표시할 Feed가 없습니다."
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"/>
+
+                </LinearLayout>
 
             </LinearLayout>
-
 
         </com.common.CustomScrollView>
 

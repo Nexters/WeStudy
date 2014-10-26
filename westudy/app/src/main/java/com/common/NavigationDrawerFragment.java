@@ -14,7 +14,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,9 +25,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.godong.westudy.R;
-import com.example.godong.westudy.Activity.StudyMainActivity;
-
-import java.util.ArrayList;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -66,9 +62,6 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
-
-    private StudyMainActivity main;
-
 
     public NavigationDrawerFragment() {
 
@@ -211,7 +204,6 @@ public class NavigationDrawerFragment extends Fragment {
                     sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
                 }
 
-//                main.setUpStudyList();
                 getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
         };

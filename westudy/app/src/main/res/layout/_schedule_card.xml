@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- feed 전체 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff9f9f9">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <!-- schedule 전체 : left -->
+        <LinearLayout
+            android:layout_width="43dp"
+            android:layout_height="fill_parent">
+
+            <Space
+                android:layout_width="22dp"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/home_n_05">
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- schedule 전체 : right -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp">
+
+
+            <!-- schedule contents -->
+            <LinearLayout
+                android:layout_width="305dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/scheduleCard_body"
+                android:background="@drawable/common_n_07"
+                android:orientation="vertical">
+
+                <!-- schedule card 상단 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    android:id="@+id/scheduleCard_top">
+
+                    <!-- schedule 회차 표시 -->                       
+                    <LinearLayout
+                        android:layout_width="60dp"
+                        android:layout_height="49dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/schedule_02_icon">
+
+                        <TextView
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/scheduleCard_textView_order"
+                            android:gravity="center"
+                            android:paddingTop="8dp"
+                            android:text="1"
+                            android:textSize="15dp"
+                            android:textColor="#ffffff"/>
+
+                        <TextView
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/scheduleCard_textView_endTime"
+                            android:gravity="center"
+                            android:paddingTop="4dp"
+                            android:text="2014.10.09"
+                            android:textSize="10dp"
+                            android:textColor="#ffffff"
+                            />
+                        
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="13dp"
+                        android:layout_height="wrap_content" />
+
+                    <!-- 제목/작성시간 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="184dp"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="7dp"
+                            android:id="@+id/scheduleCard_textView_title"
+                            android:text="제목"
+                            android:textSize="15dp"
+                            android:textColor="#335789"/>
+
+                        <!-- 작성일 -->
+                        <TextView
+                            android:layout_width="184dp"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="9dp"
+                            android:text="0000-00-00"
+                            android:textSize="10dp"
+                            android:textColor="#969696"
+                            android:id="@+id/scheduleCard_textView_createTime"/>                           />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- feed top/down 나누는 bar 들어갈 자리 -->
+                <ImageView
+                    android:layout_width="295dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/common_n_10"/>
+
+                <!-- content -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:text="내용"
+                    android:textSize="12dp"
+                    android:textColor="#696767"
+                    android:id="@+id/scheduleCard_textView_contents"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

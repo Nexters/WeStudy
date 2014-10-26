@@ -159,13 +159,13 @@ public class StudyMainActivity extends FragmentActivity
 //                            week[j] = new Integer(JSONweek.get(j).toString());
 //                        }
                         Study study = new Study(studyJSONobj.getString("_id")
-                                    , studyJSONobj.getString("creator")
-                                    , studyJSONobj.getString("subject")
-                                    , studyJSONobj.getString("title")
-                                    , 0
-                                    , studyJSONobj.getString("detail")
-                                    , studyJSONobj.getString("create_time")
-                                    , null, null, null);
+                                , studyJSONobj.getString("creator")
+                                , studyJSONobj.getString("subject")
+                                , studyJSONobj.getString("title")
+                                , 0
+                                , studyJSONobj.getString("detail")
+                                , studyJSONobj.getString("create_time")
+                                , null, null, null);
                         myStudyList.add(study);
                         myStudyListAdapter.notifyDataSetChanged();
 

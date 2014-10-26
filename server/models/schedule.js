@@ -46,16 +46,6 @@ ScheduleSchema.statics.addSchedule = function (schedule, callback) {
 	}
 };
 
-ScheduleSchema.statics.getAllSchedule = function (callback) {
-	this.find({ }, function (err, allSchedules) {
-		if (!err) {
-			callback(null, allSchedules);
-		} else {
-			callback(err, null);
-		}
-	});
-};
-
 ScheduleSchema.statics.removeSchedule = function (schedule_id, callback) {
 	this.remove({
 		'_id': schedule_id
