@@ -18,6 +18,7 @@ import com.common.CommonUtil;
 import com.common.CustomScrollView;
 import com.common.CustomScrollView.OnEdgeTouchListener;
 import com.dataSet.Article;
+import com.dataSet.StudyHelper;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -52,6 +53,7 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
 
     private boolean scrollFlag = false;
     private String study_id = "";
+    private String study_title = "";
 
     public ArticleFragment(){
 
@@ -75,6 +77,7 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         setListAdapter(article_adapter);
 
         this.study_id = getArguments().getString("study_id");
+        this.study_title = getArguments().getString("study_title");
         onRefresh();
 
     }
@@ -129,7 +132,11 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         WriteArticle.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle studyDetail = new Bundle();
+                studyDetail.putString("study_id", study_id);
+                studyDetail.putString("study_title", study_title);
                 newArticleFragment = NewArticleFragment.newInstance();
+                newArticleFragment.setArguments(studyDetail);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fl_container, newArticleFragment)
@@ -143,7 +150,7 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
     @Override
     public void onRefresh() {
         RequestParams params = new RequestParams();
-        params.put("study_id", study_id);
+        params.put("study_id", StudyHelper.getStudy().getId());
 //        params.put("date","");
 
 

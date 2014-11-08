@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.common.CommonUtil;
 import com.dataSet.Article;
+import com.dataSet.StudyHelper;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -41,6 +42,7 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
     private TabFragment tabFragment;
 
     private String study_id;
+    private String study_title;
     private String photo_url="";
 
     /** MainActivity 에서 호출할 수 있게 Instance 생성 **/
@@ -71,11 +73,14 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
     private void init(View v) {
 
         /** 리소스 초기화 **/
-        study_id = "53da400fe5bd41dd256c495e";
+        study_id = getArguments().getString("study_id");
+        study_title = getArguments().getString("study_title");
         toStudyName = (TextView) v.findViewById(R.id.article_new_toStudyName);
         writeBtn = (ImageButton) v.findViewById(R.id.articleNew_btn_send);
         text = (EditText) v.findViewById(R.id.article_new_contents);
 
+        Log.d("studttitle", StudyHelper.getStudy().getTitle());
+        toStudyName.setText(StudyHelper.getStudy().getTitle());
         /** Event 초기화 **/
         writeBtn.setOnClickListener(this);
     }
@@ -130,6 +135,7 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
                     Bundle study_id = new Bundle();
                     study_id.putString("study_id", jArticle.getString("study_id"));
 
+                    // Go Main Article list fragment.
                     tabFragment = TabFragment.newInstance();
                     tabFragment.setArguments(study_id);
                     getActivity().getSupportFragmentManager()

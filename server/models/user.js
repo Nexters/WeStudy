@@ -10,7 +10,7 @@ var UserSchema = new Schema({
   password: { type: String, required: true},
   name: { type: String, required: true }, //닉네임
   profile_url: { type: String, default: '' }, //프로필 이미지 주소
-  gender: String,		// 1:male, 2:female
+  gender: { type: String, default: "male" },	// 1:male, 2:female
   interest: { type: Array, default: [] }, //관심사
   study: { type: Array, default: [] },  //참가중인 스터디
   applying: { type: Array, default: []}, // 신청중인 스터디,
@@ -47,6 +47,7 @@ UserSchema.statics.saveUser = function (user, callback) {
         email: user.email,
         password: user.password,
         name: user.name,
+        gender: user.gender,
         profile_ur: user.profile_url ? user.profile_url : '',
         interest: makeInterestArray(user.interest),
         introduce: user.introduce ? user.introduce : '',
