@@ -63,7 +63,10 @@ public class TabFragment extends Fragment implements TabHost.OnTabChangeListener
             mTabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#ffffff"));
         }
         mTabHost.getTabWidget().setCurrentTab(0);
-        mTabHost.getTabWidget().getChildAt(0).setBackgroundColor(Color.parseColor("#5bb7e7"));
+        mTabHost.getTabWidget().getChildAt(mTabHost.getCurrentTab()).setBackgroundResource(R.drawable.common_n_09);
+
+//        mTabHost.getTabWidget().setCurrentTab(0);
+//        mTabHost.getTabWidget().getChildAt(0).setBackgroundColor(Color.parseColor("#5bb7e7"));
 
         return mTabHost;
 
@@ -82,7 +85,8 @@ public class TabFragment extends Fragment implements TabHost.OnTabChangeListener
         for(int i = 0; i < mTabHost.getTabWidget().getChildCount(); i++) {
             mTabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#ffffff"));
         }
-        mTabHost.getTabWidget().getChildAt(mTabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#5bb7e7"));
+        mTabHost.getTabWidget().getChildAt(mTabHost.getCurrentTab()).setBackgroundResource(R.drawable.abc_tab_selected_holo);
+//        mTabHost.getTabWidget().getChildAt(mTabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#5bb7e7"));
     }
 
 

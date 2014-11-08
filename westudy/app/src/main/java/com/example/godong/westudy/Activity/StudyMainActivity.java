@@ -32,6 +32,7 @@ import com.example.godong.westudy.SideMenu.StudyMakeFragment;
 import com.example.godong.westudy.StudyFragment.NewArticleFragment;
 import com.example.godong.westudy.StudyFragment.StudyMakeDialog;
 import com.example.godong.westudy.StudyFragment.TabFragment;
+import com.example.godong.westudy.StudyFragment.ViewPagerFragment;
 import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.network.HttpUtil;
@@ -57,6 +58,7 @@ public class StudyMainActivity extends FragmentActivity
 
     /** fragment들 선언 (DrawerBar에서 선택할 Fragment) **/
     private TabFragment tabFragment;
+    private ViewPagerFragment viewPagerFragment;
     private ProfileFragment profileFragment;
     private InfoFragment infoFragment;
     private StudyMakeFragment studyMakeFragment;
@@ -280,11 +282,14 @@ public class StudyMainActivity extends FragmentActivity
 
         mNavigationDrawerFragment.closeDrawer();
 
-        tabFragment = TabFragment.newInstance();
-        tabFragment.setArguments(study_id);
+        viewPagerFragment = ViewPagerFragment.newInstance();
+        viewPagerFragment.setArguments(study_id);
+
+//        tabFragment = TabFragment.newInstance();
+//        tabFragment.setArguments(study_id);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fl_container, tabFragment)
+                .replace(R.id.fl_container, viewPagerFragment)
                 .commit();
 
     }

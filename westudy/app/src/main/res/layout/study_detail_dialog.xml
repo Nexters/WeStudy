@@ -6,13 +6,13 @@
     android:layout_height="fill_parent">
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="148dp"
         android:orientation="vertical"
         android:background="@drawable/p_01">
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="25dp"
             android:orientation="vertical">
 
@@ -28,12 +28,12 @@
         </LinearLayout>
 
         <Space
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="66dp" />
 
         <!-- 타이틀 및 텍스트 영역 -->
         <LinearLayout
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="horizontal"
             android:background="@drawable/p_02">
@@ -114,7 +114,7 @@
 
     <!-- 하단 멤버란 -->
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="43dp"
         android:background="@drawable/common_n_06">
 
@@ -173,7 +173,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="221dp"
         android:background="#ffffffff"
         android:orientation="vertical"

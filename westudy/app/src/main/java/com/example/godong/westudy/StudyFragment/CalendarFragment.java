@@ -15,8 +15,12 @@ import com.example.godong.westudy.R;
 public class CalendarFragment extends Fragment {
     private CalendarView cal;
 
-    public CalendarFragment(){
 
+    public static MemberFragment newInstance(){
+
+        MemberFragment fragment = new MemberFragment();
+
+        return fragment;
     }
 
     @Override

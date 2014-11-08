@@ -10,7 +10,8 @@
     <string name="title_info">Monday Arivo.</string>
     <string name="tab_home">홈</string>
     <string name="tab_calendar">캘린더</string>
-    <string name="tab_planner">플래너</string>
+    <string name="tab_schedule">스케줄</string>
+    <string name="tab_member">멤 버</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
