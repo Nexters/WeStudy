@@ -25,6 +25,7 @@ import com.common.CommonUtil;
 import com.dataSet.Study;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.network.HttpUtil;
 
 import org.apache.http.Header;
@@ -91,8 +92,11 @@ public class StudyITListFragment extends ListFragment implements SwipeRefreshLay
 
     @Override
     public void onRefresh() {
+        RequestParams params = new RequestParams();
+        params.put("subject", "it");
+        params.put("data", "");
 
-        HttpUtil.get("http://godong9.com:3000/study/all", null, null, new AsyncHttpResponseHandler() {
+        HttpUtil.get("http://godong9.com:3000/study/loadStudyBySubject", null, params, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
                 // called before request is started
@@ -102,11 +106,8 @@ public class StudyITListFragment extends ListFragment implements SwipeRefreshLay
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
-
                 studyIT_jarray = CommonUtil.stringToJSONArray(new String(response));
                 setFeedData();
-
-
             }
 
             @Override
@@ -120,6 +121,36 @@ public class StudyITListFragment extends ListFragment implements SwipeRefreshLay
                 // called when request is retried
             }
         });
+
+//        HttpUtil.get("http://godong9.com:3000/study/all", null, null, new AsyncHttpResponseHandler() {
+//            @Override
+//            public void onStart() {
+//                // called before request is started
+//                Log.i("HttpUtil.get.Start", "START");
+//            }
+//
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+//                // called when response HTTP status is "200 OK"
+//
+//                studyIT_jarray = CommonUtil.stringToJSONArray(new String(response));
+//                setFeedData();
+//
+//
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+//                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+//                Log.e("HttpUtil.get.ERROR", "ERROR");
+//            }
+//
+//            @Override
+//            public void onRetry(int retryNo) {
+//                // called when request is retried
+//            }
+//        });
+//
 
         new Handler().postDelayed(new Runnable() {
             @Override public void run() {
@@ -141,7 +172,7 @@ public class StudyITListFragment extends ListFragment implements SwipeRefreshLay
         int[] week;
         String[] location;
         String[] members;
-        int number_type = 0;
+        int recruit_number = 0;
 
 // Article[] articles = new Article[jarray.length()];
 
@@ -157,7 +188,7 @@ public class StudyITListFragment extends ListFragment implements SwipeRefreshLay
                 creator = studyList.getString("creator");
                 subject = studyList.getString("subject");
                 title = studyList.getString("title");
-                number_type = studyList.getInt("number_type");
+                recruit_number = studyList.getInt("recruit_number");
                 detail = studyList.getString("detail");
 //                create_time = studyList.getString("create_time");
 
@@ -189,9 +220,9 @@ public class StudyITListFragment extends ListFragment implements SwipeRefreshLay
 
 
 
-                Log.d("output:", creator + "/" + subject + "/" + title + "/" + number_type + "/" + detail + "\n"
+                Log.d("output:", creator + "/" + subject + "/" + title + "/" + recruit_number + "/" + detail + "\n"
                         + members + "/" + location + "/" + week + "\n");
-                Study study = new Study(_id,creator, subject, title, number_type, detail, "2014-08-08", members, location, week);
+                Study study = new Study(_id,creator, subject, title, recruit_number, detail, "2014-08-08", members, location, week);
 
                 if(subject.equals("it")) {
                     studyIT_data.add(study);
@@ -277,7 +308,7 @@ public class StudyITListFragment extends ListFragment implements SwipeRefreshLay
                     title.setText(study.getTitle());
                 }
                 if (maxMember != null){
-                    maxMember.setText(study.getNumber_type()+"명");
+                    maxMember.setText(study.getRecruit_number()+"명");
                 }
                 if (memberCount != null){
                     memberCount.setText(Integer.toString(study.getMemberCount())+"명");

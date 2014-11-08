@@ -204,12 +204,12 @@
 
             <RadioGroup
                 android:orientation="horizontal"
-                android:id="@+id/studyMake_radio_person"
+                android:id="@+id/studyMake_radio_recruit_number"
                 android:layout_width="match_parent"
                 android:layout_height="32dp">
                 <RadioButton
                     android:text="4명"
-                    android:id="@+id/studyMake_radio_person4"
+                    android:id="@+id/studyMake_radio_recruit_number4"
                     android:textColor="#000000"
                     android:textSize="14dp"
                     android:layout_width="75dp"
@@ -223,7 +223,7 @@
                     android:tag="4"/>
                 <RadioButton
                     android:text="6명"
-                    android:id="@+id/studyMake_radio_person6"
+                    android:id="@+id/studyMake_radio_recruit_number6"
                     android:textColor="#000000"
                     android:textSize="14dp"
                     android:layout_width="75dp"
@@ -237,7 +237,7 @@
                     android:tag="6"/>
                 <RadioButton
                     android:text="8명"
-                    android:id="@+id/studyMake_radio_person8"
+                    android:id="@+id/studyMake_radio_recruit_number8"
                     android:textColor="#000000"
                     android:textSize="14dp"
                     android:layout_width="75dp"
@@ -251,7 +251,7 @@
                     android:tag="8"/>
                 <RadioButton
                     android:text="9명 이상"
-                    android:id="@+id/studyMake_radio_person9"
+                    android:id="@+id/studyMake_radio_recruit_number9"
                     android:textColor="#000000"
                     android:textSize="14dp"
                     android:layout_width="85dp"

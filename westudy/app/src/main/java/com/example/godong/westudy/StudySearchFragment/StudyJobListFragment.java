@@ -140,7 +140,7 @@ public class StudyJobListFragment extends ListFragment implements SwipeRefreshLa
         int[] week;
         String[] location;
         String[] members;
-        int number_type = 0;
+        int recruit_number = 0;
 
 // Article[] articles = new Article[jarray.length()];
 
@@ -156,7 +156,7 @@ public class StudyJobListFragment extends ListFragment implements SwipeRefreshLa
                 creator = studyList.getString("creator");
                 subject = studyList.getString("subject");
                 title = studyList.getString("title");
-                number_type = studyList.getInt("number_type");
+                recruit_number = studyList.getInt("recruit_number");
                 detail = studyList.getString("detail");
 
                 /** member 읽어오기 **/
@@ -185,9 +185,9 @@ public class StudyJobListFragment extends ListFragment implements SwipeRefreshLa
 
 
 
-                Log.d("output:", creator + "/" + subject + "/" + title + "/" + number_type + "/" + detail + "\n"
+                Log.d("output:", creator + "/" + subject + "/" + title + "/" + recruit_number + "/" + detail + "\n"
                         + members + "/" + location + "/" + week + "\n");
-                Study study = new Study(_id,creator, subject, title, number_type, detail, "2014-08-08", members, location, week);
+                Study study = new Study(_id,creator, subject, title, recruit_number, detail, "2014-08-08", members, location, week);
 
                 if(subject.equals("job")) {
                     studyJob_data.add(study);
@@ -274,7 +274,7 @@ public class StudyJobListFragment extends ListFragment implements SwipeRefreshLa
                     title.setText(study.getTitle());
                 }
                 if (maxMember != null){
-                    maxMember.setText(study.getNumber_type()+"명");
+                    maxMember.setText(study.getRecruit_number()+"명");
                 }
                 if (memberCount != null){
                     memberCount.setText(Integer.toString(study.getMemberCount())+"명");
