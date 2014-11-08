@@ -20,7 +20,8 @@ public class TabFragment extends Fragment implements TabHost.OnTabChangeListener
 
     /** TabHost 선언 **/
     private FragmentTabHost mTabHost;
-    private String study_id="";
+    private String study_id = "";
+    private String study_title = "";
 
 
     /** MainActivity 에서 호출할 수 있게 Instance 생성 **/
@@ -39,9 +40,11 @@ public class TabFragment extends Fragment implements TabHost.OnTabChangeListener
 
 
         study_id = getArguments().getString("study_id");
+        study_title = getArguments().getString("study_title");
 
         Bundle Bundle_studyId = new Bundle();
         Bundle_studyId.putString("study_id", study_id);
+        Bundle_studyId.putString("study_title", study_title);
 
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.tabhost);
         mTabHost.setOnTabChangedListener(this);

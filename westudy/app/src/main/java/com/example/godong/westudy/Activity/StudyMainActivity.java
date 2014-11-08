@@ -22,13 +22,14 @@ import com.common.BackPressCloseHandler;
 import com.common.CommonUtil;
 import com.common.NavigationDrawerFragment;
 import com.dataSet.Study;
+import com.dataSet.StudyHelper;
 import com.dataSet.User;
+import com.dataSet.UserHelper;
 import com.example.godong.westudy.R;
 import com.example.godong.westudy.SideMenu.InfoFragment;
 import com.example.godong.westudy.SideMenu.ProfileFragment;
 import com.example.godong.westudy.SideMenu.StudyMakeFragment;
 import com.example.godong.westudy.StudyFragment.NewArticleFragment;
-import com.example.godong.westudy.StudyFragment.StudyMakeDialog;
 import com.example.godong.westudy.StudyFragment.TabFragment;
 import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -118,8 +119,8 @@ public class StudyMainActivity extends FragmentActivity
         userName = (TextView) findViewById(R.id.nav_user_name);
         introduce = (TextView) findViewById(R.id.nav_user_introduce);
 
-        userName.setText(userInfo.getName());
-        introduce.setText(userInfo.getIntroduce());
+        userName.setText(UserHelper.getUser().getName());
+        introduce.setText(UserHelper.getUser().getIntroduce());
 
         findViewById(R.id.nav_btn_find_study).setOnClickListener(mClickListener);
         findViewById(R.id.nav_btn_make_study).setOnClickListener(mClickListener);
@@ -362,18 +363,23 @@ public class StudyMainActivity extends FragmentActivity
 //        userData = new Bundle();
 //        userData.putParcelable("userData",userInfo);
 
-        Bundle study_id = new Bundle();
+        Bundle studyDetail = new Bundle();
         if (this.myStudyList != null) {
             Study study = this.myStudyList.get(position);
-            study_id.putString("study_id", study.getId());
+
+            StudyHelper.setStudy(study);
+
+//            studyDetail.putString("study_id", study.getId());
+//            studyDetail.putString("study_title", study.getTitle());
         } else {
-            study_id.putString("study_id", "");
+//            studyDetail.putString("study_id", "");
+//            studyDetail.putString("study_title", "");
         }
 
         mNavigationDrawerFragment.closeDrawer();
 
         tabFragment = TabFragment.newInstance();
-        tabFragment.setArguments(study_id);
+        tabFragment.setArguments(studyDetail);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fl_container, tabFragment)

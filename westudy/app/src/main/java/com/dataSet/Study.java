@@ -63,6 +63,8 @@ public class Study {
 
     public String getId() { return this._id; }
 
+    public void setId(String id) { this._id = id; }
+
     public String getCreator() {
         return creator;
     }

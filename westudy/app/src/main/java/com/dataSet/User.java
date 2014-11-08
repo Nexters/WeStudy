@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Created by baggajin on 14. 8. 9..
  */
-public class User implements Parcelable{
+ public class User implements Parcelable{
 
     private String _id;
     private String email;
@@ -15,7 +15,7 @@ public class User implements Parcelable{
     private String gender;
     private String create_time;
     private String introduce;
-    private String[] interest = {"어학","취업","IT","자격증&시험"};
+    private String[] interest = {"어학","취업","IT","자격증&시험","기타"};
     private int[] interest_in;
     private String[] study;
 
@@ -84,7 +84,7 @@ public class User implements Parcelable{
     public String getGender() {
         String result;
 
-        if(this.gender.equals("0")){
+        if(this.gender.equals("male")){
             result = "남";
         }else
             result = "여";
@@ -108,21 +108,25 @@ public class User implements Parcelable{
 
     }
 
-    public String getInterest() {
-
-        String result="";
-
-        for(int i=0;i<size;i++){
-            if(result.equals("")){
-                result = interest[interest_in[i]];
-            }else{
-                result += interest[interest_in[i]];
-            }
-
-        }
-
-        return result;
+    public int[] getInterest() {
+        return interest_in;
     }
+
+//    public String getInterest() {
+//
+//        String result="";
+//
+//        for(int i=0;i<size;i++){
+//            if(result.equals("")){
+//                result = interest[interest_in[i]];
+//            }else{
+//                result += interest[interest_in[i]];
+//            }
+//
+//        }
+//
+//        return result;
+//    }
 
     public void initInterest(int i){
         this.interest_in = new int[i];

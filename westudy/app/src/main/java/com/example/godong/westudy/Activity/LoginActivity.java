@@ -17,6 +17,7 @@ import android.widget.Button;
 import com.common.ActivityReference;
 import com.common.CommonUtil;
 import com.dataSet.User;
+import com.dataSet.UserHelper;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -123,11 +124,6 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         HttpUtil.post("http://godong9.com:3000/login", null, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                // called when response HTTP status is "200 OK"
-                Toast toast = Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 100);
-                toast.show();
-
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("email",email_text);
                 editor.putString("pw",pw_text);
@@ -164,9 +160,16 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                         userInfo.setStudy(study.getString(j),j);
                     }
 
+                    UserHelper.setUser(userInfo);
+
                 } catch (Exception je) {
                     Log.e("JSON Error", je.toString());
                 }
+
+                // Called when response HTTP status is "200 OK"
+                Toast toast = Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 100);
+                toast.show();
 
                 Intent intentLoginActivity = new Intent(LoginActivity.this, StudyMainActivity.class);
                 intentLoginActivity.putExtra("LoginData", userInfo);
