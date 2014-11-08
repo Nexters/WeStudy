@@ -41,8 +41,8 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
 
     private TabFragment tabFragment;
 
-    private String study_id;
-    private String study_title;
+//    private String study_id;
+//    private String study_title;
     private String photo_url="";
 
     /** MainActivity 에서 호출할 수 있게 Instance 생성 **/
@@ -73,13 +73,12 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
     private void init(View v) {
 
         /** 리소스 초기화 **/
-        study_id = getArguments().getString("study_id");
-        study_title = getArguments().getString("study_title");
+//        study_id = getArguments().getString("study_id");
+//        study_title = getArguments().getString("study_title");
         toStudyName = (TextView) v.findViewById(R.id.article_new_toStudyName);
         writeBtn = (ImageButton) v.findViewById(R.id.articleNew_btn_send);
         text = (EditText) v.findViewById(R.id.article_new_contents);
 
-        Log.d("studttitle", StudyHelper.getStudy().getTitle());
         toStudyName.setText(StudyHelper.getStudy().getTitle());
         /** Event 초기화 **/
         writeBtn.setOnClickListener(this);
@@ -118,8 +117,8 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
         Log.d("test",jsonObj.toString());
 
         RequestParams params = new RequestParams();
-        params.put("study_id",study_id);
-        params.put("contents",contents);
+        params.put("study_id", StudyHelper.getStudy().getId());
+        params.put("contents", contents);
 
         HttpUtil.post("http://godong9.com:3000/article", null, params, new AsyncHttpResponseHandler() {
             @Override
@@ -133,11 +132,11 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
                     toast.setGravity(Gravity.CENTER, 0, 100);
                     toast.show();
                     Bundle study_id = new Bundle();
-                    study_id.putString("study_id", jArticle.getString("study_id"));
+//                    study_id.putString("study_id", jArticle.getString("study_id"));
 
                     // Go Main Article list fragment.
                     tabFragment = TabFragment.newInstance();
-                    tabFragment.setArguments(study_id);
+//                    tabFragment.setArguments(study_id);
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fl_container, tabFragment)
@@ -170,9 +169,10 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
         String toastText = "";
         if(text.getText().toString().equals("")){
             toastText = "내용을 입력해주세요!";
-        }else if(study_id.equals("")){
-            toastText = "Study Id가 비어있습니다.";
         }
+//        else if(study_id.equals("")){
+//            toastText = "Study Id가 비어있습니다.";
+//        }
 
         if(toastText.equals("")){
             return true;
