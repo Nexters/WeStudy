@@ -92,6 +92,33 @@ public class StudyITListFragment extends ListFragment implements SwipeRefreshLay
     @Override
     public void onRefresh() {
 
+
+//        HttpUtil.get("http://godong9.com:3000/study/loadStudyBySubject", null, null, new AsyncHttpResponseHandler() {
+//            @Override
+//            public void onStart() {
+//                // called before request is started
+//                Log.i("HttpUtil.get.Start", "START");
+//            }
+//
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+//                // called when response HTTP status is "200 OK"
+//                studyIT_jarray = CommonUtil.stringToJSONArray(new String(response));
+//                setFeedData();
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+//                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+//                Log.e("HttpUtil.get.ERROR", "ERROR");
+//            }
+//
+//            @Override
+//            public void onRetry(int retryNo) {
+//                // called when request is retried
+//            }
+//        });
+
         HttpUtil.get("http://godong9.com:3000/study/all", null, null, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
