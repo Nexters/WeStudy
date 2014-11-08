@@ -10,7 +10,7 @@ var StudySchema = new Schema({
   manager: { type: Array, default: [] },  //관리자 리스트
   subject: String,  //스터디 주제
   title: String,  //스터디 제목
-  person: Number,  //모집 인원
+  recruit_number: Number,  //모집 인원
   location: { type: Array, default: [] }, //지역
   day_of_week: { type: Array, default: [] },  //요일
   detail: String, //추가 설명
@@ -32,7 +32,7 @@ StudySchema.statics.saveStudy = function (me, study, callback) {
       creator: me._id,
       subject: study.subject,
       title: study.title,
-      person: study.person,
+      recruit_number: study.recruit_number,
       location: study.location ? study.location : [],
       day_of_week: makeDayOfWeekArray(study.day_of_week),
       detail: study.detail || "",
