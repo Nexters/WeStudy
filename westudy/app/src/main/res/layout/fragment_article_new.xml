@@ -17,7 +17,7 @@
             android:layout_height="fill_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textColor="#383432"
+            android:textColor="#696767"
             android:textSize="16dp" />
 
         <ImageButton
@@ -35,41 +35,36 @@
         android:layout_height="33dp"
         android:background="#efefef"
         android:orientation="horizontal">
-
-        <EditText
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:text="To. "
             android:textSize="15dp"
-            android:padding="8dp"
-            android:inputType="text"
-            android:hint="    To. study name"
+            android:textColor="#335789"/>
+        <TextView
             android:id="@+id/article_new_toStudyName"
-            android:background="#ff7bc9c9" />
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:textSize="18dp"
-            android:text="글쓰기"
-            android:id="@+id/article_new_writeButton"
-            android:textColor="#ffffff"
-            android:layout_gravity="right"
-            android:background="#ff224462" />
-
+            android:layout_width="300dp"
+            android:layout_height="33dp"
+            android:text="Test Study"
+            android:textSize="15dp"
+            android:textColor="#335789"
+            />
 
     </LinearLayout>
 
     <EditText
+        android:id="@+id/article_new_contents"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:inputType="textMultiLine"
         android:gravity="left"
+        android:textSize="15dp"
+        android:textColor="#696767"
+        android:background="#ffffff"
         android:hint="내용을 입력해 주세요."
-        android:ems="10"
-        android:id="@+id/article_new_contents" />
+        android:ems="10" />
 
 </LinearLayout>

@@ -8,6 +8,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.view.Gravity;
 import android.util.Log;
@@ -34,8 +36,8 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
 
     /** 글쓰기 화면 리소스 선언 **/
     private EditText text;
-    private Button writeBtn;
-    private EditText toStudyName;
+    private ImageButton writeBtn;
+    private TextView toStudyName;
     private JSONObject jsonObj;
 
     private String study_id;
@@ -70,8 +72,8 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
 
         /** 리소스 초기화 **/
         study_id = "53da400fe5bd41dd256c495e";
-        toStudyName = (EditText) v.findViewById(R.id.article_new_toStudyName);
-        writeBtn = (Button) v.findViewById(R.id.article_new_writeButton);
+        toStudyName = (TextView) v.findViewById(R.id.article_new_toStudyName);
+        writeBtn = (ImageButton) v.findViewById(R.id.articleNew_btn_send);
         text = (EditText) v.findViewById(R.id.article_new_contents);
 
         /** Event 초기화 **/
@@ -81,7 +83,7 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
     @Override
     public void onClick(View v) {
 
-        if(v.getId() == R.id.article_new_writeButton){
+        if(v.getId() == R.id.articleNew_btn_send){
             //TODO: article 작성 내용 post 붙여야 함.
             sendArticleData();
         }
