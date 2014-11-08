@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">weStudy</string>
+    <string name="app_name">WeStudy</string>
     <string name="title_home">홈</string>
     <string name="title_profile">내 정보</string>
     <string name="title_study">스터디</string>

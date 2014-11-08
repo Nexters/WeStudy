@@ -17,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 
 import com.common.BackPressCloseHandler;
 import com.common.CommonUtil;
@@ -80,22 +82,7 @@ public class StudyMainActivity extends FragmentActivity
 
         setContentView(R.layout.activity_main);
 
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        actionBar.setCustomView(R.layout._custom_title);
-
-
         backPressCloseHandler = new BackPressCloseHandler(this);
-
-//        ActionBar actionBar = getActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setHomeButtonEnabled(true);
-
-//        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
-
-//        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
-//        actionBar.setBackgroundDrawable(colorDrawable);
-
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 
@@ -255,17 +242,6 @@ public class StudyMainActivity extends FragmentActivity
     }
 
 
-//    /**
-//     * ActionBar restore
-//     * Fragment 전환 전 ActionBar Title 변경
-//     */
-//    public void restoreActionBar(){
-//        ActionBar actionBar = getActionBar();
-//        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-//        actionBar.setDisplayShowTitleEnabled(true);
-////        actionBar.setTitle(mTitle);
-//    }
-
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu){
 //        if(!mNavigationDrawerFragment.isDrawerOpen()){
@@ -279,78 +255,10 @@ public class StudyMainActivity extends FragmentActivity
 //        return super.onCreateOptionsMenu(menu);
 //    }
 
-    /**
-     * Section Select 됐을 때 실제 Fragment 전환 작업
-     * @param number
-     */
+
     public void onSectionAttached(int number){
 
-//
-//        switch(number){
-//            case 1:
-////                mTitle = getString(R.string.title_home);
-//                tabFragment = TabFragment.newInstance();
-//                tabFragment.setArguments(study_id);
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fl_container, tabFragment)
-//                        .commit();
-//                break;
-//            case 2:
-////                mTitle = getString(R.string.title_profile);
-//                profileFragment = profileFragment.newInstance();
-//                profileFragment.setArguments(userData);
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fl_container, profileFragment)
-//                        .commit();
-//                break;
-//            case 3:
-////                mTitle = getString(R.string.title_study);
-//                tabFragment = TabFragment.newInstance();
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fl_container, tabFragment)
-//                        .commit();
-//                break;
-//
-//            case 4:
-////                mTitle = getString(R.string.title_study_search);
-//                studySearchTabFragment = StudySearchTabFragment.newInstance();
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fl_container, studySearchTabFragment)
-//                        .commit();
-//                break;
-//
-//            case 5:
-////                mTitle = getString(R.string.title_study_search);
-//                newArticleFragment = NewArticleFragment.newInstance();
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fl_container, newArticleFragment)
-//                        .commit();
-//                break;
-//
-//            case 6:
-////                mTitle = getString(R.string.title_study_make);
-//                studyMakeFragment = StudyMakeFragment.newInstance();
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fl_container, studyMakeFragment)
-//                        .commit();
-//                break;
-//
-//            case 7:
-////                mTitle = getString(R.string.title_info);
-//                infoFragment = InfoFragment.newInstance();
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fl_container, infoFragment)
-//                        .commit();
-//                break;
-//
-//        }
+
     }
 
     @Override

@@ -3,4 +3,8 @@
     <dimen name="com_facebook_picker_place_image_size">64dp</dimen>
     <color name="com_facebook_picker_search_bar_background">#f5f5f7</color>
     <color name="com_facebook_picker_search_bar_text">#bcbdc2</color>
+
+    <color name="actionbar_menu_text">#ffffff</color>
+    <color name="actionbar_title_text">#ffffff</color>
+    <color name="actionbar_tab_text">#ffffff</color>
 </resources>
