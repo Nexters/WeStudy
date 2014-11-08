@@ -136,11 +136,11 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         WriteArticle.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle studyDetail = new Bundle();
+//                Bundle studyDetail = new Bundle();
 //                studyDetail.putString("study_id", StudyHelper.getStudy().getId());
 //                studyDetail.putString("study_title", StudyHelper.getStudy().getTitle());
                 newArticleFragment = NewArticleFragment.newInstance();
-                newArticleFragment.setArguments(studyDetail);
+//                newArticleFragment.setArguments(studyDetail);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fl_container, newArticleFragment)

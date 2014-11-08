@@ -16,9 +16,9 @@ public class CalendarFragment extends Fragment {
     private CalendarView cal;
 
 
-    public static MemberFragment newInstance(){
+    public static CalendarFragment newInstance(){
 
-        MemberFragment fragment = new MemberFragment();
+        CalendarFragment fragment = new CalendarFragment();
 
         return fragment;
     }

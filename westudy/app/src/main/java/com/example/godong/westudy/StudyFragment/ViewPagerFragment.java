@@ -35,10 +35,10 @@ public class ViewPagerFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        study_id = getArguments().getString("study_id");
+//        study_id = getArguments().getString("study_id");
 
-        Bundle Bundle_studyId = new Bundle();
-        Bundle_studyId.putString("study_id", study_id);
+//        Bundle Bundle_studyId = new Bundle();
+//        Bundle_studyId.putString("study_id", study_id);
 
         mTabs.add(new SamplePagerItem(0, getString(R.string.tab_home), Color.rgb(14,167,247), Color.WHITE));
         mTabs.add(new SamplePagerItem(1, getString(R.string.tab_calendar), Color.rgb(14,167,247), Color.WHITE));
