@@ -140,13 +140,6 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
                 }catch(Exception e){
                     Log.e("JSONException Occured:",e.toString());
                 }
-                // TODO : 성공 했을 경우 -> 스터디 메인으로 넘어감
-//                TabFragment tabFragment = TabFragment.newInstance();
-//                getActivity()
-//                        .getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.fl_container, tabFragment)
-//                        .commit();
 
             }
 
