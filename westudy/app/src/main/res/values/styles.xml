@@ -4,9 +4,32 @@
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
 
         <!-- Customize your theme here. -->
-        <item name="android:windowContentOverlay">@null</item>
 
     </style>
+
+
+    <!-- Styling the Action Bar : Use an Android Themes for Application or Activity -->
+    <style name="CustomActionBarTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
+        <item name="android:actionMenuTextColor">@color/actionbar_menu_text</item>
+    </style>
+
+    <!-- Styling the Action Bar : title text style -->
+    <style name="MyActionBar" parent="android:style/Widget.Holo.ActionBar">
+        <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
+    </style>
+
+    <!-- Styling the Action Bar : title text color -->
+    <style name="MyActionBarTitleText" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/actionbar_title_text</item>
+    </style>
+
+    <!-- Styling the Action Bar : tabs text color -->
+    <style name="MyActionBarTabText" parent="android:style/Widget.Holo.ActionBar.TabText">
+        <item name="android:textColor">@color/actionbar_tab_text</item>
+    </style>
+
 
     <style name="tooltip_bubble_text">
         <item name="android:textColor">@android:color/white</item>

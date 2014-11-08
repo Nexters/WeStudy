@@ -2,26 +2,23 @@ package com.example.godong.westudy.StudyFragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.Gravity;
-import android.util.Log;
 
-import com.network.HttpUtil;
 import com.common.CommonUtil;
+import com.dataSet.Article;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
-import com.dataSet.Article;
+import com.network.HttpUtil;
 
 import org.apache.http.Header;
 import org.json.JSONException;
@@ -40,6 +37,8 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
     private ImageButton writeBtn;
     private TextView toStudyName;
     private JSONObject jsonObj;
+
+    private TabFragment tabFragment;
 
     private String study_id;
     private String photo_url="";
@@ -117,7 +116,6 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
         params.put("study_id",study_id);
         params.put("contents",contents);
 
-
         HttpUtil.post("http://godong9.com:3000/article", null, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
@@ -126,10 +124,18 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
 
                 JSONObject jArticle = CommonUtil.stringToJSONObject(new String(response));
                 try {
-                    String study_id = jArticle.getString("study_id");
-                    Toast toast = Toast.makeText(getActivity().getApplicationContext(), "작성되었습니다!"+study_id, Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getActivity().getApplicationContext(), "작성되었습니다!", Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.CENTER, 0, 100);
                     toast.show();
+                    Bundle study_id = new Bundle();
+                    study_id.putString("study_id", jArticle.getString("study_id"));
+
+                    tabFragment = TabFragment.newInstance();
+                    tabFragment.setArguments(study_id);
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fl_container, tabFragment)
+                            .commit();
 
                 }catch(Exception e){
                     Log.e("JSONException Occured:",e.toString());
