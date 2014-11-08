@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 import com.common.CommonUtil;
 import com.dataSet.Study;
 import com.dataSet.User;
-import com.example.godong.westudy.Activity.LoginActivity;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -34,7 +32,7 @@ public class StudyDetailDialog extends DialogFragment {
     private Study study;
     private User user;
     private TextView title;
-    private TextView person;
+    private TextView recruit_number;
     private TextView detail;
     private ImageButton dialog_exit_btn;
     private Button study_apply_btn;
@@ -57,8 +55,8 @@ public class StudyDetailDialog extends DialogFragment {
         title = (TextView)view.findViewById(R.id.studyDetail_text_title);
         title.setText(this.study.getTitle());
 
-        person = (TextView)view.findViewById(R.id.studyDetail_text_person);
-        person.setText(this.study.getMemberCount()+" / "+this.study.getNumber_type()+"명");
+        recruit_number = (TextView)view.findViewById(R.id.studyDetail_text_recruit_number);
+        recruit_number.setText(this.study.getMemberCount()+" / "+this.study.getRecruit_number()+"명");
 
         detail = (TextView)view.findViewById(R.id.studyDetail_text_detail);
         detail.setText(this.study.getDetail());

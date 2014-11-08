@@ -5,23 +5,20 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnTouchListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.support.v4.app.FragmentActivity;
 
 import com.common.CommonUtil;
 import com.dataSet.Study;
@@ -146,7 +143,7 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
         int[] week;
         String[] location;
         String[] members;
-        int number_type = 0;
+        int recruit_number = 0;
 
 // Article[] articles = new Article[jarray.length()];
 
@@ -162,7 +159,7 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
                 creator = studyList.getString("creator");
                 subject = studyList.getString("subject");
                 title = studyList.getString("title");
-                number_type = studyList.getInt("person");
+                recruit_number = studyList.getInt("recruit_number");
                 detail = studyList.getString("detail");
 //                create_time = studyList.getString("create_time");
 
@@ -193,9 +190,9 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
                 }
 
 
-                Log.d("output:",creator+"/"+subject+"/"+title+"/"+number_type+"/"+detail+"\n"
+                Log.d("output:",creator+"/"+subject+"/"+title+"/"+recruit_number+"/"+detail+"\n"
                                +members+"/"+location+"/"+week+"\n");
-                Study study = new Study(_id,creator,subject,title,number_type,detail,"2014-08-08",members,location,week);
+                Study study = new Study(_id,creator,subject,title,recruit_number,detail,"2014-08-08",members,location,week);
 
                 studySearch_data.add(study);
                 Log.d("Arraylist output", studySearch_data.get(i).toString());
@@ -286,7 +283,7 @@ public class StudyAllListFragment extends ListFragment implements SwipeRefreshLa
                     title.setText(study.getTitle());
                 }
                 if (maxMember != null){
-                    maxMember.setText(study.getNumber_type()+"명");
+                    maxMember.setText(study.getRecruit_number()+"명");
                 }
                 if (memberCount != null){
                     memberCount.setText(Integer.toString(study.getMemberCount())+"명");

@@ -39,9 +39,9 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
     private RadioGroup subjectRadioGroup;
     private RadioButton selectedSubjectRadioBtn;
     private EditText studyNameEdit;
-    private RadioGroup personRadioGroup;
-    private RadioButton defaultPersonRadioBtn;
-    private RadioButton selectedPersonRadioBtn;
+    private RadioGroup RecruitNumberRadioGroup;
+    private RadioButton defaultRecruitNumberRadioBtn;
+    private RadioButton selectedRecruitNumberRadioBtn;
     private EditText locationEdit;
     private Button monBtn, tueBtn, wedBtn, thuBtn, friBtn, satBtn, sunBtn;
     private int [] dayOfWeekArray = {0, 0, 0, 0, 0, 0, 0};
@@ -76,9 +76,9 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
         //Resource 초기화
         subjectRadioGroup = (RadioGroup) view.findViewById(R.id.studyMake_radio_subject);
         studyNameEdit = (EditText) view.findViewById(R.id.studyMake_edit_title);
-        personRadioGroup = (RadioGroup) view.findViewById(R.id.studyMake_radio_person);
-        defaultPersonRadioBtn = (RadioButton) view.findViewById(R.id.studyMake_radio_person4);
-        defaultPersonRadioBtn.setChecked(true);
+        RecruitNumberRadioGroup = (RadioGroup) view.findViewById(R.id.studyMake_radio_recruit_number);
+        defaultRecruitNumberRadioBtn = (RadioButton) view.findViewById(R.id.studyMake_radio_recruit_number4);
+        defaultRecruitNumberRadioBtn.setChecked(true);
 //        locationEdit = (EditText) view.findViewById(R.id.studyMake_edit_location);
         monBtn = (Button) view.findViewById(R.id.studyMake_btn_mon);
         tueBtn = (Button) view.findViewById(R.id.studyMake_btn_tue);
@@ -141,13 +141,13 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
         }
         int selectedSubject = subjectRadioGroup.getCheckedRadioButtonId();
         selectedSubjectRadioBtn = (RadioButton) activityView.findViewById(selectedSubject);
-        int selectedPerson = personRadioGroup.getCheckedRadioButtonId();
-        selectedPersonRadioBtn = (RadioButton) activityView.findViewById(selectedPerson);
+        int selectedRecruitNumber = RecruitNumberRadioGroup.getCheckedRadioButtonId();
+        selectedRecruitNumberRadioBtn = (RadioButton) activityView.findViewById(selectedRecruitNumber);
 
         RequestParams params = new RequestParams();
         params.put("subject",selectedSubjectRadioBtn.getTag());
         params.put("title",studyNameEdit.getText());
-        params.put("person",selectedPersonRadioBtn.getTag());
+        params.put("recruit_number",selectedRecruitNumberRadioBtn.getTag());
 //        params.put("location",locationEdit.getText());
         params.put("day_of_week",dayOfWeekArrayToJSONArray());
         params.put("detail",detailEdit.getText());

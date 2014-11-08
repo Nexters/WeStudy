@@ -121,9 +121,9 @@ StudySchema.statics.loadStudyBySubject = function (subject, last_date, callback)
     }).sort({
       'create_time': -1
     }).limit(10)
-    .exec(function (err, data) {
+    .exec(function (err, list) {
       if (!err) {
-        callback(null, data);
+        callback(null, list);
       } else {
         console.log("Load Study by subject Error " + err);
         callback(err, null);

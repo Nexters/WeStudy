@@ -8,7 +8,7 @@ public class Study {
     private String creator;
     private String subject;
     private String title;
-    private int number_type;
+    private int recruit_number;
     private int memberCount;
     private String detail;
     private String create_time;
@@ -24,21 +24,21 @@ public class Study {
         this.creator = "";
         this.subject = "";
         this.title = "";
-        this.number_type = 0;
+        this.recruit_number = 0;
         this.memberCount = 0;
         this.detail = "";
         this.create_time = "";
         this._id = "";
     }
 
-    public Study(String _id, String creator, String subject, String title, int number_type, String detail, String create_time,
+    public Study(String _id, String creator, String subject, String title, int recruit_number, String detail, String create_time,
                  String[] members, String[] location, int[] week){
 
         this._id = _id;
         this.creator = creator;
         this.subject = subject;
         this.title = title;
-        this.number_type = number_type;
+        this.recruit_number = recruit_number;
         this.detail = detail;
         this.create_time = create_time;
         this.members = members;
@@ -47,13 +47,13 @@ public class Study {
 
     }
 
-    public Study(String creator, String subject, String title, int number_type, String detail,
+    public Study(String creator, String subject, String title, int recruit_number, String detail,
                  String[] members, String[] location, int[] week){
 
         this.creator = creator;
         this.subject = subject;
         this.title = title;
-        this.number_type = number_type;
+        this.recruit_number = recruit_number;
         this.detail = detail;
         this.members = members;
         this.location = location;
@@ -87,12 +87,12 @@ public class Study {
         this.title = title;
     }
 
-    public int getNumber_type() {
-        return number_type;
+    public int getRecruit_number() {
+        return recruit_number;
     }
 
-    public void setNumber_type(int number_type) {
-        this.number_type = number_type;
+    public void setRecruit_number(int recruit_number) {
+        this.recruit_number = recruit_number;
     }
 
     public String getDetail() {
