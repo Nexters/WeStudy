@@ -23,6 +23,7 @@ public class StudyMakeDialog extends DialogFragment {
     private Button dialog_home_btn;
     private String study_id;
 
+
     public StudyMakeDialog(String study_id) {
         this.study_id = study_id;
     }
@@ -57,9 +58,8 @@ public class StudyMakeDialog extends DialogFragment {
             public void onClick(View v)
             {
                 //TODO: 스터디 홈 페이지로 이동 구현
-                Toast toast = Toast.makeText(context, study_id, Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
+                dismiss();
+
             }
         });
 
