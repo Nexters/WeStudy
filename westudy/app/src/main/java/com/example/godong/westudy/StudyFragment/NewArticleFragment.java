@@ -2,6 +2,7 @@ package com.example.godong.westudy.StudyFragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -121,10 +122,18 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
-                Toast toast = Toast.makeText(getActivity().getApplicationContext(), "작성되었습니다!", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER, 0, 100);
-                toast.show();
 
+
+                JSONObject jArticle = CommonUtil.stringToJSONObject(new String(response));
+                try {
+                    String study_id = jArticle.getString("study_id");
+                    Toast toast = Toast.makeText(getActivity().getApplicationContext(), "작성되었습니다!"+study_id, Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 100);
+                    toast.show();
+
+                }catch(Exception e){
+                    Log.e("JSONException Occured:",e.toString());
+                }
                 // TODO : 성공 했을 경우 -> 스터디 메인으로 넘어감
 //                TabFragment tabFragment = TabFragment.newInstance();
 //                getActivity()
