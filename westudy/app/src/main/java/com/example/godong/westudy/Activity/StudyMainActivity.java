@@ -370,6 +370,8 @@ public class StudyMainActivity extends FragmentActivity
             study_id.putString("study_id", "");
         }
 
+        mNavigationDrawerFragment.closeDrawer();
+
         tabFragment = TabFragment.newInstance();
         tabFragment.setArguments(study_id);
         getSupportFragmentManager()
