@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.common.CommonUtil;
 import com.example.godong.westudy.R;
 import com.example.godong.westudy.StudyFragment.StudyMakeDialog;
+import com.example.godong.westudy.StudyFragment.TabFragment;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.network.HttpUtil;
@@ -49,6 +50,7 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
     private Button makeStudyBtn;
     private StudyMakeDialog makeDialog;
     private Context context;
+    private TabFragment tabFragment;
 
     public static StudyMakeFragment newInstance(){
         StudyMakeFragment fragment = new StudyMakeFragment();
@@ -161,6 +163,19 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
                     String study_id = jStudy.getString("_id");
                     makeDialog = new StudyMakeDialog(study_id);
                     makeDialog.show(((FragmentActivity)context).getFragmentManager(), "Make Popup");
+                    Bundle studyBundle = new Bundle();
+                    studyBundle.putString("study_id", study_id);
+
+                    Toast toast = Toast.makeText(getActivity().getApplicationContext(), study_id, Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
+                    tabFragment = TabFragment.newInstance();
+                    tabFragment.setArguments(studyBundle);
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fl_container, tabFragment)
+                            .commit();
                 }catch(Exception e){
                     Log.e("JSONException Occured:",e.toString());
                 }

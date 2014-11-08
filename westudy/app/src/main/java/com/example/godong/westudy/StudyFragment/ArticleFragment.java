@@ -18,6 +18,7 @@ import com.common.CommonUtil;
 import com.common.CustomScrollView;
 import com.common.CustomScrollView.OnEdgeTouchListener;
 import com.dataSet.Article;
+import com.dataSet.StudyHelper;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -45,13 +46,16 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
     private FeedAdapter article_adapter;
     private JSONArray article_jarray;
 
+    private TextView ArticleTabStudyTitle;
+
     private ListView ArticleList;
     private CustomScrollView ArticleScroll;
     private LinearLayout WriteArticle;
     private NewArticleFragment newArticleFragment;
 
     private boolean scrollFlag = false;
-    private String study_id = "";
+//    private String study_id = "";
+//    private String study_title = "";
 
     public ArticleFragment(){
 
@@ -74,7 +78,8 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         article_adapter = new FeedAdapter(getActivity(), R.layout._feed_card, article_data);
         setListAdapter(article_adapter);
 
-        this.study_id = getArguments().getString("study_id");
+//        this.study_id = getArguments().getString("study_id");
+//        this.study_title = getArguments().getString("study_title");
         onRefresh();
 
     }
@@ -92,9 +97,11 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
     public void init(View v){
 
         /** 리소스 초기화 **/
+        ArticleTabStudyTitle = (TextView) v.findViewById(R.id.article_textView_title);
         ArticleList = (ListView) v.findViewById(android.R.id.list);
         ArticleScroll = (CustomScrollView) v.findViewById(R.id.article_scrollView);
 
+        ArticleTabStudyTitle.setText(StudyHelper.getStudy().getTitle());
 //        swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.article_swipe_container);
 //        swipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
@@ -129,7 +136,11 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         WriteArticle.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle studyDetail = new Bundle();
+//                studyDetail.putString("study_id", StudyHelper.getStudy().getId());
+//                studyDetail.putString("study_title", StudyHelper.getStudy().getTitle());
                 newArticleFragment = NewArticleFragment.newInstance();
+                newArticleFragment.setArguments(studyDetail);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fl_container, newArticleFragment)
@@ -143,7 +154,7 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
     @Override
     public void onRefresh() {
         RequestParams params = new RequestParams();
-        params.put("study_id", study_id);
+        params.put("study_id", StudyHelper.getStudy().getId());
 //        params.put("date","");
 
 
