@@ -157,15 +157,26 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
 
-        /** Action Bar Setup **/
+        /** Action Bar Setup
+         * 액션바 초기 설정
+         **/
         ActionBar actionBar = getActionBar();
+
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
         actionBar.setBackgroundDrawable(colorDrawable);
-        actionBar.setTitle(Html.fromHtml("<font color = '#0ea7f7'> title </font>"));
-//        actionBar.setIcon(R.drawable.btn_trans);
+
+        /** 이 부분에 actionBar title setting **/
+        actionBar.setTitle(R.string.app_name);
+
+//        actionBar.setTitle(Html.fromHtml("<font color = '#0ea7f7'> title </font>"));
+////        actionBar.setIcon(R.drawable.btn_trans);
 
         /** setup 여기까지! **/
 
@@ -299,21 +310,25 @@ public class NavigationDrawerFragment extends Fragment {
     /**
      * Per the navigation drawer design guidelines, updates the action bar to show the global app
      * 'context', rather than just what's in the current screen.
+     * actionBar 공통 설정사항.
+     * Navigation Drawer List호출 되었을 때 액션바 설정
      */
     private void showGlobalContextActionBar() {
         ActionBar actionBar = getActionBar();
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayUseLogoEnabled(true);
+
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayUseLogoEnabled(true);
+
 
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0ea7f7"));
         actionBar.setBackgroundDrawable(colorDrawable);
 
         /** 이 부분에 actionBar title setting **/
-        actionBar.setTitle(Html.fromHtml("<font color = '#0ea7f7'> title </font>"));
-//        actionBar.setIcon(R.drawable.btn_trans);
-//        actionBar.setTitle(R.string.app_name);
+        actionBar.setTitle(R.string.app_name);
     }
 
     private ActionBar getActionBar() {

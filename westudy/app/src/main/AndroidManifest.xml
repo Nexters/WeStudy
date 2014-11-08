@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.godong.westudy" >
 
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -20,9 +21,11 @@
         </activity>
         <activity
             android:name=".Activity.StudyMainActivity"
-            android:icon="@drawable/btn_trans"
+            android:icon="@drawable/common_06navi_logo"
+            android:theme="@style/CustomActionBarTheme"
             >
         </activity>
+
         <activity
             android:name=".Activity.JoinActivity"
             android:label="@string/title_activity_join" >
