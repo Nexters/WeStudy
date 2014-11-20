@@ -15,6 +15,12 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.common.CommonUtil;
+<<<<<<< HEAD
+=======
+import com.common.CustomScrollView;
+import com.dataSet.Article;
+import com.dataSet.Content;
+>>>>>>> ba7ffce37463bb23ea83f60aaa185857785fd2a6
 import com.dataSet.Schedule;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -26,6 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by baggajin on 14. 7. 13..
@@ -120,6 +127,7 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
             }
         });
 
+        //TODO: refrash 구현 부분..
 //        new Handler().postDelayed(new Runnable() {
 //            @Override public void run() {
 //                Log.i("Handler","END");
@@ -135,8 +143,9 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
         String start_time="";
         String end_time="";
         String title = "";
-        String contents = "";
+        ArrayList<String> contents = new ArrayList<String>();
         String study_id="";
+        ArrayList<String> checkList = new ArrayList<String>();
 
 
         schedule_data.clear();
@@ -167,21 +176,25 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
                 end_time = timeTemp[0];
 
 
-                contents = "testtest";
-//                /** contents 읽어오기 **/
-//                JSONObject contents = feed.getJSONObject("contents");
-//                int size = contents.length();
-//
-//                for(int j=0;j<size;j++){
-//                    text = contents.getString("text");
-//                    photo_url = contents.getString("photo_url");
-//                }
-//
+                /** contents 읽어오기 **/
+                JSONArray jsonContents = Jschedule.getJSONArray("contents");
 
-//                Log.d("output",author+"/"+study_id+"/"+text+"/"+photo_url);
+                for (int j=0; j < jsonContents.length(); j++) {
+
+                    JSONObject con = jsonContents.getJSONObject(j);
+                    if(con.getString("type").equals("text")){
+                        contents.add(con.getString("text"));
+                    }else if(con.getString("type").equals("check")){
+                        checkList.add(con.getString("text"));
+                    }
+
+                }
+
+
+                Log.d("output",contents.toString()+"/"+checkList.toString());
 
                 Schedule schedule = new Schedule(study_id, order, start_time, end_time,
-                                                     title, create_time, contents);
+                                                     title, create_time, contents, checkList);
 
                 schedule_data.add(schedule);
                 Log.d("Arraylist output", schedule_data.get(i).toString());
@@ -219,12 +232,16 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
                 TextView title = (TextView) v.findViewById(R.id.scheduleCard_textView_title);
                 TextView order = (TextView) v.findViewById(R.id.scheduleCard_textView_order);
                 TextView end_time = (TextView) v.findViewById(R.id.scheduleCard_textView_endTime);
+                ListView checkList = (ListView) v.findViewById(R.id.scheduleCard_listView_checkList);
 
                 if (create_time != null) {
                     create_time.setText(schedule.getCreate_time());
                 }
                 if (contents != null) {
                     contents.setText(schedule.getContents());
+                }if(checkList != null){
+                    //TODO: 체크리스트 구현 부분...
+
                 }if(title!=null){
                     title.setText(schedule.getTitle());
                 }if(order!=null){
