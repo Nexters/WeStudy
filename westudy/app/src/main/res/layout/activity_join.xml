@@ -323,7 +323,7 @@
             android:textColor="#000000"
             android:id="@+id/join_btn_join"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/common_n_09"/>
+            android:background="@drawable/common_n_08"/>
 
     </LinearLayout>
 
