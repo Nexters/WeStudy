@@ -24,7 +24,7 @@
         <ListView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/member_confirm_list">
+            android:id="@+id/applier_list">
 
         </ListView>
 
@@ -48,7 +48,7 @@
         <ListView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/member_member_list">
+            android:id="@+id/member_list">
 
         </ListView>
 

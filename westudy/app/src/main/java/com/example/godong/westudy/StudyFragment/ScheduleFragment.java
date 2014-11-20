@@ -15,8 +15,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.common.CommonUtil;
-import com.common.CustomScrollView;
-import com.dataSet.Article;
 import com.dataSet.Schedule;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -39,6 +37,8 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
     private ArrayList<Schedule> schedule_data;
     private ScheduleAdapter schedule_adapter;
     private JSONArray schedule_jarray;
+
+    private TextView ScheduleTabStudyTitle;
 
     private ListView ScheduleList;
     private ScrollView ScheduleScroll;
@@ -65,8 +65,6 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
         schedule_data = new ArrayList<Schedule>();
         schedule_adapter = new ScheduleAdapter(getActivity(), R.layout._schedule_card, schedule_data);
         setListAdapter(schedule_adapter);
-
-
         onRefresh();
 
     }
@@ -83,6 +81,7 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
     public void init(View v){
 
         /** 리소스 초기화 **/
+
         ScheduleList = (ListView) v.findViewById(android.R.id.list);
         ScheduleScroll = (ScrollView) v.findViewById(R.id.schedule_scrollView);
 

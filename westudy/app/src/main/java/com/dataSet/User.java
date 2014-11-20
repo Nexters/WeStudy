@@ -43,7 +43,7 @@ import android.os.Parcelable;
         this.email = email;
         this.name = name;
         this.profile_url = profile_url;
-        this. gender = gender;
+        this.gender = gender;
         this.create_time = create_time;
         this.interest_in = interest;
         this.study = study;
