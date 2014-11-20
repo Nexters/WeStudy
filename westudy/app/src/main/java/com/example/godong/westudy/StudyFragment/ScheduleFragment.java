@@ -15,12 +15,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.common.CommonUtil;
-<<<<<<< HEAD
-=======
-import com.common.CustomScrollView;
-import com.dataSet.Article;
-import com.dataSet.Content;
->>>>>>> ba7ffce37463bb23ea83f60aaa185857785fd2a6
 import com.dataSet.Schedule;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -32,7 +26,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Created by baggajin on 14. 7. 13..
