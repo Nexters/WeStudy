@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.common.CommonUtil;
 import com.example.godong.westudy.R;
 import com.example.godong.westudy.StudyFragment.StudyMakeDialog;
-import com.example.godong.westudy.StudyFragment.TabFragment;
+import com.example.godong.westudy.StudyFragment.ViewPagerFragment;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.network.HttpUtil;
@@ -50,7 +50,7 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
     private Button makeStudyBtn;
     private StudyMakeDialog makeDialog;
     private Context context;
-    private TabFragment tabFragment;
+    private ViewPagerFragment viewPagerFragment;
 
     public static StudyMakeFragment newInstance(){
         StudyMakeFragment fragment = new StudyMakeFragment();
@@ -170,12 +170,13 @@ public class StudyMakeFragment extends Fragment implements View.OnClickListener 
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
 
-                    tabFragment = TabFragment.newInstance();
-                    tabFragment.setArguments(studyBundle);
+                    viewPagerFragment = ViewPagerFragment.newInstance();
+
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fl_container, tabFragment)
+                            .replace(R.id.fl_container, viewPagerFragment)
                             .commit();
+
                 }catch(Exception e){
                     Log.e("JSONException Occured:",e.toString());
                 }
