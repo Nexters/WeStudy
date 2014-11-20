@@ -1,5 +1,7 @@
 package com.example.godong.westudy.StudyFragment;
 
+import android.content.Intent;
+import android.provider.CalendarContract;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +12,8 @@ import android.widget.CalendarView.OnDateChangeListener;
 import android.widget.Toast;
 
 import com.example.godong.westudy.R;
+
+import java.util.GregorianCalendar;
 
 
 public class CalendarFragment extends Fragment {
@@ -32,7 +36,6 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
         init(view);
-        setCalendarEvent();
 
         return view;
     }
@@ -44,15 +47,15 @@ public class CalendarFragment extends Fragment {
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
 
-//                Toast.makeText(getActivity(),"Selected Date is\n\n"
-//                                +dayOfMonth+" : "+month+" : "+year ,
-//                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Selected Date is\n\n"
+                                +dayOfMonth+" : "+month+" : "+year ,
+                        Toast.LENGTH_SHORT).show();
 
             }
         });
     }
 
-    private void setCalendarEvent() {
+//    private void setCalendarEvent() {
 //        Intent intent = new Intent(Intent.ACTION_INSERT);
 //        intent.setType("vnd.android.cursor.item/event");
 //        intent.putExtra(CalendarContract.Events.TITLE, "Learn Android");
@@ -75,5 +78,5 @@ public class CalendarFragment extends Fragment {
 //// Making it private and shown as busy
 //        intent.putExtra(CalendarContract.Events.ACCESS_LEVEL, CalendarContract.Events.ACCESS_PRIVATE);
 //        intent.putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
-    }
+//    }
 }
