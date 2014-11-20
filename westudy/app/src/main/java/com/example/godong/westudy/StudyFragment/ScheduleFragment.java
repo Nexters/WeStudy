@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 
 import com.common.CommonUtil;
 import com.common.CustomScrollView;
@@ -29,7 +31,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
+import java.util.List;
+import java.util.Hashtable;
 /**
  * Created by baggajin on 14. 7. 13..
  */
@@ -238,11 +241,18 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
                     }
                 }if(checkList != null){
                     //TODO: 체크리스트 구현 부분...
-                    if(schedule.getContentCheckList(position)!=null){
-                        list = schedule.getContentCheckList(position);
-                        adapter = new ArrayAdapter<String>(getActivity(), R.layout.fragment_schedule, list);
-                        checkList.setAdapter(adapter);
-                    }
+                    if(schedule.getContentCheckList(position)!=null) {
+
+//                        list = schedule.getContentCheckList(position);
+//                        adapter = new ContentsAdapter(list, this);
+//                        checkList.setAdapter(adapter);
+//                        checkList.setItemsCanFocus(false);
+//                        checkList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+//
+//                    }
+//                        adapter = new ArrayAdapter<String>(getActivity(), R.layout.fragment_schedule, list);
+//                        checkList.setAdapter(adapter);
+//                    }
 
 
                 }if(title!=null){
@@ -260,3 +270,4 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
 
 
 }
+
