@@ -264,7 +264,7 @@
             android:textColor="#000000"
             android:id="@+id/studyApply_btn_makeStudy"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/common_n_09"/>
+            android:background="@drawable/common_n_08"/>
 
     </LinearLayout>
 
