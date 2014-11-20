@@ -32,7 +32,6 @@ import com.example.godong.westudy.SideMenu.InfoFragment;
 import com.example.godong.westudy.SideMenu.ProfileFragment;
 import com.example.godong.westudy.SideMenu.StudyMakeFragment;
 import com.example.godong.westudy.StudyFragment.NewArticleFragment;
-import com.example.godong.westudy.StudyFragment.TabFragment;
 import com.example.godong.westudy.StudyFragment.ViewPagerFragment;
 import com.example.godong.westudy.StudySearchFragment.StudySearchTabFragment;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -58,7 +57,6 @@ public class StudyMainActivity extends FragmentActivity
     private CharSequence mTitle;
 
     /** fragment들 선언 (DrawerBar에서 선택할 Fragment) **/
-    private TabFragment tabFragment;
     private ViewPagerFragment viewPagerFragment;
     private ProfileFragment profileFragment;
     private InfoFragment infoFragment;
