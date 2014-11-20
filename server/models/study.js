@@ -175,7 +175,7 @@ StudySchema.statics.getAppliers = function (study_id, callback) {
   }, function (err, study_data) {
     // console.log(study_data);
     if (!err && study_data) {
-      var appliers = study_data.applier || [];
+      var appliers = study_data.appliers || [];
       var applier_data_list = [];
 
       async.map(appliers, function (applier, async_callback) {

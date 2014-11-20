@@ -78,8 +78,6 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         article_adapter = new FeedAdapter(getActivity(), R.layout._feed_card, article_data);
         setListAdapter(article_adapter);
 
-//        this.study_id = getArguments().getString("study_id");
-//        this.study_title = getArguments().getString("study_title");
         onRefresh();
 
     }
@@ -102,14 +100,8 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         ArticleScroll = (CustomScrollView) v.findViewById(R.id.article_scrollView);
 
         ArticleTabStudyTitle.setText(StudyHelper.getStudy().getTitle());
-//        swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.article_swipe_container);
-//        swipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
-
-//        study_id = getArguments().getString("study_id");
-
 
         /** Event 초기화 **/
-//        swipeLayout.setOnRefreshListener(this);
         ArticleScroll.setOnEdgeTouchListener(new OnEdgeTouchListener(){
             @Override
             public void onEdgeTouch(CustomScrollView.DIRECTION direction) {
@@ -136,11 +128,7 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
         WriteArticle.setOnClickListener(new LinearLayout.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Bundle studyDetail = new Bundle();
-//                studyDetail.putString("study_id", StudyHelper.getStudy().getId());
-//                studyDetail.putString("study_title", StudyHelper.getStudy().getTitle());
                 newArticleFragment = NewArticleFragment.newInstance();
-//                newArticleFragment.setArguments(studyDetail);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fl_container, newArticleFragment)
@@ -155,11 +143,6 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
     public void onRefresh() {
         RequestParams params = new RequestParams();
         params.put("study_id", StudyHelper.getStudy().getId());
-//        params.put("date","");
-
-
-//        HttpUtil.get("http://godong9.com:3000/article/load", null, params, new AsyncHttpResponseHandler() {
-//        HttpUtil.get("http://godong9.com:3000/article/all", null, null, new AsyncHttpResponseHandler() {
         HttpUtil.get("http://godong9.com:3000/article/get", null, params, new AsyncHttpResponseHandler() {
 
             @Override
@@ -188,16 +171,9 @@ public class ArticleFragment extends ListFragment implements SwipeRefreshLayout.
                 // called when request is retried
             }
         });
-
-//        new Handler().postDelayed(new Runnable() {
-//            @Override public void run() {
-//                Log.i("Handler","END");
-//                swipeLayout.setRefreshing(false);
-//            }
-//        }, 2000);
     }
 
-    private void setFeedData(){
+    private void setFeedData () {
 
         String create_time="";
         String author = "";

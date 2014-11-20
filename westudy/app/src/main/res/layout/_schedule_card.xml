@@ -138,6 +138,11 @@
                     android:textColor="#696767"
                     android:id="@+id/scheduleCard_textView_contents"/>
 
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/scheduleCard_listView_checkList" />
+
             </LinearLayout>
 
         </LinearLayout>
