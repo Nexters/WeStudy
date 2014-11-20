@@ -38,8 +38,8 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
     private ImageButton writeBtn;
     private TextView toStudyName;
     private JSONObject jsonObj;
+    private ViewPagerFragment viewPagerFragment;
 
-    private TabFragment tabFragment;
 
 //    private String study_id;
 //    private String study_title;
@@ -135,11 +135,12 @@ public class NewArticleFragment extends Fragment implements OnClickListener {
 //                    study_id.putString("study_id", jArticle.getString("study_id"));
 
                     // Go Main Article list fragment.
-                    tabFragment = TabFragment.newInstance();
-//                    tabFragment.setArguments(study_id);
+
+                    viewPagerFragment = ViewPagerFragment.newInstance();
+
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fl_container, tabFragment)
+                            .replace(R.id.fl_container, viewPagerFragment)
                             .commit();
 
                 }catch(Exception e){
