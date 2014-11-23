@@ -10,7 +10,6 @@ var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var mongoStore = require('connect-mongo')(express.session);
 var mongoose = require('mongoose');
-var passport = require('passport');
 var fs = require('fs');
 
 /**
