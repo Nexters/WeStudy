@@ -18,6 +18,7 @@ import android.widget.CheckBox;
 
 import com.common.CommonUtil;
 import com.dataSet.Schedule;
+import com.dataSet.Content;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.network.HttpUtil;
@@ -251,7 +252,7 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
 //                    }
 //                        adapter = new ArrayAdapter<String>(getActivity(), R.layout.fragment_schedule, list);
 //                        checkList.setAdapter(adapter);
-//                    }
+                    }
 
 
                 }if(title!=null){
