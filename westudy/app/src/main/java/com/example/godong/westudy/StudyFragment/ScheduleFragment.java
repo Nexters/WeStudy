@@ -13,9 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 
 import com.common.CommonUtil;
 import com.dataSet.Schedule;
+import com.dataSet.Content;
 import com.example.godong.westudy.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.network.HttpUtil;
@@ -26,6 +29,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Hashtable;
 
 /**
  * Created by baggajin on 14. 7. 13..
@@ -136,10 +141,8 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
         String start_time="";
         String end_time="";
         String title = "";
-        ArrayList<String> contents = new ArrayList<String>();
         String study_id="";
-        ArrayList<String> checkList = new ArrayList<String>();
-
+        ArrayList<Content> contents = new ArrayList<Content>();
 
         schedule_data.clear();
         schedule_adapter.notifyDataSetInvalidated();
@@ -171,23 +174,23 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
 
                 /** contents 읽어오기 **/
                 JSONArray jsonContents = Jschedule.getJSONArray("contents");
+                Content input = new Content();
 
                 for (int j=0; j < jsonContents.length(); j++) {
-
                     JSONObject con = jsonContents.getJSONObject(j);
                     if(con.getString("type").equals("text")){
-                        contents.add(con.getString("text"));
+                        input.setText(con.getString("text"));
                     }else if(con.getString("type").equals("check")){
-                        checkList.add(con.getString("text"));
+                        input.setCheckList(con.getString("text"));
                     }
 
                 }
+                contents.add(input);
 
-
-                Log.d("output",contents.toString()+"/"+checkList.toString());
+                Log.d("output",contents.toString());
 
                 Schedule schedule = new Schedule(study_id, order, start_time, end_time,
-                                                     title, create_time, contents, checkList);
+                                                     title, create_time, contents);
 
                 schedule_data.add(schedule);
                 Log.d("Arraylist output", schedule_data.get(i).toString());
@@ -226,14 +229,31 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
                 TextView order = (TextView) v.findViewById(R.id.scheduleCard_textView_order);
                 TextView end_time = (TextView) v.findViewById(R.id.scheduleCard_textView_endTime);
                 ListView checkList = (ListView) v.findViewById(R.id.scheduleCard_listView_checkList);
+                ArrayList<String> list;
+                ArrayAdapter<String> adapter;
 
                 if (create_time != null) {
                     create_time.setText(schedule.getCreate_time());
                 }
                 if (contents != null) {
-                    contents.setText(schedule.getContents());
+                    if(schedule.getContentsText(position)!="") {
+                        contents.setText(schedule.getContentsText(position));
+                    }
                 }if(checkList != null){
                     //TODO: 체크리스트 구현 부분...
+                    if(schedule.getContentCheckList(position)!=null) {
+
+//                        list = schedule.getContentCheckList(position);
+//                        adapter = new ContentsAdapter(list, this);
+//                        checkList.setAdapter(adapter);
+//                        checkList.setItemsCanFocus(false);
+//                        checkList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+//
+//                    }
+//                        adapter = new ArrayAdapter<String>(getActivity(), R.layout.fragment_schedule, list);
+//                        checkList.setAdapter(adapter);
+                    }
+
 
                 }if(title!=null){
                     title.setText(schedule.getTitle());
@@ -250,3 +270,4 @@ public class ScheduleFragment extends ListFragment implements SwipeRefreshLayout
 
 
 }
+

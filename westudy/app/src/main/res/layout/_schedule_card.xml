@@ -141,7 +141,12 @@
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/scheduleCard_listView_checkList" />
+                    android:textSize="12dp"
+                    android:textColor="#696767"
+                    android:id="@+id/scheduleCard_listView_checkList"
+                    android:choiceMode="multipleChoiceModal"
+                    android:clickable="true"
+                    android:smoothScrollbar="true" />
 
             </LinearLayout>
 

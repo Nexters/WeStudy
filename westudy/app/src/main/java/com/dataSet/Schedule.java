@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Schedule {
     private String create_time;
     private String title;
-    private ArrayList<String> contents;
+    private ArrayList<Content> contents;
     private ArrayList<String> checkList;
     private String order;
     private String start_time;
@@ -27,7 +27,7 @@ public class Schedule {
 
 
     public Schedule(String study_id, String order, String start_time,
-                    String end_time, String title, String create_time, ArrayList<String> contents){
+                    String end_time, String title, String create_time, ArrayList<Content> contents){
         this.study_id = study_id;
         this.order = order;
         this.start_time = start_time;
@@ -35,19 +35,6 @@ public class Schedule {
         this.title = title;
         this.create_time = create_time;
         this.contents = contents;
-
-    }
-
-    public Schedule(String study_id, String order, String start_time,
-                    String end_time, String title, String create_time, ArrayList<String> contents, ArrayList<String> checkList){
-        this.study_id = study_id;
-        this.order = order;
-        this.start_time = start_time;
-        this.end_time = end_time;
-        this.title = title;
-        this.create_time = create_time;
-        this.contents = contents;
-        this.checkList = checkList;
 
     }
 
@@ -102,14 +89,19 @@ public class Schedule {
     public String getContents() {
         StringBuilder output = new StringBuilder();
 
-        for(String str : contents){
-            output.append(str+"\n");
+        for(Content con : contents){
+            output.append(con.toString()+"\n");
         }
 
         return output.toString();
     }
 
-    public void setContents(ArrayList<String> contents) {
+    public String getContents(int position) {
+
+        return contents.get(position).toString();
+    }
+
+    public void setContents(ArrayList<Content> contents) {
         this.contents = contents;
     }
 
@@ -120,6 +112,19 @@ public class Schedule {
     public void setCheckList(ArrayList<String> checkList) {
         this.checkList = checkList;
     }
+
+    public String getContentsText(int position){
+        return contents.get(position).getText();
+    }
+
+    public ArrayList<String> getContentCheckList(int position){
+        return contents.get(position).getCheckList();
+    }
+
+    public ArrayList<Boolean> getContentChecked(int position){
+        return contents.get(position).getChecked();
+    }
+
 }
 
 
